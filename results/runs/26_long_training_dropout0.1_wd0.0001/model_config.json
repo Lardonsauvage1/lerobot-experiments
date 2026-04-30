@@ -1,0 +1,10 @@
+{
+  "class": "MLPChunkWithDropout",
+  "feature_dim": 512,
+  "hidden_layers": [
+    256,
+    128
+  ],
+  "chunk_size": 20,
+  "dropout": 0.1
+}

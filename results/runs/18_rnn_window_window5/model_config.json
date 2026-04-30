@@ -1,0 +1,9 @@
+{
+  "class": "RNNWindowChunkPolicy",
+  "cnn_feature_dim": 64,
+  "image_size": 64,
+  "rnn_hidden": 128,
+  "rnn_layers": 1,
+  "chunk_size": 20,
+  "window_size": 5
+}

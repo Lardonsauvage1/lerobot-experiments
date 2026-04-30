@@ -1,0 +1,31 @@
+# Environments
+venv/
+venv312/
+.venv/
+__pycache__/
+*.pyc
+
+# OS / IDE
+.DS_Store
+.vscode/
+.claude/
+
+# Données volumineuses (jamais sync)
+data_cache/
+*.pt
+*.safetensors
+
+# Outputs lourds (les vidéos et checkpoints restent locaux)
+*.mp4
+*.zip
+results/runs/*/model.pt
+results/runs/*/ep*.mp4
+results/videos/
+results/archive/
+results/*.log
+
+# LeRobot training outputs
+outputs/
+
+# HuggingFace cache (si jamais téléchargé dans le projet)
+.cache/

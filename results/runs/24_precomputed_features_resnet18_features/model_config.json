@@ -1,0 +1,10 @@
+{
+  "class": "TransformerChunkFromFeatures",
+  "feature_dim": 512,
+  "d_model": 64,
+  "n_heads": 4,
+  "n_layers": 2,
+  "dim_feedforward": 256,
+  "chunk_size": 20,
+  "note": "N\u00e9cessite ResNet18 pour l'inf\u00e9rence (features pr\u00e9-calcul\u00e9es pour l'entra\u00eenement)"
+}

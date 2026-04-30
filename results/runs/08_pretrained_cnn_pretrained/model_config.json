@@ -1,0 +1,12 @@
+{
+  "class": "PushTPolicy",
+  "cnn_class": "PretrainedCNN",
+  "cnn_feature_dim": 64,
+  "hidden_layers": [
+    128,
+    64
+  ],
+  "pos_dim": 2,
+  "output_dim": 2,
+  "image_size": 64
+}

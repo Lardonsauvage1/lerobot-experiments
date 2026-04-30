@@ -1,0 +1,16 @@
+{
+  "class": "ChunkPolicy",
+  "cnn_channels": [
+    16,
+    32
+  ],
+  "cnn_feature_dim": 64,
+  "image_size": 64,
+  "hidden_layers": [
+    128,
+    64
+  ],
+  "chunk_size": 5,
+  "pos_dim": 2,
+  "action_dim": 2
+}
