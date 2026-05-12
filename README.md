@@ -7,9 +7,22 @@ Espace d'apprentissage et d'expérimentation autour de l'**imitation learning** 
 ## État actuel
 
 - **Tâche** : [PushT](https://huggingface.co/datasets/lerobot/pusht) (LeRobot) — pousser un bloc en T sur une zone cible
-- **Best coverage** atteint : ~46% (Transformer 2L, run `24_precomputed_features`)
-- **Best success rate** : 0% — on n'a pas encore réussi à finaliser la tâche, en partie à cause d'archis non-multimodales (MLP collapse to mean)
-- **Prochain step** : Diffusion Policy via `lerobot-train` (référence SOTA sur PushT, ~84-91% success en littérature)
+- **Best coverage** : **44.9%** (Transformer 2L + bins discrets sur image seule, run `31_discrete_ce`)
+- **Best run "absolu"** : 46.5% (`24_precomputed_features`, image + agent_pos)
+- **Premier succès du projet** : run 31, 3/200 épisodes (1.5%) au checkpoint epoch 75 avec décodage argmax
+- **Lecture clé** : passer de MSE-régression à classification (CE) sur bins discrets a quasi-rattrapé la perf "image+pos" en travaillant uniquement sur la formulation de la sortie
+
+### Série la plus récente — enquête loss ↔ coverage
+
+Les runs `29` à `32` répondent à la question : **pourquoi la loss ne reflète-t-elle pas la performance en simulation ?** Voir [`docs/JOURNEY.md`](docs/JOURNEY.md) pour le récit complet et les conclusions structurelles.
+
+| Run | Loss | Input | Coverage |
+|---|---|---|---|
+| 24 | MSE | image + pos | 46.5% |
+| 29 | MSE | **image seule** | 31.8% |
+| 30 | NLL (MDN K=5) | image seule | 35.4% (best 40.9% @ epoch 75) |
+| 31 | CE + résidu (bins absolus) | image seule | **44.9% argmax** (3/200 succès !) |
+| 32 | CE + résidu (bins delta) | image seule | en cours |
 
 ## Setup machine
 
@@ -32,6 +45,11 @@ Pour LeRobot avec PushT inclus :
 pip install 'lerobot[pusht]'
 ```
 
+Lancer un run en mode unbuffered (pour suivre la progression en live via `tail -f`) :
+```bash
+venv312/bin/python -u experiments/31_discrete_ce.py 2>&1 | tee results/logs/run_31.log
+```
+
 ## Structure du projet
 
 ```
@@ -43,18 +61,24 @@ pip install 'lerobot[pusht]'
 │   └── visualize.py           # Génération des graphes loss/coverage
 │
 ├── experiments/               # Scripts numérotés — un fichier par expérience indépendante
-│   ├── 08_pretrained_cnn.py   # CNN ResNet pré-entraîné vs from scratch
-│   ├── 09_action_chunking.py  # Action chunking : prédire N actions futures
-│   ├── 10_transformer.py      # Premier transformer pour PushT
-│   ├── 17_rnn_chunk.py        # RNN avec chunk d'actions
-│   ├── 24_precomputed_features.py  # Transformer + features ResNet pré-calculées (best run actuel)
-│   ├── 25_resnet_mlp.py       # MLP simple sur features ResNet
-│   ├── 26_long_training.py    # 10k epochs avec dropout — voir si l'overfit aide
-│   ├── 27_position_history.py # Historique de positions en entrée (hist=5/10)
-│   ├── 28_baseline_no_history.py  # Baseline propre : MLP sans history, eval coverage tous les 200 epochs
-│   ├── check_eval_variance.py # Mesure la variance des évals (combien d'épisodes nécessaires ?)
+│   ├── 08_pretrained_cnn.py        # CNN ResNet pré-entraîné vs from scratch
+│   ├── 09_action_chunking.py       # Action chunking : prédire N actions futures
+│   ├── 10_transformer.py           # Premier transformer pour PushT
+│   ├── 17_rnn_chunk.py             # RNN avec chunk d'actions
+│   ├── 24_precomputed_features.py  # Transformer + features ResNet pré-calculées (image+pos, 46.5%)
+│   ├── 25_resnet_mlp.py            # MLP simple sur features ResNet
+│   ├── 26_long_training.py         # 10k epochs avec dropout — voir si l'overfit aide (réponse: non)
+│   ├── 27_position_history.py      # Historique de positions en entrée (hist=5/10)
+│   ├── 28_baseline_no_history.py   # Baseline propre : MLP sans history, eval coverage tous les 200 epochs
+│   │
+│   ├── 29_image_only.py            # ┐ Série "enquête loss vs coverage"
+│   ├── 30_mdn.py                   # │  29 = MSE image seule
+│   ├── 31_discrete_ce.py           # │  30 = MDN (mixture density network)
+│   ├── 32_delta_grid.py            # │  31 = CE + résidu, bins absolus (best image-only : 44.9%)
+│   │                               # ┘  32 = CE + résidu, bins delta (contrôle en vitesse)
+│   ├── check_eval_variance.py      # Mesure la variance des évals (combien d'épisodes nécessaires ?)
 │   ├── check_eval_variance_big.py  # Même chose, 10×200 épisodes
-│   └── archive/               # Anciennes expériences (00-07)
+│   └── archive/                    # Anciennes expériences (00-07)
 │
 ├── notebooks/                 # Notebooks Jupyter pour Colab/Kaggle
 │   ├── pusht_diffusion_colab.ipynb  # Diffusion Policy sur Colab GPU (T4)
@@ -68,11 +92,14 @@ pip install 'lerobot[pusht]'
 │   │   ├── model_config.json  # ✅ Versionné — hyperparamètres
 │   │   ├── model.pt           # ❌ Non versionné — poids du modèle (lourd)
 │   │   └── ep*.mp4            # ❌ Non versionné — vidéos d'éval
+│   ├── logs/                  # ✅ Versionné — logs textuels des runs (utile en relecture)
 │   └── comparisons/           # Graphes croisés entre plusieurs runs
 │
 ├── data_cache/                # ❌ Non versionné — features ResNet pré-calculées + données PushT cachées
 │
-├── docs/                      # Documentation libre (notes pédagogiques, etc.)
+├── docs/
+│   └── JOURNEY.md             # Récit narratif et leçons techniques de la série 29-32
+│
 ├── tests/                     # Tests unitaires (à étoffer)
 └── requirements.txt
 ```
@@ -90,23 +117,35 @@ Cela permet de comparer toutes les expériences entre elles avec un format unifi
 
 ## Vue d'ensemble des découvertes
 
+### Phase 1 — exploration (runs 08 à 28)
+
 - **L'historique de positions n'aide pas beaucoup** (hist=5 marginalement mieux que hist=0, hist=10 régresse) — voir runs `27_*` vs `28_*`
-- **L'entraînement long n'apporte rien** au-delà de ~1000 epochs sur cette archi — la loss continue de baisser mais le coverage stagne / dérive (cf. run `26_long_training`)
+- **L'entraînement long n'apporte rien** au-delà de ~1000 epochs sur cette archi — la loss continue de baisser mais le coverage stagne / dérive (cf. run `26_long_training`, 10000 epochs)
 - **Le bruit d'évaluation est élevé** : à 50 épisodes, écart-type ±3.7pt ; à 200 épisodes, ±1.7pt. Voir `check_eval_variance_big.py`. Conséquence : ne pas sur-interpréter les fluctuations de coverage entre runs/epochs proches.
 - **Le Transformer (run 24) bat largement les MLP** (46% vs 27% coverage) — l'archi compte plus que la quantité d'historique.
-- **Les MLP/Transformer regression collapse vers la moyenne** sur PushT qui est multimodal → pour viser le SOTA il faut une archi générative (Diffusion Policy, VQ-BeT, etc.).
+
+### Phase 2 — enquête "loss vs coverage" (runs 29 à 32)
+
+Détails dans [`docs/JOURNEY.md`](docs/JOURNEY.md). Conclusions principales :
+
+- **La loss MSE est intrinsèquement décorrélée du coverage sur tâche multimodale** : sur PushT, optimiser MSE pousse le modèle à prédire la **moyenne** entre les différentes actions humaines valides → action morte. Les runs les plus bas en loss (`07_data_filtering` : MSE 0.0012) ont parfois le **pire** coverage (4.6%).
+- **`agent_pos` apporte ~15pts mais n'est pas indispensable** : passer de "image + agent_pos" (46.5%) à "image seule" (31.8% avec MSE) coûte cher, **mais** la perte est presque entièrement récupérée en changeant la **formulation de la sortie** (44.9% avec bins discrets, sans agent_pos).
+- **La classification discrète bat la régression sur tâche multimodale** : transformer "prédire (x, y) continus" en "choisir parmi 64 bins + résidu" évite le mode collapse → premier succès du projet (3/200 à epoch 75 de run 31).
+- **La loss CE+résidu est mieux corrélée au coverage que MSE ou NLL/MDN** : sur run 31, baisser la loss baisse aussi le coverage. Sur runs MSE (24) et MDN (30), la loss continue de baisser après le pic de coverage.
+- **Limite des bins absolus** : prédictions de chunk parallèle → téléportations possibles entre timesteps consécutifs (saccadé visible). Solution testée en run 32 : bins de **deltas** (contrôle en vitesse au lieu de position).
 
 ## Prochaines pistes
 
-Voir aussi `.claude/projects/.../memory/ideas_future.md` pour la liste complète.
-
-1. **Diffusion Policy** via `lerobot-train` (commande prête, perfs SOTA attendues)
-2. **VQ-BeT** (alternative ~10x plus rapide à l'inférence que Diffusion)
-3. **ACT** (encoder-decoder + chunking)
-4. **Améliorations transverses** : unfreeze ResNet + GroupNorm, receding horizon, EMA weights, checkpoint le best coverage
+1. **Décodeur autoregressif** (= BeT propre) : chaque action prédite voit les précédentes → résout structurellement le saccadé
+2. **Diffusion Policy** via notebook Colab/Kaggle (référence SOTA, ~84-91% success en littérature)
+3. **VQ-BeT** : VQ-VAE pour apprendre les tokens d'action au lieu d'un k-means basique
+4. **Receding horizon** : exécuter k=8 actions puis re-prédire (gratuit, juste de l'inférence)
+5. **Améliorations transverses** : unfreeze ResNet + GroupNorm, EMA weights, smoothness penalty
 
 ## Liens utiles
 
 - LeRobot docs : https://huggingface.co/docs/lerobot
 - Diffusion Policy paper : https://arxiv.org/abs/2303.04137
+- BeT paper : https://arxiv.org/abs/2206.11251
+- VQ-BeT paper : https://arxiv.org/abs/2403.03181
 - Dataset PushT : https://huggingface.co/datasets/lerobot/pusht

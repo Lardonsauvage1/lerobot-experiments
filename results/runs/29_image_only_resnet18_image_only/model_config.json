@@ -1,0 +1,10 @@
+{
+  "class": "TransformerChunkImageOnly",
+  "feature_dim": 512,
+  "d_model": 64,
+  "n_heads": 4,
+  "n_layers": 2,
+  "dim_feedforward": 256,
+  "chunk_size": 20,
+  "note": "Image seule en entr\u00e9e (pas de agent_pos) \u2014 comparable au run 24"
+}
