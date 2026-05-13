@@ -1,0 +1,11 @@
+{
+  "class": "MLPChunkPolicy",
+  "state_dim": 19,
+  "hidden_dims": [
+    256,
+    256
+  ],
+  "chunk_size": 20,
+  "action_dim": 7,
+  "note": "Baseline MLP sur state low-dim 19D, pr\u00e9dit chunk 20 actions. Phase 3, ouverture vers bras robotique."
+}

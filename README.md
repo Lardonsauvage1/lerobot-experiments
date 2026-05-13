@@ -47,7 +47,11 @@ pip install 'lerobot[pusht]'
 
 Lancer un run en mode unbuffered (pour suivre la progression en live via `tail -f`) :
 ```bash
-venv312/bin/python -u experiments/31_discrete_ce.py 2>&1 | tee results/logs/run_31.log
+# Phase PushT
+venv312/bin/python -u experiments/pusht/31_discrete_ce.py 2>&1 | tee results/logs/pusht/run_31.log
+
+# Phase Lift (Robomimic)
+venv312/bin/python -u experiments/lift/33_lift_mlp_baseline.py 2>&1 | tee results/logs/lift/run_33.log
 ```
 
 ## Structure du projet
@@ -61,24 +65,27 @@ venv312/bin/python -u experiments/31_discrete_ce.py 2>&1 | tee results/logs/run_
 │   └── visualize.py           # Génération des graphes loss/coverage
 │
 ├── experiments/               # Scripts numérotés — un fichier par expérience indépendante
-│   ├── 08_pretrained_cnn.py        # CNN ResNet pré-entraîné vs from scratch
-│   ├── 09_action_chunking.py       # Action chunking : prédire N actions futures
-│   ├── 10_transformer.py           # Premier transformer pour PushT
-│   ├── 17_rnn_chunk.py             # RNN avec chunk d'actions
-│   ├── 24_precomputed_features.py  # Transformer + features ResNet pré-calculées (image+pos, 46.5%)
-│   ├── 25_resnet_mlp.py            # MLP simple sur features ResNet
-│   ├── 26_long_training.py         # 10k epochs avec dropout — voir si l'overfit aide (réponse: non)
-│   ├── 27_position_history.py      # Historique de positions en entrée (hist=5/10)
-│   ├── 28_baseline_no_history.py   # Baseline propre : MLP sans history, eval coverage tous les 200 epochs
+│   ├── pusht/                 # Phase 1 + 2 : tâche PushT (cube 2D à pousser)
+│   │   ├── 08_pretrained_cnn.py        # CNN ResNet pré-entraîné vs from scratch
+│   │   ├── 09_action_chunking.py       # Action chunking : prédire N actions futures
+│   │   ├── 10_transformer.py           # Premier transformer pour PushT
+│   │   ├── 17_rnn_chunk.py             # RNN avec chunk d'actions
+│   │   ├── 24_precomputed_features.py  # Transformer + features ResNet pré-calculées (image+pos, 46.5%)
+│   │   ├── 25_resnet_mlp.py            # MLP simple sur features ResNet
+│   │   ├── 26_long_training.py         # 10k epochs avec dropout — voir si l'overfit aide (réponse: non)
+│   │   ├── 27_position_history.py      # Historique de positions en entrée (hist=5/10)
+│   │   ├── 28_baseline_no_history.py   # Baseline propre : MLP sans history
+│   │   ├── 29_image_only.py            # ┐ Série "enquête loss vs coverage"
+│   │   ├── 30_mdn.py                   # │  29 = MSE image seule
+│   │   ├── 31_discrete_ce.py           # │  30 = MDN (mixture density network)
+│   │   ├── 32_delta_grid.py            # │  31 = CE + résidu, bins absolus (best image-only : 44.9%)
+│   │   │                               # ┘  32 = CE + résidu, bins delta (contrôle en vitesse)
+│   │   ├── check_eval_variance.py      # Mesure la variance des évals
+│   │   ├── check_eval_variance_big.py  # Même chose, 10×200 épisodes
+│   │   └── archive/                    # Anciennes expériences (00-07)
 │   │
-│   ├── 29_image_only.py            # ┐ Série "enquête loss vs coverage"
-│   ├── 30_mdn.py                   # │  29 = MSE image seule
-│   ├── 31_discrete_ce.py           # │  30 = MDN (mixture density network)
-│   ├── 32_delta_grid.py            # │  31 = CE + résidu, bins absolus (best image-only : 44.9%)
-│   │                               # ┘  32 = CE + résidu, bins delta (contrôle en vitesse)
-│   ├── check_eval_variance.py      # Mesure la variance des évals (combien d'épisodes nécessaires ?)
-│   ├── check_eval_variance_big.py  # Même chose, 10×200 épisodes
-│   └── archive/                    # Anciennes expériences (00-07)
+│   └── lift/                  # Phase 3 : bras Panda 7-DoF, Robomimic Lift
+│       └── 33_lift_mlp_baseline.py     # Baseline MLP, state→chunk20×7 (0% success, confirme mode collapse MSE)
 │
 ├── notebooks/                 # Notebooks Jupyter pour Colab/Kaggle
 │   ├── pusht_diffusion_colab.ipynb  # Diffusion Policy sur Colab GPU (T4)
@@ -86,13 +93,17 @@ venv312/bin/python -u experiments/31_discrete_ce.py 2>&1 | tee results/logs/run_
 │
 ├── results/                   # Résultats des runs — partiellement versionnés (voir .gitignore)
 │   ├── all_runs.jsonl         # ✅ Index versionné de TOUS les runs (loss, coverage, params...)
-│   ├── runs/<exp_id>/         # Un dossier par run
-│   │   ├── run_info.md        # ✅ Versionné — résumé lisible
-│   │   ├── losses.png         # ✅ Versionné — courbes loss/coverage
-│   │   ├── model_config.json  # ✅ Versionné — hyperparamètres
-│   │   ├── model.pt           # ❌ Non versionné — poids du modèle (lourd)
-│   │   └── ep*.mp4            # ❌ Non versionné — vidéos d'éval
-│   ├── logs/                  # ✅ Versionné — logs textuels des runs (utile en relecture)
+│   ├── runs/
+│   │   ├── pusht/<exp_id>/    # Runs PushT (phases 1 & 2)
+│   │   └── lift/<exp_id>/     # Runs Lift (phase 3+)
+│   │       ├── run_info.md        # ✅ Versionné — résumé lisible
+│   │       ├── losses.png         # ✅ Versionné — courbes loss/coverage
+│   │       ├── model_config.json  # ✅ Versionné — hyperparamètres
+│   │       ├── model.pt           # ❌ Non versionné — poids du modèle (lourd)
+│   │       └── ep*.mp4            # ❌ Non versionné — vidéos d'éval
+│   ├── logs/
+│   │   ├── pusht/             # Logs textuels PushT
+│   │   └── lift/              # Logs textuels Lift
 │   └── comparisons/           # Graphes croisés entre plusieurs runs
 │
 ├── data_cache/                # ❌ Non versionné — features ResNet pré-calculées + données PushT cachées

@@ -204,11 +204,13 @@ Par construction, chaque delta est borné par la taille typique d'un pas humain 
 Chaque run est lancé en mode unbuffered (suivi live possible via `tail -f`) :
 
 ```bash
-venv312/bin/python -u experiments/29_image_only.py 2>&1 | tee results/logs/run_29.log
-venv312/bin/python -u experiments/30_mdn.py        2>&1 | tee results/logs/run_30.log
-venv312/bin/python -u experiments/31_discrete_ce.py 2>&1 | tee results/logs/run_31.log
-venv312/bin/python -u experiments/32_delta_grid.py  2>&1 | tee results/logs/run_32.log
+venv312/bin/python -u experiments/pusht/29_image_only.py  2>&1 | tee results/logs/pusht/run_29.log
+venv312/bin/python -u experiments/pusht/30_mdn.py         2>&1 | tee results/logs/pusht/run_30.log
+venv312/bin/python -u experiments/pusht/31_discrete_ce.py 2>&1 | tee results/logs/pusht/run_31.log
+venv312/bin/python -u experiments/pusht/32_delta_grid.py  2>&1 | tee results/logs/pusht/run_32.log
 ```
+
+> Note : ces scripts ont été déplacés vers `experiments/pusht/` lors de la phase 3 (introduction de Lift). Les commits antérieurs à la phase 3 utilisaient le chemin `experiments/29_*.py` directement.
 
 Hyperparams identiques pour les 4 runs :
 - ResNet18 gelé (pré-entraîné ImageNet) + Transformer 2L (d_model=64, 4 heads, FFN 256)

@@ -1,0 +1,162 @@
+
+============================================================
+EXPÉRIENCE : lift/34_lift_discrete_ce
+============================================================
+
+Chargement Lift PH...
+  Lift cache : data_cache/lift_ph_state.pt
+
+Construction des chunks...
+  5866 chunks (chunk_size=20)
+  Split : 160 démos train (4701 chunks), 40 démos test (1165 chunks)
+  Paramètres entraînés : 1,582,072
+  N_BINS=21 → output_dim/timestep = 147 logits + 147 résidus = 294
+
+Entraînement...
+  Epoch   1/100 — train: 2.6855 (ce=2.6768 mse=0.0087) — test: 1.9474 — 1s
+  Epoch   5/100 — train: 1.0094 (ce=1.0055 mse=0.0039) — test: 1.0179 — 4s
+  Epoch  10/100 — train: 0.9344 (ce=0.9305 mse=0.0039) — test: 0.9800 — 7s
+  Epoch  15/100 — train: 0.8844 (ce=0.8814 mse=0.0030) — test: 0.9804 — 11s
+  Epoch  20/100 — train: 0.8427 (ce=0.8395 mse=0.0032) — test: 1.0035 — 14s
+  Epoch  25/100 — train: 0.8043 (ce=0.8010 mse=0.0033) — test: 1.0374 — 18s
+
+  [CHECKPOINT] Éval à epoch 25 (mode=argmax)...
+[robosuite WARNING] No private macro file found! (macros.py:57)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+WARNING:robosuite_logs:To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py
+objc[21970]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1432b83a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x15861c3a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[21970]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1432b83f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x15861c3f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+WARNING:robosuite_logs:Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install.
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+WARNING:robosuite_logs:Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot.
+  Évaluation (50 épisodes, mode=argmax)...
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+    Episode 10/50 : ✗ max_z=0.821
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+    Episode 20/50 : ✗ max_z=0.822
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+    Episode 30/50 : ✗ max_z=0.822
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+    Episode 40/50 : ✗ max_z=0.821
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+    Episode 50/50 : ✗ max_z=0.821
+    Success rate : 0/50 (0%) — avg max cube_z : 0.821 m
+  [CHECKPOINT epoch 25] train=0.8043 test=1.0374 success=0% max_z=0.821
+  [NEW BEST] epoch 25 : success 0%
+  Epoch  30/100 — train: 0.7661 (ce=0.7627 mse=0.0034) — test: 1.0797 — 97s
+  Epoch  35/100 — train: 0.7331 (ce=0.7297 mse=0.0035) — test: 1.1153 — 101s
+  Epoch  40/100 — train: 0.7014 (ce=0.6981 mse=0.0034) — test: 1.1728 — 105s
+  Epoch  45/100 — train: 0.6722 (ce=0.6687 mse=0.0035) — test: 1.2358 — 108s
+  Epoch  50/100 — train: 0.6475 (ce=0.6441 mse=0.0035) — test: 1.2852 — 111s
+
+  [CHECKPOINT] Éval à epoch 50 (mode=argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
+[robosuite INFO] Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json (composite_controller_factory.py:121)
+INFO:robosuite_logs:Loading controller configuration from: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/controllers/config/robots/default_panda.json
