@@ -1,0 +1,14 @@
+{
+  "class": "MLPImageStateDiscrete",
+  "feature_dim": 512,
+  "state_dim": 19,
+  "hidden_dims": [
+    256,
+    256
+  ],
+  "chunk_size": 20,
+  "action_dim": 7,
+  "n_bins": 21,
+  "image_size": 96,
+  "note": "Image features + state \u2192 CE+r\u00e9sidu (run 31 PushT formula sur Lift)."
+}

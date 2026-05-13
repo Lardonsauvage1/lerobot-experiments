@@ -1,0 +1,117 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[34967]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1057c43a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x14c3583a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[34967]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1057c43f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x14c3583f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+
+============================================================
+EXPÉRIENCE : lift/36_lift_image_state_ce
+============================================================
+
+Chargement features ResNet + states...
+  Cache features image : data_cache/lift_ph_image_features.pt
+
+Construction des chunks...
+  5866 chunks (chunk_size=20)
+  Split : 160 démos train (4701 chunks), 40 démos test (1165 chunks)
+  Paramètres entraînés : 1,713,144 (ResNet18 = 11.2M, gelés)
+
+Entraînement...
+  Epoch   1/100 — train: 2.0852 (ce=2.0431 mse=0.0420) test: 1.2757 — 1s
+  Epoch   5/100 — train: 1.0090 (ce=1.0005 mse=0.0085) test: 1.0058 — 3s
+  Epoch  10/100 — train: 0.9340 (ce=0.9262 mse=0.0078) test: 0.9614 — 7s
+  Epoch  15/100 — train: 0.8850 (ce=0.8784 mse=0.0066) test: 0.9475 — 11s
+  Epoch  20/100 — train: 0.8493 (ce=0.8433 mse=0.0061) test: 0.9493 — 14s
+  Epoch  25/100 — train: 0.8148 (ce=0.8094 mse=0.0054) test: 0.9693 — 17s
+
+  [CHECKPOINT] Éval à epoch 25 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode 10/50 : ✓ max_z=0.892
+    Episode 20/50 : ✓ max_z=0.864
+    Episode 30/50 : ✓ max_z=0.852
+    Episode 40/50 : ✗ max_z=0.825
+    Episode 50/50 : ✗ max_z=0.833
+    Success rate : 17/50 (34%) — avg max cube_z : 0.842 m
+  [CHECKPOINT epoch 25] train=0.8148 test=0.9693 success=34% max_z=0.842
+  [NEW BEST] epoch 25 : success 34%
+  Epoch  30/100 — train: 0.7843 (ce=0.7792 mse=0.0051) test: 0.9960 — 101s
+  Epoch  35/100 — train: 0.7507 (ce=0.7461 mse=0.0047) test: 1.0104 — 104s
+  Epoch  40/100 — train: 0.7180 (ce=0.7139 mse=0.0041) test: 1.0518 — 106s
+  Epoch  45/100 — train: 0.6858 (ce=0.6821 mse=0.0037) test: 1.0638 — 109s
+  Epoch  50/100 — train: 0.6554 (ce=0.6519 mse=0.0034) test: 1.1030 — 111s
+
+  [CHECKPOINT] Éval à epoch 50 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode 10/50 : ✗ max_z=0.823
+    Episode 20/50 : ✗ max_z=0.821
+    Episode 30/50 : ✗ max_z=0.832
+    Episode 40/50 : ✗ max_z=0.828
+    Episode 50/50 : ✗ max_z=0.831
+    Success rate : 6/50 (12%) — avg max cube_z : 0.831 m
+  [CHECKPOINT epoch 50] train=0.6554 test=1.1030 success=12% max_z=0.831
+  Epoch  55/100 — train: 0.6308 (ce=0.6274 mse=0.0034) test: 1.1536 — 194s
+  Epoch  60/100 — train: 0.6054 (ce=0.6020 mse=0.0034) test: 1.1824 — 197s
+  Epoch  65/100 — train: 0.5822 (ce=0.5787 mse=0.0036) test: 1.2264 — 200s
+  Epoch  70/100 — train: 0.5648 (ce=0.5611 mse=0.0036) test: 1.2819 — 203s
+  Epoch  75/100 — train: 0.5462 (ce=0.5423 mse=0.0039) test: 1.3234 — 205s
+
+  [CHECKPOINT] Éval à epoch 75 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode 10/50 : ✗ max_z=0.831
+    Episode 20/50 : ✗ max_z=0.820
+    Episode 30/50 : ✗ max_z=0.835
+    Episode 40/50 : ✗ max_z=0.830
+    Episode 50/50 : ✗ max_z=0.829
+    Success rate : 1/50 (2%) — avg max cube_z : 0.828 m
+  [CHECKPOINT epoch 75] train=0.5462 test=1.3234 success=2% max_z=0.828
+  Epoch  80/100 — train: 0.5312 (ce=0.5271 mse=0.0041) test: 1.3534 — 288s
+  Epoch  85/100 — train: 0.5170 (ce=0.5129 mse=0.0041) test: 1.3909 — 290s
+  Epoch  90/100 — train: 0.5016 (ce=0.4973 mse=0.0043) test: 1.4680 — 293s
+  Epoch  95/100 — train: 0.4931 (ce=0.4888 mse=0.0043) test: 1.4939 — 295s
+  Epoch 100/100 — train: 0.4794 (ce=0.4751 mse=0.0043) test: 1.5156 — 298s
+
+  [CHECKPOINT] Éval à epoch 100 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode 10/50 : ✗ max_z=0.833
+    Episode 20/50 : ✗ max_z=0.831
+    Episode 30/50 : ✗ max_z=0.827
+    Episode 40/50 : ✗ max_z=0.835
+    Episode 50/50 : ✗ max_z=0.832
+    Success rate : 4/50 (8%) — avg max cube_z : 0.832 m
+  [CHECKPOINT epoch 100] train=0.4794 test=1.5156 success=8% max_z=0.832
+  Temps total : 377.5s
+
+Éval finale (argmax + vidéos)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode 10/50 : ✗ max_z=0.823
+    Episode 20/50 : ✗ max_z=0.826
+    Episode 30/50 : ✗ max_z=0.821
+    Episode 40/50 : ✗ max_z=0.829
+    Episode 50/50 : ✗ max_z=0.829
+    Success rate : 7/50 (14%) — avg max cube_z : 0.834 m
+  Poids sauvegardés : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce/model.pt
+  Config modèle    : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce/model_config.json
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce/ep0.mp4
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce/ep1.mp4
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce/ep2.mp4
+  Best model : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce/model_best_epoch25.pt (epoch 25, success 34%)
+Run sauvegardé dans /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/all_runs.jsonl
+  Graphe : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce/losses.png
+  Run info : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce/run_info.md
+
+============================================================
+RÉSUMÉ
+============================================================
+  Success rate final : 14% (7/50)
+  Best checkpoint    : 34% (epoch 25)
+  Avg max cube_z     : 0.834 m
+  Params entraînés   : 1,713,144
+  Temps              : 378s
+    epoch  25 : train=0.8148 (ce=0.8094 mse=0.0054) test=0.9693 success=34% max_z=0.842
+    epoch  50 : train=0.6554 (ce=0.6519 mse=0.0034) test=1.1030 success=12% max_z=0.831
+    epoch  75 : train=0.5462 (ce=0.5423 mse=0.0039) test=1.3234 success=2% max_z=0.828
+    epoch 100 : train=0.4794 (ce=0.4751 mse=0.0043) test=1.5156 success=8% max_z=0.832
+
+  Dossier : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/36_lift_image_state_ce_mlp_feat_state_ce
