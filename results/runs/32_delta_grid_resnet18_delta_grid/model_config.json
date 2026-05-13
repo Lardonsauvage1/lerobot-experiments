@@ -1,0 +1,14 @@
+{
+  "class": "TransformerDeltaGrid",
+  "feature_dim": 512,
+  "d_model": 64,
+  "n_heads": 4,
+  "n_layers": 2,
+  "dim_feedforward": 256,
+  "chunk_size": 20,
+  "n_bins": 64,
+  "n_bins_per_axis": 8,
+  "grid_percentile": 99.5,
+  "grid_bound_normalized": 0.38385242223739624,
+  "note": "Grille uniforme 8\u00d78 sur deltas humains action\u2192action. Reconstruction cumulative en pixels \u00e0 l'inf\u00e9rence. Bootstrap: agent_pos au step 0 d'\u00e9pisode."
+}

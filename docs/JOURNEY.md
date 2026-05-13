@@ -135,7 +135,35 @@ Par construction, chaque delta est borné par la taille typique d'un pas humain 
 
 ### Résultat
 
-*Run en cours au moment où ce document est écrit. À compléter une fois terminé.*
+| Checkpoint | Train loss | Test loss | CE | MSE résidu | Coverage argmax |
+|---|---|---|---|---|---|
+| epoch 25 | 1.6449 | 1.6860 | 1.64 | 0.0010 | 16.5% |
+| epoch 50 | 1.4521 | 1.5155 | 1.45 | 0.0010 | 15.5% |
+| epoch 75 | 1.3580 | 1.4478 | 1.36 | 0.0010 | 17.4% |
+| epoch 100 | 1.3015 | 1.3914 | 1.30 | 0.0009 | **21.3%** ← best |
+| Final (sample) | | | | | 21.1% |
+
+**Résultat inattendu** : le delta dégrade fortement le coverage (21.3% vs 44.9% pour run 31). Le saccadé a probablement disparu (les actions sont bornées par la taille typique d'un step humain, ±40px max), mais la performance globale chute.
+
+**Lectures et hypothèses** :
+
+1. **Hypothèse principale — prédire un delta exige de connaître son état actuel**.
+   - Run 31 (bins absolus) : "given this image, where should I be next?" → fonction de l'état actuel uniquement, le modèle peut prédire une position absolue sans savoir précisément où il est.
+   - Run 32 (bins delta) : "given this image, by how much should I change my command from the previous one?" → fonction de **(état actuel + commande précédente)**.
+
+   Le modèle n'a **pas accès** à la commande précédente (input = image seule). Il doit l'inférer depuis l'image, mais ResNet18 ImageNet n'est pas optimisé pour localiser un petit cercle bleu, et "ce qui a été commandé une étape avant" n'est pas dans l'image actuelle. Le modèle prédit donc des deltas "génériques" (petits, près du centre de la grille — MSE résidu = 0.001 indique que le modèle ne sort presque que les centres de bins), pas adaptés à l'état précis.
+
+2. **Hypothèse secondaire — perte du prior global**. En run 31, les bins absolus étaient des **destinations typiques** (k-means → autour du T, des bords de la cible). Le modèle apprenait "dans cet état, vise cet endroit du carré". En run 32, on a perdu cette info globale — uniquement "comment bouger localement". Le modèle peut être lisse mais perdu globalement.
+
+3. **Drift cumulatif** : 20 deltas accumulés peuvent diverger. Une erreur de delta_0 décale toutes les actions suivantes.
+
+**Ce qu'il aurait fallu pour exploiter le delta** :
+- Donner `agent_pos` en input (recompose le "savoir où je suis")
+- Donner `previous_action` en input (recompose le "savoir ce que j'ai commandé")
+- Décodeur autoregressif (les actions précédentes deviennent l'input naturel)
+- Dégeler le ResNet pour qu'il apprenne à localiser l'agent
+
+**Conclusion structurelle** : changer la représentation de sortie sans changer l'input et la backbone a une limite. Le **delta est intrinsèquement conditionnel à l'état** — il fallait fournir cet état, ou laisser le réseau l'apprendre.
 
 ---
 

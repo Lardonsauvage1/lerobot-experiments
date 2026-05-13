@@ -22,7 +22,7 @@ Les runs `29` à `32` répondent à la question : **pourquoi la loss ne reflète
 | 29 | MSE | **image seule** | 31.8% |
 | 30 | NLL (MDN K=5) | image seule | 35.4% (best 40.9% @ epoch 75) |
 | 31 | CE + résidu (bins absolus) | image seule | **44.9% argmax** (3/200 succès !) |
-| 32 | CE + résidu (bins delta) | image seule | en cours |
+| 32 | CE + résidu (bins delta) | image seule | 21.3% argmax — moins bon, voir leçon |
 
 ## Setup machine
 
@@ -133,6 +133,7 @@ Détails dans [`docs/JOURNEY.md`](docs/JOURNEY.md). Conclusions principales :
 - **La classification discrète bat la régression sur tâche multimodale** : transformer "prédire (x, y) continus" en "choisir parmi 64 bins + résidu" évite le mode collapse → premier succès du projet (3/200 à epoch 75 de run 31).
 - **La loss CE+résidu est mieux corrélée au coverage que MSE ou NLL/MDN** : sur run 31, baisser la loss baisse aussi le coverage. Sur runs MSE (24) et MDN (30), la loss continue de baisser après le pic de coverage.
 - **Limite des bins absolus** : prédictions de chunk parallèle → téléportations possibles entre timesteps consécutifs (saccadé visible). Solution testée en run 32 : bins de **deltas** (contrôle en vitesse au lieu de position).
+- **Run 32 — leçon inattendue** : passer aux bins de delta **dégrade** le coverage (44.9% → 21.3%). Hypothèse principale : prédire un delta nécessite de connaître l'état actuel (« où je suis » + « ce que je viens de commander »), info que le ResNet18 gelé n'extrait pas bien depuis l'image. Le delta est plus puissant en théorie mais plus exigeant en pratique — il faudrait soit donner agent_pos en input, soit un décodeur autoregressif, soit dégeler le ResNet.
 
 ## Prochaines pistes
 

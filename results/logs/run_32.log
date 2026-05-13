@@ -1,0 +1,146 @@
+
+============================================================
+EXPÉRIENCE : 32_delta_grid
+============================================================
+
+Features ResNet18...
+  Features en cache : data_cache/resnet18_features_ep206_64px.pt
+
+Construction des chunks (deltas action→action)...
+  21530 samples (chunk=20, deltas action→action)
+  Deltas train : mean=[-0.0047568972222507, 0.0029002008959650993] std=[0.09231849759817123, 0.09620299935340881] (espace action normalisé)
+  Équivalent pixels : std≈(9.38, 9.24)
+
+Construction de la grille uniforme...
+  Bornes grille (P99.5%) : ±0.3839 (norm) ≈ ±?? px
+  Grille 8×8 = 64 bins
+  Équivalent grille en pixels : ±39.0 px
+  Paramètres entraînés : 181,376
+
+Entraînement (grille delta 8×8, image seule)...
+  Epoch   1/100 — train: 2.7274 (ce=2.6784 mse=0.0490) — test: 2.3387 — 10s
+  Epoch   5/100 — train: 2.1028 (ce=2.0953 mse=0.0075) — test: 2.1139 — 47s
+  Epoch  10/100 — train: 1.9497 (ce=1.9471 mse=0.0027) — test: 1.9421 — 93s
+  Epoch  15/100 — train: 1.8196 (ce=1.8184 mse=0.0012) — test: 1.8387 — 140s
+  Epoch  20/100 — train: 1.7220 (ce=1.7210 mse=0.0010) — test: 1.7819 — 185s
+  Epoch  25/100 — train: 1.6449 (ce=1.6439 mse=0.0010) — test: 1.6860 — 232s
+
+  [CHECKPOINT] Éval à epoch 25 (mode=argmax)...
+  Évaluation (200 épisodes, mode=argmax)...
+objc[98619]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1242fc3a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x155b9c3a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1242fc3f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x155b9c3f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDLApplication is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8c890) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x3701152c8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDLAppDelegate is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8c8e0) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115318). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDLTranslatorResponder is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8c958) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115390). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDLMessageBoxPresenter is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8c980) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x3701153b8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDL_cocoametalview is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8c9d0) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115408). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDLOpenGLContext is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8ca20) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115458). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDL_ShapeData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8ca98) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x3701154d0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDL_CocoaClosure is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cae8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115520). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDL_VideoData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cb38) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115570). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDL_WindowData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cb88) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x3701155c0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDLWindow is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cbb0) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x3701155e8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class Cocoa_WindowListener is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cbd8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115610). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDLView is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cc50) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115688). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class METAL_RenderData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8ccc8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115700). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class METAL_TextureData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cd18) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115750). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDL_RumbleMotor is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cd40) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x370115778). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98619]: Class SDL_RumbleContext is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x36ea8cd90) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/.dylibs/libSDL2-2.0.0.dylib (0x3701157c8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_stream, resource_exists
+/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/32_delta_grid.py:378: DeprecationWarning: __array_wrap__ must accept context and return_scalar arguments (positionally) in the future. (Deprecated NumPy 2.0)
+  pred_deltas_pix = (pred_deltas_norm.squeeze(0) * y_std).numpy()  # (20, 2)
+    Episode  40/200 : cov=1.7%
+    Episode  80/200 : cov=0.0%
+    Episode 120/200 : cov=54.7%
+    Episode 160/200 : cov=14.4%
+    Episode 200/200 : cov=0.0%
+    Success rate : 0/200 (0%) — Coverage moyen : 16.5%
+  [CHECKPOINT epoch 25] train=1.6449 test=1.6860 cov=16.5% success=0%
+  [NEW BEST] epoch 25 : coverage 16.5%
+  Epoch  30/100 — train: 1.5904 (ce=1.5894 mse=0.0010) — test: 1.6331 — 451s
+  Epoch  35/100 — train: 1.5426 (ce=1.5416 mse=0.0010) — test: 1.5978 — 496s
+  Epoch  40/100 — train: 1.5061 (ce=1.5051 mse=0.0010) — test: 1.5691 — 542s
+  Epoch  45/100 — train: 1.4743 (ce=1.4733 mse=0.0010) — test: 1.5372 — 587s
+  Epoch  50/100 — train: 1.4521 (ce=1.4512 mse=0.0010) — test: 1.5155 — 632s
+
+  [CHECKPOINT] Éval à epoch 50 (mode=argmax)...
+  Évaluation (200 épisodes, mode=argmax)...
+    Episode  40/200 : cov=1.7%
+    Episode  80/200 : cov=0.0%
+    Episode 120/200 : cov=60.6%
+    Episode 160/200 : cov=2.2%
+    Episode 200/200 : cov=23.4%
+    Success rate : 0/200 (0%) — Coverage moyen : 15.5%
+  [CHECKPOINT epoch 50] train=1.4521 test=1.5155 cov=15.5% success=0%
+  Epoch  55/100 — train: 1.4293 (ce=1.4283 mse=0.0009) — test: 1.4933 — 851s
+  Epoch  60/100 — train: 1.4073 (ce=1.4063 mse=0.0010) — test: 1.4700 — 898s
+  Epoch  65/100 — train: 1.3882 (ce=1.3872 mse=0.0009) — test: 1.4489 — 945s
+  Epoch  70/100 — train: 1.3725 (ce=1.3715 mse=0.0009) — test: 1.4525 — 990s
+  Epoch  75/100 — train: 1.3580 (ce=1.3570 mse=0.0010) — test: 1.4478 — 1036s
+
+  [CHECKPOINT] Éval à epoch 75 (mode=argmax)...
+  Évaluation (200 épisodes, mode=argmax)...
+    Episode  40/200 : cov=1.7%
+    Episode  80/200 : cov=0.0%
+    Episode 120/200 : cov=37.6%
+    Episode 160/200 : cov=5.1%
+    Episode 200/200 : cov=46.4%
+    Success rate : 0/200 (0%) — Coverage moyen : 17.4%
+  [CHECKPOINT epoch 75] train=1.3580 test=1.4478 cov=17.4% success=0%
+  [NEW BEST] epoch 75 : coverage 17.4%
+  Epoch  80/100 — train: 1.3441 (ce=1.3432 mse=0.0009) — test: 1.4435 — 1259s
+  Epoch  85/100 — train: 1.3365 (ce=1.3356 mse=0.0009) — test: 1.4318 — 1309s
+  Epoch  90/100 — train: 1.3234 (ce=1.3225 mse=0.0009) — test: 1.4205 — 1357s
+  Epoch  95/100 — train: 1.3126 (ce=1.3117 mse=0.0009) — test: 1.3973 — 1405s
+  Epoch 100/100 — train: 1.3015 (ce=1.3006 mse=0.0009) — test: 1.3914 — 1454s
+
+  [CHECKPOINT] Éval à epoch 100 (mode=argmax)...
+  Évaluation (200 épisodes, mode=argmax)...
+    Episode  40/200 : cov=1.7%
+    Episode  80/200 : cov=0.0%
+    Episode 120/200 : cov=21.8%
+    Episode 160/200 : cov=54.2%
+    Episode 200/200 : cov=5.8%
+    Success rate : 0/200 (0%) — Coverage moyen : 21.3%
+  [CHECKPOINT epoch 100] train=1.3015 test=1.3914 cov=21.3% success=0%
+  [NEW BEST] epoch 100 : coverage 21.3%
+  Temps total : 1634.8s
+
+Éval finale (mode=sample, capture la multimodalité)...
+  Évaluation (200 épisodes, mode=sample)...
+    Episode  40/200 : cov=29.4%
+    Episode  80/200 : cov=0.0%
+    Episode 120/200 : cov=28.3%
+    Episode 160/200 : cov=0.0%
+    Episode 200/200 : cov=7.7%
+    Success rate : 0/200 (0%) — Coverage moyen : 21.1%
+  Poids sauvegardés : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid/model.pt
+  Config modèle    : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid/model_config.json
+WARNING:imageio_ffmpeg:IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (680, 680) to (688, 688) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid/ep0.mp4
+WARNING:imageio_ffmpeg:IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (680, 680) to (688, 688) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid/ep1.mp4
+WARNING:imageio_ffmpeg:IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (680, 680) to (688, 688) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid/ep2.mp4
+  Best model sauvegardé : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid/model_best_epoch100.pt (epoch 100, cov 21.3%)
+Run sauvegardé dans /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/all_runs.jsonl
+  Graphe : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid/losses.png
+  Run info : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid/run_info.md
+
+============================================================
+RÉSUMÉ
+============================================================
+  Coverage final (sample)  : 21.1%
+  Best checkpoint (argmax) : 21.3% (epoch 100)
+  Success rate             : 0%
+  Params entraînés         : 181,376
+  Temps train+eval         : 1635s
+
+  Checkpoint evals (argmax) :
+    epoch  25 : train=1.6449 (ce=1.6439 mse=0.0010) test=1.6860 cov=16.5%
+    epoch  50 : train=1.4521 (ce=1.4512 mse=0.0010) test=1.5155 cov=15.5%
+    epoch  75 : train=1.3580 (ce=1.3570 mse=0.0010) test=1.4478 cov=17.4%
+    epoch 100 : train=1.3015 (ce=1.3006 mse=0.0009) test=1.3914 cov=21.3%
+
+  Dossier : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/32_delta_grid_resnet18_delta_grid
