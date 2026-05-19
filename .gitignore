@@ -29,3 +29,4 @@ outputs/
 
 # HuggingFace cache (si jamais téléchargé dans le projet)
 .cache/
+MUJOCO_LOG.TXT

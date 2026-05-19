@@ -1,0 +1,220 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[4471]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x102c6c3a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1453483a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[4471]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x102c6c3f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1453483f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+
+============================================================
+EXPÉRIENCE : lift/41_lift_anti_overfit_long
+============================================================
+
+Chargement features ResNet + states...
+  Cache features image : data_cache/lift_ph_image_features.pt
+
+Construction des chunks...
+  5866 chunks (chunk_size=20)
+  Split : 160 démos train (4701 chunks), 40 démos test (1165 chunks)
+  Paramètres entraînés : 1,714,168 (ResNet18 = 11.2M, gelés)
+
+Entraînement...
+  Epoch   1/500 — train: 2.7585 (ce=2.6065 mse=0.1520) test: 2.0651 — 1s
+  Epoch   5/500 — train: 1.5325 (ce=1.5043 mse=0.0282) test: 1.4670 — 5s
+  Epoch  10/500 — train: 1.4329 (ce=1.4279 mse=0.0050) test: 1.4052 — 9s
+  Epoch  15/500 — train: 1.4013 (ce=1.3993 mse=0.0020) test: 1.3932 — 13s
+  Epoch  20/500 — train: 1.3831 (ce=1.3818 mse=0.0013) test: 1.3839 — 17s
+  Epoch  25/500 — train: 1.3695 (ce=1.3684 mse=0.0011) test: 1.3828 — 20s
+
+  [CHECKPOINT] Éval à epoch 25 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode  10/50 : ✓ max_z=0.880
+    Episode  20/50 : ✗ max_z=0.821
+    Episode  30/50 : ✓ max_z=0.886
+    Episode  40/50 : ✗ max_z=0.822
+    Episode  50/50 : ✗ max_z=0.822
+    Success rate : 24/50 (48%) — avg max cube_z : 0.852 m
+  [CHECKPOINT epoch 25] train=1.3695 test=1.3828 success=48% max_z=0.852
+  [NEW BEST] epoch 25 : success 48%
+  Epoch  30/500 — train: 1.3584 (ce=1.3575 mse=0.0009) test: 1.3750 — 110s
+  Epoch  35/500 — train: 1.3467 (ce=1.3459 mse=0.0008) test: 1.3751 — 113s
+  Epoch  40/500 — train: 1.3373 (ce=1.3365 mse=0.0008) test: 1.3767 — 116s
+  Epoch  45/500 — train: 1.3313 (ce=1.3305 mse=0.0008) test: 1.3739 — 119s
+  Epoch  50/500 — train: 1.3233 (ce=1.3225 mse=0.0008) test: 1.3786 — 123s
+  Epoch  55/500 — train: 1.3196 (ce=1.3189 mse=0.0008) test: 1.3775 — 126s
+  Epoch  60/500 — train: 1.3125 (ce=1.3117 mse=0.0008) test: 1.3828 — 129s
+  Epoch  65/500 — train: 1.3070 (ce=1.3061 mse=0.0008) test: 1.3761 — 132s
+  Epoch  70/500 — train: 1.2993 (ce=1.2985 mse=0.0008) test: 1.3777 — 135s
+  Epoch  75/500 — train: 1.2940 (ce=1.2932 mse=0.0008) test: 1.3817 — 138s
+  Epoch  80/500 — train: 1.2939 (ce=1.2931 mse=0.0008) test: 1.3797 — 141s
+  Epoch  85/500 — train: 1.2844 (ce=1.2836 mse=0.0008) test: 1.3855 — 144s
+  Epoch  90/500 — train: 1.2817 (ce=1.2808 mse=0.0008) test: 1.3870 — 148s
+  Epoch  95/500 — train: 1.2771 (ce=1.2763 mse=0.0008) test: 1.3827 — 151s
+  Epoch 100/500 — train: 1.2737 (ce=1.2729 mse=0.0008) test: 1.3853 — 154s
+
+  [CHECKPOINT] Éval à epoch 100 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode  10/50 : ✓ max_z=0.875
+    Episode  20/50 : ✗ max_z=0.829
+    Episode  30/50 : ✗ max_z=0.829
+    Episode  40/50 : ✗ max_z=0.831
+    Episode  50/50 : ✓ max_z=0.902
+    Success rate : 25/50 (50%) — avg max cube_z : 0.860 m
+  [CHECKPOINT epoch 100] train=1.2737 test=1.3853 success=50% max_z=0.860
+  [NEW BEST] epoch 100 : success 50%
+  Epoch 105/500 — train: 1.2706 (ce=1.2698 mse=0.0008) test: 1.3912 — 240s
+  Epoch 110/500 — train: 1.2652 (ce=1.2644 mse=0.0008) test: 1.3928 — 243s
+  Epoch 115/500 — train: 1.2629 (ce=1.2621 mse=0.0008) test: 1.3904 — 246s
+  Epoch 120/500 — train: 1.2575 (ce=1.2567 mse=0.0008) test: 1.3905 — 249s
+  Epoch 125/500 — train: 1.2531 (ce=1.2523 mse=0.0008) test: 1.3943 — 252s
+  Epoch 130/500 — train: 1.2510 (ce=1.2503 mse=0.0008) test: 1.3937 — 255s
+  Epoch 135/500 — train: 1.2483 (ce=1.2475 mse=0.0008) test: 1.3924 — 258s
+  Epoch 140/500 — train: 1.2453 (ce=1.2445 mse=0.0008) test: 1.3986 — 261s
+  Epoch 145/500 — train: 1.2438 (ce=1.2430 mse=0.0008) test: 1.3965 — 264s
+  Epoch 150/500 — train: 1.2425 (ce=1.2417 mse=0.0007) test: 1.3973 — 268s
+  Epoch 155/500 — train: 1.2408 (ce=1.2401 mse=0.0007) test: 1.4060 — 271s
+  Epoch 160/500 — train: 1.2371 (ce=1.2363 mse=0.0007) test: 1.4027 — 274s
+  Epoch 165/500 — train: 1.2354 (ce=1.2347 mse=0.0007) test: 1.4078 — 277s
+  Epoch 170/500 — train: 1.2319 (ce=1.2312 mse=0.0007) test: 1.4033 — 280s
+  Epoch 175/500 — train: 1.2330 (ce=1.2323 mse=0.0007) test: 1.4045 — 283s
+  Epoch 180/500 — train: 1.2296 (ce=1.2289 mse=0.0007) test: 1.4034 — 286s
+  Epoch 185/500 — train: 1.2268 (ce=1.2261 mse=0.0007) test: 1.4105 — 289s
+  Epoch 190/500 — train: 1.2243 (ce=1.2236 mse=0.0007) test: 1.4090 — 292s
+  Epoch 195/500 — train: 1.2245 (ce=1.2238 mse=0.0007) test: 1.4043 — 295s
+  Epoch 200/500 — train: 1.2216 (ce=1.2209 mse=0.0007) test: 1.4085 — 298s
+
+  [CHECKPOINT] Éval à epoch 200 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode  10/50 : ✗ max_z=0.831
+    Episode  20/50 : ✗ max_z=0.829
+    Episode  30/50 : ✗ max_z=0.831
+    Episode  40/50 : ✗ max_z=0.821
+    Episode  50/50 : ✗ max_z=0.820
+    Success rate : 20/50 (40%) — avg max cube_z : 0.852 m
+  [CHECKPOINT epoch 200] train=1.2216 test=1.4085 success=40% max_z=0.852
+  Epoch 205/500 — train: 1.2232 (ce=1.2225 mse=0.0007) test: 1.4098 — 381s
+  Epoch 210/500 — train: 1.2224 (ce=1.2217 mse=0.0007) test: 1.4071 — 384s
+  Epoch 215/500 — train: 1.2169 (ce=1.2162 mse=0.0007) test: 1.4136 — 387s
+  Epoch 220/500 — train: 1.2158 (ce=1.2151 mse=0.0007) test: 1.4082 — 390s
+  Epoch 225/500 — train: 1.2163 (ce=1.2156 mse=0.0007) test: 1.4149 — 393s
+  Epoch 230/500 — train: 1.2141 (ce=1.2135 mse=0.0007) test: 1.4174 — 396s
+  Epoch 235/500 — train: 1.2153 (ce=1.2146 mse=0.0007) test: 1.4143 — 399s
+  Epoch 240/500 — train: 1.2122 (ce=1.2115 mse=0.0007) test: 1.4163 — 402s
+  Epoch 245/500 — train: 1.2093 (ce=1.2087 mse=0.0007) test: 1.4142 — 405s
+  Epoch 250/500 — train: 1.2106 (ce=1.2099 mse=0.0007) test: 1.4166 — 407s
+  Epoch 255/500 — train: 1.2120 (ce=1.2114 mse=0.0007) test: 1.4126 — 410s
+  Epoch 260/500 — train: 1.2073 (ce=1.2066 mse=0.0006) test: 1.4184 — 413s
+  Epoch 265/500 — train: 1.2072 (ce=1.2066 mse=0.0007) test: 1.4153 — 416s
+  Epoch 270/500 — train: 1.2076 (ce=1.2070 mse=0.0006) test: 1.4211 — 419s
+  Epoch 275/500 — train: 1.2081 (ce=1.2075 mse=0.0007) test: 1.4173 — 422s
+  Epoch 280/500 — train: 1.2052 (ce=1.2046 mse=0.0006) test: 1.4227 — 425s
+  Epoch 285/500 — train: 1.2048 (ce=1.2041 mse=0.0006) test: 1.4166 — 428s
+  Epoch 290/500 — train: 1.2027 (ce=1.2020 mse=0.0006) test: 1.4176 — 431s
+  Epoch 295/500 — train: 1.2045 (ce=1.2039 mse=0.0006) test: 1.4178 — 434s
+  Epoch 300/500 — train: 1.2031 (ce=1.2025 mse=0.0006) test: 1.4238 — 437s
+
+  [CHECKPOINT] Éval à epoch 300 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode  10/50 : ✗ max_z=0.825
+    Episode  20/50 : ✓ max_z=0.898
+    Episode  30/50 : ✗ max_z=0.824
+    Episode  40/50 : ✗ max_z=0.835
+    Episode  50/50 : ✓ max_z=0.881
+    Success rate : 20/50 (40%) — avg max cube_z : 0.852 m
+  [CHECKPOINT epoch 300] train=1.2031 test=1.4238 success=40% max_z=0.852
+  Epoch 305/500 — train: 1.1991 (ce=1.1985 mse=0.0006) test: 1.4216 — 522s
+  Epoch 310/500 — train: 1.1996 (ce=1.1990 mse=0.0006) test: 1.4209 — 526s
+  Epoch 315/500 — train: 1.1993 (ce=1.1987 mse=0.0006) test: 1.4187 — 529s
+  Epoch 320/500 — train: 1.1983 (ce=1.1977 mse=0.0006) test: 1.4168 — 533s
+  Epoch 325/500 — train: 1.1975 (ce=1.1969 mse=0.0006) test: 1.4211 — 536s
+  Epoch 330/500 — train: 1.1963 (ce=1.1957 mse=0.0006) test: 1.4256 — 539s
+  Epoch 335/500 — train: 1.1969 (ce=1.1963 mse=0.0006) test: 1.4227 — 543s
+  Epoch 340/500 — train: 1.1955 (ce=1.1949 mse=0.0006) test: 1.4236 — 546s
+  Epoch 345/500 — train: 1.1963 (ce=1.1957 mse=0.0006) test: 1.4227 — 550s
+  Epoch 350/500 — train: 1.1956 (ce=1.1950 mse=0.0006) test: 1.4213 — 553s
+  Epoch 355/500 — train: 1.1934 (ce=1.1928 mse=0.0006) test: 1.4270 — 556s
+  Epoch 360/500 — train: 1.1922 (ce=1.1916 mse=0.0006) test: 1.4275 — 560s
+  Epoch 365/500 — train: 1.1937 (ce=1.1931 mse=0.0006) test: 1.4228 — 565s
+  Epoch 370/500 — train: 1.1911 (ce=1.1905 mse=0.0006) test: 1.4296 — 570s
+  Epoch 375/500 — train: 1.1912 (ce=1.1906 mse=0.0006) test: 1.4252 — 575s
+  Epoch 380/500 — train: 1.1915 (ce=1.1909 mse=0.0006) test: 1.4295 — 580s
+  Epoch 385/500 — train: 1.1910 (ce=1.1904 mse=0.0006) test: 1.4273 — 584s
+  Epoch 390/500 — train: 1.1912 (ce=1.1906 mse=0.0006) test: 1.4268 — 587s
+  Epoch 395/500 — train: 1.1888 (ce=1.1882 mse=0.0006) test: 1.4280 — 591s
+  Epoch 400/500 — train: 1.1894 (ce=1.1888 mse=0.0006) test: 1.4291 — 595s
+
+  [CHECKPOINT] Éval à epoch 400 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode  10/50 : ✓ max_z=0.888
+    Episode  20/50 : ✗ max_z=0.829
+    Episode  30/50 : ✗ max_z=0.828
+    Episode  40/50 : ✗ max_z=0.820
+    Episode  50/50 : ✗ max_z=0.822
+    Success rate : 14/50 (28%) — avg max cube_z : 0.841 m
+  [CHECKPOINT epoch 400] train=1.1894 test=1.4291 success=28% max_z=0.841
+  Epoch 405/500 — train: 1.1888 (ce=1.1882 mse=0.0006) test: 1.4288 — 684s
+  Epoch 410/500 — train: 1.1876 (ce=1.1870 mse=0.0006) test: 1.4234 — 687s
+  Epoch 415/500 — train: 1.1891 (ce=1.1885 mse=0.0006) test: 1.4301 — 690s
+  Epoch 420/500 — train: 1.1875 (ce=1.1869 mse=0.0006) test: 1.4300 — 693s
+  Epoch 425/500 — train: 1.1867 (ce=1.1861 mse=0.0006) test: 1.4267 — 696s
+  Epoch 430/500 — train: 1.1886 (ce=1.1880 mse=0.0006) test: 1.4235 — 699s
+  Epoch 435/500 — train: 1.1854 (ce=1.1848 mse=0.0006) test: 1.4273 — 703s
+  Epoch 440/500 — train: 1.1853 (ce=1.1848 mse=0.0006) test: 1.4283 — 706s
+  Epoch 445/500 — train: 1.1867 (ce=1.1861 mse=0.0006) test: 1.4257 — 709s
+  Epoch 450/500 — train: 1.1848 (ce=1.1842 mse=0.0006) test: 1.4291 — 712s
+  Epoch 455/500 — train: 1.1847 (ce=1.1841 mse=0.0006) test: 1.4226 — 715s
+  Epoch 460/500 — train: 1.1832 (ce=1.1826 mse=0.0006) test: 1.4285 — 718s
+  Epoch 465/500 — train: 1.1842 (ce=1.1836 mse=0.0006) test: 1.4311 — 721s
+  Epoch 470/500 — train: 1.1829 (ce=1.1824 mse=0.0006) test: 1.4332 — 724s
+  Epoch 475/500 — train: 1.1821 (ce=1.1815 mse=0.0006) test: 1.4314 — 727s
+  Epoch 480/500 — train: 1.1817 (ce=1.1811 mse=0.0006) test: 1.4350 — 730s
+  Epoch 485/500 — train: 1.1838 (ce=1.1832 mse=0.0006) test: 1.4308 — 733s
+  Epoch 490/500 — train: 1.1829 (ce=1.1824 mse=0.0006) test: 1.4321 — 736s
+  Epoch 495/500 — train: 1.1816 (ce=1.1810 mse=0.0006) test: 1.4326 — 739s
+  Epoch 500/500 — train: 1.1818 (ce=1.1812 mse=0.0006) test: 1.4300 — 742s
+
+  [CHECKPOINT] Éval à epoch 500 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+    Episode  10/50 : ✓ max_z=0.896
+    Episode  20/50 : ✗ max_z=0.828
+    Episode  30/50 : ✗ max_z=0.823
+    Episode  40/50 : ✗ max_z=0.837
+    Episode  50/50 : ✗ max_z=0.833
+    Success rate : 16/50 (32%) — avg max cube_z : 0.844 m
+  [CHECKPOINT epoch 500] train=1.1818 test=1.4300 success=32% max_z=0.844
+  Temps total : 821.6s
+
+Éval finale (argmax + vidéos)...
+  Évaluation (200 épisodes, mode=argmax)...
+    Episode  40/200 : ✗ max_z=0.820
+    Episode  80/200 : ✗ max_z=0.821
+    Episode 120/200 : ✗ max_z=0.828
+    Episode 160/200 : ✗ max_z=0.829
+    Episode 200/200 : ✗ max_z=0.825
+    Success rate : 54/200 (27%) — avg max cube_z : 0.842 m
+  Poids sauvegardés : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep/model.pt
+  Config modèle    : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep/model_config.json
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep/ep0.mp4
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep/ep1.mp4
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep/ep2.mp4
+  Best model : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep/model_best_epoch100.pt (epoch 100, success 50%)
+Run sauvegardé dans /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/all_runs.jsonl
+  Graphe : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep/losses.png
+  Run info : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep/run_info.md
+
+============================================================
+RÉSUMÉ
+============================================================
+  Success rate final : 27% (54/200)
+  Best checkpoint    : 50% (epoch 100)
+  Avg max cube_z     : 0.842 m
+  Params entraînés   : 1,714,168
+  Temps              : 822s
+    epoch  25 : train=1.3695 (ce=1.3684 mse=0.0011) test=1.3828 success=48% max_z=0.852
+    epoch 100 : train=1.2737 (ce=1.2729 mse=0.0008) test=1.3853 success=50% max_z=0.860
+    epoch 200 : train=1.2216 (ce=1.2209 mse=0.0007) test=1.4085 success=40% max_z=0.852
+    epoch 300 : train=1.2031 (ce=1.2025 mse=0.0006) test=1.4238 success=40% max_z=0.852
+    epoch 400 : train=1.1894 (ce=1.1888 mse=0.0006) test=1.4291 success=28% max_z=0.841
+    epoch 500 : train=1.1818 (ce=1.1812 mse=0.0006) test=1.4300 success=32% max_z=0.844
+
+  Dossier : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/41_lift_anti_overfit_long_mlp_anti_overfit_500ep

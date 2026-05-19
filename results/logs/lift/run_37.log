@@ -1,0 +1,128 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[39357]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x107d943a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x15e73c3a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[39357]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x107d943f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x15e73c3f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+
+============================================================
+EXPÉRIENCE : lift/37_lift_robomimic_bc
+============================================================
+
+Chargement features ResNet + states...
+  Cache features image : data_cache/lift_ph_image_features.pt
+  Frames : 9666 (chunk=1, pas de chunking)
+  Split : 160 démos train (7741 frames), 40 démos test (1925 frames)
+  Paramètres entraînés : 1,675,339 (ResNet18 = 11.2M, gelés)
+
+Entraînement (GMM NLL, 500 epochs, LR 1e-4)...
+  Epoch   1/500 — train_nll: 4.2552 test_nll: -0.0687 — 1s
+  Epoch  25/500 — train_nll: -8.6386 test_nll: -8.6392 — 19s
+  Epoch  50/500 — train_nll: -10.9400 test_nll: -9.1937 — 38s
+  Epoch  75/500 — train_nll: -12.3225 test_nll: -9.4812 — 56s
+  Epoch 100/500 — train_nll: -12.8427 test_nll: -8.7855 — 75s
+
+  [CHECKPOINT] Éval à epoch 100...
+  Évaluation (50 épisodes, mode=sample, re-prédiction chaque step)...
+    Episode 10/50 : ✗ max_z=0.828
+    Episode 20/50 : ✗ max_z=0.822
+    Episode 30/50 : ✗ max_z=0.824
+    Episode 40/50 : ✗ max_z=0.830
+    Episode 50/50 : ✗ max_z=0.826
+    Success rate : 3/50 (6%) — avg max cube_z : 0.899 m
+  [CHECKPOINT epoch 100] train=-12.8427 test=-8.7855 success=6% max_z=0.899
+  [NEW BEST] epoch 100 : success 6%
+  Epoch 125/500 — train_nll: -14.8612 test_nll: -4.9640 — 319s
+  Epoch 150/500 — train_nll: -16.6543 test_nll: -0.1741 — 335s
+  Epoch 175/500 — train_nll: -17.9972 test_nll: 6.2141 — 351s
+  Epoch 200/500 — train_nll: -17.4307 test_nll: 4.9998 — 367s
+
+  [CHECKPOINT] Éval à epoch 200...
+  Évaluation (50 épisodes, mode=sample, re-prédiction chaque step)...
+    Episode 10/50 : ✓ max_z=0.867
+    Episode 20/50 : ✗ max_z=0.823
+    Episode 30/50 : ✗ max_z=0.829
+    Episode 40/50 : ✗ max_z=0.820
+    Episode 50/50 : ✗ max_z=0.828
+    Success rate : 10/50 (20%) — avg max cube_z : 1.031 m
+  [CHECKPOINT epoch 200] train=-17.4307 test=4.9998 success=20% max_z=1.031
+  [NEW BEST] epoch 200 : success 20%
+  Epoch 225/500 — train_nll: -19.2858 test_nll: 6.2561 — 609s
+  Epoch 250/500 — train_nll: -19.3034 test_nll: 14.2436 — 625s
+  Epoch 275/500 — train_nll: -20.9937 test_nll: 5.4326 — 641s
+  Epoch 300/500 — train_nll: -20.6550 test_nll: 8.4701 — 656s
+
+  [CHECKPOINT] Éval à epoch 300...
+  Évaluation (50 épisodes, mode=sample, re-prédiction chaque step)...
+    Episode 10/50 : ✗ max_z=0.832
+    Episode 20/50 : ✗ max_z=0.833
+    Episode 30/50 : ✗ max_z=0.820
+    Episode 40/50 : ✗ max_z=0.827
+    Episode 50/50 : ✗ max_z=0.820
+    Success rate : 8/50 (16%) — avg max cube_z : 1.013 m
+  [CHECKPOINT epoch 300] train=-20.6550 test=8.4701 success=16% max_z=1.013
+  Epoch 325/500 — train_nll: -20.4402 test_nll: 16.4748 — 899s
+  Epoch 350/500 — train_nll: -21.8287 test_nll: 21.4314 — 914s
+  Epoch 375/500 — train_nll: -21.8221 test_nll: 29.6141 — 930s
+  Epoch 400/500 — train_nll: -21.8337 test_nll: 46.6891 — 945s
+
+  [CHECKPOINT] Éval à epoch 400...
+  Évaluation (50 épisodes, mode=sample, re-prédiction chaque step)...
+    Episode 10/50 : ✗ max_z=0.820
+    Episode 20/50 : ✗ max_z=0.825
+    Episode 30/50 : ✗ max_z=0.820
+    Episode 40/50 : ✓ max_z=1.896
+    Episode 50/50 : ✗ max_z=0.822
+    Success rate : 7/50 (14%) — avg max cube_z : 0.980 m
+  [CHECKPOINT epoch 400] train=-21.8337 test=46.6891 success=14% max_z=0.980
+  Epoch 425/500 — train_nll: -22.5464 test_nll: 61.6370 — 1188s
+  Epoch 450/500 — train_nll: -22.7984 test_nll: 55.0643 — 1203s
+  Epoch 475/500 — train_nll: -22.6438 test_nll: 49.0741 — 1219s
+  Epoch 500/500 — train_nll: -22.7490 test_nll: 64.9675 — 1234s
+
+  [CHECKPOINT] Éval à epoch 500...
+  Évaluation (50 épisodes, mode=sample, re-prédiction chaque step)...
+    Episode 10/50 : ✓ max_z=1.955
+    Episode 20/50 : ✓ max_z=2.148
+    Episode 30/50 : ✗ max_z=0.829
+    Episode 40/50 : ✗ max_z=0.826
+    Episode 50/50 : ✗ max_z=0.829
+    Success rate : 14/50 (28%) — avg max cube_z : 1.108 m
+  [CHECKPOINT epoch 500] train=-22.7490 test=64.9675 success=28% max_z=1.108
+  [NEW BEST] epoch 500 : success 28%
+  Temps total : 1460.9s
+
+Éval finale avec vidéos...
+  Évaluation (50 épisodes, mode=sample, re-prédiction chaque step)...
+    Episode 10/50 : ✗ max_z=0.832
+    Episode 20/50 : ✗ max_z=0.822
+    Episode 30/50 : ✗ max_z=0.821
+    Episode 40/50 : ✓ max_z=2.012
+    Episode 50/50 : ✗ max_z=0.822
+    Success rate : 13/50 (26%) — avg max cube_z : 1.151 m
+  Poids sauvegardés : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm/model.pt
+  Config modèle    : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm/model_config.json
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm/ep0.mp4
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm/ep1.mp4
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm/ep2.mp4
+  Best model : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm/model_best_epoch500.pt (epoch 500, success 28%)
+Run sauvegardé dans /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/all_runs.jsonl
+  Graphe : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm/losses.png
+  Run info : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm/run_info.md
+
+============================================================
+RÉSUMÉ
+============================================================
+  Success rate final : 26% (13/50)
+  Best checkpoint    : 28% (epoch 500)
+  Avg max cube_z     : 1.151 m
+  Params entraînés   : 1,675,339
+  Temps              : 1461s
+    epoch 100 : train=-12.8427 test=-8.7855 success=6% max_z=0.899
+    epoch 200 : train=-17.4307 test=4.9998 success=20% max_z=1.031
+    epoch 300 : train=-20.6550 test=8.4701 success=16% max_z=1.013
+    epoch 400 : train=-21.8337 test=46.6891 success=14% max_z=0.980
+    epoch 500 : train=-22.7490 test=64.9675 success=28% max_z=1.108
+
+  Dossier : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/37_lift_robomimic_bc_robomimic_bc_gmm

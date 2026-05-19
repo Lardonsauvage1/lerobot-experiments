@@ -6,23 +6,31 @@ Espace d'apprentissage et d'expérimentation autour de l'**imitation learning** 
 
 ## État actuel
 
-- **Tâche** : [PushT](https://huggingface.co/datasets/lerobot/pusht) (LeRobot) — pousser un bloc en T sur une zone cible
-- **Best coverage** : **44.9%** (Transformer 2L + bins discrets sur image seule, run `31_discrete_ce`)
-- **Best run "absolu"** : 46.5% (`24_precomputed_features`, image + agent_pos)
-- **Premier succès du projet** : run 31, 3/200 épisodes (1.5%) au checkpoint epoch 75 avec décodage argmax
-- **Lecture clé** : passer de MSE-régression à classification (CE) sur bins discrets a quasi-rattrapé la perf "image+pos" en travaillant uniquement sur la formulation de la sortie
+- **Phase 1-2 — PushT (cube 2D à pousser)** : best 46.5% coverage (run 24, image + agent_pos). Lecture clé : CE+résidu sur bins discrets rattrape la perf "image+pos" sans agent_pos (run 31, 44.9%).
+- **Phase 3 — Robomimic Lift (bras Panda 7-DoF + cube)** : best **70% success** (run 44, ResNet18 trainable + anti-overfit), confirmé **66% sur 200 épisodes**.
 
-### Série la plus récente — enquête loss ↔ coverage
+### Tableau Phase 3 (Lift)
 
-Les runs `29` à `32` répondent à la question : **pourquoi la loss ne reflète-t-elle pas la performance en simulation ?** Voir [`docs/JOURNEY.md`](docs/JOURNEY.md) pour le récit complet et les conclusions structurelles.
-
-| Run | Loss | Input | Coverage |
+| Run | Setup principal | Best success | Final 200 eps |
 |---|---|---|---|
-| 24 | MSE | image + pos | 46.5% |
-| 29 | MSE | **image seule** | 31.8% |
-| 30 | NLL (MDN K=5) | image seule | 35.4% (best 40.9% @ epoch 75) |
-| 31 | CE + résidu (bins absolus) | image seule | **44.9% argmax** (3/200 succès !) |
-| 32 | CE + résidu (bins delta) | image seule | 21.3% argmax — moins bon, voir leçon |
+| 33 | MLP state seul, MSE | 0% | 0% |
+| 34 | MLP state seul, CE+résidu | 0% | 0% |
+| 35 | image+state, MSE | 28% | 18% |
+| 36 | image+state, CE+résidu | 34% | 14% |
+| 37 | "Robomimic-clone" (MLP[1024]+GMM K=5, chunk=1) | 28% | 26% |
+| 38-39 | + image augmentation (échec) | 16-20% | 6-10% |
+| 40 | + anti-overfit (Dropout+LN+AdamW+LS) | 48% | 35% |
+| 41 | run 40 prolongé 500 epochs | 50% | 27% |
+| 42 | + **ResNet trainable** sur MPS | 66% (crash NaN après) | — |
+| 43 | + FrozenBatchNorm2d (tue le 66%) | 30% | 10% |
+| **44** | **Run 42 + NaN guard + save best immédiat** | **70%** ⭐ | **66%** ⭐ |
+
+**Leçons clés Phase 3** :
+1. **Sans image → 0%**. Avec image features (ResNet18) → jump à 28%+.
+2. **Dégeler le ResNet (LR 1e-5) est THE move** : +30pts (34% → 66%). Frozen ResNet = ImageNet stats → mismatch avec scène Lift.
+3. **Anti-overfit obligatoire sur petit dataset** : Dropout 0.4 + LayerNorm + AdamW(wd=5e-4) + label_smoothing 0.1.
+4. **MPS Apple Silicon** : `.contiguous()` après fancy indexing crucial pour éviter view-errors backward.
+5. **BN trainable = breakthrough**, mais NaN possible → NaN guard + save best à disque immédiatement.
 
 ## Setup machine
 
