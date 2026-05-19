@@ -24,6 +24,7 @@ Espace d'apprentissage et d'expérimentation autour de l'**imitation learning** 
 | 42 | + **ResNet trainable** sur MPS | 66% (crash NaN après) | — |
 | 43 | + FrozenBatchNorm2d (tue le 66%) | 30% | 10% |
 | **44** | **Run 42 + NaN guard + save best immédiat** | **70%** ⭐ | **66%** ⭐ |
+| 45 | DINOv2-small **frozen** au lieu de ResNet | 44% | 32% — comparable à frozen ResNet (run 40) |
 
 **Leçons clés Phase 3** :
 1. **Sans image → 0%**. Avec image features (ResNet18) → jump à 28%+.
@@ -31,6 +32,14 @@ Espace d'apprentissage et d'expérimentation autour de l'**imitation learning** 
 3. **Anti-overfit obligatoire sur petit dataset** : Dropout 0.4 + LayerNorm + AdamW(wd=5e-4) + label_smoothing 0.1.
 4. **MPS Apple Silicon** : `.contiguous()` après fancy indexing crucial pour éviter view-errors backward.
 5. **BN trainable = breakthrough**, mais NaN possible → NaN guard + save best à disque immédiatement.
+6. **DINOv2 frozen ≈ ResNet frozen** sur ce setup : la scène Lift étant visuellement simple, la richesse du pré-entraînement self-sup (DINOv2 sur 142M images) n'apporte pas vs ImageNet classique. C'est l'**adaptabilité** (backbone trainable) qui compte, pas la qualité du pré-entraînement.
+
+## Pistes non explorées (pour une session future)
+
+- **Foundation models robotiques** (SmolVLA, Octo, OpenVLA) : exploration tentée fin de phase 3, abandonnée au profit de finir proprement run 44. Demande conversion data Robomimic → LeRobot format + GPU plus puissant pour fine-tuner 450M+ params.
+- **ACT (Action Chunking Transformer)** via lerobot-train : recette officielle LeRobot, pas testée.
+- **Diffusion Policy** sur Colab GPU : prévu dans notebook, pas exécuté.
+- **Receding horizon** sur run 44 : exécuter k=8 actions puis re-prédire (gratuit, juste inférence).
 
 ## Setup machine
 

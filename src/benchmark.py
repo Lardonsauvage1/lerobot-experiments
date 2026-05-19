@@ -5,11 +5,13 @@ leurs caractéristiques pour les comparer avec nos expériences.
 
 import time
 import torch
-from lerobot.configs.policies import PreTrainedConfig
-from lerobot.policies.factory import get_policy_class
+# NB : les imports lerobot sont fait dans load_pretrained pour éviter de casser
+# tout le module si lerobot a un import-time bug (cf. récent bug Groot avec transformers récent).
 
 
 def load_pretrained(repo_id: str, device: str = "cpu"):
+    from lerobot.configs.policies import PreTrainedConfig  # noqa
+    from lerobot.policies.factory import get_policy_class  # noqa
     """Charge un modèle pré-entraîné depuis le Hub Hugging Face.
 
     Exemples de repo_id:

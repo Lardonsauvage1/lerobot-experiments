@@ -1,0 +1,139 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+
+============================================================
+EXPÉRIENCE : lift/45_lift_dinov2
+============================================================
+
+Chargement features ResNet + states...
+  Extraction features DINOv2 → data_cache/lift_ph_dinov2_features.pt...
+  Device : mps
+objc[4281]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1057443a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x37ff043a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[4281]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1057443f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x37ff043f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 5580.59it/s]
+  200 démos × 224×224 à traiter...
+    20/200 démos
+    40/200 démos
+    60/200 démos
+    80/200 démos
+    100/200 démos
+    120/200 démos
+    140/200 démos
+    160/200 démos
+    180/200 démos
+    200/200 démos
+  Features shape : torch.Size([9666, 384])
+  Cache sauvegardé : data_cache/lift_ph_dinov2_features.pt (16 Mo)
+
+Construction des chunks...
+  5866 chunks (chunk_size=20)
+  Split : 160 démos train (4701 chunks), 40 démos test (1165 chunks)
+  Paramètres entraînés : 1,681,400 (DINOv2-small = 22M, gelés)
+
+Entraînement...
+  Epoch   1/100 — train: 2.7754 (ce=2.6155 mse=0.1599) test: 2.0661 — 1s
+  Epoch   5/100 — train: 1.5303 (ce=1.5018 mse=0.0284) test: 1.4631 — 3s
+  Epoch  10/100 — train: 1.4225 (ce=1.4175 mse=0.0051) test: 1.3990 — 6s
+  Epoch  15/100 — train: 1.3879 (ce=1.3857 mse=0.0022) test: 1.3844 — 9s
+  Epoch  20/100 — train: 1.3719 (ce=1.3705 mse=0.0014) test: 1.3716 — 12s
+  Epoch  25/100 — train: 1.3566 (ce=1.3555 mse=0.0011) test: 1.3712 — 15s
+
+  [CHECKPOINT] Éval à epoch 25 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 6079.93it/s]
+    Episode  10/50 : ✓ max_z=0.881
+    Episode  20/50 : ✗ max_z=0.828
+    Episode  30/50 : ✗ max_z=0.826
+    Episode  40/50 : ✗ max_z=0.826
+    Episode  50/50 : ✓ max_z=0.894
+    Success rate : 17/50 (34%) — avg max cube_z : 0.847 m
+  [CHECKPOINT epoch 25] train=1.3566 test=1.3712 success=34% max_z=0.847
+  [NEW BEST] epoch 25 : success 34%
+  Epoch  30/100 — train: 1.3444 (ce=1.3435 mse=0.0009) test: 1.3691 — 110s
+  Epoch  35/100 — train: 1.3351 (ce=1.3343 mse=0.0008) test: 1.3649 — 113s
+  Epoch  40/100 — train: 1.3249 (ce=1.3241 mse=0.0008) test: 1.3663 — 117s
+  Epoch  45/100 — train: 1.3167 (ce=1.3159 mse=0.0008) test: 1.3651 — 120s
+  Epoch  50/100 — train: 1.3101 (ce=1.3093 mse=0.0008) test: 1.3714 — 124s
+
+  [CHECKPOINT] Éval à epoch 50 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 5966.25it/s]
+    Episode  10/50 : ✗ max_z=0.821
+    Episode  20/50 : ✓ max_z=0.897
+    Episode  30/50 : ✗ max_z=0.834
+    Episode  40/50 : ✗ max_z=0.826
+    Episode  50/50 : ✓ max_z=0.897
+    Success rate : 22/50 (44%) — avg max cube_z : 0.856 m
+  [CHECKPOINT epoch 50] train=1.3101 test=1.3714 success=44% max_z=0.856
+  [NEW BEST] epoch 50 : success 44%
+  Epoch  55/100 — train: 1.3032 (ce=1.3024 mse=0.0008) test: 1.3684 — 219s
+  Epoch  60/100 — train: 1.2969 (ce=1.2961 mse=0.0008) test: 1.3709 — 222s
+  Epoch  65/100 — train: 1.2900 (ce=1.2892 mse=0.0008) test: 1.3737 — 225s
+  Epoch  70/100 — train: 1.2847 (ce=1.2838 mse=0.0008) test: 1.3801 — 229s
+  Epoch  75/100 — train: 1.2793 (ce=1.2785 mse=0.0008) test: 1.3749 — 232s
+
+  [CHECKPOINT] Éval à epoch 75 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 6093.55it/s]
+    Episode  10/50 : ✓ max_z=0.891
+    Episode  20/50 : ✗ max_z=0.830
+    Episode  30/50 : ✗ max_z=0.822
+    Episode  40/50 : ✓ max_z=0.867
+    Episode  50/50 : ✓ max_z=0.895
+    Success rate : 18/50 (36%) — avg max cube_z : 0.848 m
+  [CHECKPOINT epoch 75] train=1.2793 test=1.3749 success=36% max_z=0.848
+  Epoch  80/100 — train: 1.2737 (ce=1.2729 mse=0.0009) test: 1.3805 — 328s
+  Epoch  85/100 — train: 1.2697 (ce=1.2688 mse=0.0008) test: 1.3806 — 332s
+  Epoch  90/100 — train: 1.2668 (ce=1.2660 mse=0.0008) test: 1.3836 — 338s
+  Epoch  95/100 — train: 1.2615 (ce=1.2607 mse=0.0008) test: 1.3835 — 342s
+  Epoch 100/100 — train: 1.2567 (ce=1.2559 mse=0.0008) test: 1.3871 — 346s
+
+  [CHECKPOINT] Éval à epoch 100 (argmax)...
+  Évaluation (50 épisodes, mode=argmax)...
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 5923.75it/s]
+    Episode  10/50 : ✓ max_z=0.875
+    Episode  20/50 : ✗ max_z=0.832
+    Episode  30/50 : ✓ max_z=0.869
+    Episode  40/50 : ✓ max_z=0.897
+    Episode  50/50 : ✗ max_z=0.828
+    Success rate : 18/50 (36%) — avg max cube_z : 0.852 m
+  [CHECKPOINT epoch 100] train=1.2567 test=1.3871 success=36% max_z=0.852
+  Temps total : 439.2s
+
+Éval finale (argmax + vidéos)...
+  Évaluation (200 épisodes, mode=argmax)...
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 6249.66it/s]
+    Episode  40/200 : ✗ max_z=0.826
+    Episode  80/200 : ✓ max_z=0.898
+    Episode 120/200 : ✗ max_z=0.822
+    Episode 160/200 : ✓ max_z=0.869
+    Episode 200/200 : ✗ max_z=0.825
+    Success rate : 65/200 (32%) — avg max cube_z : 0.847 m
+  Poids sauvegardés : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit/model.pt
+  Config modèle    : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit/model_config.json
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit/ep0.mp4
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit/ep1.mp4
+  Vidéo : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit/ep2.mp4
+  Best model : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit/model_best_epoch50.pt (epoch 50, success 44%)
+Run sauvegardé dans /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/all_runs.jsonl
+  Graphe : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit/losses.png
+  Run info : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit/run_info.md
+
+============================================================
+RÉSUMÉ
+============================================================
+  Success rate final : 32% (65/200)
+  Best checkpoint    : 44% (epoch 50)
+  Avg max cube_z     : 0.847 m
+  Params entraînés   : 1,681,400
+  Temps              : 439s
+    epoch  25 : train=1.3566 (ce=1.3555 mse=0.0011) test=1.3712 success=34% max_z=0.847
+    epoch  50 : train=1.3101 (ce=1.3093 mse=0.0008) test=1.3714 success=44% max_z=0.856
+    epoch  75 : train=1.2793 (ce=1.2785 mse=0.0008) test=1.3749 success=36% max_z=0.848
+    epoch 100 : train=1.2567 (ce=1.2559 mse=0.0008) test=1.3871 success=36% max_z=0.852
+
+  Dossier : /Users/nielsmurawka/Documents/VScodeProject/experience_Le/results/runs/lift/45_lift_dinov2_mlp_anti_overfit
