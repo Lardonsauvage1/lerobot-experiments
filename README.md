@@ -7,7 +7,7 @@ Espace d'apprentissage et d'expérimentation autour de l'**imitation learning** 
 ## État actuel
 
 - **Phase 1-2 — PushT (cube 2D à pousser)** : best 46.5% coverage (run 24, image + agent_pos). Lecture clé : CE+résidu sur bins discrets rattrape la perf "image+pos" sans agent_pos (run 31, 44.9%).
-- **Phase 3 — Robomimic Lift (bras Panda 7-DoF + cube)** : best **70% success** (run 44, ResNet18 trainable + anti-overfit), confirmé **66% sur 200 épisodes**.
+- **Phase 3 — Robomimic Lift (bras Panda 7-DoF + cube)** : best **100% success** (run 46, Diffusion Policy via LeRobot, 74/74 ep observés avant arrêt anticipé). Précédent record MLP : 70% (run 44).
 
 ### Tableau Phase 3 (Lift)
 
@@ -23,22 +23,45 @@ Espace d'apprentissage et d'expérimentation autour de l'**imitation learning** 
 | 41 | run 40 prolongé 500 epochs | 50% | 27% |
 | 42 | + **ResNet trainable** sur MPS | 66% (crash NaN après) | — |
 | 43 | + FrozenBatchNorm2d (tue le 66%) | 30% | 10% |
-| **44** | **Run 42 + NaN guard + save best immédiat** | **70%** ⭐ | **66%** ⭐ |
+| 44 | Run 42 + NaN guard + save best immédiat | 70% | 66% |
 | 45 | DINOv2-small **frozen** au lieu de ResNet | 44% | 32% — comparable à frozen ResNet (run 40) |
+| **46** | **Diffusion Policy (LeRobot lerobot-train, U-Net 1D + DDPM, 264M params)** | **100%** ⭐ | **74/74 ep avant arrêt anticipé** |
 
 **Leçons clés Phase 3** :
 1. **Sans image → 0%**. Avec image features (ResNet18) → jump à 28%+.
-2. **Dégeler le ResNet (LR 1e-5) est THE move** : +30pts (34% → 66%). Frozen ResNet = ImageNet stats → mismatch avec scène Lift.
+2. **Dégeler le ResNet (LR 1e-5) est THE move** sur l'archi MLP : +30pts (34% → 66%). Frozen ResNet = ImageNet stats → mismatch avec scène Lift.
 3. **Anti-overfit obligatoire sur petit dataset** : Dropout 0.4 + LayerNorm + AdamW(wd=5e-4) + label_smoothing 0.1.
 4. **MPS Apple Silicon** : `.contiguous()` après fancy indexing crucial pour éviter view-errors backward.
 5. **BN trainable = breakthrough**, mais NaN possible → NaN guard + save best à disque immédiatement.
 6. **DINOv2 frozen ≈ ResNet frozen** sur ce setup : la scène Lift étant visuellement simple, la richesse du pré-entraînement self-sup (DINOv2 sur 142M images) n'apporte pas vs ImageNet classique. C'est l'**adaptabilité** (backbone trainable) qui compte, pas la qualité du pré-entraînement.
+7. **Diffusion Policy >> MLP** sur multimodal robotique : 100% vs 70% du meilleur MLP. La capacité multimodale du débruitage diffusion résout intrinsèquement le mode collapse qu'on contournait avec CE+résidu.
+
+### Run 46 — Diffusion Policy : 5 bugs cachés dans le pipeline d'eval
+
+Le training s'est passé sans souci (15K steps prévus, arrêté à 12K, train loss 0.037). **Mais l'eval initiale donnait 0% success** alors que le modèle était bon. Cinq bugs cumulés, chacun individuellement suffisant pour faire échouer l'eval :
+
+1. **DDPM 100 steps par défaut**. La config LeRobot a `num_inference_steps=None` → fallback à `num_train_timesteps=100`. Inference = 100 forwards = ~9s/sample = 12h pour 200 ep. Fix : `policy.diffusion.num_inference_steps = 10` (attribut sur `DiffusionModel`, pas `DiffusionPolicy.config`).
+2. **`select_action()` ne normalise PAS**. LeRobot v0.5 a externalisé les normalizers en `PolicyProcessorPipeline`. Sans les appliquer manuellement, le policy voit des observations brutes et sort des actions hors range. Fix : `preprocessor(obs) → select_action → postprocessor(action)`.
+3. **Init env hors distribution**. `rs.make("Lift")` randomise robot+cube différemment des demos Robomimic. Le modèle voit des configurations jamais vues. Fix : reset depuis init state d'une démo HDF5 via `env.sim.set_state_from_flattened(demo_init)`.
+4. **Mismatch versions Robosuite 1.4.1 (demos) ↔ 1.5.2 (installé)** sur la convention de l'`object-state`. Quaternion + relative position diffèrent. Fix : utiliser `EnvRobosuite` wrapper de Robomimic (qui matche le format HDF5), patcher `controller_configs` au format composite, désactiver `mujoco_py`/`egl_probe` manquants.
+5. **Sign flip sur `object[7:10]`**. Robomimic 1.4 stockait `eef_pos - cube_pos`, Robosuite 1.5 renvoie `cube_pos - eef_pos`. Convention inversée → le robot fonçait à gauche systématiquement (cube perçu à l'opposé). Fix : `obj[7:10] *= -1` après chaque obs.
+
+**Leçon transverse** : un train loss bas ne dit rien sur l'eval. Tous les bugs d'eval sont silencieux côté loss. Toujours faire un smoke test 1-2 épisodes avant un eval long, et inspecter les **actions sorties brutes vs distribution dataset** comme premier debug si comportement bizarre.
+
+### Sim-to-real : piège des markers Mujoco
+
+Robosuite rend par défaut sur l'image caméra des "debug sites" (point rouge = `grip_site` au centre théorique de la pince, trait vert = axe d'orientation). **Présents au training ET à l'eval**, donc pas de mismatch en simu. **Mais sur un vrai robot, ces markers n'existent pas** — la caméra réelle ne voit que le bras + cube + fond.
+
+Le modèle peut avoir appris des heuristiques type "fermer la pince quand le point rouge touche le cube" au lieu d'apprendre la géométrie 3D du problème. C'est un **sim shortcut** classique qui fait crasher les performances en sim-to-real.
+
+À faire pour le futur transfert au bras 5-axes custom : désactiver les markers Mujoco dans le XML du robot (rgba=0,0,0,0 sur les debug sites), ou utiliser de la domain randomization au training.
 
 ## Pistes non explorées (pour une session future)
 
-- **Foundation models robotiques** (SmolVLA, Octo, OpenVLA) : exploration tentée fin de phase 3, abandonnée au profit de finir proprement run 44. Demande conversion data Robomimic → LeRobot format + GPU plus puissant pour fine-tuner 450M+ params.
+- **Foundation models robotiques** (SmolVLA, Octo, OpenVLA) : exploration tentée fin de phase 3, abandonnée au profit de finir proprement run 44. Demande GPU plus puissant pour fine-tuner 450M+ params.
 - **ACT (Action Chunking Transformer)** via lerobot-train : recette officielle LeRobot, pas testée.
-- **Diffusion Policy** sur Colab GPU : prévu dans notebook, pas exécuté.
+- **Resume training run 46 jusqu'à 15K steps** : checkpoint actuel 12K déjà à 100%, mais voir si les 3K restants apportent quelque chose.
+- **Diffusion Policy sans markers Mujoco** : refaire le dataset avec gripper debug sites désactivés pour préparer le sim-to-real.
 - **Receding horizon** sur run 44 : exécuter k=8 actions puis re-prédire (gratuit, juste inférence).
 
 ## Setup machine
@@ -79,6 +102,8 @@ venv312/bin/python -u experiments/lift/33_lift_mlp_baseline.py 2>&1 | tee result
 │   ├── tracker.py             # Sauvegarde/lecture standardisée des runs (results/all_runs.jsonl)
 │   ├── benchmark.py           # Comptage de paramètres, FLOPs, taille modèle
 │   ├── data_cache.py          # Chargement + cache des données PushT (évite de re-télécharger)
+│   ├── lift_data.py           # Chargement Robomimic Lift HDF5 + build_state_vector (19D)
+│   ├── lift_to_lerobot.py     # Conversion Robomimic HDF5 → format LeRobot (parquet + vidéos)
 │   └── visualize.py           # Génération des graphes loss/coverage
 │
 ├── experiments/               # Scripts numérotés — un fichier par expérience indépendante
@@ -102,7 +127,15 @@ venv312/bin/python -u experiments/lift/33_lift_mlp_baseline.py 2>&1 | tee result
 │   │   └── archive/                    # Anciennes expériences (00-07)
 │   │
 │   └── lift/                  # Phase 3 : bras Panda 7-DoF, Robomimic Lift
-│       └── 33_lift_mlp_baseline.py     # Baseline MLP, state→chunk20×7 (0% success, confirme mode collapse MSE)
+│       ├── 33_lift_mlp_baseline.py     # Baseline MLP, state→chunk20×7 (0% success, confirme mode collapse MSE)
+│       ├── 44_lift_bn_trainable_stable.py  # Record MLP : 70% (ResNet18 trainable + NaN guard)
+│       ├── 45_lift_dinov2.py           # DINOv2-small frozen — comparé à ResNet frozen
+│       ├── 46_plot_loss.py             # Parse lerobot-train log et trace loss/grad_norm/lr
+│       ├── 46_bench_inference.py       # Bench MPS vs CPU vs DDIM10/4 pour Diffusion Policy
+│       ├── 46_verify_inference_steps.py # Vérifie que num_inference_steps=10 prend effet
+│       ├── 46_debug_action_scale.py    # Compare action policy vs distribution dataset
+│       ├── 46_visualize_one_episode.py # Sauve 1 vidéo + log actions step-by-step
+│       └── 46_eval_diffusion_v6.py     # Eval finale Diffusion Policy : Robomimic env + sign flip → 100%
 │
 ├── notebooks/                 # Notebooks Jupyter pour Colab/Kaggle
 │   ├── pusht_diffusion_colab.ipynb  # Diffusion Policy sur Colab GPU (T4)

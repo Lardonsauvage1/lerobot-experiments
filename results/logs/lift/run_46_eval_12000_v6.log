@@ -1,0 +1,358 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[69461]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x111c903a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1634f03a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[69461]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x111c903f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1634f03f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Loading Diffusion Policy from results/runs/lift/46_diffusion_official/checkpoints/012000/pretrained_model...
+Loading weights from local directory
+  Policy : 263,701,799 params, device=mps
+  num_inference_steps=10
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['robot0_gripper_qpos', 'robot0_eef_quat', 'object', 'robot0_eef_pos']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+Init states chargés : 200 démos
+    ep   1 step  50/200 (max_z=0.930)
+    ep   1 step 100/200 (max_z=0.930)
+    ep   1 step 150/200 (max_z=0.973)
+  ep   1/200 : ✓ max_z=0.973 | running success=100% | ep_time=26.0s | elapsed=0.4min | ETA=86min
+    ep   2 step  50/200 (max_z=0.917)
+    ep   2 step 100/200 (max_z=0.923)
+    ep   2 step 150/200 (max_z=0.976)
+  ep   2/200 : ✓ max_z=0.976 | running success=100% | ep_time=26.7s | elapsed=0.9min | ETA=87min
+    ep   3 step  50/200 (max_z=0.912)
+    ep   3 step 100/200 (max_z=0.988)
+    ep   3 step 150/200 (max_z=0.998)
+  ep   3/200 : ✓ max_z=0.998 | running success=100% | ep_time=27.9s | elapsed=1.3min | ETA=88min
+    ep   4 step  50/200 (max_z=0.825)
+    ep   4 step 100/200 (max_z=0.908)
+    ep   4 step 150/200 (max_z=0.987)
+  ep   4/200 : ✓ max_z=0.987 | running success=100% | ep_time=26.2s | elapsed=1.8min | ETA=87min
+    ep   5 step  50/200 (max_z=0.894)
+    ep   5 step 100/200 (max_z=0.959)
+    ep   5 step 150/200 (max_z=0.999)
+  ep   5/200 : ✓ max_z=0.999 | running success=100% | ep_time=25.8s | elapsed=2.2min | ETA=86min
+    ep   6 step  50/200 (max_z=0.830)
+    ep   6 step 100/200 (max_z=0.830)
+    ep   6 step 150/200 (max_z=0.980)
+  ep   6/200 : ✓ max_z=0.980 | running success=100% | ep_time=28.4s | elapsed=2.7min | ETA=87min
+    ep   7 step  50/200 (max_z=0.881)
+    ep   7 step 100/200 (max_z=0.959)
+    ep   7 step 150/200 (max_z=1.028)
+  ep   7/200 : ✓ max_z=1.028 | running success=100% | ep_time=25.1s | elapsed=3.1min | ETA=86min
+    ep   8 step  50/200 (max_z=0.895)
+    ep   8 step 100/200 (max_z=0.953)
+    ep   8 step 150/200 (max_z=1.016)
+  ep   8/200 : ✓ max_z=1.016 | running success=100% | ep_time=24.8s | elapsed=3.5min | ETA=84min
+    ep   9 step  50/200 (max_z=0.927)
+    ep   9 step 100/200 (max_z=0.958)
+    ep   9 step 150/200 (max_z=0.958)
+  ep   9/200 : ✓ max_z=0.958 | running success=100% | ep_time=24.7s | elapsed=3.9min | ETA=83min
+    ep  10 step  50/200 (max_z=0.945)
+    ep  10 step 100/200 (max_z=0.945)
+    ep  10 step 150/200 (max_z=0.945)
+  ep  10/200 : ✓ max_z=1.011 | running success=100% | ep_time=25.5s | elapsed=4.4min | ETA=83min
+    ep  11 step  50/200 (max_z=0.952)
+    ep  11 step 100/200 (max_z=0.952)
+    ep  11 step 150/200 (max_z=0.998)
+  ep  11/200 : ✓ max_z=0.998 | running success=100% | ep_time=25.1s | elapsed=4.8min | ETA=82min
+    ep  12 step  50/200 (max_z=0.893)
+    ep  12 step 100/200 (max_z=1.011)
+    ep  12 step 150/200 (max_z=1.011)
+  ep  12/200 : ✓ max_z=1.011 | running success=100% | ep_time=25.4s | elapsed=5.2min | ETA=81min
+    ep  13 step  50/200 (max_z=0.852)
+    ep  13 step 100/200 (max_z=0.973)
+    ep  13 step 150/200 (max_z=1.036)
+  ep  13/200 : ✓ max_z=1.036 | running success=100% | ep_time=26.5s | elapsed=5.6min | ETA=81min
+    ep  14 step  50/200 (max_z=0.951)
+    ep  14 step 100/200 (max_z=1.008)
+    ep  14 step 150/200 (max_z=1.008)
+  ep  14/200 : ✓ max_z=1.008 | running success=100% | ep_time=26.0s | elapsed=6.1min | ETA=81min
+    ep  15 step  50/200 (max_z=0.897)
+    ep  15 step 100/200 (max_z=0.937)
+    ep  15 step 150/200 (max_z=1.003)
+  ep  15/200 : ✓ max_z=1.011 | running success=100% | ep_time=26.5s | elapsed=6.5min | ETA=80min
+    ep  16 step  50/200 (max_z=0.902)
+    ep  16 step 100/200 (max_z=0.965)
+    ep  16 step 150/200 (max_z=1.043)
+  ep  16/200 : ✓ max_z=1.043 | running success=100% | ep_time=25.8s | elapsed=6.9min | ETA=80min
+    ep  17 step  50/200 (max_z=0.840)
+    ep  17 step 100/200 (max_z=1.039)
+    ep  17 step 150/200 (max_z=1.039)
+  ep  17/200 : ✓ max_z=1.039 | running success=100% | ep_time=24.6s | elapsed=7.4min | ETA=79min
+    ep  18 step  50/200 (max_z=0.916)
+    ep  18 step 100/200 (max_z=0.994)
+    ep  18 step 150/200 (max_z=0.994)
+  ep  18/200 : ✓ max_z=0.994 | running success=100% | ep_time=24.5s | elapsed=7.8min | ETA=78min
+    ep  19 step  50/200 (max_z=0.831)
+    ep  19 step 100/200 (max_z=0.933)
+    ep  19 step 150/200 (max_z=0.955)
+  ep  19/200 : ✓ max_z=0.955 | running success=100% | ep_time=24.3s | elapsed=8.2min | ETA=78min
+    ep  20 step  50/200 (max_z=0.861)
+    ep  20 step 100/200 (max_z=0.955)
+    ep  20 step 150/200 (max_z=1.032)
+  ep  20/200 : ✓ max_z=1.032 | running success=100% | ep_time=24.4s | elapsed=8.6min | ETA=77min
+    ep  21 step  50/200 (max_z=0.893)
+    ep  21 step 100/200 (max_z=0.959)
+    ep  21 step 150/200 (max_z=0.986)
+  ep  21/200 : ✓ max_z=0.986 | running success=100% | ep_time=24.4s | elapsed=9.0min | ETA=77min
+    ep  22 step  50/200 (max_z=0.907)
+    ep  22 step 100/200 (max_z=0.947)
+    ep  22 step 150/200 (max_z=1.007)
+  ep  22/200 : ✓ max_z=1.007 | running success=100% | ep_time=24.3s | elapsed=9.4min | ETA=76min
+    ep  23 step  50/200 (max_z=0.898)
+    ep  23 step 100/200 (max_z=0.943)
+    ep  23 step 150/200 (max_z=0.984)
+  ep  23/200 : ✓ max_z=1.026 | running success=100% | ep_time=24.4s | elapsed=9.8min | ETA=75min
+    ep  24 step  50/200 (max_z=0.871)
+    ep  24 step 100/200 (max_z=0.978)
+    ep  24 step 150/200 (max_z=1.063)
+  ep  24/200 : ✓ max_z=1.063 | running success=100% | ep_time=24.3s | elapsed=10.2min | ETA=75min
+    ep  25 step  50/200 (max_z=0.913)
+    ep  25 step 100/200 (max_z=0.954)
+    ep  25 step 150/200 (max_z=1.069)
+  ep  25/200 : ✓ max_z=1.069 | running success=100% | ep_time=24.4s | elapsed=10.6min | ETA=74min
+    ep  26 step  50/200 (max_z=0.821)
+    ep  26 step 100/200 (max_z=0.966)
+    ep  26 step 150/200 (max_z=1.042)
+  ep  26/200 : ✓ max_z=1.042 | running success=100% | ep_time=25.0s | elapsed=11.0min | ETA=74min
+    ep  27 step  50/200 (max_z=0.835)
+    ep  27 step 100/200 (max_z=0.938)
+    ep  27 step 150/200 (max_z=0.957)
+  ep  27/200 : ✓ max_z=1.061 | running success=100% | ep_time=24.7s | elapsed=11.4min | ETA=73min
+    ep  28 step  50/200 (max_z=0.945)
+    ep  28 step 100/200 (max_z=0.945)
+    ep  28 step 150/200 (max_z=1.012)
+  ep  28/200 : ✓ max_z=1.012 | running success=100% | ep_time=24.6s | elapsed=11.8min | ETA=73min
+    ep  29 step  50/200 (max_z=0.916)
+    ep  29 step 100/200 (max_z=1.020)
+    ep  29 step 150/200 (max_z=1.020)
+  ep  29/200 : ✓ max_z=1.020 | running success=100% | ep_time=24.7s | elapsed=12.2min | ETA=72min
+    ep  30 step  50/200 (max_z=0.934)
+    ep  30 step 100/200 (max_z=0.966)
+    ep  30 step 150/200 (max_z=1.023)
+  ep  30/200 : ✓ max_z=1.023 | running success=100% | ep_time=24.9s | elapsed=12.7min | ETA=72min
+    ep  31 step  50/200 (max_z=0.932)
+    ep  31 step 100/200 (max_z=0.935)
+    ep  31 step 150/200 (max_z=0.987)
+  ep  31/200 : ✓ max_z=1.042 | running success=100% | ep_time=24.6s | elapsed=13.1min | ETA=71min
+    ep  32 step  50/200 (max_z=0.940)
+    ep  32 step 100/200 (max_z=1.016)
+    ep  32 step 150/200 (max_z=1.016)
+  ep  32/200 : ✓ max_z=1.016 | running success=100% | ep_time=24.6s | elapsed=13.5min | ETA=71min
+    ep  33 step  50/200 (max_z=0.869)
+    ep  33 step 100/200 (max_z=0.938)
+    ep  33 step 150/200 (max_z=0.997)
+  ep  33/200 : ✓ max_z=0.997 | running success=100% | ep_time=24.6s | elapsed=13.9min | ETA=70min
+    ep  34 step  50/200 (max_z=0.899)
+    ep  34 step 100/200 (max_z=0.949)
+    ep  34 step 150/200 (max_z=0.959)
+  ep  34/200 : ✓ max_z=0.974 | running success=100% | ep_time=24.5s | elapsed=14.3min | ETA=70min
+    ep  35 step  50/200 (max_z=0.880)
+    ep  35 step 100/200 (max_z=0.975)
+    ep  35 step 150/200 (max_z=0.975)
+  ep  35/200 : ✓ max_z=0.975 | running success=100% | ep_time=24.7s | elapsed=14.7min | ETA=69min
+    ep  36 step  50/200 (max_z=0.861)
+    ep  36 step 100/200 (max_z=0.883)
+    ep  36 step 150/200 (max_z=1.008)
+  ep  36/200 : ✓ max_z=1.008 | running success=100% | ep_time=25.1s | elapsed=15.1min | ETA=69min
+    ep  37 step  50/200 (max_z=0.918)
+    ep  37 step 100/200 (max_z=0.942)
+    ep  37 step 150/200 (max_z=0.976)
+  ep  37/200 : ✓ max_z=1.034 | running success=100% | ep_time=24.6s | elapsed=15.5min | ETA=68min
+    ep  38 step  50/200 (max_z=0.842)
+    ep  38 step 100/200 (max_z=0.985)
+    ep  38 step 150/200 (max_z=0.985)
+  ep  38/200 : ✓ max_z=0.985 | running success=100% | ep_time=24.8s | elapsed=16.0min | ETA=68min
+    ep  39 step  50/200 (max_z=0.892)
+    ep  39 step 100/200 (max_z=0.964)
+    ep  39 step 150/200 (max_z=0.964)
+  ep  39/200 : ✓ max_z=0.964 | running success=100% | ep_time=24.6s | elapsed=16.4min | ETA=68min
+    ep  40 step  50/200 (max_z=0.875)
+    ep  40 step 100/200 (max_z=0.970)
+    ep  40 step 150/200 (max_z=0.970)
+  ep  40/200 : ✓ max_z=0.970 | running success=100% | ep_time=24.5s | elapsed=16.8min | ETA=67min
+    ep  41 step  50/200 (max_z=0.916)
+    ep  41 step 100/200 (max_z=0.963)
+    ep  41 step 150/200 (max_z=1.041)
+  ep  41/200 : ✓ max_z=1.041 | running success=100% | ep_time=24.7s | elapsed=17.2min | ETA=67min
+    ep  42 step  50/200 (max_z=0.941)
+    ep  42 step 100/200 (max_z=0.977)
+    ep  42 step 150/200 (max_z=0.977)
+  ep  42/200 : ✓ max_z=1.017 | running success=100% | ep_time=24.5s | elapsed=17.6min | ETA=66min
+    ep  43 step  50/200 (max_z=0.919)
+    ep  43 step 100/200 (max_z=0.924)
+    ep  43 step 150/200 (max_z=0.924)
+  ep  43/200 : ✓ max_z=0.924 | running success=100% | ep_time=25.2s | elapsed=18.0min | ETA=66min
+    ep  44 step  50/200 (max_z=0.916)
+    ep  44 step 100/200 (max_z=1.009)
+    ep  44 step 150/200 (max_z=1.009)
+  ep  44/200 : ✓ max_z=1.009 | running success=100% | ep_time=24.7s | elapsed=18.4min | ETA=65min
+    ep  45 step  50/200 (max_z=0.876)
+    ep  45 step 100/200 (max_z=0.981)
+    ep  45 step 150/200 (max_z=0.981)
+  ep  45/200 : ✓ max_z=0.981 | running success=100% | ep_time=24.7s | elapsed=18.8min | ETA=65min
+    ep  46 step  50/200 (max_z=0.886)
+    ep  46 step 100/200 (max_z=0.979)
+    ep  46 step 150/200 (max_z=0.979)
+  ep  46/200 : ✓ max_z=0.979 | running success=100% | ep_time=24.8s | elapsed=19.3min | ETA=64min
+    ep  47 step  50/200 (max_z=0.871)
+    ep  47 step 100/200 (max_z=0.934)
+    ep  47 step 150/200 (max_z=1.036)
+  ep  47/200 : ✓ max_z=1.036 | running success=100% | ep_time=24.8s | elapsed=19.7min | ETA=64min
+    ep  48 step  50/200 (max_z=0.925)
+    ep  48 step 100/200 (max_z=0.943)
+    ep  48 step 150/200 (max_z=1.072)
+  ep  48/200 : ✓ max_z=1.072 | running success=100% | ep_time=24.6s | elapsed=20.1min | ETA=64min
+    ep  49 step  50/200 (max_z=0.904)
+    ep  49 step 100/200 (max_z=0.952)
+    ep  49 step 150/200 (max_z=0.987)
+  ep  49/200 : ✓ max_z=0.987 | running success=100% | ep_time=25.3s | elapsed=20.5min | ETA=63min
+    ep  50 step  50/200 (max_z=0.851)
+    ep  50 step 100/200 (max_z=0.993)
+    ep  50 step 150/200 (max_z=1.054)
+  ep  50/200 : ✓ max_z=1.054 | running success=100% | ep_time=27.4s | elapsed=21.0min | ETA=63min
+    ep  51 step  50/200 (max_z=0.878)
+    ep  51 step 100/200 (max_z=0.955)
+    ep  51 step 150/200 (max_z=1.036)
+  ep  51/200 : ✓ max_z=1.036 | running success=100% | ep_time=25.8s | elapsed=21.4min | ETA=62min
+    ep  52 step  50/200 (max_z=0.956)
+    ep  52 step 100/200 (max_z=0.980)
+    ep  52 step 150/200 (max_z=1.005)
+  ep  52/200 : ✓ max_z=1.005 | running success=100% | ep_time=24.4s | elapsed=21.8min | ETA=62min
+    ep  53 step  50/200 (max_z=0.942)
+    ep  53 step 100/200 (max_z=0.993)
+    ep  53 step 150/200 (max_z=0.995)
+  ep  53/200 : ✓ max_z=0.995 | running success=100% | ep_time=24.5s | elapsed=22.2min | ETA=62min
+    ep  54 step  50/200 (max_z=0.852)
+    ep  54 step 100/200 (max_z=0.951)
+    ep  54 step 150/200 (max_z=1.058)
+  ep  54/200 : ✓ max_z=1.058 | running success=100% | ep_time=25.6s | elapsed=22.6min | ETA=61min
+    ep  55 step  50/200 (max_z=0.886)
+    ep  55 step 100/200 (max_z=0.955)
+    ep  55 step 150/200 (max_z=0.981)
+  ep  55/200 : ✓ max_z=0.981 | running success=100% | ep_time=26.5s | elapsed=23.1min | ETA=61min
+    ep  56 step  50/200 (max_z=0.858)
+    ep  56 step 100/200 (max_z=0.917)
+    ep  56 step 150/200 (max_z=0.997)
+  ep  56/200 : ✓ max_z=0.997 | running success=100% | ep_time=30.6s | elapsed=23.6min | ETA=61min
+    ep  57 step  50/200 (max_z=0.906)
+    ep  57 step 100/200 (max_z=0.966)
+    ep  57 step 150/200 (max_z=1.009)
+  ep  57/200 : ✓ max_z=1.009 | running success=100% | ep_time=24.5s | elapsed=24.0min | ETA=60min
+    ep  58 step  50/200 (max_z=0.929)
+    ep  58 step 100/200 (max_z=0.973)
+    ep  58 step 150/200 (max_z=0.989)
+  ep  58/200 : ✓ max_z=0.989 | running success=100% | ep_time=24.5s | elapsed=24.4min | ETA=60min
+    ep  59 step  50/200 (max_z=0.886)
+    ep  59 step 100/200 (max_z=1.013)
+    ep  59 step 150/200 (max_z=1.013)
+  ep  59/200 : ✓ max_z=1.013 | running success=100% | ep_time=25.0s | elapsed=24.8min | ETA=59min
+    ep  60 step  50/200 (max_z=0.880)
+    ep  60 step 100/200 (max_z=0.973)
+    ep  60 step 150/200 (max_z=0.994)
+  ep  60/200 : ✓ max_z=0.994 | running success=100% | ep_time=24.8s | elapsed=25.2min | ETA=59min
+    ep  61 step  50/200 (max_z=0.917)
+    ep  61 step 100/200 (max_z=0.969)
+    ep  61 step 150/200 (max_z=1.000)
+  ep  61/200 : ✓ max_z=1.000 | running success=100% | ep_time=25.2s | elapsed=25.6min | ETA=58min
+    ep  62 step  50/200 (max_z=0.908)
+    ep  62 step 100/200 (max_z=0.954)
+    ep  62 step 150/200 (max_z=1.016)
+  ep  62/200 : ✓ max_z=1.016 | running success=100% | ep_time=26.9s | elapsed=26.1min | ETA=58min
+    ep  63 step  50/200 (max_z=0.898)
+    ep  63 step 100/200 (max_z=0.991)
+    ep  63 step 150/200 (max_z=0.991)
+  ep  63/200 : ✓ max_z=0.991 | running success=100% | ep_time=24.7s | elapsed=26.5min | ETA=58min
+    ep  64 step  50/200 (max_z=0.943)
+    ep  64 step 100/200 (max_z=1.030)
+    ep  64 step 150/200 (max_z=1.030)
+  ep  64/200 : ✓ max_z=1.030 | running success=100% | ep_time=24.5s | elapsed=26.9min | ETA=57min
+    ep  65 step  50/200 (max_z=0.843)
+    ep  65 step 100/200 (max_z=0.930)
+    ep  65 step 150/200 (max_z=0.987)
+  ep  65/200 : ✓ max_z=0.987 | running success=100% | ep_time=24.8s | elapsed=27.3min | ETA=57min
+    ep  66 step  50/200 (max_z=0.863)
+    ep  66 step 100/200 (max_z=0.979)
+    ep  66 step 150/200 (max_z=1.014)
+  ep  66/200 : ✓ max_z=1.014 | running success=100% | ep_time=26.6s | elapsed=27.8min | ETA=56min
+    ep  67 step  50/200 (max_z=0.875)
+    ep  67 step 100/200 (max_z=1.018)
+    ep  67 step 150/200 (max_z=1.063)
+  ep  67/200 : ✓ max_z=1.063 | running success=100% | ep_time=28.5s | elapsed=28.2min | ETA=56min
+    ep  68 step  50/200 (max_z=0.901)
+    ep  68 step 100/200 (max_z=0.970)
+    ep  68 step 150/200 (max_z=0.970)
+  ep  68/200 : ✓ max_z=0.970 | running success=100% | ep_time=25.7s | elapsed=28.7min | ETA=56min
+    ep  69 step  50/200 (max_z=0.853)
+    ep  69 step 100/200 (max_z=0.980)
+    ep  69 step 150/200 (max_z=1.012)
+  ep  69/200 : ✓ max_z=1.012 | running success=100% | ep_time=25.3s | elapsed=29.1min | ETA=55min
+    ep  70 step  50/200 (max_z=0.877)
+    ep  70 step 100/200 (max_z=0.957)
+    ep  70 step 150/200 (max_z=1.020)
+  ep  70/200 : ✓ max_z=1.020 | running success=100% | ep_time=25.1s | elapsed=29.5min | ETA=55min
+    ep  71 step  50/200 (max_z=0.868)
+    ep  71 step 100/200 (max_z=0.934)
+    ep  71 step 150/200 (max_z=0.999)
+  ep  71/200 : ✓ max_z=0.999 | running success=100% | ep_time=26.9s | elapsed=30.0min | ETA=54min
+    ep  72 step  50/200 (max_z=0.953)
+    ep  72 step 100/200 (max_z=0.960)
+    ep  72 step 150/200 (max_z=0.996)
+  ep  72/200 : ✓ max_z=0.996 | running success=100% | ep_time=24.4s | elapsed=30.4min | ETA=54min
+    ep  73 step  50/200 (max_z=0.912)
+    ep  73 step 100/200 (max_z=0.970)
+    ep  73 step 150/200 (max_z=1.005)
+  ep  73/200 : ✓ max_z=1.005 | running success=100% | ep_time=26.9s | elapsed=30.8min | ETA=54min
+    ep  74 step  50/200 (max_z=0.841)
+    ep  74 step 100/200 (max_z=0.953)
+    ep  74 step 150/200 (max_z=1.045)
+  ep  74/200 : ✓ max_z=1.045 | running success=100% | ep_time=27.9s | elapsed=31.3min | ETA=53min
+    ep  75 step  50/200 (max_z=0.914)
+    ep  75 step 100/200 (max_z=1.030)
+    ep  75 step 150/200 (max_z=1.030)
+  ep  75/200 : ✓ max_z=1.030 | running success=100% | ep_time=28.8s | elapsed=31.8min | ETA=53min
+    ep  76 step  50/200 (max_z=0.898)
+    ep  76 step 100/200 (max_z=0.937)
+    ep  76 step 150/200 (max_z=0.973)
+  ep  76/200 : ✓ max_z=0.973 | running success=100% | ep_time=24.3s | elapsed=32.2min | ETA=52min
+Traceback (most recent call last):
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion_v6.py", line 242, in <module>
+    main()
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion_v6.py", line 214, in main
+    eval_results, all_frames = eval_loop(policy, preprocessor, postprocessor, env, init_states,
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion_v6.py", line 160, in eval_loop
+    action = postprocessor(action_norm).squeeze(0).cpu().numpy()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/processor/pipeline.py", line 294, in __call__
+    transformed_transition = self._forward(transition)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/processor/pipeline.py", line 311, in _forward
+    transition = processor_step(transition)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/processor/normalize_processor.py", line 525, in __call__
+    new_transition[TransitionKey.ACTION] = self._normalize_action(action, inverse=True)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/processor/normalize_processor.py", line 275, in _normalize_action
+    processed_action = self._apply_transform(action, ACTION, FeatureType.ACTION, inverse=inverse)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/processor/normalize_processor.py", line 354, in _apply_transform
+    denom == 0, torch.tensor(self.eps, device=tensor.device, dtype=tensor.dtype), denom
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
