@@ -27,25 +27,29 @@ HDF5_PATH = "data_cache/robomimic_lift_ph/low_dim_v15.hdf5"
 SPLIT_PATH = "results/runs/lift/phase4_split.json"
 N_TOTAL_DEMOS = 200
 N_VAL = 50
-SPLIT_SEED = 42  # cohérent avec .claude/standard_metrics.md
 
 
 # --------------------------------------------------------------------------- split
-def load_or_make_split(path=SPLIT_PATH, n_total=N_TOTAL_DEMOS, n_val=N_VAL, seed=SPLIT_SEED):
-    """Retourne {'train': [...150], 'val': [...50], 'seed':..} ; génère et sauve si absent.
+def load_or_make_split(path=SPLIT_PATH, n_total=N_TOTAL_DEMOS, n_val=N_VAL):
+    """Retourne {'train': [0..149], 'val': [150..199], ..} ; génère et sauve si absent.
 
-    Le split est une permutation déterministe des indices de démo 0..n_total-1.
-    Les indices valent À LA FOIS pour `dataset.episodes` (lerobot-train) et pour
-    les init states HDF5 (éval) car l'ordre des démos est identique des deux côtés.
+    Split CONTIGU : train = les n_total-n_val premières démos, val = les n_val dernières.
+    Pourquoi contigu et pas aléatoire : `lerobot-train` active l'EpisodeAwareSampler
+    (à cause de `drop_n_last_frames`), qui indexe les frames dans l'espace ORIGINAL
+    (0..num_frames_total) alors que le `hf_dataset` sous-sélectionné est ré-indexé compact.
+    Un train non contigu depuis 0 (ex. incluant la démo 199) émet des indices hors bornes
+    → IndexError. Un train = préfixe 0..149 fait coïncider espace original et compact.
+
+    Les indices valent À LA FOIS pour `dataset.episodes` (lerobot-train) et pour les
+    init states HDF5 (éval) car l'ordre des démos est identique des deux côtés.
     """
     p = Path(path)
     if p.exists():
         return json.loads(p.read_text())
-    rng = np.random.default_rng(seed)
-    perm = rng.permutation(n_total)
-    val = sorted(int(i) for i in perm[:n_val])
-    train = sorted(int(i) for i in perm[n_val:])
-    split = {"seed": seed, "n_total": n_total, "n_val": n_val, "val": val, "train": train}
+    n_train = n_total - n_val
+    train = list(range(n_train))
+    val = list(range(n_train, n_total))
+    split = {"layout": "contiguous", "n_total": n_total, "n_val": n_val, "val": val, "train": train}
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(split, indent=2))
     return split

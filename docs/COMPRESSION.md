@@ -30,7 +30,7 @@ Config : `n_obs_steps=2`, `horizon=16`, `n_action_steps=8`, DDPM `num_train_time
 
 Protocole figé, identique pour **tous** les modèles (baseline, rétrécis, quantifiés) :
 
-- **Split train 150 / val 50** (épisodes figés). Choix délibéré : simuler le régime peu-de-données du bras réel. ⚠️ Le run 46 a vu les 200 démos → non auditable, gardé comme « preuve max » mais **hors comparaison** ; le baseline du sweep doit être **réentraîné sur 150**.
+- **Split train 150 / val 50** (figé, **contigu** : train = démos 0–149, val = 150–199). Choix délibéré : simuler le régime peu-de-données du bras réel. *Contigu et non aléatoire* car `lerobot-train` active l'EpisodeAwareSampler (via `drop_n_last_frames`) qui indexe les frames dans l'espace original ; un train non préfixe-0 déborde le `hf_dataset` sous-sélectionné (IndexError). ⚠️ Le run 46 a vu les 200 démos → non auditable, gardé comme « preuve max » mais **hors comparaison** ; le baseline du sweep doit être **réentraîné sur 150**.
 - **Init states de rollout = ceux du val set** (50 départs jamais entraînés → teste la généralisation). Seed env fixe.
 - **Métriques par épisode** (continues, pas juste binaire) :
   - **succès** (taux),
@@ -43,18 +43,15 @@ Protocole figé, identique pour **tous** les modèles (baseline, rétrécis, qua
 
 ## Procédure box GPU (réentraînements)
 
-Le Mac est trop lent pour l'entraînement (run 46 : **~16 h / 12K steps sur MPS**). Les réentraînements (baseline 150 + sweep U-Net) tournent sur la **box Linux + GPU**. Le Mac reste pour l'éval (harnais validé sur MPS) et l'analyse.
+Le Mac est lent pour l'entraînement (run 46 : **~16 h / 12K steps sur MPS**, ~3-4 s/step). La **box Linux + GPU** (`ssh gpu` → 192.168.1.95) est l'option rapide, mais quand elle est indisponible on entraîne **sur le Mac** (`--policy.device=mps`, en arrière-plan). Le Mac reste de toute façon pour l'éval (harnais validé sur MPS).
 
-**Split figé** : `results/runs/lift/phase4_split.json` (seed 42, train 150 / val 50) — versionné, identique des deux côtés. Liste train prête pour la CLI : `results/runs/lift/phase4_train_episodes.txt`.
+**Split figé** : `results/runs/lift/phase4_split.json` (**contigu**, train 0–149 / val 150–199) — versionné, identique des deux côtés. Liste train prête pour la CLI : `results/runs/lift/phase4_train_episodes.txt`.
 
-**1. Sur le Mac** : `git push` (le split + la liste partent avec).
-
-**2. Sur la box GPU** (prérequis : dataset `data_cache/lerobot_lift_ph` présent, venv lerobot) :
+**Commande baseline 150** (mettre `--policy.device=cuda` sur la box, `mps` sur le Mac ; sur la box précéder de `git pull`) :
 ```bash
-git pull
 venv312/bin/lerobot-train \
   --policy.type=diffusion --policy.repo_id=local/lift_ph_diffusion --policy.push_to_hub=false \
-  --policy.device=cuda \
+  --policy.device=mps \
   --dataset.repo_id=local/lift_ph --dataset.root=data_cache/lerobot_lift_ph \
   --dataset.episodes="$(cat results/runs/lift/phase4_train_episodes.txt)" \
   --output_dir=results/runs/lift/47_baseline_150 \
@@ -64,12 +61,9 @@ venv312/bin/lerobot-train \
 ```
 → checkpoints 3K / 6K / 9K / 12K dans `results/runs/lift/47_baseline_150/checkpoints/`.
 
-**3. Rapatrier les checkpoints sur le Mac** (lourds + gitignorés → `scp`, pas git) :
-```bash
-scp -r <box>:.../results/runs/lift/47_baseline_150/checkpoints  results/runs/lift/47_baseline_150/
-```
+*(Si entraîné sur la box : rapatrier d'abord les checkpoints sur le Mac via `scp -r <box>:.../47_baseline_150/checkpoints results/runs/lift/47_baseline_150/` — lourds + gitignorés, pas git.)*
 
-**4. Sur le Mac — éval propre de chaque checkpoint** sur le val set figé :
+**Éval propre de chaque checkpoint** (sur le Mac) sur le val set figé :
 ```bash
 for s in 003000 006000 009000 012000; do
   python -u experiments/lift/47_phase0_eval.py \

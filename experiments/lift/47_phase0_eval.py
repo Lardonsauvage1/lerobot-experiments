@@ -45,7 +45,7 @@ def main():
     indices = split[args.split]
     if args.limit:
         indices = indices[:args.limit]
-    print(f"Split: train {len(split['train'])} / val {len(split['val'])} (seed {split['seed']})")
+    print(f"Split: train {len(split['train'])} / val {len(split['val'])} ({split['layout']})")
     print(f"Éval sur {len(indices)} épisodes du set '{args.split}' | inference_steps={args.inference_steps}\n", flush=True)
 
     init_states = lift_eval.load_init_states(indices)
