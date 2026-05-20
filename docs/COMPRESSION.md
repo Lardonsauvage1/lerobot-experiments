@@ -41,6 +41,44 @@ Protocole figé, identique pour **tous** les modèles (baseline, rétrécis, qua
 
 **Critère de validité** : un modèle est acceptable s'il reste dans une tolérance du baseline sur (succès, temps-au-succès, marge) — pas seulement « encore 100 % ».
 
+## Procédure box GPU (réentraînements)
+
+Le Mac est trop lent pour l'entraînement (run 46 : **~16 h / 12K steps sur MPS**). Les réentraînements (baseline 150 + sweep U-Net) tournent sur la **box Linux + GPU**. Le Mac reste pour l'éval (harnais validé sur MPS) et l'analyse.
+
+**Split figé** : `results/runs/lift/phase4_split.json` (seed 42, train 150 / val 50) — versionné, identique des deux côtés. Liste train prête pour la CLI : `results/runs/lift/phase4_train_episodes.txt`.
+
+**1. Sur le Mac** : `git push` (le split + la liste partent avec).
+
+**2. Sur la box GPU** (prérequis : dataset `data_cache/lerobot_lift_ph` présent, venv lerobot) :
+```bash
+git pull
+venv312/bin/lerobot-train \
+  --policy.type=diffusion --policy.repo_id=local/lift_ph_diffusion --policy.push_to_hub=false \
+  --policy.device=cuda \
+  --dataset.repo_id=local/lift_ph --dataset.root=data_cache/lerobot_lift_ph \
+  --dataset.episodes="$(cat results/runs/lift/phase4_train_episodes.txt)" \
+  --output_dir=results/runs/lift/47_baseline_150 \
+  --steps=12000 --batch_size=32 --save_freq=3000 --eval_freq=999999 \
+  --num_workers=4 --wandb.enable=false --seed=42 \
+  2>&1 | tee results/logs/lift/run_47_baseline_150.log
+```
+→ checkpoints 3K / 6K / 9K / 12K dans `results/runs/lift/47_baseline_150/checkpoints/`.
+
+**3. Rapatrier les checkpoints sur le Mac** (lourds + gitignorés → `scp`, pas git) :
+```bash
+scp -r <box>:.../results/runs/lift/47_baseline_150/checkpoints  results/runs/lift/47_baseline_150/
+```
+
+**4. Sur le Mac — éval propre de chaque checkpoint** sur le val set figé :
+```bash
+for s in 003000 006000 009000 012000; do
+  python -u experiments/lift/47_phase0_eval.py \
+    --checkpoint results/runs/lift/47_baseline_150/checkpoints/$s/pretrained_model \
+    --out results/runs/lift/47_baseline_150/phase0_eval_$s.json
+done
+```
+On trace ensuite succès + t_success + max_z + hold_fraction **par checkpoint** → courbe de stop (quand les métriques rollout plafonnent) + val noise-MSE (détecteur d'overfit, script séparé).
+
 ## Livrable
 
 Courbe **Pareto latence vs perfs** sur toutes les variantes (steps × down_dims × quantization) → choisir le point de fonctionnement pour le bras.
