@@ -1,0 +1,22 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[98899]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x107b4c3a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x11f2f03a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[98899]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x107b4c3f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x11f2f03f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Loaded: epoch 50, original success 70%
+
+Eval receding horizon K=8 sur 200 épisodes...
+  ep 40/200: ✗ max_z=0.830 replans=25
+  ep 80/200: ✗ max_z=0.820 replans=25
+  ep 120/200: ✗ max_z=0.822 replans=25
+  ep 160/200: ✗ max_z=0.827 replans=25
+  ep 200/200: ✗ max_z=0.823 replans=25
+
+=== RÉCEDING HORIZON K=8 RESULTS ===
+  Success : 1/200 (0%)
+  Avg max_z : 0.824
+  Avg replans/episode : 25.0
+
+Comparaison run 44 baseline (K=20) : 66% (132/200)

@@ -20,6 +20,7 @@ data_cache/
 *.zip
 results/runs/*/model.pt
 results/runs/*/ep*.mp4
+results/runs/**/checkpoints/
 results/videos/
 results/archive/
 results/*.log

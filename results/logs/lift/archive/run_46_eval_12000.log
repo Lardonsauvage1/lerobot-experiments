@@ -1,0 +1,89 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[16547]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1053943a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x16343c3a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[16547]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1053943f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x16343c3f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Loading Diffusion Policy from results/runs/lift/46_diffusion_official/checkpoints/012000/pretrained_model...
+Loading weights from local directory
+  Policy : 263,701,799 params, device=mps
+  Config : horizon=16, n_action_steps=8
+
+Éval 200 épisodes sur Robosuite Lift...
+Traceback (most recent call last):
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion.py", line 187, in <module>
+    main()
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion.py", line 151, in main
+    eval_results, all_frames = eval_in_simulation(policy, device,
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion.py", line 95, in eval_in_simulation
+    action = policy.select_action(obs_dict).squeeze(0).cpu().numpy()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/policies/diffusion/modeling_diffusion.py", line 135, in select_action
+    actions = self.predict_action_chunk(batch, noise=noise)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/policies/diffusion/modeling_diffusion.py", line 98, in predict_action_chunk
+    actions = self.diffusion.generate_actions(batch, noise=noise)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/policies/diffusion/modeling_diffusion.py", line 302, in generate_actions
+    actions = self.conditional_sample(batch_size, global_cond=global_cond, noise=noise)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/policies/diffusion/modeling_diffusion.py", line 236, in conditional_sample
+    model_output = self.unet(
+                   ^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/policies/diffusion/modeling_diffusion.py", line 719, in forward
+    x = resnet(x, global_feature)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/policies/diffusion/modeling_diffusion.py", line 782, in forward
+    out = self.conv2(out)
+          ^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/lerobot/policies/diffusion/modeling_diffusion.py", line 599, in forward
+    return self.block(x)
+           ^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/container.py", line 253, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 375, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 370, in _conv_forward
+    return F.conv1d(
+           ^^^^^^^^^
+KeyboardInterrupt

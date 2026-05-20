@@ -1,0 +1,129 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[4996]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1069583a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x126a783a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[4996]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1069583f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x126a783f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['robot0_eef_pos', 'object', 'robot0_gripper_qpos', 'robot0_eef_quat']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+
+=== Checkpoint step 3000 ===
+Loading weights from local directory
+  ep  1/20 : ✓ max_z=0.917 | running=100%
+  ep  2/20 : ✓ max_z=0.935 | running=100%
+  ep  3/20 : ✓ max_z=0.935 | running=100%
+  ep  4/20 : ✓ max_z=0.902 | running=100%
+  ep  5/20 : ✓ max_z=0.935 | running=100%
+  ep  6/20 : ✓ max_z=0.916 | running=100%
+  ep  7/20 : ✓ max_z=0.924 | running=100%
+  ep  8/20 : ✓ max_z=0.881 | running=100%
+  ep  9/20 : ✓ max_z=0.929 | running=100%
+  ep 10/20 : ✓ max_z=0.886 | running=100%
+  ep 11/20 : ✓ max_z=0.922 | running=100%
+  ep 12/20 : ✓ max_z=0.914 | running=100%
+  ep 13/20 : ✓ max_z=0.910 | running=100%
+  ep 14/20 : ✓ max_z=0.933 | running=100%
+  ep 15/20 : ✓ max_z=0.845 | running=100%
+  ep 16/20 : ✓ max_z=0.948 | running=100%
+  ep 17/20 : ✓ max_z=0.911 | running=100%
+  ep 18/20 : ✓ max_z=0.994 | running=100%
+  ep 19/20 : ✓ max_z=0.901 | running=100%
+  ep 20/20 : ✓ max_z=0.916 | running=100%
+  → step 3000: 20/20 = 100%  (avg max_z=0.918, 491s)
+
+=== Checkpoint step 6000 ===
+Loading weights from local directory
+  ep  1/20 : ✓ max_z=0.973 | running=100%
+  ep  2/20 : ✓ max_z=0.973 | running=100%
+  ep  3/20 : ✓ max_z=0.980 | running=100%
+  ep  4/20 : ✓ max_z=0.967 | running=100%
+  ep  5/20 : ✓ max_z=1.018 | running=100%
+  ep  6/20 : ✓ max_z=1.035 | running=100%
+  ep  7/20 : ✓ max_z=0.961 | running=100%
+  ep  8/20 : ✓ max_z=0.988 | running=100%
+  ep  9/20 : ✓ max_z=1.024 | running=100%
+  ep 10/20 : ✓ max_z=0.978 | running=100%
+  ep 11/20 : ✓ max_z=0.948 | running=100%
+  ep 12/20 : ✓ max_z=1.018 | running=100%
+  ep 13/20 : ✓ max_z=0.940 | running=100%
+  ep 14/20 : ✓ max_z=0.993 | running=100%
+  ep 15/20 : ✓ max_z=1.003 | running=100%
+  ep 16/20 : ✓ max_z=0.935 | running=100%
+  ep 17/20 : ✓ max_z=0.951 | running=100%
+  ep 18/20 : ✓ max_z=1.001 | running=100%
+  ep 19/20 : ✓ max_z=1.006 | running=100%
+  ep 20/20 : ✓ max_z=0.982 | running=100%
+  → step 6000: 20/20 = 100%  (avg max_z=0.984, 511s)
+
+=== Checkpoint step 9000 ===
+Loading weights from local directory
+  ep  1/20 : ✓ max_z=1.012 | running=100%
+  ep  2/20 : ✓ max_z=1.010 | running=100%
+  ep  3/20 : ✓ max_z=0.960 | running=100%
+  ep  4/20 : ✓ max_z=1.010 | running=100%
+  ep  5/20 : ✓ max_z=1.038 | running=100%
+  ep  6/20 : ✓ max_z=1.007 | running=100%
+  ep  7/20 : ✓ max_z=0.934 | running=100%
+  ep  8/20 : ✓ max_z=0.985 | running=100%
+  ep  9/20 : ✓ max_z=0.970 | running=100%
+  ep 10/20 : ✓ max_z=0.952 | running=100%
+  ep 11/20 : ✓ max_z=0.945 | running=100%
+  ep 12/20 : ✓ max_z=0.979 | running=100%
+  ep 13/20 : ✓ max_z=0.974 | running=100%
+  ep 14/20 : ✓ max_z=0.991 | running=100%
+  ep 15/20 : ✓ max_z=0.990 | running=100%
+  ep 16/20 : ✓ max_z=1.001 | running=100%
+  ep 17/20 : ✓ max_z=0.948 | running=100%
+  ep 18/20 : ✓ max_z=0.959 | running=100%
+  ep 19/20 : ✓ max_z=0.945 | running=100%
+  ep 20/20 : ✓ max_z=0.953 | running=100%
+  → step 9000: 20/20 = 100%  (avg max_z=0.978, 506s)
+
+=== Checkpoint step 12000 ===
+Loading weights from local directory
+  ep  1/20 : ✓ max_z=1.007 | running=100%
+  ep  2/20 : ✓ max_z=0.986 | running=100%
+  ep  3/20 : ✓ max_z=1.036 | running=100%
+  ep  4/20 : ✓ max_z=1.037 | running=100%
+  ep  5/20 : ✓ max_z=0.991 | running=100%
+  ep  6/20 : ✓ max_z=1.030 | running=100%
+  ep  7/20 : ✓ max_z=0.997 | running=100%
+  ep  8/20 : ✓ max_z=0.986 | running=100%
+  ep  9/20 : ✓ max_z=0.976 | running=100%
+  ep 10/20 : ✓ max_z=0.972 | running=100%
+  ep 11/20 : ✓ max_z=0.989 | running=100%
+  ep 12/20 : ✓ max_z=1.002 | running=100%
+  ep 13/20 : ✓ max_z=1.006 | running=100%
+  ep 14/20 : ✓ max_z=1.031 | running=100%
+  ep 15/20 : ✓ max_z=1.012 | running=100%
+  ep 16/20 : ✓ max_z=1.026 | running=100%
+  ep 17/20 : ✓ max_z=1.050 | running=100%
+  ep 18/20 : ✓ max_z=1.009 | running=100%
+  ep 19/20 : ✓ max_z=0.981 | running=100%
+  ep 20/20 : ✓ max_z=0.994 | running=100%
+  → step 12000: 20/20 = 100%  (avg max_z=1.006, 503s)
+
+=== SUMMARY ===
+  step   3000: success 20/20 = 100%
+  step   6000: success 20/20 = 100%
+  step   9000: success 20/20 = 100%
+  step  12000: success 20/20 = 100%
+
+JSON saved: results/runs/lift/46_diffusion_official/checkpoint_eval.json
+Plot saved: results/runs/lift/46_diffusion_official/checkpoint_comparison.png

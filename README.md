@@ -7,7 +7,8 @@ Espace d'apprentissage et d'expérimentation autour de l'**imitation learning** 
 ## État actuel
 
 - **Phase 1-2 — PushT (cube 2D à pousser)** : best 46.5% coverage (run 24, image + agent_pos). Lecture clé : CE+résidu sur bins discrets rattrape la perf "image+pos" sans agent_pos (run 31, 44.9%).
-- **Phase 3 — Robomimic Lift (bras Panda 7-DoF + cube)** : best **100% success** (run 46, Diffusion Policy via LeRobot, 74/74 ep observés avant arrêt anticipé). Précédent record MLP : 70% (run 44).
+- **Phase 3 — Robomimic Lift (bras Panda 7-DoF + cube)** : ✅ **100% success** (run 46, Diffusion Policy via LeRobot, 263.7 M params ; tous les checkpoints 3K→12K à 100% sur 20 ep). Précédent record MLP : 70% (run 44).
+- **Phase 4 — Compression pour la latence (ACTIVE)** : trouver le plus petit/rapide modèle gardant les perfs, priorité **latence d'inférence**. Leviers : pas de diffusion (10→peu), `down_dims` du U-Net (95.8% des params), quantization fp16. Cadrage complet : [`docs/COMPRESSION.md`](docs/COMPRESSION.md).
 
 ### Tableau Phase 3 (Lift)
 
@@ -131,11 +132,10 @@ venv312/bin/python -u experiments/lift/33_lift_mlp_baseline.py 2>&1 | tee result
 │       ├── 44_lift_bn_trainable_stable.py  # Record MLP : 70% (ResNet18 trainable + NaN guard)
 │       ├── 45_lift_dinov2.py           # DINOv2-small frozen — comparé à ResNet frozen
 │       ├── 46_plot_loss.py             # Parse lerobot-train log et trace loss/grad_norm/lr
-│       ├── 46_bench_inference.py       # Bench MPS vs CPU vs DDIM10/4 pour Diffusion Policy
-│       ├── 46_verify_inference_steps.py # Vérifie que num_inference_steps=10 prend effet
-│       ├── 46_debug_action_scale.py    # Compare action policy vs distribution dataset
-│       ├── 46_visualize_one_episode.py # Sauve 1 vidéo + log actions step-by-step
-│       └── 46_eval_diffusion_v6.py     # Eval finale Diffusion Policy : Robomimic env + sign flip → 100%
+│       ├── 46_bench_inference.py       # Bench MPS vs CPU vs DDIM10/4 (réutilisé phase 4 latence)
+│       ├── 46_eval_diffusion_v6.py     # Eval Diffusion Policy : Robomimic env + sign flip → 100%
+│       ├── 46_eval_all_checkpoints.py  # Eval comparée des checkpoints 3K→12K (loss vs success)
+│       └── archive/                    # One-shots de debug run 46 (action scale, verify steps, viz...)
 │
 ├── notebooks/                 # Notebooks Jupyter pour Colab/Kaggle
 │   ├── pusht_diffusion_colab.ipynb  # Diffusion Policy sur Colab GPU (T4)
@@ -159,7 +159,8 @@ venv312/bin/python -u experiments/lift/33_lift_mlp_baseline.py 2>&1 | tee result
 ├── data_cache/                # ❌ Non versionné — features ResNet pré-calculées + données PushT cachées
 │
 ├── docs/
-│   └── JOURNEY.md             # Récit narratif et leçons techniques de la série 29-32
+│   ├── JOURNEY.md             # Récit narratif et leçons techniques de la série 29-32
+│   └── COMPRESSION.md         # Cadrage phase 4 : compression du Diffusion Policy pour la latence
 │
 ├── tests/                     # Tests unitaires (à étoffer)
 └── requirements.txt

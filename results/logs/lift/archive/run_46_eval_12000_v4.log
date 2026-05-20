@@ -1,0 +1,44 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[51828]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1072943a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x16d08c3a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[51828]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1072943f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x16d08c3f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Loading Diffusion Policy from results/runs/lift/46_diffusion_official/checkpoints/012000/pretrained_model...
+Loading weights from local directory
+  Policy : 263,701,799 params, device=mps
+  Config : horizon=16, n_action_steps=8, num_inference_steps=10
+
+Éval 200 épisodes sur Robosuite Lift...
+    ep   1 step  50/200 (max_z=0.822)
+    ep   1 step 100/200 (max_z=0.822)
+    ep   1 step 150/200 (max_z=0.822)
+  ep   1/200 : ✗ max_z=0.822 | running success=0% | ep_time=30.2s | elapsed=0.5min | ETA=100min
+    ep   2 step  50/200 (max_z=0.821)
+    ep   2 step 100/200 (max_z=0.833)
+    ep   2 step 150/200 (max_z=0.833)
+  ep   2/200 : ✗ max_z=0.833 | running success=0% | ep_time=30.7s | elapsed=1.0min | ETA=100min
+    ep   3 step  50/200 (max_z=0.821)
+    ep   3 step 100/200 (max_z=0.833)
+    ep   3 step 150/200 (max_z=0.833)
+  ep   3/200 : ✗ max_z=0.833 | running success=0% | ep_time=29.0s | elapsed=1.5min | ETA=98min
+    ep   4 step  50/200 (max_z=0.821)
+    ep   4 step 100/200 (max_z=0.830)
+    ep   4 step 150/200 (max_z=0.830)
+  ep   4/200 : ✗ max_z=0.830 | running success=0% | ep_time=27.5s | elapsed=2.0min | ETA=96min
+    ep   5 step  50/200 (max_z=0.821)
+    ep   5 step 100/200 (max_z=0.828)
+    ep   5 step 150/200 (max_z=0.828)
+  ep   5/200 : ✗ max_z=0.828 | running success=0% | ep_time=28.2s | elapsed=2.4min | ETA=95min
+    ep   6 step  50/200 (max_z=0.831)
+Traceback (most recent call last):
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion.py", line 195, in <module>
+    main()
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion.py", line 159, in main
+    eval_results, all_frames = eval_in_simulation(policy, device,
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/46_eval_diffusion.py", line 101, in eval_in_simulation
+    action = policy.select_action(obs_dict).squeeze(0).cpu().numpy()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

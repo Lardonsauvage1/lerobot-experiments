@@ -1,0 +1,66 @@
+# Phase 4 — Compression du Diffusion Policy pour la latence
+
+> Le run 46 a résolu Lift à **100 % de succès** avec un Diffusion Policy LeRobot de **263.7 M params**. Cette phase cherche le **plus petit / plus rapide modèle gardant les perfs**, avec une **priorité explicite sur la latence d'inférence** (préparer le déploiement temps réel sur le bras 5 axes).
+
+## Point de départ (run 46)
+
+| Composant | Params | Part |
+|---|---|---|
+| **U-Net débruiteur** (`down_dims [512,1024,2048]`) | 252.5 M | **95.8 %** |
+| Vision (ResNet18 + spatial-softmax) | 11.2 M | 4.2 % |
+| **Total** | **263.7 M** | ~1.05 Go fp32 |
+
+Config : `n_obs_steps=2`, `horizon=16`, `n_action_steps=8`, DDPM `num_train_timesteps=100`, `num_inference_steps` ramené à **10** à l'eval, image 96×96 + état 19D, action 7D.
+
+**Tout le poids est dans le U-Net** → c'est le levier principal. La vision (ResNet18) n'est que 4 %.
+
+## Décisions cadrées (2026-05-20)
+
+- **Métrique = latence d'inférence** (pas que le nb de params). Sur diffusion, une décision « pleine » = *N passes U-Net* → deux leviers **multiplicatifs** : nb de pas de débruitage × taille du U-Net.
+- **On garde l'image** (ResNet18). **Pas de state-only** (malgré l'échec des runs 33-36 en non-diffusion, on ne re-tente pas ici).
+- **Critère dé-saturé** : le succès binaire sature à 100 % dès 3 000 steps → inutilisable seul comme signal de recherche. Preuve : succès plat 100 % de 3K→12K, mais avg `max_z` (marge de levage) 0.918 → 1.006. On ajoute des métriques **continues**.
+
+## Leviers (ordre par ROI latence)
+
+1. **Réduire `num_inference_steps`** — gratuit, sans réentraînement. Chaque pas = 1 forward U-Net. Sweep 10→8→5→4→3→2→1, garder le minimum qui tient les perfs. Référence littérature : LightDP tourne à 4 pas (vs 100). Levier n°1.
+2. **Sweep `down_dims` du U-Net** — réentraînement. `[512,1024,2048]` (défaut, 252 M) → `[256,512,1024]` (~63 M) → `[128,256,512]` (~16 M U-Net) → `[64,128,256]` (~4 M U-Net, la vision 11 M devient alors le plancher). Réduction ~quadratique.
+3. **Quantization fp16** (et tenter int8) sur le gagnant — re-bench latence + re-vérifier les perfs.
+
+## Phase 0 — socle de comparaison propre (à coder en premier, réutilisé partout)
+
+Protocole figé, identique pour **tous** les modèles (baseline, rétrécis, quantifiés) :
+
+- **Split train 150 / val 50** (épisodes figés). Choix délibéré : simuler le régime peu-de-données du bras réel. ⚠️ Le run 46 a vu les 200 démos → non auditable, gardé comme « preuve max » mais **hors comparaison** ; le baseline du sweep doit être **réentraîné sur 150**.
+- **Init states de rollout = ceux du val set** (50 départs jamais entraînés → teste la généralisation). Seed env fixe.
+- **Métriques par épisode** (continues, pas juste binaire) :
+  - **succès** (taux),
+  - **temps-jusqu'au-succès** (nb de steps avant de soulever) — se dégrade *en douceur* avant le succès → détecteur précoce,
+  - **marge de levage / stabilité du maintien** (`max_z` au-dessus du seuil, fraction de steps maintenue).
+- **Early-stop par modèle** : tracer la **val noise-MSE** par checkpoint ; arrêt quand elle remonte. Chaque modèle (surtout pruné) s'arrête à *son* optimum, pas à un nb de steps figé.
+- ⚠️ **La loss diffusion (prédiction de bruit) est un proxy bruité du succès rollout** → ne pas s'y fier seule. **Croiser** val-loss (détecteur d'overfit / quand arrêter) et métriques de rollout (qui est vraiment le meilleur).
+
+**Critère de validité** : un modèle est acceptable s'il reste dans une tolérance du baseline sur (succès, temps-au-succès, marge) — pas seulement « encore 100 % ».
+
+## Livrable
+
+Courbe **Pareto latence vs perfs** sur toutes les variantes (steps × down_dims × quantization) → choisir le point de fonctionnement pour le bras.
+
+## Outils déjà en place
+
+- `experiments/lift/46_bench_inference.py` — bench latence MPS/CPU, sample vs queue-pop, extrapolation par épisode. Réutilisé tel quel.
+- `experiments/lift/46_eval_all_checkpoints.py` — base de l'éval comparative (⚠️ à refactorer : tire des init states **différents** par checkpoint → biais ; la Phase 0 corrige ça avec des états figés).
+- `experiments/lift/46_plot_loss.py` — parse le log lerobot-train.
+- `src/lift_data.py` — chargement HDF5 Robomimic + `build_state_vector` (19D) + `STATE_KEYS`.
+
+## Référence du run 46
+
+Diffusion Policy entraîné via `lerobot-train` (15K steps prévus, checkpoints tous les 3K, arrêté/évalué à 12K). Tous les checkpoints à 100 % sur 20 ép. (init states aléatoires — comparaison biaisée) :
+
+| step | succès | avg max_z |
+|------|--------|-----------|
+| 3000 | 100 % | 0.918 |
+| 6000 | 100 % | 0.984 |
+| 9000 | 100 % | 0.978 |
+| 12000 | 100 % | 1.006 |
+
+Détail des 5 bugs d'eval résolus pour atteindre 100 % : voir `README.md` § « Run 46 ».
