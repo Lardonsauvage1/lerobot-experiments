@@ -1,0 +1,479 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+Checkpoints: [1500, 3000, 4500, 6000, 7500, 9000, 10500, 12000]
+objc[19655]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x10369c3a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x11d4103a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x10369c3f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x11d4103f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['robot0_eef_pos', 'object', 'robot0_eef_quat', 'robot0_gripper_qpos']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+
+===== checkpoint 1500 =====
+Loading weights from local directory
+  ep  1/50 : ✓ t_succ= 47 max_z=0.968 hold=0.67 | running=100%
+  ep  2/50 : ✓ t_succ= 42 max_z=0.973 hold=0.39 | running=100%
+  ep  3/50 : ✓ t_succ= 41 max_z=0.982 hold=0.55 | running=100%
+  ep  4/50 : ✓ t_succ= 48 max_z=0.946 hold=0.27 | running=100%
+  ep  5/50 : ✓ t_succ= 87 max_z=0.913 hold=0.32 | running=100%
+  ep  6/50 : ✓ t_succ= 45 max_z=0.953 hold=0.32 | running=100%
+  ep  7/50 : ✓ t_succ= 55 max_z=0.922 hold=0.17 | running=100%
+  ep  8/50 : ✓ t_succ= 43 max_z=0.987 hold=0.39 | running=100%
+  ep  9/50 : ✓ t_succ= 44 max_z=0.966 hold=0.27 | running=100%
+  ep 10/50 : ✓ t_succ= 91 max_z=0.887 hold=0.17 | running=100%
+  ep 11/50 : ✓ t_succ=196 max_z=0.868 hold=1.00 | running=100%
+  ep 12/50 : ✓ t_succ=103 max_z=0.928 hold=0.18 | running=100%
+  ep 13/50 : ✓ t_succ= 45 max_z=0.958 hold=0.56 | running=100%
+  ep 14/50 : ✓ t_succ= 46 max_z=0.932 hold=0.36 | running=100%
+  ep 15/50 : ✓ t_succ= 39 max_z=0.971 hold=0.38 | running=100%
+  ep 16/50 : ✓ t_succ= 44 max_z=0.963 hold=0.13 | running=100%
+  ep 17/50 : ✓ t_succ= 47 max_z=0.856 hold=0.04 | running=100%
+  ep 18/50 : ✓ t_succ= 84 max_z=0.941 hold=0.24 | running=100%
+  ep 19/50 : ✓ t_succ= 47 max_z=0.946 hold=0.70 | running=100%
+  ep 20/50 : ✓ t_succ= 47 max_z=0.958 hold=0.37 | running=100%
+  ep 21/50 : ✓ t_succ=149 max_z=0.969 hold=0.69 | running=100%
+  ep 22/50 : ✓ t_succ= 47 max_z=0.975 hold=0.42 | running=100%
+  ep 23/50 : ✓ t_succ= 84 max_z=0.982 hold=0.50 | running=100%
+  ep 24/50 : ✓ t_succ= 38 max_z=0.967 hold=0.33 | running=100%
+  ep 25/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=96%
+  ep 26/50 : ✓ t_succ=164 max_z=0.944 hold=0.58 | running=96%
+  ep 27/50 : ✗ t_succ=  - max_z=0.826 hold=0.00 | running=93%
+  ep 28/50 : ✓ t_succ= 49 max_z=0.943 hold=0.33 | running=93%
+  ep 29/50 : ✓ t_succ= 58 max_z=0.963 hold=0.28 | running=93%
+  ep 30/50 : ✓ t_succ=178 max_z=0.971 hold=1.00 | running=93%
+  ep 31/50 : ✓ t_succ= 46 max_z=0.913 hold=0.11 | running=94%
+  ep 32/50 : ✓ t_succ= 49 max_z=0.973 hold=0.22 | running=94%
+  ep 33/50 : ✓ t_succ= 47 max_z=0.915 hold=0.34 | running=94%
+  ep 34/50 : ✓ t_succ= 46 max_z=0.942 hold=0.18 | running=94%
+  ep 35/50 : ✓ t_succ= 42 max_z=0.988 hold=0.54 | running=94%
+  ep 36/50 : ✓ t_succ= 40 max_z=0.908 hold=0.26 | running=94%
+  ep 37/50 : ✓ t_succ= 37 max_z=1.016 hold=0.66 | running=95%
+  ep 38/50 : ✓ t_succ= 53 max_z=0.951 hold=0.41 | running=95%
+  ep 39/50 : ✓ t_succ= 51 max_z=0.954 hold=0.59 | running=95%
+  ep 40/50 : ✓ t_succ=144 max_z=0.966 hold=0.62 | running=95%
+  ep 41/50 : ✓ t_succ= 38 max_z=0.947 hold=0.17 | running=95%
+  ep 42/50 : ✓ t_succ= 43 max_z=0.951 hold=0.41 | running=95%
+  ep 43/50 : ✓ t_succ= 31 max_z=0.922 hold=0.18 | running=95%
+  ep 44/50 : ✓ t_succ= 42 max_z=0.956 hold=0.37 | running=95%
+  ep 45/50 : ✓ t_succ= 71 max_z=0.972 hold=0.43 | running=96%
+  ep 46/50 : ✓ t_succ=135 max_z=0.952 hold=0.29 | running=96%
+  ep 47/50 : ✓ t_succ=109 max_z=1.002 hold=0.48 | running=96%
+  ep 48/50 : ✓ t_succ= 37 max_z=0.879 hold=0.07 | running=96%
+  ep 49/50 : ✓ t_succ= 50 max_z=0.972 hold=0.44 | running=96%
+  ep 50/50 : ✓ t_succ= 39 max_z=0.947 hold=0.52 | running=96%
+objc[19655]: Class SDLApplication is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbc890) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3c88). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDLAppDelegate is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbc8e0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3cd8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDLTranslatorResponder is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbc958) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3d50). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDLMessageBoxPresenter is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbc980) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3d78). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDL_cocoametalview is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbc9d0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3dc8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDLOpenGLContext is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbca20) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3e18). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDL_ShapeData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbca98) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3e90). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDL_CocoaClosure is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcae8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3ee0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDL_VideoData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcb38) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3f30). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDL_WindowData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcb88) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3f80). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDLWindow is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcbb0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3fa8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class Cocoa_WindowListener is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcbd8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd3fd0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDLView is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcc50) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd4048). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class METAL_RenderData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbccc8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd40c0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class METAL_TextureData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcd18) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd4110). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDL_RumbleMotor is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcd40) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd4138). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class SDL_RumbleContext is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x10acbcd90) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x438bd4188). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x10369c3a8) and /opt/homebrew/Cellar/ffmpeg/7.1.1_2/lib/libavdevice.61.3.100.dylib (0x431ed8328). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[19655]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x10369c3f8) and /opt/homebrew/Cellar/ffmpeg/7.1.1_2/lib/libavdevice.61.3.100.dylib (0x431ed8378). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+  -> success=96% t_succ=47.0 max_z=0.944 hold=0.39 val_loss=0.0762
+
+===== checkpoint 3000 =====
+Loading weights from local directory
+  ep  1/50 : ✓ t_succ= 50 max_z=0.953 hold=1.00 | running=100%
+  ep  2/50 : ✓ t_succ= 41 max_z=0.940 hold=0.76 | running=100%
+  ep  3/50 : ✓ t_succ= 38 max_z=0.876 hold=0.35 | running=100%
+  ep  4/50 : ✓ t_succ= 46 max_z=0.959 hold=1.00 | running=100%
+  ep  5/50 : ✓ t_succ= 44 max_z=0.940 hold=0.61 | running=100%
+  ep  6/50 : ✓ t_succ= 52 max_z=0.949 hold=0.38 | running=100%
+  ep  7/50 : ✓ t_succ= 41 max_z=0.957 hold=0.65 | running=100%
+  ep  8/50 : ✓ t_succ= 51 max_z=0.954 hold=0.11 | running=100%
+  ep  9/50 : ✓ t_succ= 43 max_z=0.955 hold=1.00 | running=100%
+  ep 10/50 : ✓ t_succ= 39 max_z=0.944 hold=0.61 | running=100%
+  ep 11/50 : ✓ t_succ= 43 max_z=0.954 hold=1.00 | running=100%
+  ep 12/50 : ✓ t_succ= 52 max_z=0.926 hold=0.35 | running=100%
+  ep 13/50 : ✓ t_succ= 47 max_z=0.978 hold=1.00 | running=100%
+  ep 14/50 : ✓ t_succ= 54 max_z=0.966 hold=0.71 | running=100%
+  ep 15/50 : ✓ t_succ= 45 max_z=0.937 hold=0.74 | running=100%
+  ep 16/50 : ✓ t_succ= 45 max_z=0.983 hold=1.00 | running=100%
+  ep 17/50 : ✓ t_succ= 61 max_z=0.924 hold=0.77 | running=100%
+  ep 18/50 : ✓ t_succ= 44 max_z=0.930 hold=0.26 | running=100%
+  ep 19/50 : ✓ t_succ= 47 max_z=0.948 hold=0.51 | running=100%
+  ep 20/50 : ✓ t_succ= 43 max_z=0.952 hold=1.00 | running=100%
+  ep 21/50 : ✓ t_succ= 45 max_z=0.933 hold=0.65 | running=100%
+  ep 22/50 : ✓ t_succ= 45 max_z=0.910 hold=0.42 | running=100%
+  ep 23/50 : ✓ t_succ= 38 max_z=0.940 hold=0.37 | running=100%
+  ep 24/50 : ✓ t_succ= 48 max_z=0.935 hold=0.34 | running=100%
+  ep 25/50 : ✓ t_succ= 43 max_z=0.975 hold=0.18 | running=100%
+  ep 26/50 : ✓ t_succ= 51 max_z=0.934 hold=0.51 | running=100%
+  ep 27/50 : ✓ t_succ= 37 max_z=0.877 hold=0.10 | running=100%
+  ep 28/50 : ✓ t_succ= 39 max_z=0.981 hold=1.00 | running=100%
+  ep 29/50 : ✗ t_succ=  - max_z=0.833 hold=0.00 | running=97%
+  ep 30/50 : ✓ t_succ= 42 max_z=0.992 hold=0.94 | running=97%
+  ep 31/50 : ✓ t_succ= 39 max_z=0.954 hold=0.25 | running=97%
+  ep 32/50 : ✓ t_succ= 51 max_z=0.968 hold=0.52 | running=97%
+  ep 33/50 : ✓ t_succ= 34 max_z=0.934 hold=0.93 | running=97%
+  ep 34/50 : ✓ t_succ= 46 max_z=0.941 hold=0.19 | running=97%
+  ep 35/50 : ✓ t_succ= 49 max_z=0.950 hold=0.52 | running=97%
+  ep 36/50 : ✓ t_succ= 46 max_z=0.923 hold=0.44 | running=97%
+  ep 37/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=95%
+  ep 38/50 : ✓ t_succ= 45 max_z=0.923 hold=0.61 | running=95%
+  ep 39/50 : ✓ t_succ= 51 max_z=0.982 hold=0.17 | running=95%
+  ep 40/50 : ✓ t_succ= 48 max_z=1.011 hold=0.64 | running=95%
+  ep 41/50 : ✓ t_succ= 42 max_z=0.947 hold=1.00 | running=95%
+  ep 42/50 : ✓ t_succ= 56 max_z=0.926 hold=0.36 | running=95%
+  ep 43/50 : ✓ t_succ= 47 max_z=0.941 hold=0.41 | running=95%
+  ep 44/50 : ✓ t_succ= 46 max_z=0.957 hold=0.84 | running=95%
+  ep 45/50 : ✓ t_succ= 49 max_z=0.931 hold=1.00 | running=96%
+  ep 46/50 : ✓ t_succ= 48 max_z=1.003 hold=0.89 | running=96%
+  ep 47/50 : ✓ t_succ= 36 max_z=0.955 hold=1.00 | running=96%
+  ep 48/50 : ✓ t_succ= 47 max_z=0.939 hold=0.80 | running=96%
+  ep 49/50 : ✓ t_succ= 47 max_z=0.945 hold=0.30 | running=96%
+  ep 50/50 : ✓ t_succ= 39 max_z=0.913 hold=0.19 | running=96%
+  -> success=96% t_succ=45.5 max_z=0.942 hold=0.61 val_loss=0.0693
+
+===== checkpoint 4500 =====
+Loading weights from local directory
+  ep  1/50 : ✓ t_succ= 52 max_z=0.958 hold=1.00 | running=100%
+  ep  2/50 : ✓ t_succ= 47 max_z=0.995 hold=0.51 | running=100%
+  ep  3/50 : ✓ t_succ= 44 max_z=0.966 hold=0.36 | running=100%
+  ep  4/50 : ✓ t_succ= 42 max_z=1.030 hold=0.73 | running=100%
+  ep  5/50 : ✓ t_succ= 41 max_z=0.951 hold=1.00 | running=100%
+  ep  6/50 : ✓ t_succ= 46 max_z=0.985 hold=0.65 | running=100%
+  ep  7/50 : ✓ t_succ= 41 max_z=1.020 hold=0.72 | running=100%
+  ep  8/50 : ✓ t_succ= 42 max_z=0.964 hold=1.00 | running=100%
+  ep  9/50 : ✓ t_succ= 35 max_z=0.982 hold=1.00 | running=100%
+  ep 10/50 : ✓ t_succ= 44 max_z=0.978 hold=0.90 | running=100%
+  ep 11/50 : ✓ t_succ= 39 max_z=0.999 hold=0.21 | running=100%
+  ep 12/50 : ✓ t_succ= 36 max_z=0.995 hold=0.61 | running=100%
+  ep 13/50 : ✓ t_succ= 42 max_z=1.014 hold=0.54 | running=100%
+  ep 14/50 : ✓ t_succ= 50 max_z=0.962 hold=0.51 | running=100%
+  ep 15/50 : ✓ t_succ= 43 max_z=0.955 hold=0.75 | running=100%
+  ep 16/50 : ✓ t_succ= 43 max_z=0.927 hold=0.13 | running=100%
+  ep 17/50 : ✓ t_succ= 43 max_z=0.950 hold=0.71 | running=100%
+  ep 18/50 : ✓ t_succ= 44 max_z=1.018 hold=0.93 | running=100%
+  ep 19/50 : ✓ t_succ= 37 max_z=0.947 hold=0.50 | running=100%
+  ep 20/50 : ✓ t_succ= 46 max_z=0.995 hold=0.28 | running=100%
+  ep 21/50 : ✓ t_succ= 44 max_z=0.930 hold=0.12 | running=100%
+  ep 22/50 : ✓ t_succ= 37 max_z=1.042 hold=0.96 | running=100%
+  ep 23/50 : ✓ t_succ= 36 max_z=1.047 hold=0.43 | running=100%
+  ep 24/50 : ✓ t_succ= 45 max_z=0.986 hold=0.41 | running=100%
+  ep 25/50 : ✓ t_succ= 45 max_z=0.936 hold=0.30 | running=100%
+  ep 26/50 : ✓ t_succ= 44 max_z=0.924 hold=0.49 | running=100%
+  ep 27/50 : ✓ t_succ= 35 max_z=1.051 hold=0.78 | running=100%
+  ep 28/50 : ✓ t_succ= 48 max_z=1.014 hold=1.00 | running=100%
+  ep 29/50 : ✓ t_succ= 46 max_z=0.981 hold=0.74 | running=100%
+  ep 30/50 : ✓ t_succ= 53 max_z=0.983 hold=0.88 | running=100%
+  ep 31/50 : ✓ t_succ= 39 max_z=0.980 hold=0.80 | running=100%
+  ep 32/50 : ✓ t_succ=108 max_z=0.924 hold=0.17 | running=100%
+  ep 33/50 : ✓ t_succ= 42 max_z=0.978 hold=0.50 | running=100%
+  ep 34/50 : ✓ t_succ= 44 max_z=1.018 hold=0.94 | running=100%
+  ep 35/50 : ✓ t_succ= 45 max_z=1.010 hold=0.28 | running=100%
+  ep 36/50 : ✓ t_succ= 40 max_z=1.033 hold=0.76 | running=100%
+  ep 37/50 : ✓ t_succ= 45 max_z=0.998 hold=0.59 | running=100%
+  ep 38/50 : ✓ t_succ= 39 max_z=0.962 hold=1.00 | running=100%
+  ep 39/50 : ✓ t_succ= 44 max_z=1.022 hold=0.46 | running=100%
+  ep 40/50 : ✓ t_succ= 44 max_z=0.963 hold=0.26 | running=100%
+  ep 41/50 : ✓ t_succ= 42 max_z=0.976 hold=0.34 | running=100%
+  ep 42/50 : ✓ t_succ= 43 max_z=1.008 hold=0.39 | running=100%
+  ep 43/50 : ✓ t_succ= 40 max_z=0.927 hold=1.00 | running=100%
+  ep 44/50 : ✓ t_succ= 46 max_z=1.040 hold=0.48 | running=100%
+  ep 45/50 : ✓ t_succ= 43 max_z=1.016 hold=0.50 | running=100%
+  ep 46/50 : ✓ t_succ= 35 max_z=0.989 hold=0.30 | running=100%
+  ep 47/50 : ✓ t_succ= 47 max_z=0.973 hold=0.62 | running=100%
+  ep 48/50 : ✓ t_succ= 44 max_z=1.027 hold=0.64 | running=100%
+  ep 49/50 : ✓ t_succ= 46 max_z=0.921 hold=0.19 | running=100%
+  ep 50/50 : ✓ t_succ= 45 max_z=0.968 hold=0.40 | running=100%
+  -> success=100% t_succ=44.0 max_z=0.984 hold=0.60 val_loss=0.0664
+
+===== checkpoint 6000 =====
+Loading weights from local directory
+  ep  1/50 : ✓ t_succ= 37 max_z=0.986 hold=0.42 | running=100%
+  ep  2/50 : ✓ t_succ= 48 max_z=1.011 hold=0.38 | running=100%
+  ep  3/50 : ✓ t_succ= 40 max_z=0.979 hold=0.35 | running=100%
+  ep  4/50 : ✓ t_succ= 37 max_z=1.052 hold=0.44 | running=100%
+  ep  5/50 : ✓ t_succ= 36 max_z=1.050 hold=0.28 | running=100%
+  ep  6/50 : ✓ t_succ= 40 max_z=0.992 hold=0.30 | running=100%
+  ep  7/50 : ✓ t_succ= 43 max_z=0.994 hold=0.54 | running=100%
+  ep  8/50 : ✓ t_succ= 44 max_z=1.015 hold=0.33 | running=100%
+  ep  9/50 : ✓ t_succ= 34 max_z=1.045 hold=0.29 | running=100%
+  ep 10/50 : ✓ t_succ= 44 max_z=0.997 hold=0.64 | running=100%
+  ep 11/50 : ✓ t_succ= 36 max_z=0.979 hold=0.37 | running=100%
+  ep 12/50 : ✓ t_succ= 40 max_z=1.024 hold=0.51 | running=100%
+  ep 13/50 : ✓ t_succ= 95 max_z=1.013 hold=0.39 | running=100%
+  ep 14/50 : ✓ t_succ= 45 max_z=1.066 hold=0.56 | running=100%
+  ep 15/50 : ✓ t_succ= 52 max_z=1.016 hold=0.47 | running=100%
+  ep 16/50 : ✓ t_succ=149 max_z=0.973 hold=1.00 | running=100%
+  ep 17/50 : ✓ t_succ= 51 max_z=1.046 hold=0.42 | running=100%
+  ep 18/50 : ✓ t_succ= 39 max_z=1.005 hold=0.69 | running=100%
+  ep 19/50 : ✓ t_succ= 42 max_z=1.044 hold=0.50 | running=100%
+  ep 20/50 : ✓ t_succ= 43 max_z=0.980 hold=0.39 | running=100%
+  ep 21/50 : ✓ t_succ= 45 max_z=1.025 hold=1.00 | running=100%
+  ep 22/50 : ✓ t_succ= 44 max_z=0.977 hold=0.77 | running=100%
+  ep 23/50 : ✓ t_succ= 48 max_z=1.022 hold=0.32 | running=100%
+  ep 24/50 : ✓ t_succ= 43 max_z=1.035 hold=0.50 | running=100%
+  ep 25/50 : ✓ t_succ= 40 max_z=1.038 hold=0.53 | running=100%
+  ep 26/50 : ✓ t_succ= 45 max_z=1.050 hold=0.28 | running=100%
+  ep 27/50 : ✓ t_succ= 44 max_z=1.026 hold=0.65 | running=100%
+  ep 28/50 : ✓ t_succ= 43 max_z=1.057 hold=0.51 | running=100%
+  ep 29/50 : ✓ t_succ= 45 max_z=1.012 hold=0.44 | running=100%
+  ep 30/50 : ✓ t_succ= 44 max_z=1.080 hold=0.35 | running=100%
+  ep 31/50 : ✓ t_succ= 35 max_z=1.072 hold=0.28 | running=100%
+  ep 32/50 : ✓ t_succ= 44 max_z=1.048 hold=0.55 | running=100%
+  ep 33/50 : ✓ t_succ= 42 max_z=1.017 hold=0.56 | running=100%
+  ep 34/50 : ✓ t_succ= 47 max_z=1.061 hold=0.53 | running=100%
+  ep 35/50 : ✓ t_succ= 45 max_z=1.028 hold=0.34 | running=100%
+  ep 36/50 : ✓ t_succ= 44 max_z=1.012 hold=0.91 | running=100%
+  ep 37/50 : ✓ t_succ= 53 max_z=1.061 hold=0.34 | running=100%
+  ep 38/50 : ✓ t_succ= 43 max_z=1.009 hold=0.33 | running=100%
+  ep 39/50 : ✓ t_succ= 36 max_z=1.060 hold=0.38 | running=100%
+  ep 40/50 : ✓ t_succ= 35 max_z=1.005 hold=0.33 | running=100%
+  ep 41/50 : ✓ t_succ= 39 max_z=1.078 hold=0.25 | running=100%
+  ep 42/50 : ✓ t_succ= 46 max_z=1.041 hold=0.39 | running=100%
+  ep 43/50 : ✓ t_succ= 55 max_z=1.064 hold=0.95 | running=100%
+  ep 44/50 : ✓ t_succ= 38 max_z=1.016 hold=0.27 | running=100%
+  ep 45/50 : ✓ t_succ= 34 max_z=1.030 hold=0.39 | running=100%
+  ep 46/50 : ✓ t_succ= 37 max_z=1.055 hold=0.69 | running=100%
+  ep 47/50 : ✓ t_succ= 43 max_z=1.077 hold=0.56 | running=100%
+  ep 48/50 : ✓ t_succ= 39 max_z=1.084 hold=0.35 | running=100%
+  ep 49/50 : ✓ t_succ= 48 max_z=1.092 hold=0.41 | running=100%
+  ep 50/50 : ✓ t_succ= 37 max_z=1.133 hold=0.67 | running=100%
+  -> success=100% t_succ=43.0 max_z=1.033 hold=0.48 val_loss=0.0649
+
+===== checkpoint 7500 =====
+Loading weights from local directory
+  ep  1/50 : ✓ t_succ= 44 max_z=1.066 hold=0.62 | running=100%
+  ep  2/50 : ✓ t_succ= 54 max_z=1.028 hold=0.47 | running=100%
+  ep  3/50 : ✓ t_succ= 44 max_z=1.009 hold=0.44 | running=100%
+  ep  4/50 : ✓ t_succ= 40 max_z=1.050 hold=0.26 | running=100%
+  ep  5/50 : ✓ t_succ= 38 max_z=0.996 hold=0.80 | running=100%
+  ep  6/50 : ✓ t_succ= 43 max_z=1.013 hold=0.34 | running=100%
+  ep  7/50 : ✓ t_succ= 42 max_z=0.987 hold=0.53 | running=100%
+  ep  8/50 : ✓ t_succ= 44 max_z=1.028 hold=0.24 | running=100%
+  ep  9/50 : ✓ t_succ= 37 max_z=1.026 hold=0.26 | running=100%
+  ep 10/50 : ✓ t_succ= 44 max_z=0.976 hold=0.23 | running=100%
+  ep 11/50 : ✓ t_succ= 35 max_z=1.006 hold=0.21 | running=100%
+  ep 12/50 : ✓ t_succ= 42 max_z=1.063 hold=0.52 | running=100%
+  ep 13/50 : ✓ t_succ= 43 max_z=1.023 hold=0.50 | running=100%
+  ep 14/50 : ✓ t_succ= 44 max_z=1.008 hold=0.19 | running=100%
+  ep 15/50 : ✓ t_succ= 43 max_z=1.017 hold=0.34 | running=100%
+  ep 16/50 : ✓ t_succ= 39 max_z=1.070 hold=0.42 | running=100%
+  ep 17/50 : ✓ t_succ= 44 max_z=1.026 hold=0.49 | running=100%
+  ep 18/50 : ✓ t_succ= 46 max_z=0.901 hold=1.00 | running=100%
+  ep 19/50 : ✓ t_succ= 52 max_z=1.016 hold=0.29 | running=100%
+  ep 20/50 : ✓ t_succ= 43 max_z=1.013 hold=0.19 | running=100%
+  ep 21/50 : ✓ t_succ= 44 max_z=1.102 hold=0.24 | running=100%
+  ep 22/50 : ✓ t_succ= 45 max_z=1.012 hold=0.37 | running=100%
+  ep 23/50 : ✓ t_succ= 39 max_z=1.060 hold=0.43 | running=100%
+  ep 24/50 : ✓ t_succ= 43 max_z=1.023 hold=0.38 | running=100%
+  ep 25/50 : ✓ t_succ= 44 max_z=0.985 hold=0.23 | running=100%
+  ep 26/50 : ✓ t_succ= 38 max_z=1.032 hold=0.27 | running=100%
+  ep 27/50 : ✓ t_succ= 44 max_z=1.058 hold=0.29 | running=100%
+  ep 28/50 : ✓ t_succ= 47 max_z=1.041 hold=0.39 | running=100%
+  ep 29/50 : ✓ t_succ= 39 max_z=1.054 hold=0.25 | running=100%
+  ep 30/50 : ✓ t_succ= 45 max_z=1.043 hold=0.34 | running=100%
+  ep 31/50 : ✓ t_succ= 43 max_z=1.051 hold=0.28 | running=100%
+  ep 32/50 : ✓ t_succ= 37 max_z=1.041 hold=0.42 | running=100%
+  ep 33/50 : ✓ t_succ= 33 max_z=1.011 hold=0.87 | running=100%
+  ep 34/50 : ✓ t_succ= 52 max_z=1.049 hold=0.36 | running=100%
+  ep 35/50 : ✓ t_succ= 44 max_z=0.982 hold=0.26 | running=100%
+  ep 36/50 : ✓ t_succ=111 max_z=0.860 hold=0.61 | running=100%
+  ep 37/50 : ✓ t_succ= 51 max_z=1.069 hold=0.31 | running=100%
+  ep 38/50 : ✓ t_succ= 44 max_z=1.047 hold=0.29 | running=100%
+  ep 39/50 : ✓ t_succ= 36 max_z=1.035 hold=0.26 | running=100%
+  ep 40/50 : ✓ t_succ= 46 max_z=1.044 hold=0.44 | running=100%
+  ep 41/50 : ✓ t_succ= 44 max_z=1.072 hold=0.24 | running=100%
+  ep 42/50 : ✓ t_succ= 39 max_z=1.059 hold=0.26 | running=100%
+  ep 43/50 : ✓ t_succ= 50 max_z=1.062 hold=0.49 | running=100%
+  ep 44/50 : ✓ t_succ= 37 max_z=1.068 hold=0.22 | running=100%
+  ep 45/50 : ✓ t_succ= 39 max_z=1.071 hold=0.26 | running=100%
+  ep 46/50 : ✓ t_succ= 45 max_z=0.999 hold=0.28 | running=100%
+  ep 47/50 : ✓ t_succ= 52 max_z=1.024 hold=0.30 | running=100%
+  ep 48/50 : ✓ t_succ= 37 max_z=1.042 hold=0.44 | running=100%
+  ep 49/50 : ✓ t_succ= 38 max_z=1.022 hold=0.27 | running=100%
+  ep 50/50 : ✓ t_succ= 49 max_z=1.011 hold=0.87 | running=100%
+  -> success=100% t_succ=44.0 max_z=1.027 hold=0.38 val_loss=0.0659
+
+===== checkpoint 9000 =====
+Loading weights from local directory
+  ep  1/50 : ✓ t_succ= 36 max_z=0.958 hold=0.78 | running=100%
+  ep  2/50 : ✓ t_succ= 50 max_z=1.017 hold=0.36 | running=100%
+  ep  3/50 : ✓ t_succ= 47 max_z=0.958 hold=0.89 | running=100%
+  ep  4/50 : ✓ t_succ= 42 max_z=1.015 hold=0.40 | running=100%
+  ep  5/50 : ✓ t_succ= 40 max_z=0.894 hold=0.85 | running=100%
+  ep  6/50 : ✓ t_succ= 43 max_z=0.971 hold=0.53 | running=100%
+  ep  7/50 : ✓ t_succ= 41 max_z=0.965 hold=0.25 | running=100%
+  ep  8/50 : ✓ t_succ= 44 max_z=0.995 hold=0.38 | running=100%
+  ep  9/50 : ✓ t_succ= 39 max_z=1.007 hold=0.26 | running=100%
+  ep 10/50 : ✓ t_succ= 43 max_z=0.978 hold=0.34 | running=100%
+  ep 11/50 : ✓ t_succ= 36 max_z=1.019 hold=0.38 | running=100%
+  ep 12/50 : ✓ t_succ= 39 max_z=0.992 hold=0.86 | running=100%
+  ep 13/50 : ✓ t_succ= 42 max_z=1.006 hold=0.48 | running=100%
+  ep 14/50 : ✓ t_succ= 39 max_z=1.003 hold=0.31 | running=100%
+  ep 15/50 : ✓ t_succ= 43 max_z=0.982 hold=0.96 | running=100%
+  ep 16/50 : ✓ t_succ= 38 max_z=0.988 hold=0.38 | running=100%
+  ep 17/50 : ✓ t_succ= 43 max_z=0.965 hold=0.55 | running=100%
+  ep 18/50 : ✓ t_succ= 48 max_z=0.984 hold=1.00 | running=100%
+  ep 19/50 : ✓ t_succ= 44 max_z=0.929 hold=0.23 | running=100%
+  ep 20/50 : ✓ t_succ= 43 max_z=1.002 hold=0.29 | running=100%
+  ep 21/50 : ✓ t_succ= 50 max_z=1.072 hold=0.37 | running=100%
+  ep 22/50 : ✓ t_succ= 45 max_z=0.973 hold=0.75 | running=100%
+  ep 23/50 : ✓ t_succ= 40 max_z=1.032 hold=0.34 | running=100%
+  ep 24/50 : ✓ t_succ= 44 max_z=0.999 hold=0.45 | running=100%
+  ep 25/50 : ✓ t_succ= 46 max_z=0.957 hold=0.27 | running=100%
+  ep 26/50 : ✓ t_succ= 40 max_z=0.997 hold=0.35 | running=100%
+  ep 27/50 : ✓ t_succ= 44 max_z=1.046 hold=0.39 | running=100%
+  ep 28/50 : ✓ t_succ= 44 max_z=0.995 hold=0.43 | running=100%
+  ep 29/50 : ✓ t_succ= 43 max_z=0.975 hold=0.29 | running=100%
+  ep 30/50 : ✓ t_succ= 44 max_z=1.026 hold=0.34 | running=100%
+  ep 31/50 : ✓ t_succ= 96 max_z=1.058 hold=0.62 | running=100%
+  ep 32/50 : ✓ t_succ= 37 max_z=1.018 hold=0.52 | running=100%
+  ep 33/50 : ✓ t_succ= 39 max_z=0.998 hold=0.36 | running=100%
+  ep 34/50 : ✓ t_succ= 51 max_z=1.097 hold=0.43 | running=100%
+  ep 35/50 : ✓ t_succ= 45 max_z=0.999 hold=0.45 | running=100%
+  ep 36/50 : ✓ t_succ= 51 max_z=1.003 hold=0.58 | running=100%
+  ep 37/50 : ✓ t_succ= 48 max_z=1.032 hold=0.32 | running=100%
+  ep 38/50 : ✓ t_succ= 40 max_z=1.004 hold=0.36 | running=100%
+  ep 39/50 : ✓ t_succ= 36 max_z=1.042 hold=0.42 | running=100%
+  ep 40/50 : ✓ t_succ= 45 max_z=0.990 hold=0.34 | running=100%
+  ep 41/50 : ✓ t_succ=134 max_z=0.898 hold=0.44 | running=100%
+  ep 42/50 : ✓ t_succ= 44 max_z=1.049 hold=0.40 | running=100%
+  ep 43/50 : ✓ t_succ= 44 max_z=1.016 hold=0.47 | running=100%
+  ep 44/50 : ✓ t_succ= 34 max_z=0.995 hold=0.28 | running=100%
+  ep 45/50 : ✓ t_succ= 38 max_z=1.047 hold=0.35 | running=100%
+  ep 46/50 : ✓ t_succ= 43 max_z=0.976 hold=0.50 | running=100%
+  ep 47/50 : ✓ t_succ= 51 max_z=1.011 hold=0.36 | running=100%
+  ep 48/50 : ✓ t_succ= 37 max_z=1.021 hold=0.32 | running=100%
+  ep 49/50 : ✓ t_succ= 42 max_z=0.990 hold=0.37 | running=100%
+  ep 50/50 : ✓ t_succ= 53 max_z=0.915 hold=0.31 | running=100%
+  -> success=100% t_succ=43.0 max_z=0.997 hold=0.45 val_loss=0.0831
+
+===== checkpoint 10500 =====
+Loading weights from local directory
+  ep  1/50 : ✓ t_succ= 36 max_z=0.960 hold=0.46 | running=100%
+  ep  2/50 : ✓ t_succ= 50 max_z=1.034 hold=0.21 | running=100%
+  ep  3/50 : ✓ t_succ= 42 max_z=0.992 hold=0.25 | running=100%
+  ep  4/50 : ✓ t_succ= 42 max_z=0.985 hold=0.25 | running=100%
+  ep  5/50 : ✓ t_succ= 44 max_z=0.963 hold=0.26 | running=100%
+  ep  6/50 : ✓ t_succ= 43 max_z=0.996 hold=0.24 | running=100%
+  ep  7/50 : ✓ t_succ= 43 max_z=0.983 hold=0.22 | running=100%
+  ep  8/50 : ✓ t_succ= 43 max_z=0.991 hold=0.29 | running=100%
+  ep  9/50 : ✓ t_succ= 37 max_z=0.995 hold=0.21 | running=100%
+  ep 10/50 : ✓ t_succ= 44 max_z=1.001 hold=0.29 | running=100%
+  ep 11/50 : ✓ t_succ= 38 max_z=1.049 hold=0.23 | running=100%
+  ep 12/50 : ✓ t_succ= 42 max_z=0.985 hold=0.35 | running=100%
+  ep 13/50 : ✓ t_succ= 42 max_z=1.037 hold=0.30 | running=100%
+  ep 14/50 : ✓ t_succ= 37 max_z=1.022 hold=0.22 | running=100%
+  ep 15/50 : ✓ t_succ= 47 max_z=1.024 hold=0.23 | running=100%
+  ep 16/50 : ✓ t_succ= 39 max_z=0.992 hold=0.24 | running=100%
+  ep 17/50 : ✓ t_succ= 49 max_z=1.018 hold=0.39 | running=100%
+  ep 18/50 : ✓ t_succ= 47 max_z=0.993 hold=0.75 | running=100%
+  ep 19/50 : ✓ t_succ= 47 max_z=1.075 hold=0.45 | running=100%
+  ep 20/50 : ✓ t_succ= 40 max_z=0.964 hold=0.40 | running=100%
+  ep 21/50 : ✓ t_succ= 50 max_z=1.090 hold=0.32 | running=100%
+  ep 22/50 : ✓ t_succ= 42 max_z=0.976 hold=0.27 | running=100%
+  ep 23/50 : ✓ t_succ= 43 max_z=1.009 hold=0.25 | running=100%
+  ep 24/50 : ✓ t_succ= 42 max_z=1.024 hold=0.25 | running=100%
+  ep 25/50 : ✓ t_succ= 43 max_z=0.961 hold=0.18 | running=100%
+  ep 26/50 : ✓ t_succ= 40 max_z=1.021 hold=0.26 | running=100%
+  ep 27/50 : ✓ t_succ= 42 max_z=1.013 hold=0.31 | running=100%
+  ep 28/50 : ✓ t_succ= 46 max_z=0.977 hold=0.32 | running=100%
+  ep 29/50 : ✓ t_succ= 43 max_z=1.003 hold=0.24 | running=100%
+  ep 30/50 : ✓ t_succ= 44 max_z=1.062 hold=0.34 | running=100%
+  ep 31/50 : ✓ t_succ= 38 max_z=1.021 hold=0.22 | running=100%
+  ep 32/50 : ✓ t_succ= 38 max_z=1.026 hold=0.33 | running=100%
+  ep 33/50 : ✓ t_succ= 37 max_z=1.029 hold=0.37 | running=100%
+  ep 34/50 : ✓ t_succ= 47 max_z=1.065 hold=0.39 | running=100%
+  ep 35/50 : ✓ t_succ= 44 max_z=1.011 hold=0.24 | running=100%
+  ep 36/50 : ✓ t_succ= 45 max_z=1.066 hold=0.50 | running=100%
+  ep 37/50 : ✓ t_succ= 44 max_z=1.050 hold=0.29 | running=100%
+  ep 38/50 : ✓ t_succ= 42 max_z=1.014 hold=0.22 | running=100%
+  ep 39/50 : ✓ t_succ= 35 max_z=1.011 hold=0.28 | running=100%
+  ep 40/50 : ✓ t_succ= 43 max_z=0.998 hold=0.28 | running=100%
+  ep 41/50 : ✓ t_succ=102 max_z=1.069 hold=0.79 | running=100%
+  ep 42/50 : ✓ t_succ= 42 max_z=1.034 hold=0.25 | running=100%
+  ep 43/50 : ✓ t_succ= 51 max_z=1.040 hold=0.32 | running=100%
+  ep 44/50 : ✓ t_succ= 35 max_z=1.058 hold=0.23 | running=100%
+  ep 45/50 : ✓ t_succ= 46 max_z=1.071 hold=0.29 | running=100%
+  ep 46/50 : ✓ t_succ=101 max_z=0.944 hold=0.35 | running=100%
+  ep 47/50 : ✓ t_succ= 47 max_z=1.035 hold=0.28 | running=100%
+  ep 48/50 : ✓ t_succ= 35 max_z=1.019 hold=0.33 | running=100%
+  ep 49/50 : ✓ t_succ= 42 max_z=1.027 hold=0.25 | running=100%
+  ep 50/50 : ✓ t_succ= 40 max_z=0.981 hold=0.25 | running=100%
+  -> success=100% t_succ=43.0 max_z=1.015 hold=0.31 val_loss=0.0966
+
+===== checkpoint 12000 =====
+Loading weights from local directory
+  ep  1/50 : ✓ t_succ= 37 max_z=0.942 hold=0.46 | running=100%
+  ep  2/50 : ✓ t_succ= 49 max_z=1.035 hold=0.22 | running=100%
+  ep  3/50 : ✓ t_succ= 42 max_z=0.992 hold=0.27 | running=100%
+  ep  4/50 : ✓ t_succ= 40 max_z=1.067 hold=0.31 | running=100%
+  ep  5/50 : ✓ t_succ= 43 max_z=1.071 hold=0.52 | running=100%
+  ep  6/50 : ✓ t_succ= 44 max_z=1.011 hold=0.28 | running=100%
+  ep  7/50 : ✓ t_succ= 42 max_z=0.980 hold=0.23 | running=100%
+  ep  8/50 : ✓ t_succ= 46 max_z=1.018 hold=0.28 | running=100%
+  ep  9/50 : ✓ t_succ= 37 max_z=1.001 hold=0.23 | running=100%
+  ep 10/50 : ✓ t_succ= 44 max_z=1.044 hold=0.29 | running=100%
+  ep 11/50 : ✓ t_succ= 38 max_z=1.005 hold=0.20 | running=100%
+  ep 12/50 : ✓ t_succ= 42 max_z=1.055 hold=0.41 | running=100%
+  ep 13/50 : ✓ t_succ= 43 max_z=1.008 hold=0.39 | running=100%
+  ep 14/50 : ✓ t_succ= 37 max_z=1.020 hold=0.32 | running=100%
+  ep 15/50 : ✓ t_succ= 45 max_z=1.049 hold=0.29 | running=100%
+  ep 16/50 : ✓ t_succ= 40 max_z=1.009 hold=0.26 | running=100%
+  ep 17/50 : ✓ t_succ= 47 max_z=1.043 hold=0.43 | running=100%
+  ep 18/50 : ✓ t_succ= 48 max_z=0.989 hold=0.66 | running=100%
+  ep 19/50 : ✓ t_succ= 45 max_z=1.030 hold=0.23 | running=100%
+  ep 20/50 : ✓ t_succ= 43 max_z=1.019 hold=0.24 | running=100%
+  ep 21/50 : ✓ t_succ= 51 max_z=1.090 hold=0.32 | running=100%
+  ep 22/50 : ✓ t_succ= 42 max_z=1.030 hold=0.30 | running=100%
+  ep 23/50 : ✓ t_succ= 42 max_z=1.002 hold=0.25 | running=100%
+  ep 24/50 : ✓ t_succ= 43 max_z=1.016 hold=0.24 | running=100%
+  ep 25/50 : ✓ t_succ= 43 max_z=0.974 hold=0.24 | running=100%
+  ep 26/50 : ✓ t_succ= 44 max_z=1.000 hold=0.28 | running=100%
+  ep 27/50 : ✓ t_succ= 52 max_z=1.065 hold=0.31 | running=100%
+  ep 28/50 : ✓ t_succ= 43 max_z=1.058 hold=0.43 | running=100%
+  ep 29/50 : ✓ t_succ= 44 max_z=1.020 hold=0.29 | running=100%
+  ep 30/50 : ✓ t_succ= 46 max_z=1.024 hold=0.28 | running=100%
+  ep 31/50 : ✓ t_succ= 36 max_z=1.053 hold=0.23 | running=100%
+  ep 32/50 : ✓ t_succ= 38 max_z=1.027 hold=0.42 | running=100%
+  ep 33/50 : ✓ t_succ= 40 max_z=1.020 hold=0.37 | running=100%
+  ep 34/50 : ✓ t_succ= 50 max_z=1.098 hold=0.32 | running=100%
+  ep 35/50 : ✓ t_succ= 45 max_z=1.004 hold=0.27 | running=100%
+  ep 36/50 : ✓ t_succ= 44 max_z=0.977 hold=1.00 | running=100%
+  ep 37/50 : ✓ t_succ= 46 max_z=1.046 hold=0.29 | running=100%
+  ep 38/50 : ✓ t_succ= 40 max_z=1.043 hold=0.21 | running=100%
+  ep 39/50 : ✓ t_succ= 36 max_z=1.035 hold=0.25 | running=100%
+  ep 40/50 : ✓ t_succ= 39 max_z=0.957 hold=0.39 | running=100%
+  ep 41/50 : ✓ t_succ= 37 max_z=0.952 hold=0.10 | running=100%
+  ep 42/50 : ✓ t_succ= 42 max_z=1.042 hold=0.25 | running=100%
+  ep 43/50 : ✓ t_succ= 50 max_z=1.058 hold=0.32 | running=100%
+  ep 44/50 : ✓ t_succ= 38 max_z=1.036 hold=0.22 | running=100%
+  ep 45/50 : ✓ t_succ= 45 max_z=1.072 hold=0.28 | running=100%
+  ep 46/50 : ✓ t_succ= 47 max_z=1.003 hold=0.38 | running=100%
+  ep 47/50 : ✓ t_succ= 49 max_z=1.055 hold=0.26 | running=100%
+  ep 48/50 : ✓ t_succ= 36 max_z=0.998 hold=0.23 | running=100%
+  ep 49/50 : ✓ t_succ= 48 max_z=1.039 hold=0.32 | running=100%
+  ep 50/50 : ✓ t_succ= 43 max_z=1.105 hold=0.42 | running=100%
+  -> success=100% t_succ=43.0 max_z=1.026 hold=0.32 val_loss=0.1001
+
+JSON: results/runs/lift/47_baseline_150/phase0_curve.json
+Plot: results/runs/lift/47_baseline_150/phase0_curve.png

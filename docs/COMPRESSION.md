@@ -81,8 +81,12 @@ Courbe **Pareto latence vs perfs** sur toutes les variantes (steps × down_dims 
 
 - `experiments/lift/46_bench_inference.py` — bench latence MPS/CPU, sample vs queue-pop, extrapolation par épisode. Réutilisé tel quel.
 - `experiments/lift/46_eval_all_checkpoints.py` — base de l'éval comparative (⚠️ à refactorer : tire des init states **différents** par checkpoint → biais ; la Phase 0 corrige ça avec des états figés).
-- `experiments/lift/46_plot_loss.py` — parse le log lerobot-train.
-- `src/lift_data.py` — chargement HDF5 Robomimic + `build_state_vector` (19D) + `STATE_KEYS`.
+- `experiments/lift/46_plot_loss.py` — parse le log lerobot-train (loss/grad/lr) ; **overlay train-vs-val** si le log contient des lignes `val_loss:` (cf. ci-dessous). Paramétrique : `--log --out --log-freq`.
+- `experiments/lift/47_phase0_eval.py` — rollout d'un checkpoint sur le val set figé (métriques continues).
+- `experiments/lift/48_val_loss.py` — val noise-MSE d'un checkpoint (post-hoc).
+- `experiments/lift/49_phase0_curve.py` — balayage : rollout + val-loss sur tous les checkpoints d'un run → `phase0_curve.{json,png}`. Sauvegarde incrémentale.
+- `experiments/lift/50_train_valloss.py` — **copie patchée de `lerobot-train`** : logge la **val-loss en continu** (toutes les `log_freq` steps) sur le val set = épisodes hors `dataset.episodes` (auto-cohérent). Recette identique (même `update_policy`/`preprocessor`), juste une passe val read-only ajoutée. **À utiliser pour les retrains du sweep** (le baseline 150 a été fait avec lerobot-train standard → val seulement aux 8 checkpoints). Mêmes args que lerobot-train.
+- `src/lift_data.py` / `src/lift_eval.py` — chargement HDF5 + split/env/rollout (métriques continues).
 
 ## Référence du run 46
 
