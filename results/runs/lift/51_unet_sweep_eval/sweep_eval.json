@@ -1,0 +1,65 @@
+{
+  "baseline": {
+    "label": "baseline 252M U-Net",
+    "params": 263700000.0,
+    "success_rate": 1.0,
+    "t_success_median": 43.0,
+    "max_z_mean": 1.033
+  },
+  "results": [
+    {
+      "run": "51_unet_d256_512_1024",
+      "down_dims": [
+        256,
+        512,
+        1024
+      ],
+      "params": 76566823,
+      "best_step": 4500,
+      "val_loss": 0.06666391064871603,
+      "n": 50,
+      "success_rate": 0.98,
+      "t_success_median": 44.0,
+      "t_success_mean": 46.142857142857146,
+      "max_z_mean": 0.9985864510731974,
+      "hold_fraction_mean": 0.548413231311972,
+      "elapsed_s": 446.4682149887085
+    },
+    {
+      "run": "51_unet_d128_256_512",
+      "down_dims": [
+        128,
+        256,
+        512
+      ],
+      "params": 28710695,
+      "best_step": 4500,
+      "val_loss": 0.07028092357452038,
+      "n": 50,
+      "success_rate": 0.98,
+      "t_success_median": 48.0,
+      "t_success_mean": 49.673469387755105,
+      "max_z_mean": 0.9511945430417981,
+      "hold_fraction_mean": 0.49483229752213637,
+      "elapsed_s": 296.1755108833313
+    },
+    {
+      "run": "51_unet_d64_128_256",
+      "down_dims": [
+        64,
+        128,
+        256
+      ],
+      "params": 16210471,
+      "best_step": 6000,
+      "val_loss": 0.07222499341316287,
+      "n": 50,
+      "success_rate": 1.0,
+      "t_success_median": 47.0,
+      "t_success_mean": 47.98,
+      "max_z_mean": 0.9689464404734258,
+      "hold_fraction_mean": 0.47558627278662285,
+      "elapsed_s": 296.69425916671753
+    }
+  ]
+}
