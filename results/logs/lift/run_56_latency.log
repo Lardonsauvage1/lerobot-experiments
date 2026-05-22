@@ -1,0 +1,34 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[11823]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x120e5c3a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x162e783a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[11823]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x120e5c3f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x162e783f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Loading weights from local directory
+
+##### baseline 263.7M (263.7M, n_action_steps=8) #####
+  steps=10 : sample= 927.5 ms | pop= 0.6 ms | amorti/env-step= 116.4 ms
+  steps= 5 : sample= 487.8 ms | pop= 0.6 ms | amorti/env-step=  61.5 ms
+  steps= 4 : sample= 494.3 ms | pop= 0.6 ms | amorti/env-step=  62.3 ms
+  steps= 2 : sample= 193.3 ms | pop= 0.6 ms | amorti/env-step=  24.6 ms
+  steps= 1 : sample= 100.0 ms | pop= 0.6 ms | amorti/env-step=  13.0 ms
+Loading weights from local directory
+
+##### [64,128,256] 16.2M (16.2M, n_action_steps=8) #####
+  steps=10 : sample= 114.7 ms | pop= 0.4 ms | amorti/env-step=  14.7 ms
+  steps= 5 : sample=  62.3 ms | pop= 0.4 ms | amorti/env-step=   8.2 ms
+  steps= 4 : sample=  50.6 ms | pop= 0.4 ms | amorti/env-step=   6.7 ms
+  steps= 2 : sample=  29.7 ms | pop= 0.4 ms | amorti/env-step=   4.1 ms
+  steps= 1 : sample=  18.3 ms | pop= 0.4 ms | amorti/env-step=   2.7 ms
+Loading weights from local directory
+
+##### [32,64,128] 12.8M (12.8M, n_action_steps=8) #####
+  steps=10 : sample= 113.5 ms | pop= 0.5 ms | amorti/env-step=  14.6 ms
+  steps= 5 : sample=  60.8 ms | pop= 0.5 ms | amorti/env-step=   8.0 ms
+  steps= 4 : sample=  51.1 ms | pop= 0.5 ms | amorti/env-step=   6.8 ms
+  steps= 2 : sample=  29.7 ms | pop= 0.5 ms | amorti/env-step=   4.1 ms
+  steps= 1 : sample=  17.5 ms | pop= 0.5 ms | amorti/env-step=   2.6 ms
+
+JSON: results/runs/lift/51_unet_sweep_eval/latency.json
+Plot: results/runs/lift/51_unet_sweep_eval/latency.png
