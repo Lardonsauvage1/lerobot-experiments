@@ -87,7 +87,13 @@ def main():
             to_transition=policy_action_to_transition, to_output=transition_to_policy_action)
         return policy, pre, post
 
-    results = []
+    # incrémental : on repart des résultats déjà calculés (clé = nom du run)
+    ej = OUT / "sweep_eval.json"
+    by_run = {}
+    if ej.exists():
+        for r in json.loads(ej.read_text()).get("results", []):
+            by_run[r["run"]] = r
+
     for run_dir in args.run_dirs:
         run_dir = Path(run_dir)
         ckpt_root = run_dir / "checkpoints"
@@ -121,12 +127,14 @@ def main():
 
         rec = {"run": run_dir.name, "down_dims": down_dims, "params": params,
                "best_step": best_step, "val_loss": val_by_step[best_step], **agg}
-        results.append(rec)
+        by_run[run_dir.name] = rec
         print(f"  => {run_dir.name}: {params/1e6:.1f}M params | success={agg['success_rate']:.0%} "
               f"t_succ={agg['t_success_median']} max_z={agg['max_z_mean']:.3f} hold={agg['hold_fraction_mean']:.2f}", flush=True)
-        (OUT / "sweep_eval.json").write_text(json.dumps({"baseline": BASELINE, "results": results}, indent=2))
+        results = sorted(by_run.values(), key=lambda r: -r["params"])
+        ej.write_text(json.dumps({"baseline": BASELINE, "results": results}, indent=2))
 
     # Pareto
+    results = sorted(by_run.values(), key=lambda r: -r["params"])
     pts = [BASELINE] + results
     xs = [p["params"] / 1e6 for p in pts]
     labels = [p.get("label") or f"{p['down_dims']}" for p in pts]
@@ -134,10 +142,14 @@ def main():
     for ax, key, title in [(axes[0], "success_rate", "Success rate"),
                            (axes[1], "t_success_median", "t_success médian (↓ mieux)"),
                            (axes[2], "max_z_mean", "max_z (marge, ↑ mieux)")]:
-        ys = [(p[key] * 100 if key == "success_rate" else p[key]) for p in pts]
-        ax.plot(xs, ys, "o", markersize=10)
-        for x, y, lab in zip(xs, ys, labels):
-            ax.annotate(lab, (x, y), fontsize=7, xytext=(0, 6), textcoords="offset points", ha="center")
+        # filtre les None (ex. t_success quand 0% succès) pour ne pas casser le tracé
+        trip = [(p["params"] / 1e6, (p[key] * 100 if key == "success_rate" else p[key]), lab)
+                for p, lab in zip(pts, labels) if p.get(key) is not None]
+        if trip:
+            xs_, ys_, labs_ = zip(*trip)
+            ax.plot(xs_, ys_, "o", markersize=10)
+            for x, y, lab in zip(xs_, ys_, labs_):
+                ax.annotate(lab, (x, y), fontsize=7, xytext=(0, 6), textcoords="offset points", ha="center")
         ax.set_xscale("log"); ax.set_xlabel("Params (M, log)"); ax.set_title(title); ax.grid(True, alpha=0.3)
     axes[0].set_ylim(-5, 105)
     fig.suptitle("Sweep U-Net — Pareto taille vs perfs (50 val ep)", fontsize=13)

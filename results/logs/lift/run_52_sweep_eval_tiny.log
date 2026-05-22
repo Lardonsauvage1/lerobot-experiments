@@ -1,0 +1,243 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[53976]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1078a43a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x13c1683a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1078a43f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x13c1683f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['object', 'robot0_gripper_qpos', 'robot0_eef_pos', 'robot0_eef_quat']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+
+##### 51_unet_d16_32_64 — checkpoints [1500, 3000, 4500, 6000, 7500, 9000, 10500, 12000] #####
+Loading weights from local directory
+objc[53976]: Class SDLApplication is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811c890) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363c88). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDLAppDelegate is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811c8e0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363cd8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDLTranslatorResponder is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811c958) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363d50). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDLMessageBoxPresenter is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811c980) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363d78). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDL_cocoametalview is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811c9d0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363dc8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDLOpenGLContext is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811ca20) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363e18). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDL_ShapeData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811ca98) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363e90). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDL_CocoaClosure is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cae8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363ee0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDL_VideoData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cb38) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363f30). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDL_WindowData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cb88) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363f80). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDLWindow is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cbb0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363fa8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class Cocoa_WindowListener is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cbd8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df363fd0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDLView is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cc50) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df364048). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class METAL_RenderData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811ccc8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df3640c0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class METAL_TextureData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cd18) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df364110). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDL_RumbleMotor is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cd40) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df364138). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class SDL_RumbleContext is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11811cd90) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3df364188). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1078a43a8) and /opt/homebrew/Cellar/ffmpeg/7.1.1_2/lib/libavdevice.61.3.100.dylib (0x3ce1ec328). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[53976]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1078a43f8) and /opt/homebrew/Cellar/ffmpeg/7.1.1_2/lib/libavdevice.61.3.100.dylib (0x3ce1ec378). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+  step 1500: val_loss=0.5392
+Loading weights from local directory
+  step 3000: val_loss=0.3749
+Loading weights from local directory
+  step 4500: val_loss=0.2887
+Loading weights from local directory
+  step 6000: val_loss=0.2589
+Loading weights from local directory
+  step 7500: val_loss=0.2513
+Loading weights from local directory
+  step 9000: val_loss=0.2443
+Loading weights from local directory
+  step 10500: val_loss=0.2431
+Loading weights from local directory
+  step 12000: val_loss=0.2448
+  -> meilleur checkpoint (val min) : 10500 (val_loss=0.2431)
+Loading weights from local directory
+  ep  1/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  2/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  3/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  4/50 : ✗ t_succ=  - max_z=0.823 hold=0.00 | running=0%
+  ep  5/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep  6/50 : ✗ t_succ=  - max_z=0.823 hold=0.00 | running=0%
+  ep  7/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=0%
+  ep  8/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep  9/50 : ✓ t_succ= 65 max_z=0.905 hold=0.17 | running=11%
+  ep 10/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=10%
+  ep 11/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=9%
+  ep 12/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=8%
+  ep 13/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=8%
+  ep 14/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=7%
+  ep 15/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=7%
+  ep 16/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=6%
+  ep 17/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=6%
+  ep 18/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=6%
+  ep 19/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=5%
+  ep 20/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=5%
+  ep 21/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=5%
+  ep 22/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=5%
+  ep 23/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=4%
+  ep 24/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=4%
+  ep 25/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=4%
+  ep 26/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=4%
+  ep 27/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=4%
+  ep 28/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=4%
+  ep 29/50 : ✗ t_succ=  - max_z=0.823 hold=0.00 | running=3%
+  ep 30/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=3%
+  ep 31/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=3%
+  ep 32/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=3%
+  ep 33/50 : ✗ t_succ=  - max_z=0.826 hold=0.00 | running=3%
+  ep 34/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=3%
+  ep 35/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=3%
+  ep 36/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=3%
+  ep 37/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=3%
+  ep 38/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=3%
+  ep 39/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=3%
+  ep 40/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=2%
+  ep 41/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=2%
+  ep 42/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=2%
+  ep 43/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=2%
+  ep 44/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=2%
+  ep 45/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=2%
+  ep 46/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=2%
+  ep 47/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=2%
+  ep 48/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=2%
+  ep 49/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=2%
+  ep 50/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=2%
+  => 51_unet_d16_32_64: 11.8M params | success=2% t_succ=65.0 max_z=0.829 hold=0.17
+
+##### 51_unet_d8_16_32 — checkpoints [1500, 3000, 4500, 6000, 7500, 9000, 10500, 12000] #####
+Loading weights from local directory
+  step 1500: val_loss=0.8734
+Loading weights from local directory
+  step 3000: val_loss=0.7789
+Loading weights from local directory
+  step 4500: val_loss=0.7449
+Loading weights from local directory
+  step 6000: val_loss=0.7022
+Loading weights from local directory
+  step 7500: val_loss=0.6810
+Loading weights from local directory
+  step 9000: val_loss=0.6629
+Loading weights from local directory
+  step 10500: val_loss=0.6710
+Loading weights from local directory
+  step 12000: val_loss=0.6635
+  -> meilleur checkpoint (val min) : 9000 (val_loss=0.6629)
+Loading weights from local directory
+  ep  1/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  2/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  3/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  4/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  5/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  6/50 : ✗ t_succ=  - max_z=0.823 hold=0.00 | running=0%
+  ep  7/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=0%
+  ep  8/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=0%
+  ep  9/50 : ✗ t_succ=  - max_z=0.825 hold=0.00 | running=0%
+  ep 10/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 11/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 12/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 13/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 14/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep 15/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 16/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 17/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 18/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 19/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 20/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 21/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=0%
+  ep 22/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 23/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 24/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 25/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 26/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep 27/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep 28/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep 29/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep 30/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep 31/50 : ✗ t_succ=  - max_z=0.823 hold=0.00 | running=0%
+  ep 32/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=0%
+  ep 33/50 : ✗ t_succ=  - max_z=0.826 hold=0.00 | running=0%
+  ep 34/50 : ✗ t_succ=  - max_z=0.825 hold=0.00 | running=0%
+  ep 35/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 36/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep 37/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 38/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep 39/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 40/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep 41/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 42/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 43/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 44/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 45/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 46/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=0%
+  ep 47/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 48/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=0%
+  ep 49/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 50/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  => 51_unet_d8_16_32: 11.5M params | success=0% t_succ=None max_z=0.827 hold=0.00
+Traceback (most recent call last):
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/artist.py", line 1402, in _get_tightbbox_for_layout_only
+    return obj.get_tightbbox(*args, **{**kwargs, "for_layout_only": True})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/axes/_base.py", line 4587, in get_tightbbox
+    bbox = a.get_tightbbox(renderer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/text.py", line 2030, in get_tightbbox
+    if not self._check_xy(renderer):
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/text.py", line 1590, in _check_xy
+    xy_pixel = self._get_position_xy(renderer)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/text.py", line 1581, in _get_position_xy
+    return self._get_xy(renderer, self.xy, self.xycoords)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/text.py", line 1477, in _get_xy
+    y = float(self.convert_yunits(y))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: float() argument must be a string or a real number, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/52_sweep_eval.py", line 158, in <module>
+    main()
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/lift/52_sweep_eval.py", line 152, in main
+    fig.tight_layout()
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/figure.py", line 3640, in tight_layout
+    engine.execute(self)
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/layout_engine.py", line 188, in execute
+    kwargs = get_tight_layout_figure(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/_tight_layout.py", line 266, in get_tight_layout_figure
+    kwargs = _auto_adjust_subplotpars(fig, renderer,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/_tight_layout.py", line 82, in _auto_adjust_subplotpars
+    bb += [martist._get_tightbbox_for_layout_only(ax, renderer)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/artist.py", line 1404, in _get_tightbbox_for_layout_only
+    return obj.get_tightbbox(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/axes/_base.py", line 4587, in get_tightbbox
+    bbox = a.get_tightbbox(renderer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/text.py", line 2030, in get_tightbbox
+    if not self._check_xy(renderer):
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/text.py", line 1590, in _check_xy
+    xy_pixel = self._get_position_xy(renderer)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/text.py", line 1581, in _get_position_xy
+    return self._get_xy(renderer, self.xy, self.xycoords)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/matplotlib/text.py", line 1477, in _get_xy
+    y = float(self.convert_yunits(y))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: float() argument must be a string or a real number, not 'NoneType'
