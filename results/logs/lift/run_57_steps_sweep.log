@@ -1,0 +1,293 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[15568]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1030503a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1149183a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[15568]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1030503f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1149183f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['object', 'robot0_gripper_qpos', 'robot0_eef_pos', 'robot0_eef_quat']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+Loading weights from local directory
+
+##### num_inference_steps = 10 #####
+  ep  1/50 : ✓ t_succ= 47 max_z=0.992 hold=0.25 | running=100%
+  ep  2/50 : ✓ t_succ= 45 max_z=0.996 hold=0.18 | running=100%
+  ep  3/50 : ✓ t_succ= 43 max_z=0.993 hold=0.27 | running=100%
+  ep  4/50 : ✓ t_succ= 44 max_z=0.960 hold=0.24 | running=100%
+  ep  5/50 : ✓ t_succ= 41 max_z=0.951 hold=0.20 | running=100%
+  ep  6/50 : ✓ t_succ= 42 max_z=0.972 hold=0.19 | running=100%
+  ep  7/50 : ✓ t_succ= 45 max_z=1.019 hold=0.28 | running=100%
+  ep  8/50 : ✓ t_succ= 56 max_z=0.989 hold=0.24 | running=100%
+  ep  9/50 : ✓ t_succ= 38 max_z=0.957 hold=0.17 | running=100%
+  ep 10/50 : ✓ t_succ= 50 max_z=0.963 hold=0.39 | running=100%
+  ep 11/50 : ✓ t_succ= 42 max_z=1.002 hold=0.22 | running=100%
+  ep 12/50 : ✓ t_succ= 47 max_z=0.970 hold=0.32 | running=100%
+  ep 13/50 : ✓ t_succ= 43 max_z=0.933 hold=0.27 | running=100%
+  ep 14/50 : ✓ t_succ= 50 max_z=0.960 hold=0.35 | running=100%
+  ep 15/50 : ✓ t_succ= 44 max_z=0.957 hold=0.18 | running=100%
+  ep 16/50 : ✓ t_succ= 43 max_z=1.004 hold=0.20 | running=100%
+  ep 17/50 : ✓ t_succ= 49 max_z=0.944 hold=0.26 | running=100%
+  ep 18/50 : ✓ t_succ= 39 max_z=1.001 hold=0.45 | running=100%
+  ep 19/50 : ✓ t_succ= 41 max_z=0.982 hold=0.34 | running=100%
+  ep 20/50 : ✓ t_succ= 38 max_z=0.982 hold=0.30 | running=100%
+  ep 21/50 : ✓ t_succ= 44 max_z=0.980 hold=0.18 | running=100%
+  ep 22/50 : ✓ t_succ= 50 max_z=1.013 hold=0.25 | running=100%
+  ep 23/50 : ✓ t_succ= 41 max_z=1.033 hold=0.26 | running=100%
+  ep 24/50 : ✓ t_succ= 43 max_z=1.026 hold=0.33 | running=100%
+  ep 25/50 : ✓ t_succ= 48 max_z=0.984 hold=0.40 | running=100%
+  ep 26/50 : ✓ t_succ= 50 max_z=0.995 hold=0.24 | running=100%
+  ep 27/50 : ✓ t_succ= 44 max_z=1.037 hold=0.56 | running=100%
+  ep 28/50 : ✓ t_succ= 48 max_z=0.979 hold=0.36 | running=100%
+  ep 29/50 : ✓ t_succ= 43 max_z=0.990 hold=0.32 | running=100%
+  ep 30/50 : ✓ t_succ= 46 max_z=1.039 hold=0.50 | running=100%
+  ep 31/50 : ✓ t_succ= 40 max_z=1.034 hold=0.36 | running=100%
+  ep 32/50 : ✓ t_succ= 39 max_z=1.010 hold=0.41 | running=100%
+  ep 33/50 : ✓ t_succ= 38 max_z=0.981 hold=0.51 | running=100%
+  ep 34/50 : ✓ t_succ= 44 max_z=0.970 hold=0.37 | running=100%
+  ep 35/50 : ✓ t_succ= 40 max_z=0.961 hold=0.23 | running=100%
+  ep 36/50 : ✓ t_succ= 45 max_z=0.979 hold=0.46 | running=100%
+  ep 37/50 : ✓ t_succ= 45 max_z=1.011 hold=0.27 | running=100%
+  ep 38/50 : ✓ t_succ= 42 max_z=1.023 hold=0.20 | running=100%
+  ep 39/50 : ✓ t_succ= 39 max_z=0.997 hold=0.26 | running=100%
+  ep 40/50 : ✓ t_succ= 46 max_z=0.979 hold=0.41 | running=100%
+  ep 41/50 : ✓ t_succ= 42 max_z=0.998 hold=0.23 | running=100%
+  ep 42/50 : ✓ t_succ= 42 max_z=0.982 hold=0.20 | running=100%
+  ep 43/50 : ✓ t_succ= 56 max_z=0.956 hold=0.17 | running=100%
+  ep 44/50 : ✓ t_succ= 37 max_z=1.004 hold=0.24 | running=100%
+  ep 45/50 : ✓ t_succ= 43 max_z=0.969 hold=0.26 | running=100%
+  ep 46/50 : ✓ t_succ= 46 max_z=0.986 hold=0.23 | running=100%
+  ep 47/50 : ✓ t_succ= 47 max_z=0.910 hold=0.16 | running=100%
+  ep 48/50 : ✓ t_succ= 43 max_z=0.968 hold=0.24 | running=100%
+  ep 49/50 : ✓ t_succ= 44 max_z=1.022 hold=0.42 | running=100%
+  ep 50/50 : ✓ t_succ= 52 max_z=0.998 hold=0.26 | running=100%
+  => steps=10: success=100% t_succ=44.0 max_z=0.987
+
+##### num_inference_steps = 5 #####
+  ep  1/50 : ✓ t_succ=110 max_z=0.972 hold=0.52 | running=100%
+  ep  2/50 : ✓ t_succ= 44 max_z=0.921 hold=0.13 | running=100%
+  ep  3/50 : ✓ t_succ= 43 max_z=0.995 hold=0.50 | running=100%
+  ep  4/50 : ✓ t_succ= 38 max_z=0.995 hold=0.33 | running=100%
+  ep  5/50 : ✓ t_succ= 45 max_z=1.001 hold=0.23 | running=100%
+  ep  6/50 : ✓ t_succ= 57 max_z=0.991 hold=0.22 | running=100%
+  ep  7/50 : ✓ t_succ= 44 max_z=0.970 hold=0.28 | running=100%
+  ep  8/50 : ✓ t_succ= 70 max_z=0.937 hold=0.48 | running=100%
+  ep  9/50 : ✓ t_succ= 38 max_z=0.961 hold=0.36 | running=100%
+  ep 10/50 : ✓ t_succ= 44 max_z=0.998 hold=0.29 | running=100%
+  ep 11/50 : ✓ t_succ= 47 max_z=1.008 hold=0.30 | running=100%
+  ep 12/50 : ✓ t_succ= 49 max_z=1.011 hold=0.37 | running=100%
+  ep 13/50 : ✓ t_succ= 46 max_z=0.964 hold=0.68 | running=100%
+  ep 14/50 : ✓ t_succ= 58 max_z=1.011 hold=0.24 | running=100%
+  ep 15/50 : ✓ t_succ= 46 max_z=0.969 hold=0.22 | running=100%
+  ep 16/50 : ✓ t_succ= 46 max_z=1.049 hold=0.40 | running=100%
+  ep 17/50 : ✓ t_succ= 58 max_z=1.005 hold=0.22 | running=100%
+  ep 18/50 : ✓ t_succ= 45 max_z=1.022 hold=0.62 | running=100%
+  ep 19/50 : ✓ t_succ= 50 max_z=1.018 hold=0.22 | running=100%
+  ep 20/50 : ✓ t_succ= 51 max_z=0.993 hold=0.24 | running=100%
+  ep 21/50 : ✓ t_succ= 49 max_z=1.011 hold=0.40 | running=100%
+  ep 22/50 : ✓ t_succ= 44 max_z=0.970 hold=0.32 | running=100%
+  ep 23/50 : ✓ t_succ= 44 max_z=0.980 hold=0.31 | running=100%
+  ep 24/50 : ✓ t_succ= 40 max_z=0.986 hold=0.23 | running=100%
+  ep 25/50 : ✓ t_succ= 40 max_z=1.013 hold=0.37 | running=100%
+  ep 26/50 : ✓ t_succ= 46 max_z=0.971 hold=0.27 | running=100%
+  ep 27/50 : ✓ t_succ= 43 max_z=0.974 hold=0.18 | running=100%
+  ep 28/50 : ✓ t_succ= 43 max_z=0.977 hold=0.41 | running=100%
+  ep 29/50 : ✓ t_succ= 48 max_z=0.933 hold=0.20 | running=100%
+  ep 30/50 : ✓ t_succ= 48 max_z=1.031 hold=0.35 | running=100%
+  ep 31/50 : ✓ t_succ= 35 max_z=0.980 hold=0.35 | running=100%
+  ep 32/50 : ✓ t_succ= 52 max_z=0.954 hold=0.31 | running=100%
+  ep 33/50 : ✓ t_succ= 44 max_z=0.974 hold=0.34 | running=100%
+  ep 34/50 : ✓ t_succ= 42 max_z=0.971 hold=0.24 | running=100%
+  ep 35/50 : ✓ t_succ= 44 max_z=1.006 hold=0.57 | running=100%
+  ep 36/50 : ✓ t_succ= 43 max_z=0.944 hold=0.19 | running=100%
+  ep 37/50 : ✓ t_succ= 45 max_z=1.027 hold=0.48 | running=100%
+  ep 38/50 : ✓ t_succ= 45 max_z=1.013 hold=0.23 | running=100%
+  ep 39/50 : ✓ t_succ= 45 max_z=0.969 hold=0.28 | running=100%
+  ep 40/50 : ✓ t_succ= 52 max_z=0.921 hold=0.13 | running=100%
+  ep 41/50 : ✓ t_succ= 40 max_z=1.009 hold=0.34 | running=100%
+  ep 42/50 : ✓ t_succ= 41 max_z=0.951 hold=0.25 | running=100%
+  ep 43/50 : ✓ t_succ= 62 max_z=0.999 hold=0.20 | running=100%
+  ep 44/50 : ✓ t_succ= 39 max_z=1.002 hold=0.24 | running=100%
+  ep 45/50 : ✓ t_succ= 42 max_z=1.012 hold=0.27 | running=100%
+  ep 46/50 : ✓ t_succ= 38 max_z=0.987 hold=0.37 | running=100%
+  ep 47/50 : ✓ t_succ= 55 max_z=0.998 hold=0.34 | running=100%
+  ep 48/50 : ✓ t_succ= 33 max_z=0.979 hold=0.41 | running=100%
+  ep 49/50 : ✓ t_succ= 37 max_z=0.990 hold=0.26 | running=100%
+  ep 50/50 : ✓ t_succ= 37 max_z=0.995 hold=0.46 | running=100%
+  => steps=5: success=100% t_succ=44.5 max_z=0.986
+
+##### num_inference_steps = 4 #####
+  ep  1/50 : ✓ t_succ= 39 max_z=0.957 hold=0.38 | running=100%
+  ep  2/50 : ✓ t_succ= 44 max_z=1.008 hold=0.28 | running=100%
+  ep  3/50 : ✓ t_succ= 38 max_z=0.991 hold=0.65 | running=100%
+  ep  4/50 : ✓ t_succ= 44 max_z=0.998 hold=0.23 | running=100%
+  ep  5/50 : ✓ t_succ= 42 max_z=0.944 hold=0.26 | running=100%
+  ep  6/50 : ✓ t_succ= 37 max_z=0.976 hold=0.59 | running=100%
+  ep  7/50 : ✓ t_succ= 62 max_z=0.974 hold=0.54 | running=100%
+  ep  8/50 : ✓ t_succ= 96 max_z=0.967 hold=0.56 | running=100%
+  ep  9/50 : ✓ t_succ= 36 max_z=0.969 hold=0.20 | running=100%
+  ep 10/50 : ✓ t_succ= 43 max_z=0.948 hold=0.36 | running=100%
+  ep 11/50 : ✓ t_succ= 51 max_z=0.964 hold=0.23 | running=100%
+  ep 12/50 : ✓ t_succ= 40 max_z=0.960 hold=0.28 | running=100%
+  ep 13/50 : ✓ t_succ= 56 max_z=0.978 hold=0.28 | running=100%
+  ep 14/50 : ✓ t_succ= 46 max_z=0.980 hold=0.31 | running=100%
+  ep 15/50 : ✓ t_succ= 43 max_z=0.965 hold=0.22 | running=100%
+  ep 16/50 : ✓ t_succ= 50 max_z=0.969 hold=0.37 | running=100%
+  ep 17/50 : ✓ t_succ= 40 max_z=1.032 hold=0.28 | running=100%
+  ep 18/50 : ✓ t_succ= 39 max_z=1.014 hold=0.48 | running=100%
+  ep 19/50 : ✓ t_succ= 46 max_z=0.965 hold=0.25 | running=100%
+  ep 20/50 : ✓ t_succ= 52 max_z=0.971 hold=0.21 | running=100%
+  ep 21/50 : ✓ t_succ= 45 max_z=0.971 hold=0.17 | running=100%
+  ep 22/50 : ✓ t_succ= 49 max_z=0.968 hold=0.28 | running=100%
+  ep 23/50 : ✓ t_succ= 50 max_z=1.018 hold=0.41 | running=100%
+  ep 24/50 : ✓ t_succ= 42 max_z=0.999 hold=0.42 | running=100%
+  ep 25/50 : ✓ t_succ= 52 max_z=1.028 hold=0.51 | running=100%
+  ep 26/50 : ✓ t_succ= 43 max_z=1.008 hold=0.33 | running=100%
+  ep 27/50 : ✓ t_succ= 48 max_z=0.964 hold=0.25 | running=100%
+  ep 28/50 : ✓ t_succ= 39 max_z=0.979 hold=0.37 | running=100%
+  ep 29/50 : ✓ t_succ= 46 max_z=0.944 hold=0.21 | running=100%
+  ep 30/50 : ✓ t_succ= 40 max_z=1.022 hold=0.29 | running=100%
+  ep 31/50 : ✓ t_succ= 45 max_z=0.993 hold=0.48 | running=100%
+  ep 32/50 : ✓ t_succ= 49 max_z=0.951 hold=0.28 | running=100%
+  ep 33/50 : ✓ t_succ= 38 max_z=0.982 hold=0.56 | running=100%
+  ep 34/50 : ✓ t_succ= 58 max_z=0.984 hold=0.22 | running=100%
+  ep 35/50 : ✓ t_succ= 44 max_z=1.019 hold=0.21 | running=100%
+  ep 36/50 : ✓ t_succ= 53 max_z=0.988 hold=0.46 | running=100%
+  ep 37/50 : ✓ t_succ= 52 max_z=0.971 hold=0.18 | running=100%
+  ep 38/50 : ✓ t_succ= 53 max_z=1.023 hold=0.27 | running=100%
+  ep 39/50 : ✓ t_succ= 38 max_z=1.001 hold=0.24 | running=100%
+  ep 40/50 : ✓ t_succ= 39 max_z=1.012 hold=0.46 | running=100%
+  ep 41/50 : ✓ t_succ= 44 max_z=0.981 hold=0.46 | running=100%
+  ep 42/50 : ✓ t_succ= 40 max_z=1.051 hold=0.55 | running=100%
+  ep 43/50 : ✓ t_succ= 53 max_z=1.001 hold=0.38 | running=100%
+  ep 44/50 : ✓ t_succ= 38 max_z=0.984 hold=0.46 | running=100%
+  ep 45/50 : ✓ t_succ= 43 max_z=1.034 hold=0.33 | running=100%
+  ep 46/50 : ✓ t_succ= 44 max_z=0.974 hold=0.37 | running=100%
+  ep 47/50 : ✓ t_succ= 52 max_z=0.994 hold=0.51 | running=100%
+  ep 48/50 : ✓ t_succ= 40 max_z=0.972 hold=0.21 | running=100%
+  ep 49/50 : ✓ t_succ= 54 max_z=0.968 hold=0.23 | running=100%
+  ep 50/50 : ✓ t_succ= 50 max_z=0.990 hold=0.48 | running=100%
+  => steps=4: success=100% t_succ=44.0 max_z=0.986
+
+##### num_inference_steps = 2 #####
+  ep  1/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep  2/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep  3/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep  4/50 : ✓ t_succ= 54 max_z=1.074 hold=0.37 | running=25%
+  ep  5/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=20%
+  ep  6/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=17%
+  ep  7/50 : ✓ t_succ= 39 max_z=1.150 hold=0.58 | running=29%
+  ep  8/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=25%
+  ep  9/50 : ✗ t_succ=  - max_z=0.825 hold=0.00 | running=22%
+  ep 10/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=20%
+  ep 11/50 : ✓ t_succ= 55 max_z=1.079 hold=0.77 | running=27%
+  ep 12/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=25%
+  ep 13/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=23%
+  ep 14/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=21%
+  ep 15/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=20%
+  ep 16/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=19%
+  ep 17/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=18%
+  ep 18/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=17%
+  ep 19/50 : ✓ t_succ= 59 max_z=1.015 hold=0.27 | running=21%
+  ep 20/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=20%
+  ep 21/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=19%
+  ep 22/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=18%
+  ep 23/50 : ✓ t_succ= 80 max_z=0.999 hold=0.45 | running=22%
+  ep 24/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=21%
+  ep 25/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=20%
+  ep 26/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=19%
+  ep 27/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=19%
+  ep 28/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=18%
+  ep 29/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=17%
+  ep 30/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=17%
+  ep 31/50 : ✓ t_succ= 51 max_z=1.149 hold=0.46 | running=19%
+  ep 32/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=19%
+  ep 33/50 : ✗ t_succ=  - max_z=0.826 hold=0.00 | running=18%
+  ep 34/50 : ✗ t_succ=  - max_z=0.825 hold=0.00 | running=18%
+  ep 35/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=17%
+  ep 36/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=17%
+  ep 37/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=16%
+  ep 38/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=16%
+  ep 39/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=15%
+  ep 40/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=15%
+  ep 41/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=15%
+  ep 42/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=14%
+  ep 43/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=14%
+  ep 44/50 : ✗ t_succ=  - max_z=0.833 hold=0.00 | running=14%
+  ep 45/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=13%
+  ep 46/50 : ✓ t_succ= 74 max_z=1.044 hold=0.50 | running=15%
+  ep 47/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=15%
+  ep 48/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=15%
+  ep 49/50 : ✓ t_succ= 84 max_z=1.022 hold=0.36 | running=16%
+  ep 50/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=16%
+  => steps=2: success=16% t_succ=57.0 max_z=0.866
+
+##### num_inference_steps = 1 #####
+  ep  1/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep  2/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep  3/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep  4/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep  5/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep  6/50 : ✗ t_succ=  - max_z=0.823 hold=0.00 | running=0%
+  ep  7/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=0%
+  ep  8/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=0%
+  ep  9/50 : ✗ t_succ=  - max_z=0.825 hold=0.00 | running=0%
+  ep 10/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 11/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 12/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 13/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 14/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep 15/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 16/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 17/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 18/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 19/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 20/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 21/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=0%
+  ep 22/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 23/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 24/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 25/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 26/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep 27/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep 28/50 : ✗ t_succ=  - max_z=0.821 hold=0.00 | running=0%
+  ep 29/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep 30/50 : ✗ t_succ=  - max_z=0.822 hold=0.00 | running=0%
+  ep 31/50 : ✗ t_succ=  - max_z=0.823 hold=0.00 | running=0%
+  ep 32/50 : ✗ t_succ=  - max_z=0.824 hold=0.00 | running=0%
+  ep 33/50 : ✗ t_succ=  - max_z=0.826 hold=0.00 | running=0%
+  ep 34/50 : ✗ t_succ=  - max_z=0.825 hold=0.00 | running=0%
+  ep 35/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 36/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep 37/50 : ✗ t_succ=  - max_z=0.827 hold=0.00 | running=0%
+  ep 38/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep 39/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 40/50 : ✗ t_succ=  - max_z=0.828 hold=0.00 | running=0%
+  ep 41/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 42/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 43/50 : ✗ t_succ=  - max_z=0.829 hold=0.00 | running=0%
+  ep 44/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 45/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  ep 46/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=0%
+  ep 47/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 48/50 : ✗ t_succ=  - max_z=0.832 hold=0.00 | running=0%
+  ep 49/50 : ✗ t_succ=  - max_z=0.831 hold=0.00 | running=0%
+  ep 50/50 : ✗ t_succ=  - max_z=0.830 hold=0.00 | running=0%
+  => steps=1: success=0% t_succ=None max_z=0.827
+
+JSON: results/runs/lift/51_unet_sweep_eval/inference_steps.json
+Plot: results/runs/lift/51_unet_sweep_eval/inference_steps.png

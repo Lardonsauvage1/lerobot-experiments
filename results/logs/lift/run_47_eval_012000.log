@@ -1,0 +1,35 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+Split: train 150 / val 50 (contiguous)
+Éval sur 20 épisodes du set 'val' | inference_steps=10
+
+objc[16859]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1048f03a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x13dc303a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[16859]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1048f03f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x13dc303f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['object', 'robot0_gripper_qpos', 'robot0_eef_pos', 'robot0_eef_quat']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+Chargement: results/runs/lift/47_baseline_150/checkpoints/012000/pretrained_model
+Loading weights from local directory
+  ep  1/20 : ✓ t_succ= 36 max_z=1.059 hold=0.44 | running=100%
+  ep  2/20 : ✓ t_succ= 51 max_z=1.041 hold=0.20 | running=100%
+  ep  3/20 : ✓ t_succ= 44 max_z=1.010 hold=0.28 | running=100%
+  ep  4/20 : ✓ t_succ= 43 max_z=1.044 hold=0.40 | running=100%
+  ep  5/20 : ✓ t_succ= 43 max_z=0.975 hold=0.96 | running=100%
+  ep  6/20 : ✓ t_succ= 45 max_z=0.973 hold=0.28 | running=100%

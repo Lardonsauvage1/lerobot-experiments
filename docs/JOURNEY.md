@@ -1,5 +1,7 @@
-# Journal de bord — série 29 à 32
+# Phase 2 (PushT) — enquête « loss vs performance » (runs 29 à 32)
 
+> 📍 **Où on en est** : ceci est le **chapitre PushT** du projet. Il couvre l'enquête sur la formulation de la sortie (runs 29-32). La suite : [`LIFT.md`](LIFT.md) (passage à Robomimic Lift, Diffusion Policy 100 %) puis [`COMPRESSION.md`](COMPRESSION.md) (compression). Index : [`README.md`](README.md).
+>
 > Récit narratif d'une enquête : pourquoi la loss ne reflète-t-elle pas la performance en simulation, et comment y remédier sans changer d'algorithme entier ?
 >
 > Cette série de 4 runs explore systématiquement la **formulation de la sortie** d'un modèle d'imitation, à input constant (image seule, mêmes features ResNet18 gelées, même Transformer 2L). Seule la dernière couche + la fonction de loss changent.

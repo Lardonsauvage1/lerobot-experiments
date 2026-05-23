@@ -1,0 +1,50 @@
+{
+  "n": 50,
+  "cells": [
+    {
+      "size": "[512,1024,2048]",
+      "params": 263701799,
+      "steps": 10,
+      "latency_ms": 937.9694790113717,
+      "success_rate": 1.0,
+      "t_success_median": 40.5,
+      "max_z_mean": 1.0266294538978453
+    },
+    {
+      "size": "[512,1024,2048]",
+      "params": 263701799,
+      "steps": 5,
+      "latency_ms": 456.7911250051111,
+      "success_rate": 1.0,
+      "t_success_median": 43.0,
+      "max_z_mean": 1.018098164226926
+    },
+    {
+      "size": "[512,1024,2048]",
+      "params": 263701799,
+      "steps": 4,
+      "latency_ms": 396.4541460154578,
+      "success_rate": 1.0,
+      "t_success_median": 43.5,
+      "max_z_mean": 1.0141397616955539
+    },
+    {
+      "size": "[512,1024,2048]",
+      "params": 263701799,
+      "steps": 2,
+      "latency_ms": 198.56856239493936,
+      "success_rate": 0.56,
+      "t_success_median": 50.0,
+      "max_z_mean": 0.9378992140743059
+    },
+    {
+      "size": "[512,1024,2048]",
+      "params": 263701799,
+      "steps": 1,
+      "latency_ms": 102.55458299070597,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    }
+  ]
+}
