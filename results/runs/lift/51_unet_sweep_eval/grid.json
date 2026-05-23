@@ -45,6 +45,276 @@
       "success_rate": 0.0,
       "t_success_median": null,
       "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[256,512,1024]",
+      "params": 76566823,
+      "steps": 10,
+      "latency_ms": 297.2068749368191,
+      "success_rate": 1.0,
+      "t_success_median": 45.0,
+      "max_z_mean": 0.9964786888556234
+    },
+    {
+      "size": "[256,512,1024]",
+      "params": 76566823,
+      "steps": 5,
+      "latency_ms": 144.9231249280274,
+      "success_rate": 0.98,
+      "t_success_median": 44.0,
+      "max_z_mean": 0.9822689554561331
+    },
+    {
+      "size": "[256,512,1024]",
+      "params": 76566823,
+      "steps": 4,
+      "latency_ms": 109.07835396938026,
+      "success_rate": 1.0,
+      "t_success_median": 44.5,
+      "max_z_mean": 0.9940958456038325
+    },
+    {
+      "size": "[256,512,1024]",
+      "params": 76566823,
+      "steps": 2,
+      "latency_ms": 66.53170846402645,
+      "success_rate": 0.68,
+      "t_success_median": 52.5,
+      "max_z_mean": 0.9781749230621725
+    },
+    {
+      "size": "[256,512,1024]",
+      "params": 76566823,
+      "steps": 1,
+      "latency_ms": 28.12037488911301,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[128,256,512]",
+      "params": 28710695,
+      "steps": 10,
+      "latency_ms": 113.98931255098432,
+      "success_rate": 0.98,
+      "t_success_median": 46.0,
+      "max_z_mean": 0.9400017699220156
+    },
+    {
+      "size": "[128,256,512]",
+      "params": 28710695,
+      "steps": 5,
+      "latency_ms": 60.1272500352934,
+      "success_rate": 1.0,
+      "t_success_median": 46.0,
+      "max_z_mean": 0.9425182507578677
+    },
+    {
+      "size": "[128,256,512]",
+      "params": 28710695,
+      "steps": 4,
+      "latency_ms": 51.08937493059784,
+      "success_rate": 1.0,
+      "t_success_median": 46.5,
+      "max_z_mean": 0.9383143561616026
+    },
+    {
+      "size": "[128,256,512]",
+      "params": 28710695,
+      "steps": 2,
+      "latency_ms": 29.26497906446457,
+      "success_rate": 0.76,
+      "t_success_median": 57.5,
+      "max_z_mean": 0.9291777819507042
+    },
+    {
+      "size": "[128,256,512]",
+      "params": 28710695,
+      "steps": 1,
+      "latency_ms": 18.03708355873823,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[64,128,256]",
+      "params": 16210471,
+      "steps": 10,
+      "latency_ms": 111.4515420049429,
+      "success_rate": 1.0,
+      "t_success_median": 47.0,
+      "max_z_mean": 0.9676977374943935
+    },
+    {
+      "size": "[64,128,256]",
+      "params": 16210471,
+      "steps": 5,
+      "latency_ms": 58.13585396390408,
+      "success_rate": 1.0,
+      "t_success_median": 46.0,
+      "max_z_mean": 0.959541885118172
+    },
+    {
+      "size": "[64,128,256]",
+      "params": 16210471,
+      "steps": 4,
+      "latency_ms": 48.458854435011744,
+      "success_rate": 1.0,
+      "t_success_median": 48.0,
+      "max_z_mean": 0.9661853938546234
+    },
+    {
+      "size": "[64,128,256]",
+      "params": 16210471,
+      "steps": 2,
+      "latency_ms": 29.430021066218615,
+      "success_rate": 0.6,
+      "t_success_median": 66.5,
+      "max_z_mean": 0.9100115661137845
+    },
+    {
+      "size": "[64,128,256]",
+      "params": 16210471,
+      "steps": 1,
+      "latency_ms": 17.457687994465232,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[32,64,128]",
+      "params": 12817319,
+      "steps": 10,
+      "latency_ms": 109.62187487166375,
+      "success_rate": 1.0,
+      "t_success_median": 44.5,
+      "max_z_mean": 0.9854908374904079
+    },
+    {
+      "size": "[32,64,128]",
+      "params": 12817319,
+      "steps": 5,
+      "latency_ms": 57.52531299367547,
+      "success_rate": 1.0,
+      "t_success_median": 44.0,
+      "max_z_mean": 0.9837258058331868
+    },
+    {
+      "size": "[32,64,128]",
+      "params": 12817319,
+      "steps": 4,
+      "latency_ms": 48.599103931337595,
+      "success_rate": 1.0,
+      "t_success_median": 44.0,
+      "max_z_mean": 0.9835093123597295
+    },
+    {
+      "size": "[32,64,128]",
+      "params": 12817319,
+      "steps": 2,
+      "latency_ms": 28.0608965549618,
+      "success_rate": 0.12,
+      "t_success_median": 58.5,
+      "max_z_mean": 0.8488889861759107
+    },
+    {
+      "size": "[32,64,128]",
+      "params": 12817319,
+      "steps": 1,
+      "latency_ms": 17.29662495199591,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[16,32,64]",
+      "params": 11834983,
+      "steps": 10,
+      "latency_ms": 108.4751250455156,
+      "success_rate": 0.02,
+      "t_success_median": 87.0,
+      "max_z_mean": 0.830185053877054
+    },
+    {
+      "size": "[16,32,64]",
+      "params": 11834983,
+      "steps": 5,
+      "latency_ms": 56.805374450050294,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8274122018675588
+    },
+    {
+      "size": "[16,32,64]",
+      "params": 11834983,
+      "steps": 4,
+      "latency_ms": 47.63297957833856,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8270145426233746
+    },
+    {
+      "size": "[16,32,64]",
+      "params": 11834983,
+      "steps": 2,
+      "latency_ms": 27.881458518095315,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[16,32,64]",
+      "params": 11834983,
+      "steps": 1,
+      "latency_ms": 17.274750513024628,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[8,16,32]",
+      "params": 11522375,
+      "steps": 10,
+      "latency_ms": 108.74000017065555,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[8,16,32]",
+      "params": 11522375,
+      "steps": 5,
+      "latency_ms": 57.04587500076741,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[8,16,32]",
+      "params": 11522375,
+      "steps": 4,
+      "latency_ms": 48.12337551265955,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[8,16,32]",
+      "params": 11522375,
+      "steps": 2,
+      "latency_ms": 27.997729484923184,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
+    },
+    {
+      "size": "[8,16,32]",
+      "params": 11522375,
+      "steps": 1,
+      "latency_ms": 17.294978955760598,
+      "success_rate": 0.0,
+      "t_success_median": null,
+      "max_z_mean": 0.8269262083101213
     }
   ]
 }

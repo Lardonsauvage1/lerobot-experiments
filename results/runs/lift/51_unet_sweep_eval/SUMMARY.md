@@ -1,59 +1,75 @@
-# Sweep U-Net — résultats (Phase 4, compression pour la latence)
+# Compression du Diffusion Policy sur Lift — résultats (Phase 4)
 
-Tâche : Robomimic **Lift**. Protocole Phase 0 : train 150 / val 50 (split contigu figé), éval rollout
-sur les **50 init states val held-out**. Chaque modèle entraîné 7500 steps avec `50_train_valloss.py`
-(val-loss continue) ; **meilleur checkpoint = minimum de val-loss** (set val complet), puis rollout 50 ép.
+Tâche : Robomimic **Lift**. Protocole : train 150 / val 50 (split contigu figé), éval rollout sur les **50 init states val held-out**, métriques continues (succès, temps-au-succès, marge). Modèles entraînés avec `50_train_valloss.py` (val-loss continue), meilleur checkpoint = min de val-loss.
 
-## Tableau comparatif
+## ⭐ Point de fonctionnement final
 
-| Modèle (`down_dims`) | Params | U-Net | Checkpoint | Succès | t_success | max_z | val_loss |
+> **`[32,64,128]` (12.8 M params) à 4 pas de diffusion → 100 % de succès, ~49 ms/décision.**
+>
+> vs baseline `[512,1024,2048]` (263.7 M) à 10 pas = **938 ms**. → **÷21 en params, ÷19 en latence, performance identique** (au niveau du plafond expert). En temps réel : latence amortie ~6 ms/step d'env (budget 20 Hz = 50 ms) → confortable. `[64,128,256]` (16.2 M) est équivalent en latence et garde un peu plus de marge si on veut être prudent.
+
+## Grille latence × succès (le tableau maître)
+
+Cases = **latence d'un sample (ms) · succès (50 val ép.)**. Lignes = pas de diffusion, colonnes = taille U-Net.
+
+| pas \ U-Net | 264M | 77M | 29M | 16M | **13M** ⭐ | 12M `[16,32,64]` | 12M `[8,16,32]` |
 |---|---|---|---|---|---|---|---|
-| **Baseline** `[512,1024,2048]` | **263.7 M** | 252 M | 6000 | **100 %** | 43.0 | 1.033 | — |
-| `[256,512,1024]` | 76.6 M | 65 M | 4500 | 98 % | 44.0 | 0.999 | 0.067 |
-| `[128,256,512]` | 28.7 M | 17 M | 4500 | 98 % | 48.0 | 0.951 | 0.070 |
-| `[64,128,256]` | 16.2 M | 5 M | 6000 | **100 %** | 47.0 | 0.969 | 0.072 |
-| **`[32,64,128]`** ⭐ | **12.8 M** | **1.6 M** | 7500 | **100 %** | 46.5 | 0.990 | 0.083 |
-| `[16,32,64]` | 11.8 M | 0.4 M | 10500 | **2 %** 💥 | 65.0 | 0.829 | 0.243 |
-| `[8,16,32]` | 11.5 M | 0.3 M | 9000 | **0 %** 💥 | — | 0.827 | 0.663 |
+| **10** | 938 · 100% | 297 · 100% | 114 · 98% | 111 · 100% | 110 · 100% | 108 · 2% | 109 · 0% |
+| **5** | 457 · 100% | 145 · 98% | 60 · 100% | 58 · 100% | 58 · 100% | 57 · 0% | 57 · 0% |
+| **4** | 396 · 100% | 109 · 100% | 51 · 100% | 48 · 100% | **49 · 100%** | 48 · 0% | 48 · 0% |
+| **2** | 199 · 56% | 67 · 68% | 29 · 76% | 29 · 60% | 28 · 12% | 28 · 0% | 28 · 0% |
+| **1** | 103 · 0% | 28 · 0% | 18 · 0% | 17 · 0% | 17 · 0% | 17 · 0% | 17 · 0% |
 
-*(succès sur 50 ép. ; 98 % = 49/50, dans le bruit. t_success = steps avant levage (↓ mieux) ; max_z = hauteur max cube (↑ mieux ; ~0.83 = jamais levé).)*
+**Deux planchers indépendants, mis en évidence par la grille :**
+- **Plancher de pas = 4** (universel, indépendant de la taille) : tous les modèles capables tiennent ~100 % de 4 à 10 pas, chutent à 2, meurent à 1. (1 pas = 0 % partout, même le baseline.)
+- **Plancher de capacité U-Net = `[32,64,128]`** : `[16,32,64]` (0.4 M) et `[8,16,32]` (0.3 M) sont à ~0 % à *tous* les pas → U-Net trop petit pour débruiter la trajectoire.
+- La latence à pas fixe est **plate** sur les petits modèles (16M ≈ 13M ≈ 48-58 ms) → **plateau vision** (ResNet18, 11.2 M, qui tourne à chaque décision).
 
-**Plancher U-Net trouvé** : `[32,64,128]` (U-Net **1.6 M**, total 12.8 M) est le **plus petit qui tient 100 %** ; en dessous, falaise nette → `[16,32,64]` (0.4 M) s'effondre à 2 %, `[8,16,32]` (0.3 M) à 0 %. Le U-Net passe de 252 M → 1.6 M (**÷160**) sans perte. La **val-loss prédit la falaise** (0.083 → 0.243 → 0.663). Mais sous `[32,64,128]` le total ne bouge plus (vision ResNet18 = 11.2 M domine) → descendre plus = perdre 100 % pour ~1 M. ⭐ `[32,64,128]` = sweet spot ; pour aller plus loin, attaquer la **vision**. Voir `sweep_pareto.png` (4 panneaux).
+## Sweep U-Net — taille vs succès (à 10 pas)
 
-## Val-loss propre par checkpoint (set val complet)
+| Modèle (`down_dims`) | Params | U-Net | Succès | t_success | max_z | val_loss |
+|---|---|---|---|---|---|---|
+| **Baseline** `[512,1024,2048]` | 263.7 M | 252 M | 100 % | 43.0 | 1.033 | — |
+| `[256,512,1024]` | 76.6 M | 65 M | 98 % | 44.0 | 0.999 | 0.067 |
+| `[128,256,512]` | 28.7 M | 17 M | 98 % | 48.0 | 0.951 | 0.070 |
+| `[64,128,256]` | 16.2 M | 5 M | 100 % | 47.0 | 0.969 | 0.072 |
+| **`[32,64,128]`** ⭐ | 12.8 M | 1.6 M | 100 % | 46.5 | 0.990 | 0.083 |
+| `[16,32,64]` | 11.8 M | 0.4 M | 2 % 💥 | 65.0 | 0.829 | 0.243 |
+| `[8,16,32]` | 11.5 M | 0.3 M | 0 % 💥 | — | 0.827 | 0.663 |
 
-| step | `[256,512,1024]` | `[128,256,512]` | `[64,128,256]` |
-|---|---|---|---|
-| 1500 | 0.0824 | 0.0798 | 0.1054 |
-| 3000 | 0.0686 | 0.0708 | 0.0832 |
-| 4500 | **0.0667** | **0.0703** | 0.0736 |
-| 6000 | 0.0718 | 0.0735 | **0.0722** |
-| 7500 | 0.0742 | 0.0732 | 0.0730 |
-
-→ overfit léger après ~4500-6000 selon la taille (val-loss remonte), cohérent avec le baseline (min ~6000).
-
-## Conclusion
-
-- **Le U-Net se rétrécit ÷16 (263.7 M → 16.2 M) sans perte de succès** : les 4 tailles tiennent 98-100 % sur les départs val jamais vus. Le gros U-Net du run 46 était massivement surdimensionné pour Lift.
-- Coût marginal : t_success un peu plus lent (43 → 47) et marge max_z légèrement plus basse (1.03 → 0.97), mais toujours largement au-dessus du seuil de levage.
-- **Sur le modèle 16.2 M, la vision (ResNet18, 11 M) pèse 68 %** → le U-Net n'est plus que ~5 M. Pour descendre encore, il faudrait attaquer la vision.
-- ⚠️ Reste à mesurer la **latence d'inférence** (objectif réel) — non couverte par ce tableau (params seulement). Le levier des pas de diffusion (10 → moins) est encore intact.
+Le U-Net passe de **252 M → 1.6 M (÷160)** sans perte de succès — il était massivement surdimensionné. La **val-loss prédit la falaise** (0.083 → 0.243 → 0.663). Sous `[32,64,128]`, le total ne bouge plus (vision = 11.2 M domine) : descendre encore = perdre 100 % pour ~1 M. → pour aller plus loin il faut attaquer la **vision**. Voir `sweep_pareto.png`.
 
 ## Plafond théorique — démos expertes (50 scènes val)
-
-Mesuré en remettant l'env sur chaque état enregistré des démos (`54_demo_ceiling.py`, même critère `is_success`) :
 
 | | Succès | t_success | max_z | hold |
 |---|---|---|---|---|
 | **Démos expertes (plafond)** | 100 % | 43.0 | 0.880 | 1.00 |
 | Baseline 263.7 M | 100 % | 43.0 | 1.033 | 0.48 |
-| Gagnant 16.2 M | 100 % | 47.0 | 0.969 | 0.48 |
+| Gagnant `[32,64,128]` | 100 % | 46.5 | 0.990 | — |
 
-- **Sur les métriques comparables (succès + t_success), nos modèles sont AU plafond expert** : 100 % de succès, et levage aussi rapide que l'humain (43-47 ≈ 43). Pas de marge théorique à récupérer.
-- **max_z et hold ne sont pas comparables directement** : les démos sont courtes (longueur ~36-54 steps, elles s'arrêtent au levage) → `hold=1.00` et `max_z=0.88` par construction. Nos modèles tournent 200 steps → ils montent plus haut (max_z>0.88) et le `hold=0.48` mesure du comportement post-succès hors-distribution que les démos ne couvrent pas. Ce n'est donc pas un déficit vs expert.
+**Nos modèles sont AU plafond expert** sur les métriques comparables (succès 100 %, levage aussi rapide que l'humain). `max_z`/`hold` ne sont pas comparables directement : les démos sont courtes (s'arrêtent au levage) → `hold=1.00`, `max_z=0.88` par construction ; nos modèles tournent 200 steps (montent plus haut, et `hold` mesure du post-succès hors-distribution).
+
+## Détails — val-loss propre par checkpoint
+
+| step | `[256,512,1024]` | `[128,256,512]` | `[64,128,256]` |
+|---|---|---|---|
+| 1500 | 0.082 | 0.080 | 0.105 |
+| 3000 | 0.069 | 0.071 | 0.083 |
+| 4500 | **0.067** | **0.070** | 0.074 |
+| 6000 | 0.072 | 0.074 | **0.072** |
+| 7500 | 0.074 | 0.073 | 0.073 |
+
+→ overfit léger après ~4500-6000 (val-loss remonte). Stop par modèle au min de val-loss.
 
 ## Fichiers
-- `sweep_eval.json` — données brutes (params, val-loss, métriques rollout).
-- `demo_ceiling.json` — plafond démos expertes.
-- `sweep_pareto.png` — Pareto params vs (succès, t_success, max_z).
-- `videos/<label>_ep<idx>_<OK|FAIL>.mp4` — vidéos d'épisodes (3 scènes val, mêmes pour tous les modèles).
+
+| Fichier | Contenu |
+|---|---|
+| `grid.{json,md}` | grille latence × succès (7 tailles × 5 pas, 50 ép./case) |
+| `sweep_eval.json` + `sweep_pareto.png` | sweep U-Net (params, val-loss, métriques rollout) |
+| `latency.{json,png}` | latence (3 modèles × pas, obs factices) |
+| `inference_steps.{json,png}` | succès vs pas sur `[32,64,128]` |
+| `demo_ceiling.json` | plafond démos expertes |
+| `videos/*.mp4` | épisodes (3 scènes val × modèles) — locaux |
+
+Scripts : `52` (sweep eval), `54/55` (plafond/vidéos démos), `56` (latence), `57` (sweep pas), `58` (grille). Récits : `docs/COMPRESSION.md` (cadrage), `docs/LIFT.md` (phase 3).
