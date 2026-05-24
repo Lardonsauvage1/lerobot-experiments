@@ -10,12 +10,12 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 |---|---|---|---|
 | **1-2** | PushT (cube 2D à pousser) | 46.5 % coverage | La **formulation de la sortie** compte plus que les features (la classification discrète rattrape « image+position ») ; **loss basse ≠ bonne perf**. → [`docs/JOURNEY.md`](docs/JOURNEY.md) |
 | **3** | Robomimic Lift (bras Panda 7-DoF) | **100 % succès** (Diffusion Policy) | **Diffusion Policy ≫ behavior cloning** sur le multimodal (100 % vs 70 %) ; sans image → 0 %. → [`docs/LIFT.md`](docs/LIFT.md) |
-| **4** *(en cours)* | Compresser le Diffusion Policy | **100 % à ÷21 params / ÷18 latence** | Le U-Net était surdimensionné **×160** ; une fois rétréci, le mur devient la **vision** (ResNet18). → [`docs/COMPRESSION.md`](docs/COMPRESSION.md) |
+| **4** | Compresser le Diffusion Policy | **100 % à ÷160 params / ÷21 latence** | U-Net surdimensionné ×160 ; puis ResNet18 (le mur restant) remplacé par un **mini-CNN 0.03 M**. → [`docs/COMPRESSION.md`](docs/COMPRESSION.md) |
 
 ## Résultats phares
 
 - **Lift résolu à 100 %** avec une Diffusion Policy entraînée sur 150 démos (run 46/47).
-- **Compression** : le modèle `[32,64,128]` à **4 pas de diffusion** atteint **100 % de succès en 51 ms/décision**, contre **927 ms** pour le baseline de 263.7 M params à 10 pas → **÷21 en params, ÷18 en latence, performance identique** (au niveau du plafond expert).
+- **Compression** : le modèle final (U-Net `[32,64,128]` + vision mini-CNN) = **1.65 M params**, **100 % de succès à 43.7 ms/décision** (4 pas de diffusion), contre **263.7 M / 938 ms** pour le baseline à 10 pas → **÷160 en params, ÷21 en latence, performance identique** (au niveau du plafond expert). Tableau complet : [`results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](results/runs/lift/51_unet_sweep_eval/SUMMARY.md).
 - Méthode : protocole d'éval propre (train 150 / val 50 figé, métriques continues succès + temps-au-succès + marge), val-loss en continu, sweep de tailles de U-Net jusqu'à trouver le plancher de capacité.
 
 ## Naviguer dans le repo
@@ -23,7 +23,7 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 **📖 Pour comprendre la logique** (récits, à lire dans l'ordre) :
 1. [`docs/JOURNEY.md`](docs/JOURNEY.md) — PushT : enquête « loss vs performance », la formulation de sortie.
 2. [`docs/LIFT.md`](docs/LIFT.md) — Lift : du behavior cloning raté (0 %) à 100 % en Diffusion Policy (+ les 5 bugs d'eval, le sim-to-real).
-3. [`docs/COMPRESSION.md`](docs/COMPRESSION.md) — compression pour la latence (protocole + plan).
+3. [`docs/COMPRESSION.md`](docs/COMPRESSION.md) — compression pour la latence (protocole + résultats).
 
 Index complet de la doc : [`docs/README.md`](docs/README.md).
 

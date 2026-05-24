@@ -73,9 +73,18 @@ done
 ```
 On trace ensuite succès + t_success + max_z + hold_fraction **par checkpoint** → courbe de stop (quand les métriques rollout plafonnent) + val noise-MSE (détecteur d'overfit, script séparé).
 
-## Livrable
+## Résultats finaux ✅ (phase bouclée)
 
-Courbe **Pareto latence vs perfs** sur toutes les variantes (steps × down_dims × quantization) → choisir le point de fonctionnement pour le bras.
+> **Point de fonctionnement : U-Net `[32,64,128]` + vision mini-CNN → 1.65 M params, 100 % de succès à 4 pas de diffusion, ~44 ms/décision.** vs baseline 263.7 M @ 10 pas (938 ms) → **÷160 params, ÷21 latence, perf identique** (au plafond expert).
+
+Trois leviers, dans l'ordre où ils ont payé :
+1. **Largeur du U-Net** (`down_dims`) : 252 M → 1.6 M (**÷160**) sans perte. Plancher de capacité = `[32,64,128]` ; en dessous (`[16,32,64]`), falaise à ~2 %.
+2. **Pas de diffusion** : 10 → **4** sans perte (cassure à 2 pas). Plancher universel, indépendant de la taille.
+3. **Vision** : ResNet18 (11.2 M) → **mini-CNN 0.03 M** from scratch, sans perte (Lift est visuellement simple). Débloque taille + vitesse d'entraînement (÷4) ; latence ~inchangée (le U-Net domine à l'inférence).
+
+**Tableau maître complet** (grille latence × succès, sweep, plafond démos, mini-CNN) : [`../results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](../results/runs/lift/51_unet_sweep_eval/SUMMARY.md).
+
+**Frontière suivante éventuelle** : rien d'évident côté compression (vision déjà à 0.03 M). Les pistes restantes sont ailleurs (sim-to-real, efficacité données, tâche plus dure).
 
 ## Outils déjà en place
 
