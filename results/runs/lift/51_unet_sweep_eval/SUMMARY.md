@@ -4,9 +4,22 @@ Tâche : Robomimic **Lift**. Protocole : train 150 / val 50 (split contigu figé
 
 ## ⭐ Point de fonctionnement final
 
-> **`[32,64,128]` (12.8 M params) à 4 pas de diffusion → 100 % de succès, ~49 ms/décision.**
+> **U-Net `[32,64,128]` + vision mini-CNN → 1.65 M params, 100 % de succès à 4 pas de diffusion, ~44 ms/décision.**
 >
-> vs baseline `[512,1024,2048]` (263.7 M) à 10 pas = **938 ms**. → **÷21 en params, ÷19 en latence, performance identique** (au niveau du plafond expert). En temps réel : latence amortie ~6 ms/step d'env (budget 20 Hz = 50 ms) → confortable. `[64,128,256]` (16.2 M) est équivalent en latence et garde un peu plus de marge si on veut être prudent.
+> vs baseline `[512,1024,2048]` + ResNet18 (263.7 M) à 10 pas = **938 ms**. → **÷160 en params, ÷21 en latence, performance identique** (au plafond expert). En temps réel : largement dans le budget 20 Hz. Si on garde ResNet18, le même U-Net donne 12.8 M / 49 ms / 100 % (latence quasi identique — voir § vision).
+
+## Vision mini-CNN — casser le mur ResNet18
+
+Une fois le U-Net minimal (`[32,64,128]`, 1.6 M), la **vision ResNet18 (11.2 M) domine** (params, vitesse d'entraînement). On l'a remplacée par un **mini-CNN maison** (3 convs `3→16→32→64`, GroupNorm, **0.03 M**), réentraîné from scratch sur 150 démos (`61_train_minicnn.py`, `src/mini_cnn.py`).
+
+| `[32,64,128]` + | Params | Vision | Succès @4 pas | Latence @4 pas | val-loss |
+|---|---|---|---|---|---|
+| **ResNet18** | 12.8 M | 11.2 M | 100 % | 49 ms | 0.083 |
+| **mini-CNN** | **1.65 M** | **0.03 M** | **100 %** | **43.7 ms** | **0.071** |
+
+- **Le mini-CNN égale (voire dépasse légèrement) le ResNet18** : succès 100 %, val-loss et max_z un poil meilleurs. La scène Lift est visuellement simple → une vision minuscule suffit.
+- **Gains** : params ÷7.8 (total ÷160 vs baseline), **vitesse d'entraînement ÷4** (la vision était le goulot de calcul).
+- **Latence : gain modeste** (49 → 44 ms). À l'inférence (batch 1, 4 pas), ce sont les **4 passes U-Net** qui dominent, pas l'unique encodage vision (~5-8 ms). Donc côté latence pure le mini-CNN apporte peu — mais il ne coûte rien et débloque taille + RAM + vitesse d'entraînement.
 
 ## Grille latence × succès (le tableau maître)
 
@@ -72,4 +85,6 @@ Le U-Net passe de **252 M → 1.6 M (÷160)** sans perte de succès — il étai
 | `demo_ceiling.json` | plafond démos expertes |
 | `videos/*.mp4` | épisodes (3 scènes val × modèles) — locaux |
 
-Scripts : `52` (sweep eval), `54/55` (plafond/vidéos démos), `56` (latence), `57` (sweep pas), `58` (grille). Récits : `docs/COMPRESSION.md` (cadrage), `docs/LIFT.md` (phase 3).
+Mini-CNN : résultats dans `../61_minicnn/minicnn_eval.json` ; code `experiments/lift/61_train_minicnn.py` + `62_minicnn_eval.py` + `src/mini_cnn.py`.
+
+Scripts : `52` (sweep eval), `54/55` (plafond/vidéos démos), `56` (latence), `57` (sweep pas), `58` (grille), `61/62` (mini-CNN). Récits : `docs/COMPRESSION.md` (cadrage), `docs/LIFT.md` (phase 3).
