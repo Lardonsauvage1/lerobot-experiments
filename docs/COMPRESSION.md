@@ -78,4 +78,4 @@ Cases = **latence ms · succès** (50 val ép.).
 
 ## Suite
 
-Phase compression **bouclée**. Rien d'évident à gratter côté compression (vision déjà à 0.03 M). Frontières suivantes, ailleurs : **sim-to-real** (markers Mujoco, domain randomization), **efficacité données** (combien de démos suffisent ?), **tâche plus dure** (Can/Square).
+Phase compression **bouclée**. Rien d'évident à gratter côté compression (vision déjà à 0.03 M). → [Phase 5 : Efficacité données](DATAEFF.md) (combien de démos suffisent). Autres frontières : **sim-to-real** (markers Mujoco, domain randomization), **tâche plus dure** (Can/Square).
