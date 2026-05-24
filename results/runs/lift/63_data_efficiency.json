@@ -1,0 +1,70 @@
+{
+  "steps": 4,
+  "results": [
+    {
+      "n_demos": 150,
+      "best_step": 10500,
+      "val_loss": 0.06873852077556487,
+      "steps": 4,
+      "n": 50,
+      "success_rate": 1.0,
+      "t_success_median": 46.0,
+      "t_success_mean": 48.74,
+      "max_z_mean": 1.0158530845242892,
+      "hold_fraction_mean": 0.38842038130237344,
+      "elapsed_s": 206.36708617210388
+    },
+    {
+      "n_demos": 100,
+      "best_step": 5250,
+      "val_loss": 0.08425751854827748,
+      "steps": 4,
+      "n": 50,
+      "success_rate": 0.96,
+      "t_success_median": 55.5,
+      "t_success_mean": 66.10416666666667,
+      "max_z_mean": 0.9728033875598041,
+      "hold_fraction_mean": 0.34688426052160354,
+      "elapsed_s": 205.50370502471924
+    },
+    {
+      "n_demos": 50,
+      "best_step": 6000,
+      "val_loss": 0.08669434899269644,
+      "steps": 4,
+      "n": 50,
+      "success_rate": 0.94,
+      "t_success_median": 55.0,
+      "t_success_mean": 72.76595744680851,
+      "max_z_mean": 0.9737355724521741,
+      "hold_fraction_mean": 0.32174488212177127,
+      "elapsed_s": 204.9294090270996
+    },
+    {
+      "n_demos": 20,
+      "best_step": 5250,
+      "val_loss": 0.09578527962390464,
+      "steps": 4,
+      "n": 50,
+      "success_rate": 0.98,
+      "t_success_median": 68.0,
+      "t_success_mean": 81.79591836734694,
+      "max_z_mean": 0.9770901410306521,
+      "hold_fraction_mean": 0.4088243306112026,
+      "elapsed_s": 205.05572700500488
+    },
+    {
+      "n_demos": 10,
+      "best_step": 3000,
+      "val_loss": 0.11902293831011154,
+      "steps": 4,
+      "n": 50,
+      "success_rate": 0.84,
+      "t_success_median": 57.5,
+      "t_success_mean": 78.47619047619048,
+      "max_z_mean": 0.9197109756968654,
+      "hold_fraction_mean": 0.3257551730689604,
+      "elapsed_s": 205.54229879379272
+    }
+  ]
+}

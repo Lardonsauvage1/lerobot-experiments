@@ -1,0 +1,111 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[35091]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1046c83a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x13bad03a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1046c83f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x13bad03f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['robot0_eef_pos', 'robot0_eef_quat', 'object', 'robot0_gripper_qpos']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+
+##### N=150 démos (results/runs/lift/61_minicnn) — checkpoints [1500, 3000, 4500, 6000, 7500, 9000, 10500, 12000] #####
+Loading weights from local directory
+objc[35091]: Class SDLApplication is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6ac890) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bc88). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDLAppDelegate is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6ac8e0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bcd8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDLTranslatorResponder is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6ac958) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bd50). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDLMessageBoxPresenter is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6ac980) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bd78). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDL_cocoametalview is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6ac9d0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bdc8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDLOpenGLContext is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6aca20) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3be18). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDL_ShapeData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6aca98) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3be90). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDL_CocoaClosure is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acae8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bee0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDL_VideoData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acb38) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bf30). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDL_WindowData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acb88) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bf80). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDLWindow is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acbb0) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bfa8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class Cocoa_WindowListener is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acbd8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3bfd0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDLView is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acc50) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3c048). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class METAL_RenderData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6accc8) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3c0c0). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class METAL_TextureData is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acd18) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3c110). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDL_RumbleMotor is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acd40) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3c138). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class SDL_RumbleContext is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libSDL2-2.0.0.dylib (0x11d6acd90) and /opt/homebrew/Cellar/sdl2/2.32.6/lib/libSDL2-2.0.0.dylib (0x3d6e3c188). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1046c83a8) and /opt/homebrew/Cellar/ffmpeg/7.1.1_2/lib/libavdevice.61.3.100.dylib (0x3c64dc328). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[35091]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1046c83f8) and /opt/homebrew/Cellar/ffmpeg/7.1.1_2/lib/libavdevice.61.3.100.dylib (0x3c64dc378). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+  -> meilleur checkpoint 10500 (val_loss=0.0687)
+Loading weights from local directory
+  => N=150 : succès 100% t_succ=46.0 max_z=1.016 (val 0.0687)
+
+##### N=100 démos (results/runs/lift/63_dataeff_n100) — checkpoints [750, 1500, 2250, 3000, 3750, 4500, 5250, 6000] #####
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+  -> meilleur checkpoint 5250 (val_loss=0.0843)
+Loading weights from local directory
+  => N=100 : succès 96% t_succ=55.5 max_z=0.973 (val 0.0843)
+
+##### N=50 démos (results/runs/lift/63_dataeff_n50) — checkpoints [750, 1500, 2250, 3000, 3750, 4500, 5250, 6000] #####
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+  -> meilleur checkpoint 6000 (val_loss=0.0867)
+Loading weights from local directory
+  => N=50 : succès 94% t_succ=55.0 max_z=0.974 (val 0.0867)
+
+##### N=20 démos (results/runs/lift/63_dataeff_n20) — checkpoints [750, 1500, 2250, 3000, 3750, 4500, 5250, 6000] #####
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+  -> meilleur checkpoint 5250 (val_loss=0.0958)
+Loading weights from local directory
+  => N=20 : succès 98% t_succ=68.0 max_z=0.977 (val 0.0958)
+
+##### N=10 démos (results/runs/lift/63_dataeff_n10) — checkpoints [750, 1500, 2250, 3000, 3750, 4500, 5250, 6000] #####
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+Loading weights from local directory
+  -> meilleur checkpoint 3000 (val_loss=0.1190)
+Loading weights from local directory
+  => N=10 : succès 84% t_succ=57.5 max_z=0.920 (val 0.1190)
+
+JSON: results/runs/lift/63_data_efficiency.json
+Plot: results/runs/lift/63_data_efficiency.png

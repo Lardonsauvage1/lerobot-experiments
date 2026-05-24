@@ -7,6 +7,7 @@ Les récits ci-dessous racontent le **raisonnement** du projet, phase par phase.
 | 1 | [`PUSHT.md`](PUSHT.md) | PushT (1-2) | Enquête « loss vs performance » : pourquoi une loss basse ne donne pas un bon robot, et comment la **formulation de la sortie** (régression → classification discrète) change tout. |
 | 2 | [`LIFT.md`](LIFT.md) | Lift (3) | Du **behavior cloning raté** (0 %) à **100 %** avec une **Diffusion Policy**. |
 | 3 | [`COMPRESSION.md`](COMPRESSION.md) | Compression (4) | **Rétrécir** le Diffusion Policy (÷160 params, ÷21 latence) sans perdre le 100 % — avec les tableaux sweep / grille latence×succès. |
+| 4 | [`DATAEFF.md`](DATAEFF.md) | Efficacité données (5) | Combien de démos suffisent ? **~20 ≈ 98 %**, 10 → 84 %. Pente douce, pas de falaise — encourageant pour le bras réel. |
 
 ## Où sont les résultats chiffrés
 
