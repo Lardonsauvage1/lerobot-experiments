@@ -1,0 +1,32 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[68143]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1104e43a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1405103a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[68143]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1104e43f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1405103f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['robot0_eef_pos', 'robot0_gripper_qpos', 'robot0_eef_quat', 'object']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+Loading weights from local directory
+   4 pas :   45.0 ms · succès 92% t_succ=73.0 max_z=0.924
+  10 pas :  108.4 ms · succès 96% t_succ=55.0 max_z=0.956
+  20 pas :  205.6 ms · succès 98% t_succ=49.0 max_z=0.970
+  50 pas :  499.2 ms · succès 96% t_succ=55.5 max_z=0.947
+
+JSON: results/runs/lift/63_dataeff_n10/more_steps.json
+Plot: results/runs/lift/63_dataeff_n10/more_steps.png

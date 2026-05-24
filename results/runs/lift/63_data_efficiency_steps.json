@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "n_demos": 10,
+      "steps": 4,
+      "n": 50,
+      "success_rate": 0.84,
+      "t_success_median": 52.5,
+      "t_success_mean": 64.52380952380952,
+      "max_z_mean": 0.9320240351959024,
+      "hold_fraction_mean": 0.32876915972947984,
+      "elapsed_s": 213.00083088874817
+    },
+    {
+      "n_demos": 10,
+      "steps": 10,
+      "n": 50,
+      "success_rate": 0.94,
+      "t_success_median": 56.0,
+      "t_success_mean": 69.51063829787235,
+      "max_z_mean": 0.9563867607968264,
+      "hold_fraction_mean": 0.3358321466609999,
+      "elapsed_s": 288.61238718032837
+    },
+    {
+      "n_demos": 20,
+      "steps": 4,
+      "n": 50,
+      "success_rate": 1.0,
+      "t_success_median": 57.5,
+      "t_success_mean": 70.36,
+      "max_z_mean": 0.9863882907994476,
+      "hold_fraction_mean": 0.3604594406935788,
+      "elapsed_s": 210.1112470626831
+    },
+    {
+      "n_demos": 20,
+      "steps": 10,
+      "n": 50,
+      "success_rate": 1.0,
+      "t_success_median": 54.5,
+      "t_success_mean": 58.38,
+      "max_z_mean": 0.9857648381941421,
+      "hold_fraction_mean": 0.3296554336556025,
+      "elapsed_s": 279.0764830112457
+    }
+  ]
+}
