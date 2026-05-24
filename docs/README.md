@@ -1,12 +1,12 @@
 # Documentation — index & ordre de lecture
 
-Les récits ci-dessous racontent le **raisonnement** du projet, phase par phase. À lire dans l'ordre pour comprendre la logique ; chacun est aussi autonome.
+Les récits ci-dessous racontent le **raisonnement** du projet, phase par phase. À lire dans l'ordre pour comprendre la logique ; chacun est aussi autonome. **Même structure pour les trois** : Contexte · Le parcours · Résultats · Leçons clés · Détails techniques · Suite.
 
 | # | Doc | Phase | En une phrase |
 |---|---|---|---|
-| 1 | [`JOURNEY.md`](JOURNEY.md) | PushT (2) | Enquête « loss vs performance » : pourquoi une loss basse ne donne pas un bon robot, et comment la **formulation de la sortie** (régression → classification discrète) change tout. |
-| 2 | [`LIFT.md`](LIFT.md) | Lift (3) | Du **behavior cloning raté** (0 %) à **100 %** avec une **Diffusion Policy** — + les 5 bugs d'eval cachés et le piège sim-to-real. |
-| 3 | [`COMPRESSION.md`](COMPRESSION.md) | Compression (4) | **Rétrécir** le Diffusion Policy pour la **latence** sans perdre le 100 % : protocole d'éval propre, sweep de tailles, plancher de capacité. |
+| 1 | [`PUSHT.md`](PUSHT.md) | PushT (1-2) | Enquête « loss vs performance » : pourquoi une loss basse ne donne pas un bon robot, et comment la **formulation de la sortie** (régression → classification discrète) change tout. |
+| 2 | [`LIFT.md`](LIFT.md) | Lift (3) | Du **behavior cloning raté** (0 %) à **100 %** avec une **Diffusion Policy**. |
+| 3 | [`COMPRESSION.md`](COMPRESSION.md) | Compression (4) | **Rétrécir** le Diffusion Policy (÷160 params, ÷21 latence) sans perdre le 100 % — avec les tableaux sweep / grille latence×succès. |
 
 ## Où sont les résultats chiffrés
 
