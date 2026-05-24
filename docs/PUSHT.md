@@ -12,7 +12,23 @@ Premières ~28 expériences (MLP, RNN, Transformer, action chunking). Best : **4
 
 La série 29-32 isole l'effet de la **formulation de la sortie**, à input et backbone constants (image seule, ResNet18 gelé + Transformer 2L).
 
-## Le parcours (runs 29 → 32)
+## Le parcours (runs 08 → 32)
+
+### Phase 1 — exploration : trouver une archi qui marche (runs ~08-28)
+
+| Jalon | Coverage | Idée |
+|---|---|---|
+| MLP / RNN sur image + état | ~27 % | baselines |
+| Action chunking (prédire N actions futures) | aide | run 09 |
+| **Transformer 2L + features ResNet** (image + position) | **46.5 %** ⭐ | run 24 — best de la phase 1 |
+| Entraînement long (10 000 epochs) | n'aide pas | run 26 (loss ↓ mais coverage stagne) |
+| Historique de positions (hist 5/10) | aide peu | runs 27-28 |
+
+Bilan phase 1 : **le Transformer + chunking bat largement les MLP** (l'archi compte plus que l'historique), mais **0 % de succès** partout — coverage ~46 % au mieux, la tâche n'est jamais bouclée. D'où l'enquête ciblée de la phase 2.
+
+### Phase 2 — enquête « formulation de la sortie » (runs 29-32)
+
+Input et backbone figés (image seule, ResNet18 gelé + Transformer 2L) ; **seules la dernière couche et la loss changent**.
 
 | Run | Sortie | Coverage | Idée |
 |---|---|---|---|
