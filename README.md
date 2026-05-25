@@ -10,7 +10,7 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 |---|---|---|---|
 | **1-2** | PushT (cube 2D à pousser) | 46.5 % coverage | La **formulation de la sortie** compte plus que les features (la classification discrète rattrape « image+position ») ; **loss basse ≠ bonne perf**. → [`docs/PUSHT.md`](docs/PUSHT.md) |
 | **3** | Robomimic Lift (bras Panda 7-DoF) | **100 % succès** (Diffusion Policy) | **Diffusion Policy ≫ behavior cloning** sur le multimodal (100 % vs 70 %) ; sans image → 0 %. → [`docs/LIFT.md`](docs/LIFT.md) |
-| **4** | Compression & limites du modèle | **100 % à ÷160 params / ÷21 latence**, et **~20 démos suffisent** | U-Net surdimensionné ×160 ; ResNet18 → mini-CNN 0.03 M ; Lift peu gourmand en démos ; les pas de diffusion compensent partiellement le manque de données. → [`docs/COMPRESSION.md`](docs/COMPRESSION.md) |
+| **4** | Compression & limites du modèle | **~99 % à ÷160 params / ÷21 latence**, et **~20 démos suffisent** | U-Net surdimensionné ×160 ; ResNet18 → mini-CNN 0.03 M ; Lift peu gourmand (≥20 démos) ; à données rares un **gros U-Net sur-apprend** (grille 500 rollouts, IC95 Wilson). → [`docs/COMPRESSION.md`](docs/COMPRESSION.md) |
 
 ## Résultats phares
 
@@ -19,11 +19,11 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 
   | | Modèle | Params | Latence/décision | Succès |
   |---|---|---|---|---|
-  | Départ | baseline + ResNet18 @ 10 pas | 263.7 M | 938 ms | 100 % |
-  | **Final** | `[32,64,128]` + mini-CNN @ 4 pas | **1.65 M** | **43.7 ms** | **100 %** |
+  | Départ | baseline + ResNet18 @ 10 pas | 263.7 M | 938 ms | 100 % (50 ép.) |
+  | **Final** | `[32,64,128]` + mini-CNN @ 4 pas | **1.65 M** | **43.7 ms** | **98.6 %** (500 rollouts) |
 
-  Tableau complet (sweep + grille latence×succès + plafond démos) : [`results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](results/runs/lift/51_unet_sweep_eval/SUMMARY.md).
-- Méthode : protocole d'éval propre (train 150 / val 50 figé, métriques continues succès + temps-au-succès + marge), val-loss en continu, sweep de tailles de U-Net jusqu'au plancher de capacité.
+  Le modèle final est **à égalité statistique** avec des U-Nets 3–10× plus gros (grille 500 rollouts, IC95 Wilson). Tableaux complets : [`docs/COMPRESSION.md`](docs/COMPRESSION.md) (grille données × U-Net) + [`results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](results/runs/lift/51_unet_sweep_eval/SUMMARY.md) (sweep + latence).
+- Méthode : protocole d'éval propre (train 150 / val 50 figé, métriques continues), **éval finale à 500 rollouts appariés + IC95 de Wilson** (le succès sur 50 ép. était dans le bruit à ±7 pts), env recréé par tranche (anti-dégradation renderer).
 
 ## Naviguer dans le repo
 

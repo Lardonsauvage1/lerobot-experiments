@@ -1,0 +1,126 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[20141]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1037943a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1690f03a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[20141]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x1037943f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1690f03f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Loading weights from local directory
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['object', 'robot0_gripper_qpos', 'robot0_eef_pos', 'robot0_eef_quat']
+using obs modality: rgb with keys: []
+Created environment with name Lift
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+  ep  1/100 : ✓ t_succ= 43 max_z=0.843 hold=1.00 | running=100%
+  ep  2/100 : ✓ t_succ= 47 max_z=0.848 hold=1.00 | running=100%
+  ep  3/100 : ✓ t_succ= 52 max_z=0.842 hold=1.00 | running=100%
+  ep  4/100 : ✓ t_succ= 47 max_z=0.846 hold=1.00 | running=100%
+  ep  5/100 : ✓ t_succ= 59 max_z=0.840 hold=1.00 | running=100%
+  ep  6/100 : ✓ t_succ= 45 max_z=0.842 hold=1.00 | running=100%
+  ep  7/100 : ✓ t_succ= 52 max_z=0.839 hold=1.00 | running=100%
+  ep  8/100 : ✓ t_succ= 46 max_z=0.842 hold=1.00 | running=100%
+  ep  9/100 : ✓ t_succ= 61 max_z=0.843 hold=1.00 | running=100%
+  ep 10/100 : ✓ t_succ= 62 max_z=0.840 hold=1.00 | running=100%
+  ep 11/100 : ✓ t_succ= 43 max_z=0.841 hold=1.00 | running=100%
+  ep 12/100 : ✓ t_succ= 54 max_z=0.837 hold=1.00 | running=100%
+  ep 13/100 : ✓ t_succ= 52 max_z=0.837 hold=1.00 | running=100%
+  ep 14/100 : ✓ t_succ=167 max_z=0.837 hold=1.00 | running=100%
+  ep 15/100 : ✓ t_succ=111 max_z=0.843 hold=1.00 | running=100%
+  ep 16/100 : ✓ t_succ= 65 max_z=0.839 hold=1.00 | running=100%
+  ep 17/100 : ✓ t_succ= 51 max_z=0.838 hold=1.00 | running=100%
+  ep 18/100 : ✓ t_succ= 45 max_z=0.841 hold=1.00 | running=100%
+  ep 19/100 : ✓ t_succ= 46 max_z=0.841 hold=1.00 | running=100%
+  ep 20/100 : ✓ t_succ= 39 max_z=0.835 hold=1.00 | running=100%
+  ep 21/100 : ✓ t_succ= 46 max_z=0.840 hold=1.00 | running=100%
+  ep 22/100 : ✓ t_succ= 56 max_z=0.839 hold=1.00 | running=100%
+  ep 23/100 : ✓ t_succ= 51 max_z=0.839 hold=1.00 | running=100%
+  ep 24/100 : ✓ t_succ= 46 max_z=0.834 hold=1.00 | running=100%
+  ep 25/100 : ✓ t_succ= 50 max_z=0.840 hold=1.00 | running=100%
+  ep 26/100 : ✓ t_succ= 45 max_z=0.842 hold=1.00 | running=100%
+  ep 27/100 : ✓ t_succ= 43 max_z=0.841 hold=1.00 | running=100%
+  ep 28/100 : ✓ t_succ= 44 max_z=0.844 hold=1.00 | running=100%
+  ep 29/100 : ✓ t_succ= 46 max_z=0.842 hold=1.00 | running=100%
+  ep 30/100 : ✓ t_succ= 47 max_z=0.840 hold=1.00 | running=100%
+  ep 31/100 : ✓ t_succ= 45 max_z=0.840 hold=1.00 | running=100%
+  ep 32/100 : ✓ t_succ= 55 max_z=0.840 hold=1.00 | running=100%
+  ep 33/100 : ✓ t_succ= 51 max_z=0.843 hold=1.00 | running=100%
+  ep 34/100 : ✓ t_succ= 61 max_z=0.842 hold=1.00 | running=100%
+  ep 35/100 : ✓ t_succ= 40 max_z=0.843 hold=1.00 | running=100%
+  ep 36/100 : ✓ t_succ= 51 max_z=0.842 hold=1.00 | running=100%
+  ep 37/100 : ✓ t_succ= 37 max_z=0.837 hold=1.00 | running=100%
+  ep 38/100 : ✓ t_succ= 44 max_z=0.838 hold=1.00 | running=100%
+  ep 39/100 : ✓ t_succ= 54 max_z=0.840 hold=1.00 | running=100%
+  ep 40/100 : ✓ t_succ= 37 max_z=0.839 hold=1.00 | running=100%
+  ep 41/100 : ✓ t_succ= 43 max_z=0.840 hold=1.00 | running=100%
+  ep 42/100 : ✓ t_succ= 44 max_z=0.835 hold=1.00 | running=100%
+  ep 43/100 : ✓ t_succ= 55 max_z=0.837 hold=1.00 | running=100%
+  ep 44/100 : ✓ t_succ= 60 max_z=0.840 hold=1.00 | running=100%
+  ep 45/100 : ✓ t_succ=116 max_z=0.840 hold=1.00 | running=100%
+  ep 46/100 : ✓ t_succ= 55 max_z=0.841 hold=1.00 | running=100%
+  ep 47/100 : ✓ t_succ= 53 max_z=0.839 hold=1.00 | running=100%
+  ep 48/100 : ✓ t_succ= 48 max_z=0.837 hold=1.00 | running=100%
+  ep 49/100 : ✓ t_succ= 62 max_z=0.839 hold=1.00 | running=100%
+  ep 50/100 : ✓ t_succ= 45 max_z=0.835 hold=1.00 | running=100%
+  ep 51/100 : ✓ t_succ= 45 max_z=0.848 hold=1.00 | running=100%
+  ep 52/100 : ✓ t_succ= 52 max_z=0.847 hold=1.00 | running=100%
+  ep 53/100 : ✓ t_succ= 54 max_z=0.840 hold=1.00 | running=100%
+  ep 54/100 : ✓ t_succ= 48 max_z=0.840 hold=1.00 | running=100%
+  ep 55/100 : ✓ t_succ= 55 max_z=0.840 hold=1.00 | running=100%
+  ep 56/100 : ✓ t_succ= 67 max_z=0.839 hold=1.00 | running=100%
+  ep 57/100 : ✓ t_succ= 45 max_z=0.846 hold=1.00 | running=100%
+  ep 58/100 : ✓ t_succ= 52 max_z=0.843 hold=1.00 | running=100%
+  ep 59/100 : ✓ t_succ= 45 max_z=0.841 hold=1.00 | running=100%
+  ep 60/100 : ✓ t_succ= 37 max_z=0.837 hold=1.00 | running=100%
+  ep 61/100 : ✓ t_succ= 51 max_z=0.842 hold=1.00 | running=100%
+  ep 62/100 : ✓ t_succ= 52 max_z=0.837 hold=1.00 | running=100%
+  ep 63/100 : ✓ t_succ= 45 max_z=0.843 hold=1.00 | running=100%
+  ep 64/100 : ✓ t_succ= 52 max_z=0.841 hold=1.00 | running=100%
+  ep 65/100 : ✓ t_succ= 54 max_z=0.837 hold=1.00 | running=100%
+  ep 66/100 : ✓ t_succ= 47 max_z=0.839 hold=1.00 | running=100%
+  ep 67/100 : ✓ t_succ= 45 max_z=0.840 hold=1.00 | running=100%
+  ep 68/100 : ✓ t_succ= 53 max_z=0.841 hold=1.00 | running=100%
+  ep 69/100 : ✓ t_succ= 54 max_z=0.838 hold=1.00 | running=100%
+  ep 70/100 : ✓ t_succ= 43 max_z=0.839 hold=1.00 | running=100%
+  ep 71/100 : ✓ t_succ= 42 max_z=0.840 hold=1.00 | running=100%
+  ep 72/100 : ✓ t_succ= 52 max_z=0.840 hold=1.00 | running=100%
+  ep 73/100 : ✓ t_succ= 47 max_z=0.835 hold=1.00 | running=100%
+  ep 74/100 : ✓ t_succ= 49 max_z=0.839 hold=1.00 | running=100%
+  ep 75/100 : ✓ t_succ= 38 max_z=0.837 hold=1.00 | running=100%
+  ep 76/100 : ✓ t_succ= 48 max_z=0.843 hold=1.00 | running=100%
+  ep 77/100 : ✓ t_succ= 43 max_z=0.841 hold=1.00 | running=100%
+  ep 78/100 : ✓ t_succ= 46 max_z=0.841 hold=1.00 | running=100%
+  ep 79/100 : ✓ t_succ= 44 max_z=0.841 hold=1.00 | running=100%
+  ep 80/100 : ✓ t_succ= 77 max_z=0.846 hold=1.00 | running=100%
+  ep 81/100 : ✓ t_succ= 43 max_z=0.840 hold=1.00 | running=100%
+  ep 82/100 : ✓ t_succ= 52 max_z=0.841 hold=1.00 | running=100%
+  ep 83/100 : ✓ t_succ= 45 max_z=0.840 hold=1.00 | running=100%
+  ep 84/100 : ✓ t_succ= 51 max_z=0.843 hold=1.00 | running=100%
+  ep 85/100 : ✓ t_succ= 44 max_z=0.841 hold=1.00 | running=100%
+  ep 86/100 : ✓ t_succ= 45 max_z=0.841 hold=1.00 | running=100%
+  ep 87/100 : ✓ t_succ= 44 max_z=0.843 hold=1.00 | running=100%
+  ep 88/100 : ✓ t_succ= 46 max_z=0.838 hold=1.00 | running=100%
+  ep 89/100 : ✓ t_succ= 46 max_z=0.837 hold=1.00 | running=100%
+  ep 90/100 : ✓ t_succ= 71 max_z=0.843 hold=1.00 | running=100%
+  ep 91/100 : ✓ t_succ= 44 max_z=0.841 hold=1.00 | running=100%
+  ep 92/100 : ✓ t_succ= 48 max_z=0.840 hold=1.00 | running=100%
+  ep 93/100 : ✓ t_succ= 43 max_z=0.838 hold=1.00 | running=100%
+  ep 94/100 : ✓ t_succ= 48 max_z=0.840 hold=1.00 | running=100%
+  ep 95/100 : ✓ t_succ= 68 max_z=0.841 hold=1.00 | running=100%
+  ep 96/100 : ✓ t_succ= 40 max_z=0.838 hold=1.00 | running=100%
+  ep 97/100 : ✓ t_succ= 59 max_z=0.839 hold=1.00 | running=100%
+  ep 98/100 : ✓ t_succ= 47 max_z=0.839 hold=1.00 | running=100%
+  ep 99/100 : ✓ t_succ= 43 max_z=0.837 hold=1.00 | running=100%
+  ep 100/100 : ✓ t_succ=103 max_z=0.839 hold=1.00 | running=100%
+FINAL 100.0%

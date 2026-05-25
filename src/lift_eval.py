@@ -107,8 +107,14 @@ def build_state_vector(obs):
 
 # --------------------------------------------------------------------------- rollout
 def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
-                 image_size=96, num_inference_steps=10, verbose=True):
-    """Évalue `policy` sur les init_states fournis. Retourne (per_episode, aggregate)."""
+                 image_size=96, num_inference_steps=10, verbose=True, stop_on_success=False):
+    """Évalue `policy` sur les init_states fournis. Retourne (per_episode, aggregate).
+
+    stop_on_success : coupe l'épisode au 1er succès. Le succès = "réussi à un moment"
+      → l'arrêt ne change PAS le taux de succès (seuls les échecs vont au bout des
+      max_steps), mais accélère ~2.5x. NB : rend max_z / hold_fraction tronqués (à
+      n'utiliser que quand on ne mesure que success_rate + t_success).
+    """
     policy.diffusion.num_inference_steps = num_inference_steps
     per_ep = []
     n = init_states.shape[0]
@@ -136,6 +142,8 @@ def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
             succ_flags.append(is_succ)
             if is_succ and t_success is None:
                 t_success = step_i
+                if stop_on_success:
+                    break
             if done:
                 break
         success = t_success is not None
@@ -152,6 +160,38 @@ def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
     agg = aggregate(per_ep)
     agg["elapsed_s"] = time.time() - t0
     return per_ep, agg
+
+
+def rollout_eval_chunked(policy, pre, post, states, *, device, make_env_fn=make_env,
+                         chunk=50, num_inference_steps=10, stop_on_success=False, **kw):
+    """Comme rollout_eval mais recrée l'env tous les `chunk` épisodes.
+
+    Pourquoi : sur de longues évals (centaines de rollouts) le renderer/env offscreen
+    mujoco se dégrade dans un même process (observé : succès qui s'effondre passé
+    ~plusieurs centaines d'épisodes). En recréant l'env par tranche de `chunk` (≤ seuil
+    sûr mesuré à 100), chaque rollout part d'un env propre. Le `policy` (sur device) ne
+    se dégrade pas → on le garde. Retourne (per_episode, aggregate) sur l'ensemble.
+    """
+    per_all = []
+    n = len(states)
+    t0 = time.time()
+    for i in range(0, n, chunk):
+        env = make_env_fn()
+        per, _ = rollout_eval(policy, pre, post, env, states[i:i + chunk], device=device,
+                              num_inference_steps=num_inference_steps,
+                              stop_on_success=stop_on_success, verbose=False, **kw)
+        per_all += per
+        try:
+            env.env.close()
+        except Exception:
+            pass
+        del env
+        done = sum(e["success"] for e in per_all)
+        print(f"  [chunk {i}-{i + len(per)}] cumul {done}/{len(per_all)} = "
+              f"{done / len(per_all):.1%}", flush=True)
+    agg = aggregate(per_all)
+    agg["elapsed_s"] = time.time() - t0
+    return per_all, agg
 
 
 def aggregate(per_ep):

@@ -1,0 +1,66 @@
+{
+  "steps": 4,
+  "n_eval": 500,
+  "results": [
+    {
+      "n_demos": 150,
+      "checkpoint": "results/runs/lift/61_minicnn/checkpoints/010500/pretrained_model",
+      "steps": 4,
+      "n": 500,
+      "n_success": 493,
+      "success_rate": 0.986,
+      "ci95_low": 0.9713865738597492,
+      "ci95_high": 0.9932022969282127,
+      "t_success_median": 47.0,
+      "elapsed_s": 555.3915100097656
+    },
+    {
+      "n_demos": 100,
+      "checkpoint": "results/runs/lift/63_dataeff_n100/checkpoints/005250/pretrained_model",
+      "steps": 4,
+      "n": 500,
+      "n_success": 477,
+      "success_rate": 0.954,
+      "ci95_low": 0.9319217297737272,
+      "ci95_high": 0.9691551166002124,
+      "t_success_median": 54.0,
+      "elapsed_s": 752.7149250507355
+    },
+    {
+      "n_demos": 50,
+      "checkpoint": "results/runs/lift/63_dataeff_n50/checkpoints/006000/pretrained_model",
+      "steps": 4,
+      "n": 500,
+      "n_success": 491,
+      "success_rate": 0.982,
+      "ci95_low": 0.9661479527879661,
+      "ci95_high": 0.9905019149482431,
+      "t_success_median": 58.0,
+      "elapsed_s": 15001.064507722855
+    },
+    {
+      "n_demos": 20,
+      "checkpoint": "results/runs/lift/63_dataeff_n20/checkpoints/005250/pretrained_model",
+      "steps": 4,
+      "n": 500,
+      "n_success": 487,
+      "success_rate": 0.974,
+      "ci95_low": 0.9560280989556288,
+      "ci95_high": 0.9847437626770749,
+      "t_success_median": 61.0,
+      "elapsed_s": 841.0778620243073
+    },
+    {
+      "n_demos": 10,
+      "checkpoint": "results/runs/lift/63_dataeff_n10/checkpoints/003000/pretrained_model",
+      "steps": 4,
+      "n": 500,
+      "n_success": 425,
+      "success_rate": 0.85,
+      "ci95_low": 0.8160382472597502,
+      "ci95_high": 0.8786245197686174,
+      "t_success_median": 61.0,
+      "elapsed_s": 991.6706991195679
+    }
+  ]
+}
