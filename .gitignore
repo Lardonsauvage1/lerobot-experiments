@@ -25,6 +25,10 @@ results/videos/
 results/archive/
 results/*.log
 
+# Logs trop lourds / runs buggés (exclus exprès — non versionnés)
+results/logs/lift/run_69_grid.log
+results/logs/lift/run_67_dataeff_500.log
+
 # LeRobot training outputs
 outputs/
 
