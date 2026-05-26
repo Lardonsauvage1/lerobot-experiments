@@ -4,9 +4,43 @@ Tâche : Robomimic **Lift**. Protocole : train 150 / val 50 (split contigu figé
 
 ## ⭐ Point de fonctionnement final
 
-> **U-Net `[32,64,128]` + vision mini-CNN → 1.65 M params, 100 % de succès à 4 pas de diffusion, ~44 ms/décision.**
+> **U-Net `[32,64,128]` + vision mini-CNN → 1.65 M params, ~99 % de succès à 4 pas de diffusion, ~44 ms/décision.**
 >
-> vs baseline `[512,1024,2048]` + ResNet18 (263.7 M) à 10 pas = **938 ms**. → **÷160 en params, ÷21 en latence, performance identique** (au plafond expert). En temps réel : largement dans le budget 20 Hz. Si on garde ResNet18, le même U-Net donne 12.8 M / 49 ms / 100 % (latence quasi identique — voir § vision).
+> vs baseline `[512,1024,2048]` + ResNet18 (263.7 M) à 10 pas = **938 ms**. → **÷160 en params, ÷21 en latence, performance équivalente**. En temps réel : largement dans le budget 20 Hz.
+>
+> ⚠️ Succès honnête = **98.6 % sur 500 rollouts** (le « 100 % » ci-dessous est mesuré sur 50 ép. → dans le bruit, voir § validation 500 rollouts juste après). Le modèle final est **à égalité statistique** avec des U-Nets 3–10× plus gros.
+
+## Validation rigoureuse — 500 rollouts (IC95 Wilson)
+
+⚠️ Tous les autres tableaux de ce doc sont sur **50 épisodes** → IC95 ≈ ±7 pts : à ce niveau un vrai ~98–99 % affiche souvent un parfait « 100 % » (P(50/50) ≈ 49 % pour un vrai 98.6 %). On a donc tout re-mesuré sur **500 rollouts appariés** (mêmes 500 départs figés `phase4_eval500.npy`, IC95 ≈ ±2 pts, env recréé par tranche — anti-dégradation renderer). Discussion : `docs/COMPRESSION.md`.
+
+### Grille données × taille U-Net (mini-CNN, @ 4 pas) — succès % [IC95]
+
+| N \ U-Net | `[32,64,128]` 1.6M | `[64,128,256]` 5M | `[128,256,512]` 17M |
+|---|---|---|---|
+| **150** | 98.6 [97.1–99.3] | 99.0 [97.7–99.6] | 99.8 [98.9–100] |
+| **100** | 95.4 [93.2–96.9] | 98.4 [96.9–99.2] | 99.8 [98.9–100] |
+| **50** | 98.2 [96.6–99.1] | 99.6 [98.6–99.9] | 99.4 [98.3–99.8] |
+| **20** | **97.4** [95.6–98.5] | 92.2 [89.5–94.2] | 88.0 [84.9–90.6] |
+| **10** | 85.0 [81.6–87.9] | 78.2 [74.4–81.6] | 93.8 [91.3–95.6] |
+
+- **N ≥ 50** : la taille du U-Net ne compte quasi pas (~98–99.8 %, toutes tailles à égalité).
+- **N = 20** : le gros U-Net **sur-apprend** (97.4 % > 92.2 % > 88.0 %, CIs disjoints) → le petit `[32,64,128]` est **plus robuste à données rares**.
+- **N = 10** : tout décroche, variance d'entraînement dominante (non-monotone). (`grid_data_x_unet_500.{json,png}`)
+
+### Grille pas × données (`[32,64,128]` mini-CNN) — succès %
+
+| pas \ N | 150 | 100 | 50 | 20 | 10 |
+|---|---|---|---|---|---|
+| **2** | 31 | 6 | 8 | 6 | 3 |
+| **4** | 98.6 | 95.4 | 98.2 | 97.4 | 85.0 |
+| **10** | 98.4 | 96.2 | 98.8 | 98.8 | **95.6** |
+| **20** | 98.0 | 96.8 | 99.4 | 99.0 | 94.0 |
+| **50** | 96.0 | 95.6 | 98.2 | 99.0 | 93.6 |
+
+- **2 pas s'effondre partout** (3–31 %) ; **4 pas suffit à pleines données** (~98 %, plus n'aide pas — 50 pas baisse même).
+- **À N=10, 4 pas insuffisant (85 %) → ~10 pas (95.6 %)** puis plateau (~94 %, sans rejoindre le ~98 % pleines-données).
+- → **plancher de pas dépendant des données** : 4 à pleines données, ~10 si peu de démos ; les pas récupèrent une partie du déficit mais ne remplacent pas les démos. (`grid_steps_x_data_500.{json,png}`)
 
 ## Vision mini-CNN — casser le mur ResNet18
 
@@ -78,7 +112,10 @@ Le U-Net passe de **252 M → 1.6 M (÷160)** sans perte de succès — il étai
 
 | Fichier | Contenu |
 |---|---|
-| `grid.{json,md}` | grille latence × succès (7 tailles × 5 pas, 50 ép./case) |
+| `../grid_data_x_unet_500.{json,png}` | **grille données × U-Net, 500 rollouts** (15 cellules, IC95 Wilson) |
+| `../grid_steps_x_data_500.{json,png}` | **grille pas × données, 500 rollouts** (25 cellules, IC95 Wilson) |
+| `../67_dataeff_500.json` · `../69_grid_500.json` · `../71_steps_data_500.json` | données brutes des grilles 500 |
+| `grid.{json,md}` | grille latence × succès (7 tailles × 5 pas, **50 ép.**/case) |
 | `sweep_eval.json` + `sweep_pareto.png` | sweep U-Net (params, val-loss, métriques rollout) |
 | `latency.{json,png}` | latence (3 modèles × pas, obs factices) |
 | `inference_steps.{json,png}` | succès vs pas sur `[32,64,128]` |
@@ -87,4 +124,4 @@ Le U-Net passe de **252 M → 1.6 M (÷160)** sans perte de succès — il étai
 
 Mini-CNN : résultats dans `../61_minicnn/minicnn_eval.json` ; code `experiments/lift/61_train_minicnn.py` + `62_minicnn_eval.py` + `src/mini_cnn.py`.
 
-Scripts : `52` (sweep eval), `54/55` (plafond/vidéos démos), `56` (latence), `57` (sweep pas), `58` (grille), `61/62` (mini-CNN). Récits : `docs/COMPRESSION.md` (cadrage), `docs/LIFT.md` (phase 3).
+Scripts : `52` (sweep eval), `54/55` (plafond/vidéos démos), `56` (latence), `57` (sweep pas), `58` (grille latence), `61/62` (mini-CNN), **`67` (données 500), `run_69_grid.sh`+`69` (grille données×U-Net 500), `70` (assemblage), `71`+`72` (pas×données 500)**, `src/lift_eval.py` (`rollout_eval_chunked`). Récits : `docs/COMPRESSION.md` (cadrage + grilles 500), `docs/LIFT.md` (phase 3).
