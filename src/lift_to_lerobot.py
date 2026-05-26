@@ -33,47 +33,36 @@ TASK_DESCRIPTION = "Pick up the cube and lift it."
 # ============================================================
 
 
-def convert():
+def convert(proprio=False):
+    """proprio=True : state 9D = proprio SEULE (eef_pos+eef_quat+gripper), SANS les coords du cube.
+    Test de transférabilité réel : le modèle doit VOIR le cube (image) au lieu qu'on lui souffle
+    sa position. Sort dans lerobot_lift_ph_proprio / local/lift_ph_proprio."""
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
     import robosuite as rs
 
-    # Cleanup si existe déjà
-    if OUTPUT_ROOT.exists():
-        print(f"⚠️  {OUTPUT_ROOT} existe déjà. Supprime-le manuellement si tu veux relancer.")
+    out_root = OUTPUT_ROOT.with_name("lerobot_lift_ph_proprio") if proprio else OUTPUT_ROOT
+    repo_id = "local/lift_ph_proprio" if proprio else REPO_ID
+    if out_root.exists():
+        print(f"⚠️  {out_root} existe déjà. Supprime-le manuellement si tu veux relancer.")
         return
 
-    # Définir les features LeRobot
+    base_names = ["eef_pos_x", "eef_pos_y", "eef_pos_z", "eef_quat_w", "eef_quat_x",
+                  "eef_quat_y", "eef_quat_z", "gripper_l", "gripper_r"]
+    if proprio:
+        state_shape, state_names = (9,), base_names              # SANS object
+    else:
+        state_shape, state_names = (19,), base_names + [f"obj{i}" for i in range(10)]
     features = {
-        "observation.image": {
-            "dtype": "video",
-            "shape": (3, IMAGE_SIZE, IMAGE_SIZE),
-            "names": ["channels", "height", "width"],
-        },
-        "observation.state": {
-            "dtype": "float32",
-            "shape": (19,),  # eef_pos(3) + eef_quat(4) + gripper_qpos(2) + object(10)
-            "names": ["eef_pos_x", "eef_pos_y", "eef_pos_z",
-                      "eef_quat_w", "eef_quat_x", "eef_quat_y", "eef_quat_z",
-                      "gripper_l", "gripper_r",
-                      "obj0", "obj1", "obj2", "obj3", "obj4", "obj5", "obj6", "obj7", "obj8", "obj9"],
-        },
-        "action": {
-            "dtype": "float32",
-            "shape": (7,),
-            "names": ["dx", "dy", "dz", "drx", "dry", "drz", "gripper"],
-        },
+        "observation.image": {"dtype": "video", "shape": (3, IMAGE_SIZE, IMAGE_SIZE),
+                              "names": ["channels", "height", "width"]},
+        "observation.state": {"dtype": "float32", "shape": state_shape, "names": state_names},
+        "action": {"dtype": "float32", "shape": (7,),
+                   "names": ["dx", "dy", "dz", "drx", "dry", "drz", "gripper"]},
     }
 
-    print(f"Création du dataset LeRobot local : {OUTPUT_ROOT}")
-    dataset = LeRobotDataset.create(
-        repo_id=REPO_ID,
-        fps=FPS,
-        features=features,
-        root=OUTPUT_ROOT,
-        robot_type="panda",
-        use_videos=True,
-        video_backend="pyav",  # compatible Mac
-    )
+    print(f"Création du dataset LeRobot local : {out_root} (proprio={proprio}, state={state_shape[0]}D)")
+    dataset = LeRobotDataset.create(repo_id=repo_id, fps=FPS, features=features, root=out_root,
+                                    robot_type="panda", use_videos=True, video_backend="pyav")
 
     # Setup env pour render
     print("Setup env Robosuite Lift...")
@@ -95,7 +84,11 @@ def convert():
             states_demo = demo["states"][:]
             actions_demo = demo["actions"][:]
             obs_grp = demo["obs"]
-            state_low = np.concatenate([obs_grp[k][:] for k in STATE_KEYS], axis=1)
+            if proprio:
+                state_low = np.concatenate([obs_grp["robot0_eef_pos"][:], obs_grp["robot0_eef_quat"][:],
+                                            obs_grp["robot0_gripper_qpos"][:]], axis=1)  # 9D, sans object
+            else:
+                state_low = np.concatenate([obs_grp[k][:] for k in STATE_KEYS], axis=1)
             n = states_demo.shape[0]
 
             env.reset()
@@ -120,19 +113,11 @@ def convert():
                 print(f"  {d_idx + 1}/{len(demo_names)} démos écrites")
 
     env.close()
-
-    print("\nConsolidation du dataset...")
-    # LeRobot v0.5 : consolidate happens automatically on save_episode in streaming mode
-    # mais on peut forcer le flush des stats
-
-    print(f"\n✓ Dataset LeRobot créé : {OUTPUT_ROOT}")
-    print(f"  Frames total : {dataset.num_frames}")
-    print(f"  Épisodes : {dataset.num_episodes}")
-    print(f"\nPour entraîner :")
-    print(f"  lerobot-train --policy.type=diffusion \\")
-    print(f"    --dataset.repo_id={REPO_ID} \\")
-    print(f"    --dataset.root={OUTPUT_ROOT}")
+    print(f"\n✓ Dataset LeRobot créé : {out_root} | frames={dataset.num_frames} épisodes={dataset.num_episodes}")
 
 
 if __name__ == "__main__":
-    convert()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--proprio", action="store_true", help="state 9D proprio seule (sans coords cube)")
+    convert(proprio=ap.parse_args().proprio)
