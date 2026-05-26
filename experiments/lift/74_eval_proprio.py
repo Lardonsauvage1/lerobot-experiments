@@ -12,6 +12,7 @@ sys.path.insert(0, ".")
 from src.quiet_robosuite import silence_robosuite
 silence_robosuite()
 
+import argparse
 import json
 import math
 from pathlib import Path
@@ -22,10 +23,8 @@ from torch.utils.data import DataLoader
 
 from src import lift_eval
 
-RUN_DIR = Path("results/runs/lift/73_proprio")
 DATASET_REPO, DATASET_ROOT = "local/lift_ph_proprio", "data_cache/lerobot_lift_ph_proprio"
 STEPS = 10
-OUT = Path("results/runs/lift/73_proprio_eval.json")
 
 
 def wilson_ci(k, n, z=1.96):
@@ -53,6 +52,13 @@ def build_delta_timestamps(cfg, fps):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--run-dir", default="results/runs/lift/73_proprio")
+    ap.add_argument("--out", default="results/runs/lift/73_proprio_eval.json")
+    args = ap.parse_args()
+    RUN_DIR = Path(args.run_dir)
+    OUT = Path(args.out)
+
     device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
     val_idx = lift_eval.load_or_make_split()["val"]
     init_states = lift_eval.load_init_states(val_idx)
