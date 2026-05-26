@@ -107,20 +107,25 @@ def build_state_vector(obs):
 
 # --------------------------------------------------------------------------- rollout
 def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
-                 image_size=96, num_inference_steps=10, verbose=True, stop_on_success=False):
+                 image_size=96, num_inference_steps=10, verbose=True, stop_on_success=False,
+                 fix_obs_fn=fix_obs_sign, state_fn=build_state_vector):
     """Évalue `policy` sur les init_states fournis. Retourne (per_episode, aggregate).
 
     stop_on_success : coupe l'épisode au 1er succès. Le succès = "réussi à un moment"
       → l'arrêt ne change PAS le taux de succès (seuls les échecs vont au bout des
       max_steps), mais accélère ~2.5x. NB : rend max_z / hold_fraction tronqués (à
       n'utiliser que quand on ne mesure que success_rate + t_success).
+
+    fix_obs_fn / state_fn : préprocessing d'obs et constructeur du vecteur d'état,
+      paramétrables par tâche (défauts = Lift). Pour Can, l'obs `object` est réordonnée
+      par robosuite 1.5 vs le dataset 1.4 → on passe un state_fn dédié (voir can_eval).
     """
     policy.diffusion.num_inference_steps = num_inference_steps
     per_ep = []
     n = init_states.shape[0]
     t0 = time.time()
     for ep in range(n):
-        obs = fix_obs_sign(env.reset_to(dict(states=init_states[ep])))
+        obs = fix_obs_fn(env.reset_to(dict(states=init_states[ep])))
         policy.reset()
         max_z = 0.0
         succ_flags = []
@@ -128,7 +133,7 @@ def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
         for step_i in range(max_steps):
             img = env.env.sim.render(height=image_size, width=image_size, camera_name="agentview")[::-1]
             img_t = torch.from_numpy(img.copy()).permute(2, 0, 1).float() / 255.0
-            state_t = torch.from_numpy(build_state_vector(obs))
+            state_t = torch.from_numpy(state_fn(obs))
             obs_dict = {"observation.image": img_t.unsqueeze(0).to(device),
                         "observation.state": state_t.unsqueeze(0).to(device)}
             obs_dict = pre(obs_dict)
@@ -136,7 +141,7 @@ def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
                 a = policy.select_action(obs_dict)
             a = np.clip(post(a).squeeze(0).cpu().numpy(), -1.0, 1.0).astype(np.float32)
             obs, _, done, _ = env.step(a)
-            obs = fix_obs_sign(obs)
+            obs = fix_obs_fn(obs)
             max_z = max(max_z, float(np.asarray(obs["object"])[2]))
             is_succ = bool(env.is_success()["task"])
             succ_flags.append(is_succ)

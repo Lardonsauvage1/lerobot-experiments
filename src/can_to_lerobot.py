@@ -20,8 +20,6 @@ from pathlib import Path
 import h5py
 import numpy as np
 
-from src.lift_data import STATE_KEYS  # ("robot0_eef_pos","robot0_eef_quat","robot0_gripper_qpos","object")
-
 HDF5_PATH = "data_cache/robomimic_can_ph/low_dim_v141.hdf5"
 OUTPUT_ROOT = Path("data_cache/lerobot_can_ph")
 REPO_ID = "local/can_ph"
@@ -29,7 +27,9 @@ IMAGE_SIZE = 96
 CAMERA_NAME = "agentview"
 FPS = 20
 TASK_DESCRIPTION = "Pick up the can and place it in the bin."
-STATE_DIM = 3 + 4 + 2 + 14  # eef_pos + eef_quat + gripper_qpos + object(14) = 23
+# State Can = proprio + position canette = 12D (voir src/can_eval.py pour le pourquoi).
+# ⚠️ Côté DATASET (1.4), la can_pos est dans object[0:3] (côté env live 1.5 : object[7:10]).
+STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
 
 
 def convert(smoke=False):
@@ -41,9 +41,9 @@ def convert(smoke=False):
         print(f"⚠️  {out} existe déjà. Supprime-le pour relancer.")
         return
 
-    state_names = (["eef_pos_x", "eef_pos_y", "eef_pos_z",
-                    "eef_quat_w", "eef_quat_x", "eef_quat_y", "eef_quat_z",
-                    "gripper_l", "gripper_r"] + [f"obj{i}" for i in range(14)])
+    state_names = ["eef_pos_x", "eef_pos_y", "eef_pos_z",
+                   "eef_quat_w", "eef_quat_x", "eef_quat_y", "eef_quat_z",
+                   "gripper_l", "gripper_r", "can_x", "can_y", "can_z"]
     features = {
         "observation.image": {"dtype": "video", "shape": (3, IMAGE_SIZE, IMAGE_SIZE),
                               "names": ["channels", "height", "width"]},
@@ -72,8 +72,10 @@ def convert(smoke=False):
             demo = f["data"][demo_name]
             states_demo = demo["states"][:]
             actions_demo = demo["actions"][:]
-            obs_grp = demo["obs"]
-            state_low = np.concatenate([obs_grp[k][:] for k in STATE_KEYS], axis=1)
+            o = demo["obs"]
+            # 12D = eef_pos(3) + eef_quat(4) + gripper(2) + can_pos = object[0:3] (dataset 1.4)
+            state_low = np.concatenate([o["robot0_eef_pos"][:], o["robot0_eef_quat"][:],
+                                        o["robot0_gripper_qpos"][:], o["object"][:, 0:3]], axis=1)
             assert state_low.shape[1] == STATE_DIM, f"state dim {state_low.shape[1]} != {STATE_DIM}"
             env.reset()
             for i in range(states_demo.shape[0]):
