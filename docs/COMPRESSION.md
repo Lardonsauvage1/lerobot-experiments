@@ -80,10 +80,29 @@ Trois régimes nets (voir `results/runs/lift/grid_data_x_unet_500.png`) :
 
 NB : le « 100 % » des sections précédentes (mesuré sur ≤50 ép.) était dans le bruit de ce **~98.6–99 %** réel — la conclusion (compression sans perte de perf) tient, mais le chiffre honnête à 500 rollouts est ~99 %, pas un 100 % strict.
 
+### Pas de diffusion × données — 500 rollouts (`[32,64,128]` mini-CNN)
+
+Succès % [IC95 Wilson], lignes = pas (`num_inference_steps`), colonnes = nb démos. Voir `results/runs/lift/grid_steps_x_data_500.png`.
+
+| pas \ N | 150 | 100 | 50 | 20 | 10 |
+|---|---|---|---|---|---|
+| **2** | 31.0 | 6.4 | 8.0 | 5.8 | 3.0 |
+| **4** | 98.6 | 95.4 | 98.2 | 97.4 | 85.0 |
+| **10** | 98.4 | 96.2 | 98.8 | 98.8 | **95.6** |
+| **20** | 98.0 | 96.8 | 99.4 | 99.0 | 94.0 |
+| **50** | 96.0 | 95.6 | 98.2 | 99.0 | 93.6 |
+
+Trois constats (remplacent l'ancien « pont pas↔données » mesuré à 50 ép.) :
+1. **2 pas s'effondre partout** (3–31 %) — le plancher est bien au-dessus de 2.
+2. **4 pas suffit à pleines données** (N ≥ 50 : ~98 %), et **monter les pas n'aide pas** (10/20/50 ≈ identiques ; 50 pas *baisse* même un peu à N=150 → 96 %). Le point de fonctionnement @ 4 pas est validé.
+3. **MAIS à données rares (N=10), 4 pas ne suffit plus (85 %)** : 85 → **95.6 % en passant à 10 pas** (+10 pts, sans réentraîner), puis plateau (~94–95 %, sans atteindre le ~98 % des données abondantes).
+
+→ Le « plancher » de pas est **dépendant des données** : **4 pas à pleines données, ~10 pas si peu de démos** ; au-delà de 10, rien à gagner. Les pas **récupèrent une partie** du déficit de données mais **plafonnent sous la perf pleines-données** — ils ne *remplacent* pas les démos.
+
 ## Leçons clés
 
 1. **U-Net surdimensionné ×160** : 252 M → 1.6 M sans perte. **Plancher de capacité = `[32,64,128]`** ; en dessous, falaise nette (`[16,32,64]` → 2 %).
-2. **Pas de diffusion : plancher = 4** (universel, indépendant de la taille) à pleines données. 100 % de 4 à 10 pas, cassure à 2.
+2. **Pas de diffusion : plancher dépendant des données.** 2 pas casse partout (3–31 %). **4 pas suffit à pleines données** (~98 %, et plus n'aide pas — 50 pas baisse même un peu), **mais ~10 pas sont nécessaires à données rares** (N=10 : 85 % @4 → 95.6 % @10, puis plateau). Les pas récupèrent une partie du déficit de données sans le combler.
 3. **La vision était le vrai mur** : une fois le U-Net minimal, ResNet18 (11.2 M) domine. Un **mini-CNN 0.03 M** from scratch suffit (Lift visuellement simple — cohérent avec « DINOv2 ≈ ResNet gelé » en phase 3). Gain params + vitesse d'entraînement ÷4 ; **latence ~inchangée** (le U-Net domine à l'inférence).
 4. **Lift est peu gourmand en données… jusqu'à un seuil** : ~20 démos ≈ 97 % (`[32,64,128]`), mais **falaise à N=10 (85 %)**. Le coût de la rareté se voit aussi dans `t_success` (succès plus lent). Encourageant pour le bras réel — viser **≥ 20 démos**.
 5. **Interaction capacité × données** (le résultat clé de la grille) : à pleines données la taille du U-Net ne change rien (~98–99 %), mais **à données rares (N=20) le gros U-Net sur-apprend** (88 % vs 97.4 % pour le petit). → le petit `[32,64,128]` est **doublement justifié** : aussi bon à pleines données, plus robuste à données rares.
@@ -103,7 +122,7 @@ NB : le « 100 % » des sections précédentes (mesuré sur ≤50 ép.) était d
 
 ⚠️ **Bug d'éval longue trouvé + corrigé** : réutiliser un même env mujoco pour **des centaines de rollouts** (ou des centaines de `reset()` de génération) dégrade le **renderer offscreen** → les épisodes tardifs reçoivent des images pourries → faux échecs (symptôme : un modèle 100 % tombe à 2 %). Correctif `lift_eval.rollout_eval_chunked` : **recrée l'env tous les 50 épisodes** (sous le seuil sûr mesuré à 100) + `env.env.close()` ; génération des états avec un env **jetable**. Les évals ≤50 ép. (sweep, plafond) étaient sous le seuil → non affectées.
 
-**Outils** : `47` (rollout), `48` (val-loss), `52` (sweep eval), `54/55` (démos), `56` (latence), `57` (sweep pas), `58` (grille latence×succès), `61` (train mini-CNN), `62` (eval mini-CNN), `63` (efficacité données 50 ép. — superseded), `64/66` (pont pas↔données 50 ép.), `65` (vidéos), `50` (train + val-loss continue), `67` (données 500 rollouts), `run_69_grid.sh` + `69_grid_eval.py` (grille 500), `70_grid_assemble.py` (assemblage + plot), `src/lift_eval.py` (dont `rollout_eval_chunked`), `src/mini_cnn.py`. Grille : [`../results/runs/lift/grid_data_x_unet_500.json`](../results/runs/lift/grid_data_x_unet_500.json) · Tableau maître sweep : [`../results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](../results/runs/lift/51_unet_sweep_eval/SUMMARY.md).
+**Outils** : `47` (rollout), `48` (val-loss), `52` (sweep eval), `54/55` (démos), `56` (latence), `57` (sweep pas), `58` (grille latence×succès), `61` (train mini-CNN), `62` (eval mini-CNN), `63` (efficacité données 50 ép. — superseded), `64/66` (pont pas↔données 50 ép.), `65` (vidéos), `50` (train + val-loss continue), `67` (données 500 rollouts), `run_69_grid.sh` + `69_grid_eval.py` (grille données×U-Net 500), `70` (assemblage grille données×U-Net), `71` (sweep pas×données 500) + `72` (assemblage pas×données), `src/lift_eval.py` (dont `rollout_eval_chunked`), `src/mini_cnn.py`. Grilles : [`../results/runs/lift/grid_data_x_unet_500.json`](../results/runs/lift/grid_data_x_unet_500.json) · [`../results/runs/lift/grid_steps_x_data_500.json`](../results/runs/lift/grid_steps_x_data_500.json) · Tableau maître sweep : [`../results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](../results/runs/lift/51_unet_sweep_eval/SUMMARY.md).
 
 ## Suite
 
