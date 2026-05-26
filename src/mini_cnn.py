@@ -59,3 +59,29 @@ def load_minicnn_policy(ckpt: str, device, config_template: str = CONFIG_TEMPLAT
     if unexpected:
         print(f"  [load_minicnn] ⚠️ poids inattendus ({len(unexpected)}): {unexpected[:5]}")
     return policy
+
+
+def load_minicnn_from_ckpt(ckpt, device):
+    """Charge un mini-CNN depuis la config PROPRE du checkpoint (n'importe quelle archi/dims).
+
+    Plus robuste que load_minicnn_policy (pas de template figé) : `PreTrainedConfig.from_pretrained`
+    dispatche via le champ `type` (contourne le bug draccus de `DiffusionConfig.from_pretrained`),
+    on build une policy random depuis cette config → swap mini-CNN → load_state_dict(strict=False).
+    Marche pour Lift (19D) comme Can (12D), tout down_dims. Le normalizer vient du state_dict.
+    """
+    from pathlib import Path
+    from safetensors.torch import load_file
+    from lerobot.policies.diffusion.modeling_diffusion import DiffusionPolicy
+    from lerobot.configs.policies import PreTrainedConfig
+
+    cfg = PreTrainedConfig.from_pretrained(ckpt)
+    policy = DiffusionPolicy(cfg)
+    swap_to_tiny_cnn(policy)
+    sd = load_file(str(Path(ckpt) / "model.safetensors"), device="cpu")
+    missing, unexpected = policy.load_state_dict(sd, strict=False)
+    real_missing = [k for k in missing if "num_batches_tracked" not in k]
+    if real_missing:
+        print(f"  [load_minicnn_ckpt] ⚠️ poids manquants ({len(real_missing)}): {real_missing[:5]}")
+    if unexpected:
+        print(f"  [load_minicnn_ckpt] ⚠️ poids inattendus ({len(unexpected)}): {unexpected[:5]}")
+    return policy.to(device).eval()
