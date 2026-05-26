@@ -11,6 +11,7 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 | **1-2** | PushT (cube 2D à pousser) | 46.5 % coverage | La **formulation de la sortie** compte plus que les features (la classification discrète rattrape « image+position ») ; **loss basse ≠ bonne perf**. → [`docs/PUSHT.md`](docs/PUSHT.md) |
 | **3** | Robomimic Lift (bras Panda 7-DoF) | **100 % succès** (Diffusion Policy) | **Diffusion Policy ≫ behavior cloning** sur le multimodal (100 % vs 70 %) ; sans image → 0 %. → [`docs/LIFT.md`](docs/LIFT.md) |
 | **4** | Compression & limites du modèle | **~99 % à ÷160 params / ÷21 latence**, et **~20 démos suffisent** | U-Net surdimensionné ×160 ; ResNet18 → mini-CNN 0.03 M ; Lift peu gourmand (≥20 démos) ; à données rares un **gros U-Net sur-apprend** (grille 500 rollouts, IC95 Wilson). → [`docs/COMPRESSION.md`](docs/COMPRESSION.md) |
+| **5** ⏳ | Robomimic Can (pick-and-place) | *en cours* | **Tâche plus dure** (saisir + transporter + déposer) : les conclusions de compression généralisent-elles ? → [`docs/CAN.md`](docs/CAN.md) |
 
 ## Résultats phares
 
@@ -31,6 +32,7 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 1. [`docs/PUSHT.md`](docs/PUSHT.md) — PushT : enquête « loss vs performance », la formulation de sortie.
 2. [`docs/LIFT.md`](docs/LIFT.md) — Lift : du behavior cloning raté (0 %) à 100 % en Diffusion Policy (+ les 5 bugs d'eval, le sim-to-real).
 3. [`docs/COMPRESSION.md`](docs/COMPRESSION.md) — compression & limites : taille U-Net, pas de diffusion, vision, et efficacité données.
+4. [`docs/CAN.md`](docs/CAN.md) — Can (pick-and-place) : la compression généralise-t-elle à une tâche plus dure ? *(en cours)*
 
 Index complet de la doc : [`docs/README.md`](docs/README.md).
 
@@ -60,7 +62,7 @@ experiments/<tâche>/   scripts numérotés (pusht/, lift/) + archive/
 src/                   lib commune (lift_data, lift_eval, lift_to_lerobot, tracker, benchmark…)
 results/runs/<tâche>/  fiches + courbes par run (poids/vidéos = locaux, non versionnés)
 results/logs/          logs textuels
-docs/                  récits par phase (PUSHT, LIFT, COMPRESSION) + index
+docs/                  récits par phase (PUSHT, LIFT, COMPRESSION, CAN) + index
 notebooks/             Colab/Kaggle
 ```
 
