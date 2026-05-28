@@ -32,14 +32,15 @@ TASK_DESCRIPTION = "Pick up the can and place it in the bin."
 STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
 
 
-def convert(proprio=False, smoke=False):
-    """proprio=True : state 9D = proprio SEULE (eef_pos+eef_quat+gripper), SANS can_pos.
-    Test de transférabilité réel sur Can : le modèle doit VOIR la canette (image) au lieu
-    qu'on lui souffle sa position. Sort dans lerobot_can_ph_proprio / local/can_ph_proprio."""
+def convert(proprio=False, wrist=False, smoke=False):
+    """proprio=True : state 9D = proprio SEULE (sans can_pos), test transférabilité réel.
+    wrist=True : ajoute la caméra robot0_eye_in_hand (vue poignet) en plus de agentview, pour
+       lever l'ambiguïté de profondeur d'une seule vue de face. Features observation.images.X.
+    Sort dans lerobot_can_ph[_proprio][_wrist] / local/can_ph[_proprio][_wrist]."""
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
     import robosuite as rs
 
-    suffix = "_proprio" if proprio else ""
+    suffix = ("_proprio" if proprio else "") + ("_wrist" if wrist else "")
     out_root = OUTPUT_ROOT.with_name(OUTPUT_ROOT.name + suffix)
     repo_id = REPO_ID + suffix
     out = out_root.with_name(out_root.name + "_smoke") if smoke else out_root
@@ -53,15 +54,25 @@ def convert(proprio=False, smoke=False):
         state_dim, state_names = 9, base_names                          # SANS can_pos
     else:
         state_dim, state_names = 12, base_names + ["can_x", "can_y", "can_z"]
+
+    img_feat = {"dtype": "video", "shape": (3, IMAGE_SIZE, IMAGE_SIZE),
+                "names": ["channels", "height", "width"]}
+    if wrist:
+        # Multi-caméras : convention LeRobot 'observation.images.X' (sera détecté par
+        # diffusion policy comme features VISUAL multiples, vision backbone partagé).
+        image_features = {"observation.images.agentview": img_feat,
+                          "observation.images.wrist": img_feat}
+    else:
+        image_features = {"observation.image": img_feat}
     features = {
-        "observation.image": {"dtype": "video", "shape": (3, IMAGE_SIZE, IMAGE_SIZE),
-                              "names": ["channels", "height", "width"]},
+        **image_features,
         "observation.state": {"dtype": "float32", "shape": (state_dim,), "names": state_names},
         "action": {"dtype": "float32", "shape": (7,),
                    "names": ["dx", "dy", "dz", "drx", "dry", "drz", "gripper"]},
     }
 
-    print(f"Création dataset LeRobot : {out} (proprio={proprio}, state={state_dim}D)")
+    print(f"Création dataset LeRobot : {out} (proprio={proprio}, wrist={wrist}, "
+          f"state={state_dim}D, cams={list(image_features.keys())})")
     dataset = LeRobotDataset.create(repo_id=repo_id, fps=FPS, features=features, root=out,
                                     robot_type="panda", use_videos=True, video_backend="pyav")
 
@@ -94,13 +105,18 @@ def convert(proprio=False, smoke=False):
             for i in range(states_demo.shape[0]):
                 env.sim.set_state_from_flattened(states_demo[i])
                 env.sim.forward()
-                img = env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=CAMERA_NAME)[::-1]
-                dataset.add_frame({
-                    "observation.image": np.ascontiguousarray(img.transpose(2, 0, 1)),
-                    "observation.state": state_low[i].astype(np.float32),
-                    "action": actions_demo[i].astype(np.float32),
-                    "task": TASK_DESCRIPTION,
-                })
+                frame = {"observation.state": state_low[i].astype(np.float32),
+                         "action": actions_demo[i].astype(np.float32),
+                         "task": TASK_DESCRIPTION}
+                if wrist:
+                    for key, cam in [("observation.images.agentview", "agentview"),
+                                     ("observation.images.wrist", "robot0_eye_in_hand")]:
+                        img = env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=cam)[::-1]
+                        frame[key] = np.ascontiguousarray(img.transpose(2, 0, 1))
+                else:
+                    img = env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=CAMERA_NAME)[::-1]
+                    frame["observation.image"] = np.ascontiguousarray(img.transpose(2, 0, 1))
+                dataset.add_frame(frame)
             dataset.save_episode()
             if (d_idx + 1) % 20 == 0:
                 print(f"  {d_idx + 1}/{len(demo_names)} démos", flush=True)
@@ -124,6 +140,7 @@ def convert(proprio=False, smoke=False):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--proprio", action="store_true", help="state 9D proprio seule (sans can_pos)")
+    ap.add_argument("--wrist", action="store_true", help="ajoute la caméra robot0_eye_in_hand (2 vues)")
     ap.add_argument("--smoke", action="store_true")
     a = ap.parse_args()
-    convert(proprio=a.proprio, smoke=a.smoke)
+    convert(proprio=a.proprio, wrist=a.wrist, smoke=a.smoke)
