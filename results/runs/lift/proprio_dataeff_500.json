@@ -1,0 +1,67 @@
+{
+  "steps": 10,
+  "n_eval": 500,
+  "mode": "vision-only (9D proprio, sans coords cube)",
+  "results": [
+    {
+      "n_demos": 150,
+      "best_step": 4000,
+      "val_loss": 0.07578250812752725,
+      "steps": 10,
+      "n": 500,
+      "n_success": 406,
+      "success_rate": 0.812,
+      "ci95_low": 0.7754216622802987,
+      "ci95_high": 0.8438205757564177,
+      "t_success_median": 48.0
+    },
+    {
+      "n_demos": 100,
+      "best_step": 4000,
+      "val_loss": 0.07581741168823211,
+      "steps": 10,
+      "n": 500,
+      "n_success": 476,
+      "success_rate": 0.952,
+      "ci95_low": 0.9295723199393156,
+      "ci95_high": 0.9675350249087478,
+      "t_success_median": 43.0
+    },
+    {
+      "n_demos": 50,
+      "best_step": 2000,
+      "val_loss": 0.09509706195709519,
+      "steps": 10,
+      "n": 500,
+      "n_success": 394,
+      "success_rate": 0.788,
+      "ci95_low": 0.7500471496065019,
+      "ci95_high": 0.8215610701196979,
+      "t_success_median": 63.0
+    },
+    {
+      "n_demos": 20,
+      "best_step": 2000,
+      "val_loss": 0.10390435083835675,
+      "steps": 10,
+      "n": 500,
+      "n_success": 454,
+      "success_rate": 0.908,
+      "ci95_low": 0.8794606777802376,
+      "ci95_high": 0.9303176334985452,
+      "t_success_median": 59.0
+    },
+    {
+      "n_demos": 10,
+      "best_step": 2000,
+      "val_loss": 0.12247649527110073,
+      "steps": 10,
+      "n": 500,
+      "n_success": 428,
+      "success_rate": 0.856,
+      "ci95_low": 0.822508879125479,
+      "ci95_high": 0.8840623924805179,
+      "t_success_median": 61.0
+    }
+  ]
+}
