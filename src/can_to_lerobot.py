@@ -32,28 +32,37 @@ TASK_DESCRIPTION = "Pick up the can and place it in the bin."
 STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
 
 
-def convert(smoke=False):
+def convert(proprio=False, smoke=False):
+    """proprio=True : state 9D = proprio SEULE (eef_pos+eef_quat+gripper), SANS can_pos.
+    Test de transférabilité réel sur Can : le modèle doit VOIR la canette (image) au lieu
+    qu'on lui souffle sa position. Sort dans lerobot_can_ph_proprio / local/can_ph_proprio."""
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
     import robosuite as rs
 
-    out = OUTPUT_ROOT.with_name(OUTPUT_ROOT.name + "_smoke") if smoke else OUTPUT_ROOT
+    suffix = "_proprio" if proprio else ""
+    out_root = OUTPUT_ROOT.with_name(OUTPUT_ROOT.name + suffix)
+    repo_id = REPO_ID + suffix
+    out = out_root.with_name(out_root.name + "_smoke") if smoke else out_root
     if out.exists():
         print(f"⚠️  {out} existe déjà. Supprime-le pour relancer.")
         return
 
-    state_names = ["eef_pos_x", "eef_pos_y", "eef_pos_z",
-                   "eef_quat_w", "eef_quat_x", "eef_quat_y", "eef_quat_z",
-                   "gripper_l", "gripper_r", "can_x", "can_y", "can_z"]
+    base_names = ["eef_pos_x", "eef_pos_y", "eef_pos_z", "eef_quat_w", "eef_quat_x",
+                  "eef_quat_y", "eef_quat_z", "gripper_l", "gripper_r"]
+    if proprio:
+        state_dim, state_names = 9, base_names                          # SANS can_pos
+    else:
+        state_dim, state_names = 12, base_names + ["can_x", "can_y", "can_z"]
     features = {
         "observation.image": {"dtype": "video", "shape": (3, IMAGE_SIZE, IMAGE_SIZE),
                               "names": ["channels", "height", "width"]},
-        "observation.state": {"dtype": "float32", "shape": (STATE_DIM,), "names": state_names},
+        "observation.state": {"dtype": "float32", "shape": (state_dim,), "names": state_names},
         "action": {"dtype": "float32", "shape": (7,),
                    "names": ["dx", "dy", "dz", "drx", "dry", "drz", "gripper"]},
     }
 
-    print(f"Création dataset LeRobot : {out}")
-    dataset = LeRobotDataset.create(repo_id=REPO_ID, fps=FPS, features=features, root=out,
+    print(f"Création dataset LeRobot : {out} (proprio={proprio}, state={state_dim}D)")
+    dataset = LeRobotDataset.create(repo_id=repo_id, fps=FPS, features=features, root=out,
                                     robot_type="panda", use_videos=True, video_backend="pyav")
 
     print("Setup env Robosuite PickPlaceCan...")
@@ -73,10 +82,14 @@ def convert(smoke=False):
             states_demo = demo["states"][:]
             actions_demo = demo["actions"][:]
             o = demo["obs"]
-            # 12D = eef_pos(3) + eef_quat(4) + gripper(2) + can_pos = object[0:3] (dataset 1.4)
-            state_low = np.concatenate([o["robot0_eef_pos"][:], o["robot0_eef_quat"][:],
-                                        o["robot0_gripper_qpos"][:], o["object"][:, 0:3]], axis=1)
-            assert state_low.shape[1] == STATE_DIM, f"state dim {state_low.shape[1]} != {STATE_DIM}"
+            if proprio:
+                state_low = np.concatenate([o["robot0_eef_pos"][:], o["robot0_eef_quat"][:],
+                                            o["robot0_gripper_qpos"][:]], axis=1)  # 9D
+            else:
+                # 12D = eef_pos(3) + eef_quat(4) + gripper(2) + can_pos = object[0:3] (dataset 1.4)
+                state_low = np.concatenate([o["robot0_eef_pos"][:], o["robot0_eef_quat"][:],
+                                            o["robot0_gripper_qpos"][:], o["object"][:, 0:3]], axis=1)
+            assert state_low.shape[1] == state_dim, f"state dim {state_low.shape[1]} != {state_dim}"
             env.reset()
             for i in range(states_demo.shape[0]):
                 env.sim.set_state_from_flattened(states_demo[i])
@@ -110,5 +123,7 @@ def convert(smoke=False):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
+    ap.add_argument("--proprio", action="store_true", help="state 9D proprio seule (sans can_pos)")
     ap.add_argument("--smoke", action="store_true")
-    convert(smoke=ap.parse_args().smoke)
+    a = ap.parse_args()
+    convert(proprio=a.proprio, smoke=a.smoke)
