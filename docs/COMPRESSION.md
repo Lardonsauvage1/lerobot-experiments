@@ -3,6 +3,15 @@
 > Le run 46 résout Lift à 100 % mais pèse **263.7 M params** (938 ms/décision). On cherche les **limites** : jusqu'où rétrécir le modèle, réduire les pas de diffusion, et réduire les données — en gardant les perfs ? Résultat : modèle **1.65 M, ~44 ms** (÷160 params, ÷21 latence) à **~99 % de succès** (98.6 % sur 500 rollouts, statistiquement à égalité avec les gros modèles), et **~20 démos suffisent** (au lieu de 150).
 > Liens : [◀ Phase 3 Lift](LIFT.md) · **Phase 4 (ici)** · [index](README.md)
 
+> ⚠️ **Caveat majeur découvert après cette phase — à lire avant les chiffres.**
+> **Tous les résultats de cette doc utilisent un état de 19D qui INCLUT la pose complète du cube** (`object` 10D : position + quaternion + relatif). C'est ce que fournit le simulateur, mais **un vrai bras n'aura JAMAIS** cette info — il ne dispose que de la caméra et de ses encodeurs articulaires. Les chiffres « **~99 %** » et « ~20 démos suffisent » de cette phase **dépendent donc d'une béquille sim non transférable** au réel.
+>
+> Quand on a refait Lift en **vision pure** (état 9D = proprio seule, sans coords cube) en phase 5 :
+> - Mono-caméra agentview : **~81 %** sur 500 rollouts (vs 98.6 % avec coords) — chute de ~17 pts.
+> - L'archi compressée reste similaire (mini-CNN sur Lift suffit ; ResNet18 plus capable sur cas durs).
+>
+> → Les **conclusions relatives** (architecture, taille U-Net, nb pas, nb démos) **restent valides comme étude méthodologique en sim**. Mais les **chiffres absolus** ne décrivent **pas** ce qui transférerait au bras réel. Le récit transférabilité + les chiffres vision pure sont dans [`CAN.md`](CAN.md).
+
 ## Contexte
 
 Point de départ (run 46) — **presque tout le poids est dans le U-Net** :
@@ -126,4 +135,8 @@ Trois constats (remplacent l'ancien « pont pas↔données » mesuré à 50 ép.
 
 ## Suite
 
-Limites du modèle bien cartographiées (capacité, pas, vision, données). Frontières suivantes, ailleurs : **sim-to-real** (markers Mujoco, domain randomization), **tâche plus dure** (Can/Square — où les planchers seraient sûrement plus hauts).
+Limites du modèle bien cartographiées **en sim, avec coords objet en entrée** (capacité, pas, vision, données).
+
+Frontières suivantes (faites ensuite) :
+- **Transférabilité réelle** — virage majeur en phase 5 : refaire en **vision pure** (sans `cube_pos`/`can_pos`), pour avoir des chiffres qui décrivent ce qu'un vrai bras pourra faire. Sur Lift c'est ~81 % (vs 98.6 % avec coords). Détails et récit : [`CAN.md`](CAN.md).
+- **Tâche plus dure** — Can en cours (vision pure, multi-caméras en exploration), Square/Tool Hang en réserve.
