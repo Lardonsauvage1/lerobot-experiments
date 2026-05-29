@@ -12,6 +12,7 @@ sys.path.insert(0, ".")
 from src.quiet_robosuite import silence_robosuite
 silence_robosuite()
 
+import argparse
 import json
 import math
 import time
@@ -23,12 +24,10 @@ from torch.utils.data import DataLoader
 
 from src import can_eval
 
-RUN_DIR = Path("results/runs/can/06_proprio_wrist")
 DATASET_REPO, DATASET_ROOT = "local/can_ph_proprio_wrist", "data_cache/lerobot_can_ph_proprio_wrist"
 STEPS = 10
 MAX_STEPS = can_eval.MAX_STEPS
 IMAGE_SIZE = 96
-OUT = Path("results/runs/can/06_proprio_wrist_eval.json")
 
 
 def wilson_ci(k, n, z=1.96):
@@ -92,6 +91,13 @@ def rollout_multi_cam(policy, pre, post, env, init_states, device, steps_pas):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--run-dir", default="results/runs/can/06_proprio_wrist")
+    ap.add_argument("--out", default="results/runs/can/06_proprio_wrist_eval.json")
+    args = ap.parse_args()
+    RUN_DIR = Path(args.run_dir)
+    OUT = Path(args.out)
+
     device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
     val_idx = can_eval.load_or_make_split()["val"]
     init_states = can_eval.load_init_states(val_idx)
