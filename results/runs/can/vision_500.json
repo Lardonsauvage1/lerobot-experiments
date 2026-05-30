@@ -1,0 +1,56 @@
+{
+  "n_eval": 500,
+  "steps": 10,
+  "results": [
+    {
+      "name": "02_proprio (mono-cam)",
+      "ckpt": "results/runs/can/02_proprio/checkpoints/010000/pretrained_model",
+      "cams": [
+        "agentview"
+      ],
+      "n": 500,
+      "n_success": 352,
+      "success_rate": 0.704,
+      "ci95": [
+        0.6625538790779746,
+        0.7423352765614168
+      ],
+      "t_success_median": 108.0,
+      "elapsed_min": 43.319033968448636
+    },
+    {
+      "name": "06_proprio_wrist (shared)",
+      "ckpt": "results/runs/can/06_proprio_wrist/checkpoints/010000/pretrained_model",
+      "cams": [
+        "agentview",
+        "robot0_eye_in_hand"
+      ],
+      "n": 500,
+      "n_success": 225,
+      "success_rate": 0.45,
+      "ci95": [
+        0.4069388734465702,
+        0.4938235884065202
+      ],
+      "t_success_median": 102.0,
+      "elapsed_min": 1230.682039018472
+    },
+    {
+      "name": "08_proprio_wrist_sep (s\u00e9par\u00e9)",
+      "ckpt": "results/runs/can/08_proprio_wrist_sep/checkpoints/010000/pretrained_model",
+      "cams": [
+        "agentview",
+        "robot0_eye_in_hand"
+      ],
+      "n": 500,
+      "n_success": 276,
+      "success_rate": 0.552,
+      "ci95": [
+        0.5081789316318008,
+        0.5950281080409854
+      ],
+      "t_success_median": 105.0,
+      "elapsed_min": 66.83949723641078
+    }
+  ]
+}
