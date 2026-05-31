@@ -32,18 +32,19 @@ TASK_DESCRIPTION = "Pick up the can and place it in the bin."
 STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
 
 
-def convert(proprio=False, wrist=False, wrist_only=False, smoke=False):
+def convert(proprio=False, wrist=False, wrist_only=False, birdview=False, smoke=False):
     """proprio=True : state 9D = proprio SEULE (sans can_pos), test transférabilité réel.
     wrist=True : agentview + robot0_eye_in_hand (2 cams), features observation.images.X.
     wrist_only=True : robot0_eye_in_hand SEUL sous observation.image (mono-cam wrist).
-       Test de contrôle : la wrist seule suffit-elle ? Mutuellement exclusif avec wrist.
-    Sort dans lerobot_can_ph[_proprio][_wrist|_wristonly]."""
-    if wrist and wrist_only:
-        raise ValueError("--wrist et --wrist-only sont mutuellement exclusifs")
+    birdview=True : agentview + birdview (2 cams scene-fixées, parallaxe vraie).
+       Mutuellement exclusif avec wrist/wrist_only."""
+    if sum([wrist, wrist_only, birdview]) > 1:
+        raise ValueError("--wrist, --wrist-only, --birdview sont mutuellement exclusifs")
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
     import robosuite as rs
 
-    suffix = ("_proprio" if proprio else "") + ("_wrist" if wrist else "") + ("_wristonly" if wrist_only else "")
+    suffix = ("_proprio" if proprio else "") + ("_wrist" if wrist else "") + \
+             ("_wristonly" if wrist_only else "") + ("_birdview" if birdview else "")
     out_root = OUTPUT_ROOT.with_name(OUTPUT_ROOT.name + suffix)
     repo_id = REPO_ID + suffix
     out = out_root.with_name(out_root.name + "_smoke") if smoke else out_root
@@ -65,6 +66,9 @@ def convert(proprio=False, wrist=False, wrist_only=False, smoke=False):
         # diffusion policy comme features VISUAL multiples, vision backbone partagé).
         image_features = {"observation.images.agentview": img_feat,
                           "observation.images.wrist": img_feat}
+    elif birdview:
+        image_features = {"observation.images.agentview": img_feat,
+                          "observation.images.birdview": img_feat}
     else:
         image_features = {"observation.image": img_feat}
     features = {
@@ -111,9 +115,12 @@ def convert(proprio=False, wrist=False, wrist_only=False, smoke=False):
                 frame = {"observation.state": state_low[i].astype(np.float32),
                          "action": actions_demo[i].astype(np.float32),
                          "task": TASK_DESCRIPTION}
-                if wrist:
-                    for key, cam in [("observation.images.agentview", "agentview"),
-                                     ("observation.images.wrist", "robot0_eye_in_hand")]:
+                if wrist or birdview:
+                    cam_pairs = ([("observation.images.agentview", "agentview"),
+                                  ("observation.images.wrist", "robot0_eye_in_hand")] if wrist else
+                                 [("observation.images.agentview", "agentview"),
+                                  ("observation.images.birdview", "birdview")])
+                    for key, cam in cam_pairs:
                         img = env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=cam)[::-1]
                         frame[key] = np.ascontiguousarray(img.transpose(2, 0, 1))
                 else:
@@ -147,6 +154,8 @@ if __name__ == "__main__":
     ap.add_argument("--wrist", action="store_true", help="ajoute la caméra robot0_eye_in_hand (2 vues)")
     ap.add_argument("--wrist-only", dest="wrist_only", action="store_true",
                     help="UNIQUEMENT la wrist camera (mono-cam, sous observation.image)")
+    ap.add_argument("--birdview", action="store_true",
+                    help="agentview + birdview (2 cams scene-fixées, parallaxe)")
     ap.add_argument("--smoke", action="store_true")
     a = ap.parse_args()
-    convert(proprio=a.proprio, wrist=a.wrist, wrist_only=a.wrist_only, smoke=a.smoke)
+    convert(proprio=a.proprio, wrist=a.wrist, wrist_only=a.wrist_only, birdview=a.birdview, smoke=a.smoke)
