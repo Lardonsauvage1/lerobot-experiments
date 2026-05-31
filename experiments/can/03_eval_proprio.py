@@ -10,6 +10,7 @@ sys.path.insert(0, ".")
 from src.quiet_robosuite import silence_robosuite
 silence_robosuite()
 
+import argparse
 import json
 import math
 from pathlib import Path
@@ -20,10 +21,7 @@ from torch.utils.data import DataLoader
 
 from src import can_eval, lift_eval
 
-RUN_DIR = Path("results/runs/can/02_proprio")
-DATASET_REPO, DATASET_ROOT = "local/can_ph_proprio", "data_cache/lerobot_can_ph_proprio"
 STEPS = 10
-OUT = Path("results/runs/can/02_proprio_eval.json")
 
 
 def wilson_ci(k, n, z=1.96):
@@ -51,6 +49,17 @@ def build_delta_timestamps(cfg, fps):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--run-dir", default="results/runs/can/02_proprio")
+    ap.add_argument("--dataset-repo", default="local/can_ph_proprio")
+    ap.add_argument("--dataset-root", default="data_cache/lerobot_can_ph_proprio")
+    ap.add_argument("--out", default="results/runs/can/02_proprio_eval.json")
+    args = ap.parse_args()
+    RUN_DIR = Path(args.run_dir)
+    DATASET_REPO = args.dataset_repo
+    DATASET_ROOT = args.dataset_root
+    OUT = Path(args.out)
+
     device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
     val_idx = can_eval.load_or_make_split()["val"]
     init_states = can_eval.load_init_states(val_idx)

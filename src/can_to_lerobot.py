@@ -32,15 +32,18 @@ TASK_DESCRIPTION = "Pick up the can and place it in the bin."
 STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
 
 
-def convert(proprio=False, wrist=False, smoke=False):
+def convert(proprio=False, wrist=False, wrist_only=False, smoke=False):
     """proprio=True : state 9D = proprio SEULE (sans can_pos), test transférabilité réel.
-    wrist=True : ajoute la caméra robot0_eye_in_hand (vue poignet) en plus de agentview, pour
-       lever l'ambiguïté de profondeur d'une seule vue de face. Features observation.images.X.
-    Sort dans lerobot_can_ph[_proprio][_wrist] / local/can_ph[_proprio][_wrist]."""
+    wrist=True : agentview + robot0_eye_in_hand (2 cams), features observation.images.X.
+    wrist_only=True : robot0_eye_in_hand SEUL sous observation.image (mono-cam wrist).
+       Test de contrôle : la wrist seule suffit-elle ? Mutuellement exclusif avec wrist.
+    Sort dans lerobot_can_ph[_proprio][_wrist|_wristonly]."""
+    if wrist and wrist_only:
+        raise ValueError("--wrist et --wrist-only sont mutuellement exclusifs")
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
     import robosuite as rs
 
-    suffix = ("_proprio" if proprio else "") + ("_wrist" if wrist else "")
+    suffix = ("_proprio" if proprio else "") + ("_wrist" if wrist else "") + ("_wristonly" if wrist_only else "")
     out_root = OUTPUT_ROOT.with_name(OUTPUT_ROOT.name + suffix)
     repo_id = REPO_ID + suffix
     out = out_root.with_name(out_root.name + "_smoke") if smoke else out_root
@@ -114,7 +117,8 @@ def convert(proprio=False, wrist=False, smoke=False):
                         img = env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=cam)[::-1]
                         frame[key] = np.ascontiguousarray(img.transpose(2, 0, 1))
                 else:
-                    img = env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=CAMERA_NAME)[::-1]
+                    cam = "robot0_eye_in_hand" if wrist_only else CAMERA_NAME
+                    img = env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=cam)[::-1]
                     frame["observation.image"] = np.ascontiguousarray(img.transpose(2, 0, 1))
                 dataset.add_frame(frame)
             dataset.save_episode()
@@ -141,6 +145,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--proprio", action="store_true", help="state 9D proprio seule (sans can_pos)")
     ap.add_argument("--wrist", action="store_true", help="ajoute la caméra robot0_eye_in_hand (2 vues)")
+    ap.add_argument("--wrist-only", dest="wrist_only", action="store_true",
+                    help="UNIQUEMENT la wrist camera (mono-cam, sous observation.image)")
     ap.add_argument("--smoke", action="store_true")
     a = ap.parse_args()
-    convert(proprio=a.proprio, wrist=a.wrist, smoke=a.smoke)
+    convert(proprio=a.proprio, wrist=a.wrist, wrist_only=a.wrist_only, smoke=a.smoke)
