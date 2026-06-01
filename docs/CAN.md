@@ -19,10 +19,14 @@ Dataset : **200 démos humaines** (ph), action 7D, image agentview 96px.
 | 2. Baseline (mini-CNN [64,128,256] + état 12D avec coords canette) | ✅ → **48 %** |
 | 3. **Réalisation clé** : `can_pos` est une béquille sim indisponible au réel | 💡 |
 | 4. **Vision pure** : converter `--proprio` → état 9D (sans can_pos) | ✅ |
-| 5. Modèle vision-only mono-cam (ResNet18 + [64,128,256] + 9D) | ✅ → **72 %** |
+| 5. Mono-cam agentview (ResNet18 + [64,128,256] + 9D) | ✅ → **72 %** (70 % @500) |
 | 6. Diagnostic des échecs → ambiguïté de profondeur d'une seule vue | 💡 |
-| 7. Tentative 2 caméras (agentview + wrist), encodeur **partagé** | ✅ → 52 % (régression) |
-| 8. 2 caméras, **encodeurs séparés** (1 ResNet18 par vue) | ⏳ |
+| 7. 2 cams (agentview + wrist), encodeur **partagé** | ✅ → **45 %** @500 (régression) |
+| 8. 2 cams (agentview + wrist), encodeurs **séparés** | ✅ → **55 %** @500 |
+| 9. Même chose, U-Net plus gros `[128,256,512]` (40 M) | ✅ → 68 % (50 val) |
+| 10. **Wrist SEULE** (mono-cam wrist) — test de contrôle | ✅ → **0 %** ⚠️ |
+| 11. Diagnostic : la wrist est OOD dès la 1ère erreur d'action | 💡 |
+| 12. 2 cams (agentview + **birdview** scene-fixée) | ✅ → **80 %** (50 val) 🎯 |
 
 ## Résultats
 
@@ -50,31 +54,68 @@ Exemple typique (ep161 du modèle `02_proprio`) :
 
 → Sur les 300 steps disponibles, le bras n'arrive jamais à un grasp propre. C'est exactement le genre d'échec qu'une **2e vue** est censée corriger.
 
-### 2 caméras (agentview + wrist), encodeur partagé (`06_proprio_wrist`) — 52 %
-Ajout de `robot0_eye_in_hand` (vue du poignet), mêmes 9D + ResNet18 **partagé** entre les 2 vues, 10k steps. **52 % [38-65]** — **régression apparente** (IC larges, chevauchent le mono-cam, donc pas une vraie régression statistique, mais pas l'amélioration espérée).
+### 2 cams (agentview + wrist), encodeur partagé (`06_proprio_wrist`) — **45 %** @500
+Ajout de `robot0_eye_in_hand` (vue du poignet), mêmes 9D + ResNet18 **partagé** entre les 2 vues, 10k steps. **45.0 % [40.7-49.4]** sur 500 rollouts — **régression franche** vs mono-cam (70 %), IC disjoints.
 
-Hypothèse : un seul ResNet18 doit gérer 2 distributions visuelles très différentes (vue large vs plongée poignet), il fait un **compromis qui dilue la capacité** → moins bonne représentation par vue.
+Hypothèse initiale : un seul ResNet18 doit gérer 2 distributions visuelles très différentes (vue large vs plongée poignet), il fait un **compromis qui dilue la capacité**.
 
-### 2 caméras, encodeurs séparés (`08_proprio_wrist_sep`) — ⏳
-1 ResNet18 par caméra (22.4 M de vision au lieu de 11.2). Chaque encodeur se spécialise sur sa vue. *Entraînement en cours.*
+### 2 cams, encodeurs séparés (`08_proprio_wrist_sep`) — **55 %** @500
+1 ResNet18 par caméra (22.4 M de vision au lieu de 11.2), même U-Net `[64,128,256]`, 10k steps. **55.2 % [50.8-59.5]** sur 500 rollouts — meilleur que partagé (+10 pt, IC disjoints) mais **toujours en dessous** du mono-cam (-15 pt, IC disjoints).
+
+Donc l'hypothèse « partager le backbone dilue » est validée partiellement, mais elle n'explique pas tout : même avec capacité doublée et encodeurs spécialisés, le 2-cams reste sous le mono-cam.
+
+### U-Net plus gros `[128,256,512]` (`14_proprio_wrist_sep_big`) — 68 % (50 val)
+Mêmes 2 cams séparés, U-Net **8× plus gros** (40 M de paramètres) pour exclure l'hypothèse « le débruiteur sature ». 10k steps + démarrage à chaud depuis `08`. **68 % [54-79]** sur 50 val — **récupère 12 pt** par rapport à `08`, mais reste **sous** le mono-cam à 11.2 M+5 M.
+
+→ Augmenter brutalement la capacité ne suffit pas à compenser. Le problème est ailleurs.
+
+### Wrist SEULE (`15_proprio_wristonly`) — **0 %** ⚠️
+Même archi que `02_proprio` (ResNet18 + `[64,128,256]` + 9D), juste avec `robot0_eye_in_hand` à la place d'agentview. Expérience de contrôle. **0/50 réussites.**
+
+Diagnostic : la wrist est **fragile à toute erreur d'action**. Dès le 1er pas où l'action prédite dévie un peu, le poignet bouge → le pixel d'entrée devient **out-of-distribution** vs les démos expertes → l'action suivante dévie plus → cascade. La wrist seule n'a aucun ancrage scène-fixe pour se rattraper.
+
+→ La wrist **ne porte pas d'info sur la scène en propre** — elle n'est utile que **conditionnellement** à la trajectoire experte. Quand le multi-cam mélange wrist + agentview, la branche wrist **introduit du bruit OOD** au lieu d'apporter de la parallaxe utile.
+
+### 2 cams (agentview + birdview) (`16_proprio_birdview`) — **80 %** 🎯
+Même archi que `08` (2 cams séparés + 9D + `[64,128,256]`), mais **birdview** (vue de dessus, scene-fixée) au lieu de wrist. **80.0 % (40/50) [67.0-88.8]** @ 10 pas, t_succ médian 106 steps, best ckpt 10000.
+
+→ **+8 pt vs mono-cam, +25 pt vs `08` (wrist sep).** Confirmation propre : ce n'était **pas** le principe du multi-cam qui était mauvais, c'était **spécifiquement la wrist**. Avec une 2ᵉ caméra scene-fixée, la parallaxe est exploitable et améliore vraiment la mono-cam.
+
+> ⚠️ IC95 [67 %, 88.8 %] chevauche encore 72 % à n=50. Une éval 500 rollouts est nécessaire pour conclure formellement que birdview > mono-cam — mais le ranking par rapport aux autres 2-cams (wrist/wrist-only) est déjà sans ambiguïté.
+
+### 💡 Note théorique : un minimum local de la loss BC
+Observation importante issue de cette série : le modèle 2-cams (`08`, 55 %) est **strictement plus expressif** que le mono-cam (`02`, 70 %). Il suffirait de mettre à zéro tous les poids du 2ᵉ encodeur et du canal d'entrée associé du U-Net pour récupérer exactement le mono-cam.
+
+Donc :
+- Il **existe** dans l'espace des paramètres de `08` une configuration ≥ 70 %.
+- Pourtant SGD/Adam converge vers une solution à 55 %.
+- → preuve empirique que l'optimisation tombe dans un **minimum local** de la loss BC plutôt que dans le minimum global.
+
+Phase future à inscrire au backlog — **« optimisation de l'optimisation »** : comment forcer une architecture étendue à au moins égaler sa sous-architecture. Pistes :
+- Initialiser le 2ᵉ encodeur (et son canal d'entrée U-Net) à zéro → warm-start identité mono-cam, la branche supplémentaire ne peut qu'aider.
+- Entraînement **curriculum** : d'abord mono-cam jusqu'à convergence, puis dégeler la 2ᵉ branche.
+- **Distillation** depuis le mono-cam comme garde-fou.
+- **Gating** apprenable par caméra, dropout par caméra à l'entraînement.
 
 ## Leçons clés
 
 1. **Donner les coords d'un objet en sim = béquille sans transfert au réel.** Tout score obtenu avec une telle béquille **n'est pas comparable** à ce qu'un vrai bras pourra faire. L'expérience honnête est image + proprio seul.
-2. **Lift se résout très bien en vision pure** (~99 % avec coords → ~81 % sans, sur 500 rollouts). Encourageant pour Lift, **moins pour Can dur** (~72 % en mono-cam).
+2. **Lift se résout très bien en vision pure** (~99 % avec coords → ~81 % sans, sur 500 rollouts). Can est plus dur : **70 %** @500 en mono-cam, **80 %** @50 en agentview+birdview.
 3. **Une seule vue de face = ambiguïté de profondeur** sur les tâches de manipulation. Diagnostic empirique sur les échecs Can mono-cam.
-4. **Ajouter une caméra n'est pas gratuit** : avec un encodeur **partagé**, on peut en fait **régresser** parce que la capacité visuelle est diluée. Encodeurs **séparés** par caméra semblent indispensables pour bénéficier vraiment de l'info multi-vue (à confirmer avec `08`).
+4. **Le choix du 2ᵉ angle est critique.** Wrist (vue embarquée) = **piège OOD** (fragile aux moindres déviations d'action). Birdview (scene-fixée, parallaxe vraie) = **vrai gain** (+8 pt vs mono-cam).
+5. **Le multi-cam wrist régresse même avec encodeurs séparés et capacité ×4** — la cause n'est pas la dilution de capacité, c'est l'OOD intrinsèque de la wrist.
+6. **Un modèle plus expressif peut converger en dessous de sa sous-architecture** (cf. note théorique : `08` à 55 % alors qu'il contient `02` à 70 % comme cas particulier). Sujet ouvert pour une phase future « optimisation de l'optimisation ».
 
 ## Détails techniques
 
-- **Pipeline conversion** : `src/can_to_lerobot.py` avec `--proprio` (état 9D) et `--wrist` (ajoute `robot0_eye_in_hand`). Convention multi-cam = `observation.images.<nom>` (détectée par Diffusion Policy comme VISUAL multiples).
+- **Pipeline conversion** : `src/can_to_lerobot.py` avec flags mutuellement exclusifs `--wrist` (agentview + `robot0_eye_in_hand`), `--wrist-only` (mono-cam wrist), `--birdview` (agentview + `birdview`). Multi-cam = convention `observation.images.<nom>` (détectée par Diffusion Policy comme VISUAL multiples). Caméras disponibles sur PickPlaceCan : `agentview`, `frontview`, `birdview`, `robot0_robotview`, `robot0_eye_in_hand` (pas de `sideview`).
 - **Éval** : `src/can_eval.py` (env PickPlaceCan, `make_env`, `load_init_states`, `MAX_STEPS=300`). État construit côté live env (`object[7:10]` pour `can_pos` quand utilisé) — différent de la convention dataset (`object[0:3]`) à cause du mismatch robosuite 1.4 ↔ 1.5.
 - **Risque connu (résolu)** : robosuite 1.5 réordonne l'`object` et la partie relative est instable → solution = **abandonner la partie relative** et utiliser seulement les composantes fiables (proprio ± can_pos absolue).
-- **Données** : `data_cache/robomimic_can_ph/` (HDF5 source), `data_cache/lerobot_can_ph[_proprio][_wrist]/` (datasets convertis), `data_cache/can_demos/` (vidéos d'exemples expertes).
-- **Scripts numérotés** : `01_train_baseline.sh` · `02_train_proprio.sh` · `03_eval_proprio.py` · `04/05_proprio_videos*.py` · `06_train_proprio_wrist.sh` · `07_eval_proprio_wrist.py` · `08_train_proprio_wrist_sep.sh` · `09_wrist_videos.py`.
+- **Données** : `data_cache/robomimic_can_ph/` (HDF5 source), `data_cache/lerobot_can_ph[_proprio][_wrist|_wristonly|_birdview]/` (datasets convertis), `data_cache/can_demos/` (vidéos d'exemples expertes).
+- **Scripts numérotés** : `01_train_baseline.sh` · `02_train_proprio.sh` · `03_eval_proprio.py` · `04/05_proprio_videos*.py` · `06_train_proprio_wrist.sh` · `07_eval_proprio_wrist.py` · `08_train_proprio_wrist_sep.sh` · `10_vision_500_rollouts.py` · `12_wrist_sep_videos_fail.py` · `14_train_proprio_wrist_sep_big.sh` · `15_train_proprio_wristonly.sh` · `16_train_proprio_birdview.sh` · `17_eval_proprio_birdview.py`.
 
 ## Suite
 
-- Verdict `08` (encodeurs séparés) en attente → décidera si la voie multi-cam vaut le coût.
-- Si ça marche : grilles rigoureuses 500 rollouts (réutiliser outillage phase 4) pour comparer proprement vision-only mono-cam vs multi-cam.
+- **500 rollouts birdview** pour confirmer formellement >70 % (`16` à n=50 : IC chevauche encore mono-cam).
+- **Phase 6 (théorique)** : « optimisation de l'optimisation » — warm-start identité, curriculum mono→multi, gating par caméra. Sujet motivé par l'observation `08` (55 %) ⊂ `02` (70 %).
 - Paliers plus durs en réserve : **Square** (insertion précise — données téléchargées) ou **Tool Hang** (très long horizon).
