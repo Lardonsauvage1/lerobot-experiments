@@ -26,7 +26,7 @@ Dataset : **200 démos humaines** (ph), action 7D, image agentview 96px.
 | 9. Même chose, U-Net plus gros `[128,256,512]` (40 M) | ✅ → 68 % (50 val) |
 | 10. **Wrist SEULE** (mono-cam wrist) — test de contrôle | ✅ → **0 %** ⚠️ |
 | 11. Diagnostic : la wrist est OOD dès la 1ère erreur d'action | 💡 |
-| 12. 2 cams (agentview + **birdview** scene-fixée) | ✅ → **80 %** (50 val) 🎯 |
+| 12. 2 cams (agentview + **birdview** scene-fixée) | ✅ → **74.8 %** @500 🎯 |
 
 ## Résultats
 
@@ -76,12 +76,12 @@ Diagnostic : la wrist est **fragile à toute erreur d'action**. Dès le 1er pas 
 
 → La wrist **ne porte pas d'info sur la scène en propre** — elle n'est utile que **conditionnellement** à la trajectoire experte. Quand le multi-cam mélange wrist + agentview, la branche wrist **introduit du bruit OOD** au lieu d'apporter de la parallaxe utile.
 
-### 2 cams (agentview + birdview) (`16_proprio_birdview`) — **80 %** 🎯
-Même archi que `08` (2 cams séparés + 9D + `[64,128,256]`), mais **birdview** (vue de dessus, scene-fixée) au lieu de wrist. **80.0 % (40/50) [67.0-88.8]** @ 10 pas, t_succ médian 106 steps, best ckpt 10000.
+### 2 cams (agentview + birdview) (`16_proprio_birdview`) — **74.8 %** 🎯
+Même archi que `08` (2 cams séparés + 9D + `[64,128,256]`), mais **birdview** (vue de dessus, scene-fixée) au lieu de wrist. 50 val : 80 % [67-89]. **500 rollouts : 374/500 = 74.8 % [70.8 - 78.4]**, t_succ médian 110 steps, best ckpt 10000.
 
-→ **+8 pt vs mono-cam, +25 pt vs `08` (wrist sep).** Confirmation propre : ce n'était **pas** le principe du multi-cam qui était mauvais, c'était **spécifiquement la wrist**. Avec une 2ᵉ caméra scene-fixée, la parallaxe est exploitable et améliore vraiment la mono-cam.
+→ **+4.4 pt vs mono-cam (70.4 %), +19.6 pt vs `08` (wrist sep, 55.2 %).** Confirmation propre que c'est **spécifiquement la wrist** le problème : avec une 2ᵉ caméra scene-fixée, la parallaxe est exploitable et améliore la mono-cam.
 
-> ⚠️ IC95 [67 %, 88.8 %] chevauche encore 72 % à n=50. Une éval 500 rollouts est nécessaire pour conclure formellement que birdview > mono-cam — mais le ranking par rapport aux autres 2-cams (wrist/wrist-only) est déjà sans ambiguïté.
+> 📊 IC95 birdview [70.8, 78.4] chevauche **légèrement** mono-cam [66.3, 74.2]. Test z bilatéral à 2 proportions : z = 1.56, **p ≈ 0.12** → tendance forte mais pas formellement significatif à p<0.05. Les 500 rollouts étant **appariés** (mêmes 500 états initiaux), un test de McNemar serait plus puissant — non calculé ici car le script ne dump pas les rollouts par-épisode. L'écart vs `08` (wrist) est en revanche **sans ambiguïté** (IC complètement disjoints).
 
 ### 💡 Note théorique : un minimum local de la loss BC
 Observation importante issue de cette série : le modèle 2-cams (`08`, 55 %) est **strictement plus expressif** que le mono-cam (`02`, 70 %). Il suffirait de mettre à zéro tous les poids du 2ᵉ encodeur et du canal d'entrée associé du U-Net pour récupérer exactement le mono-cam.
@@ -100,9 +100,9 @@ Phase future à inscrire au backlog — **« optimisation de l'optimisation »**
 ## Leçons clés
 
 1. **Donner les coords d'un objet en sim = béquille sans transfert au réel.** Tout score obtenu avec une telle béquille **n'est pas comparable** à ce qu'un vrai bras pourra faire. L'expérience honnête est image + proprio seul.
-2. **Lift se résout très bien en vision pure** (~99 % avec coords → ~81 % sans, sur 500 rollouts). Can est plus dur : **70 %** @500 en mono-cam, **80 %** @50 en agentview+birdview.
+2. **Lift se résout très bien en vision pure** (~99 % avec coords → ~81 % sans, sur 500 rollouts). Can est plus dur : **70.4 %** @500 en mono-cam, **74.8 %** @500 en agentview+birdview (sep encoders).
 3. **Une seule vue de face = ambiguïté de profondeur** sur les tâches de manipulation. Diagnostic empirique sur les échecs Can mono-cam.
-4. **Le choix du 2ᵉ angle est critique.** Wrist (vue embarquée) = **piège OOD** (fragile aux moindres déviations d'action). Birdview (scene-fixée, parallaxe vraie) = **vrai gain** (+8 pt vs mono-cam).
+4. **Le choix du 2ᵉ angle est critique.** Wrist (vue embarquée) = **piège OOD** (fragile aux moindres déviations d'action). Birdview (scene-fixée, parallaxe vraie) = gain modéré mais réel (+4.4 pt @500, p ≈ 0.12).
 5. **Le multi-cam wrist régresse même avec encodeurs séparés et capacité ×4** — la cause n'est pas la dilution de capacité, c'est l'OOD intrinsèque de la wrist.
 6. **Un modèle plus expressif peut converger en dessous de sa sous-architecture** (cf. note théorique : `08` à 55 % alors qu'il contient `02` à 70 % comme cas particulier). Sujet ouvert pour une phase future « optimisation de l'optimisation ».
 
@@ -116,6 +116,5 @@ Phase future à inscrire au backlog — **« optimisation de l'optimisation »**
 
 ## Suite
 
-- **500 rollouts birdview** pour confirmer formellement >70 % (`16` à n=50 : IC chevauche encore mono-cam).
-- **Phase 6 (théorique)** : « optimisation de l'optimisation » — warm-start identité, curriculum mono→multi, gating par caméra. Sujet motivé par l'observation `08` (55 %) ⊂ `02` (70 %).
+- **Phase 6 (théorique)** : « optimisation de l'optimisation » — warm-start identité, curriculum mono→multi, gating par caméra, distillation. Sujet motivé par `08` (55 %) ⊂ `02` (70 %) — un cas d'école de minimum local sur du BC. La prochaine campagne grand-format devra **dumper les rollouts par-épisode** pour permettre les tests appariés (McNemar) — sans ça, +4 pt avec n=500 reste sur p ≈ 0.12.
 - Paliers plus durs en réserve : **Square** (insertion précise — données téléchargées) ou **Tool Hang** (très long horizon).

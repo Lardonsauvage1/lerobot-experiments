@@ -51,6 +51,23 @@
       ],
       "t_success_median": 105.0,
       "elapsed_min": 66.83949723641078
+    },
+    {
+      "name": "16_proprio_birdview (s\u00e9par\u00e9)",
+      "ckpt": "results/runs/can/16_proprio_birdview/checkpoints/010000/pretrained_model",
+      "cams": [
+        "agentview",
+        "birdview"
+      ],
+      "n": 500,
+      "n_success": 374,
+      "success_rate": 0.748,
+      "ci95": [
+        0.7081514126701541,
+        0.7840667765385178
+      ],
+      "t_success_median": 110.0,
+      "elapsed_min": 63.019211713473005
     }
   ]
 }

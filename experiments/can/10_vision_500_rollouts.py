@@ -1,4 +1,4 @@
-"""Éval rigoureuse à 500 rollouts des 3 modèles Can vision pure (02/06/08).
+"""Éval rigoureuse à 500 rollouts des modèles Can vision pure (02/06/08/16).
 
 Les évals à 50 val donnent des IC95 ±13 pts -> on ne peut pas trancher.
 500 rollouts -> IC95 ±~4 pts -> vraie comparaison.
@@ -39,6 +39,9 @@ MODELS = [
     {"name": "08_proprio_wrist_sep (séparé)", "ckpt": "results/runs/can/08_proprio_wrist_sep/checkpoints/010000/pretrained_model",
      "cams": ["agentview", "robot0_eye_in_hand"],
      "image_keys": {"agentview": "observation.images.agentview", "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "16_proprio_birdview (séparé)", "ckpt": "results/runs/can/16_proprio_birdview/checkpoints/010000/pretrained_model",
+     "cams": ["agentview", "birdview"],
+     "image_keys": {"agentview": "observation.images.agentview", "birdview": "observation.images.birdview"}},
 ]
 
 
