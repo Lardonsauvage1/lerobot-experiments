@@ -10,7 +10,7 @@
 > - Avec l'archi compressée de la partie 1 (`[64,128,256]`) : **~81 %** (vs 98.6 % avec coords). **Mais** ce n'était pas un plafond : en **agrandissant le modèle** (ResNet18 + `[128,256,512]`, ~29 M) la vision pure remonte à **~99 %** — voir **[Partie 2](#partie-2--vision-pure-sans-la-béquille-cube)** ci-dessous.
 > - La béquille `cube_pos` ne facilitait pas marginalement : elle **cachait un besoin de capacité** (~17× plus de params pour le même ~99 % sans elle).
 >
-> → Les **conclusions relatives** (architecture, taille U-Net, nb pas, nb démos) **restent valides comme étude méthodologique en sim**. Mais les **chiffres absolus** ne décrivent **pas** ce qui transférerait au bras réel. Le récit transférabilité + les chiffres vision pure sont dans [`CAN_archive.md`](CAN_archive.md) (phase 5 v1 archivée — méthodologie ré-évaluée à la fin, voir le header du fichier).
+> → Les **conclusions relatives** (architecture, taille U-Net, nb pas, nb démos) **restent valides comme étude méthodologique en sim**. Mais les **chiffres absolus** ne décrivent **pas** ce qui transférerait au bras réel. La **grille vision pure Lift complète** (sans béquille) est en **[Partie 2](#partie-2--vision-pure-sans-la-béquille-cube)** ci-dessous. Le **récit phase 5 v1** (transférabilité + tâche Can, méthodologie ré-évaluée depuis) reste archivé dans [`CAN_archive.md`](CAN_archive.md) (voir le header du fichier).
 
 ## Contexte
 
