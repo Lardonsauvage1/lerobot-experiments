@@ -7,10 +7,10 @@
 > **Tous les résultats de cette doc utilisent un état de 19D qui INCLUT la pose complète du cube** (`object` 10D : position + quaternion + relatif). C'est ce que fournit le simulateur, mais **un vrai bras n'aura JAMAIS** cette info — il ne dispose que de la caméra et de ses encodeurs articulaires. Les chiffres « **~99 %** » et « ~20 démos suffisent » de cette phase **dépendent donc d'une béquille sim non transférable** au réel.
 >
 > Quand on a refait Lift en **vision pure** (état 9D = proprio seule, sans coords cube) en phase 5 :
-> - Mono-caméra agentview : **~81 %** sur 500 rollouts (vs 98.6 % avec coords) — chute de ~17 pts.
-> - L'archi compressée reste similaire (mini-CNN sur Lift suffit ; ResNet18 plus capable sur cas durs).
+> - Avec l'archi compressée de la partie 1 (`[64,128,256]`) : **~81 %** (vs 98.6 % avec coords). **Mais** ce n'était pas un plafond : en **agrandissant le modèle** (ResNet18 + `[128,256,512]`, ~29 M) la vision pure remonte à **~99 %** — voir **[Partie 2](#partie-2--vision-pure-sans-la-béquille-cube)** ci-dessous.
+> - La béquille `cube_pos` ne facilitait pas marginalement : elle **cachait un besoin de capacité** (~17× plus de params pour le même ~99 % sans elle).
 >
-> → Les **conclusions relatives** (architecture, taille U-Net, nb pas, nb démos) **restent valides comme étude méthodologique en sim**. Mais les **chiffres absolus** ne décrivent **pas** ce qui transférerait au bras réel. Le récit transférabilité + les chiffres vision pure sont dans [`CAN.md`](CAN.md).
+> → Les **conclusions relatives** (architecture, taille U-Net, nb pas, nb démos) **restent valides comme étude méthodologique en sim**. Mais les **chiffres absolus** ne décrivent **pas** ce qui transférerait au bras réel. Le récit transférabilité + les chiffres vision pure sont dans [`CAN_archive.md`](CAN_archive.md) (phase 5 v1 archivée — méthodologie ré-évaluée à la fin, voir le header du fichier).
 
 ## Contexte
 
@@ -133,10 +133,37 @@ Trois constats (remplacent l'ancien « pont pas↔données » mesuré à 50 ép.
 
 **Outils** : `47` (rollout), `48` (val-loss), `52` (sweep eval), `54/55` (démos), `56` (latence), `57` (sweep pas), `58` (grille latence×succès), `61` (train mini-CNN), `62` (eval mini-CNN), `63` (efficacité données 50 ép. — superseded), `64/66` (pont pas↔données 50 ép.), `65` (vidéos), `50` (train + val-loss continue), `67` (données 500 rollouts), `run_69_grid.sh` + `69_grid_eval.py` (grille données×U-Net 500), `70` (assemblage grille données×U-Net), `71` (sweep pas×données 500) + `72` (assemblage pas×données), `src/lift_eval.py` (dont `rollout_eval_chunked`), `src/mini_cnn.py`. Grilles : [`../results/runs/lift/grid_data_x_unet_500.json`](../results/runs/lift/grid_data_x_unet_500.json) · [`../results/runs/lift/grid_steps_x_data_500.json`](../results/runs/lift/grid_steps_x_data_500.json) · Tableau maître sweep : [`../results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](../results/runs/lift/51_unet_sweep_eval/SUMMARY.md).
 
+## Partie 2 — Vision pure (sans la béquille cube)
+
+> **La question de la partie 1, refaite sans tricher.** Tous les chiffres ci-dessus utilisent un état 19D qui inclut la pose du cube (`object`) — info qu'un vrai bras n'a jamais. On reprend donc la grille **taille U-Net × données**, mais en **vision pure 9D** (proprio seule, image agentview, **aucune coordonnée d'objet**), avec un encodeur **ResNet18** (le mini-CNN ne suffit plus sans la béquille — cf. partie 1 §3). Question : **jusqu'où la vision pure peut-elle aller, et que coûte le retrait de la béquille ?**
+>
+> **Réponse : la vision pure atteint 99–100 % sur Lift.** La béquille `cube_pos` n'était **pas** nécessaire pour résoudre la tâche — elle masquait un **besoin de capacité** (U-Net + vision). Sweet spot **`[128,256,512]` ResNet18 (28.6 M)** : **99.4 %** à pleines données.
+
+### Grille taille U-Net × données — 500 rollouts (ResNet18, vision pure 9D, @ 10 pas)
+
+Succès % [IC95 Wilson]. Lignes = largeur U-Net, colonnes = nb de démos. Les **10 cellules `[128,256,512]` et `[256,512,1024]`** ont leurs jsons vérifiés (`results/runs/lift_visionpure_resnet/`, + run 75 pour `[256,512,1024]×150`) ; la ligne `[64,128,256]` vient de run 73 + évals data-efficiency de la session (eval500 non conservés — atomman rebooté — valeurs reportées telles quelles).
+
+| U-Net × N | 150 | 100 | 50 | 20 | 10 |
+|---|---|---|---|---|---|
+| `[64,128,256]` (16 M) | 81.2 | 95.2 | 78.8 | 90.8 | 85.6 |
+| **`[128,256,512]`** ⭐ (28.6 M) | **99.4** [98.3–99.8] | 92.6 [90.0–94.6] | **99.8** [98.9–100] | 94.4 [92.0–96.1] | 88.6 [85.5–91.1] |
+| `[256,512,1024]` (76 M) | **98.8** [97.4–99.4]† | 94.6 [92.3–96.3] | 83.4 [79.9–86.4] | 94.6 [92.3–96.3] | 79.4 [75.6–82.7] |
+
+† `[256,512,1024]×150` = run 75. `best_step` des cellules grille = 3000–6000 (early-stop ; au-delà la val-loss remonte, ex. `[128,256,512]×150` : 0.072@6000 → 0.117@15000).
+
+### Lectures clés
+
+1. **La vision pure résout Lift (~99 %)** — le `~81 %` de la partie 1 (run 73, `[64,128,256]`) n'était **pas un plafond de la vision pure** mais une **limite de capacité** : en **doublant le U-Net** (`[64,128,256]`→`[128,256,512]`) à pleines données, on passe de **81.2 % à 99.4 %** (+18 pts pour ×1.8 params). L'objectif réellement transférable (sans coords objet) est donc **atteignable**.
+2. **Sweet spot `[128,256,512]` (28.6 M)** — 99.4 % @150, **99.8 % @50**, robuste à mi-données. Monter à `[256,512,1024]` (76 M) **ne gagne rien** (98.8 % @150) et **déstabilise** même (83.4 % @50, oscillations) → plateau de capacité franchi.
+3. **Ce que coûte le retrait de la béquille** : avec coords, le minuscule `[32,64,128]` mini-CNN (**1.65 M**) suffisait déjà (98.6 %) — la vision était triviale. Sans coords, il faut **ResNet18 + `[128,256,512]` ≈ 28.6 M** pour le même ~99 % → **~17× plus de params** pour la même tâche. La béquille sim ne « facilitait » pas marginalement : elle **cachait l'essentiel du problème d'apprentissage**.
+4. **Variance d'entraînement plus forte en vision pure** — la ligne `[256,512,1024]` est non-monotone (83.4 @50, 94.6 @20) et `[128,256,512]` chute à 92.6 @100 entre deux 99 %. Comme le régime N=10 de la partie 1, mais **amplifié** : sans l'ancrage des coords objet, chaque seed prend une trajectoire plus dispersée. Conséquence pratique : à données rares, **plusieurs seeds** sont nécessaires pour conclure.
+
+→ **Bilan transférabilité** : sur Lift, viser **ResNet18 + `[128,256,512]` (~29 M)** en vision pure donne ~99 % — toujours **÷9 params vs la baseline 263.7 M**, mais loin du ÷160 « optimiste » de la partie 1 qui dépendait de la béquille. Le vrai coût de compression transférable est **modéré, pas extrême**.
+
 ## Suite
 
-Limites du modèle bien cartographiées **en sim, avec coords objet en entrée** (capacité, pas, vision, données).
+Limites du modèle bien cartographiées **en sim, avec coords objet en entrée** (capacité, pas, vision, données) **et en vision pure** (partie 2 ci-dessus).
 
 Frontières suivantes (faites ensuite) :
-- **Transférabilité réelle** — virage majeur en phase 5 : refaire en **vision pure** (sans `cube_pos`/`can_pos`), pour avoir des chiffres qui décrivent ce qu'un vrai bras pourra faire. Sur Lift c'est ~81 % (vs 98.6 % avec coords). Détails et récit : [`CAN.md`](CAN.md).
-- **Tâche plus dure** — Can en cours (vision pure, multi-caméras en exploration), Square/Tool Hang en réserve.
+- **Transférabilité réelle** — virage en phase 5 (vision pure, sans `cube_pos`/`can_pos`). Sur Lift : ~81 % avec ResNet18 + petit U-Net, **mais ~99 % en agrandissant le U-Net** — grille complète en **[Partie 2](#partie-2--vision-pure-sans-la-béquille-cube)**. Récit phase 5 v1 archivé : [`CAN_archive.md`](CAN_archive.md).
+- **Tâche plus dure** — Can travaillé en phase 5 v1, à reprendre proprement (méthodologie convergence + sélection ckpt) en v2. Square/Tool Hang en réserve.
