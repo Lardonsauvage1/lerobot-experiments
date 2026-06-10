@@ -205,7 +205,7 @@ Toute la grille vision pure est à **10 pas de diffusion figés**. Deux axes de 
 
 ## Suite
 
-Limites cartographiées **en sim avec coords objet** (capacité, pas, vision, données) **et en vision pure** pour l'axe capacité × données + vision.
+Limites cartographiées **en sim avec coords objet** (capacité, pas, vision, données) et, **en vision pure**, pour l'axe capacité × données (vision comprise).
 
 Frontières suivantes :
 - **Compléter la vision pure** — refaire les grilles **pas × données** et **latence × succès** sans béquille (cf. *Périmètre*).
