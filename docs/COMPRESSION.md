@@ -46,7 +46,7 @@ Choix de méthode : **métrique = latence** (en diffusion, une décision = *N pa
 
 > ⚠️ Mesures sur **50 ép. (indicatif)** : l'IC95 vaut ±~7 pts à ce N, donc les `100 %`/`98 %` ne se distinguent **pas** entre eux. Les chiffres fiables (500 rollouts) sont plus bas.
 
-**Sweep U-Net (taille vs succès, à 10 pas)** — vision ResNet18 :
+**Sweep U-Net** — on fait varier la largeur du U-Net. **Fixe :** vision **ResNet18**, **10 pas**, **N=150** démos, état 19D.
 
 | Modèle (`down_dims`) | Params (total) | U-Net seul | Succès | t_succ | max_z |
 |---|---|---|---|---|---|
@@ -60,7 +60,7 @@ Choix de méthode : **métrique = latence** (en diffusion, une décision = *N pa
 
 → **Plancher de capacité net : `[32,64,128]`** (1.6 M de U-Net). En dessous, falaise (`[16,32,64]` → 2 %).
 
-**Grille latence × succès** (lignes = pas, colonnes = U-Net) — cases = **latence ms · succès** :
+**Grille latence × succès** — on fait varier pas × largeur U-Net. **Fixe :** vision **ResNet18**, **N=150**, état 19D. Lignes = pas, colonnes = U-Net, cases = **latence ms · succès** :
 
 | pas \ U-Net | `[512,1024,2048]`| `[256,512,1024]` | `[128,256,512]` | `[64,128,256]` |`[32,64,128]`⭐ | `[16,32,64]` | `[8,16,32]` |
 |---|---|---|---|---|---|---|---|
@@ -74,7 +74,7 @@ Choix de méthode : **métrique = latence** (en diffusion, une décision = *N pa
 
 ### Levier 3 — Vision mini-CNN
 
-> Mesures sur 50 ép. (indicatif) : les deux 100 % sont à égalité dans le bruit.
+On fait varier l'encodeur visuel. **Fixe :** U-Net `[32,64,128]`, **4 pas**, **N=150**, état 19D. *(Mesures sur 50 ép., indicatif : les deux 100 % sont à égalité dans le bruit.)*
 
 | Vision | Params total | Succès @4 pas | Latence @4 pas | val-loss |
 |---|---|---|---|---|
@@ -87,7 +87,7 @@ Choix de méthode : **métrique = latence** (en diffusion, une décision = *N pa
 
 > ✅ **C'est ici que les chiffres comptent.** 500 départs **figés et appariés** (mêmes pour tous les modèles), **IC95 de Wilson ≈ ±2 pts**. La 1ʳᵉ version (50 ép., ±7 pts) noyait tous les écarts dans le bruit — voir Détails techniques.
 
-Succès % [IC95]. Lignes = nb de démos, colonnes = **largeur U-Net (params U-Net seul)**, vision mini-CNN constante (+~1.65 M) :
+On fait varier données × largeur U-Net. **Fixe :** vision **mini-CNN** (+~1.65 M de base), **4 pas**, état 19D. Succès % [IC95], lignes = nb démos, colonnes = **U-Net (params U-Net seul)** :
 
 | N \ U-Net | `[32,64,128]` (1.6 M) | `[64,128,256]` (5 M) | `[128,256,512]` (17 M) |
 |---|---|---|---|
@@ -106,7 +106,7 @@ Trois régimes (`results/runs/lift/grid_data_x_unet_500.png`) :
 
 ### Levier 2×4 — Pas de diffusion × données (500 rollouts)
 
-Succès % [IC95], lignes = pas, colonnes = nb démos, U-Net `[32,64,128]` mini-CNN (`grid_steps_x_data_500.png`) :
+On fait varier pas × données. **Fixe :** U-Net `[32,64,128]`, vision **mini-CNN**, état 19D. Succès % [IC95], lignes = pas, colonnes = nb démos (`grid_steps_x_data_500.png`) :
 
 | pas \ N | 150 | 100 | 50 | 20 | 10 |
 |---|---|---|---|---|---|
@@ -157,7 +157,8 @@ Grilles : [`grid_data_x_unet_500.json`](../results/runs/lift/grid_data_x_unet_50
 
 ## Grille taille U-Net × données (ResNet18, vision pure 9D, @ 10 pas, 500 rollouts)
 
-Succès % [IC95]. Lignes = U-Net, colonnes = nb démos, **params totaux (ResNet18)**. Les 10 cellules `[128,256,512]` et `[256,512,1024]` sont vérifiées (`results/runs/lift_visionpure_resnet/`, + run 75 pour `[256,512,1024]×150`) ; la ligne `[64,128,256]` vient de run 73 + évals data-efficiency antérieures (non re-vérifiées) :
+On fait varier données × largeur U-Net. **Fixe :** vision **ResNet18**, **10 pas**, **état 9D** (proprio + image agentview, sans coords objet), early-stop par val-loss.
+Succès % [IC95], lignes = U-Net (**params totaux**), colonnes = nb démos :
 
 | U-Net × N | 150 | 100 | 50 | 20 | 10 |
 |---|---|---|---|---|---|
@@ -165,11 +166,11 @@ Succès % [IC95]. Lignes = U-Net, colonnes = nb démos, **params totaux (ResNet1
 | **`[128,256,512]`** ⭐ (28.6 M) | **99.4** [98.3–99.8] | 92.6 [90.0–94.6] | **99.8** [98.9–100] | 94.4 [92.0–96.1] | 88.6 [85.5–91.1] |
 | `[256,512,1024]` (76 M) | **98.8** [97.4–99.4]† | 94.6 [92.3–96.3] | 83.4 [79.9–86.4] | 94.6 [92.3–96.3] | 79.4 [75.6–82.7] |
 
-† `[256,512,1024]×150` = run 75. `best_step` des cellules grille = 3000–6000 (early-stop ; au-delà la val-loss remonte, ex. `[128,256,512]×150` : 0.072@6000 → 0.117@15000).
+**Sources** : cellules `[128,256,512]` et `[256,512,1024]` vérifiées (`results/runs/lift_visionpure_resnet/`) ; † `[256,512,1024]×150` = run 75 ; ligne `[64,128,256]` = run 73 + évals data-efficiency antérieures (non re-vérifiées). `best_step` des cellules grille = 3000–6000 (early-stop ; au-delà la val-loss remonte, ex. `[128,256,512]×150` : 0.072@6000 → 0.117@15000).
 
 ## Vision : mini-CNN vs ResNet18 — le mur que la béquille cachait
 
-Même grille, mais avec le **mini-CNN** (0.03 M) de la Partie 1 — test direct de « peut-on garder la vision triviale sans la béquille ? ». Succès % à 500 rollouts, **params U-Net seul** (`results/runs/lift_visionpure/`) :
+Même grille données × U-Net, mais on remplace l'encodeur par le **mini-CNN** (0.03 M) de la Partie 1 — test direct de « peut-on garder la vision triviale sans la béquille ? ». **Fixe :** vision **mini-CNN**, **10 pas**, **état 9D**. Succès % à 500 rollouts, colonnes = nb démos, **params U-Net seul** (`results/runs/lift_visionpure/`) :
 
 | U-Net × N | 150 | 100 | 50 | 20 | 10 |
 |---|---|---|---|---|---|
