@@ -151,6 +151,20 @@ Succès % [IC95 Wilson]. Lignes = largeur U-Net, colonnes = nb de démos. Les **
 
 † `[256,512,1024]×150` = run 75. `best_step` des cellules grille = 3000–6000 (early-stop ; au-delà la val-loss remonte, ex. `[128,256,512]×150` : 0.072@6000 → 0.117@15000).
 
+### Vision : mini-CNN vs ResNet18 — le mur que la béquille cachait
+
+Même grille U-Net × données, mais avec le **mini-CNN** (0.03 M) de la partie 1 au lieu de ResNet18. C'est le test direct de « peut-on garder la vision triviale sans la béquille ? ». Succès % à 500 rollouts (`results/runs/lift_visionpure/`) :
+
+| U-Net × N | 150 | 100 | 50 | 20 | 10 |
+|---|---|---|---|---|---|
+| `[32,64,128]` (1.6 M) | 47.2 | 42.2 | 46.6 | 59.2 | 65.0 |
+| `[64,128,256]` (5 M) | 58.0 | 56.0 | 57.4 | 45.2 | 56.6 |
+| `[128,256,512]` (17 M) | 62.6 | 81.2 | 32.8 | 51.0 | 16.2 💥 |
+
+**Réponse : non.** Le mini-CNN **plafonne à 45–65 %** et part en **chaos** (la ligne `[128,256,512]` fait 62→81→33→51→16 %, IC95 disjoints : le 81.2 % [77.5–84.4] @N=100 est un tirage chanceux, pas une propriété). Agrandir le U-Net **n'aide pas** : sans un bon encodeur visuel, le débruiteur n'a rien d'exploitable. À comparer avec ResNet18 (même grille, jusqu'à **99.8 %**).
+
+→ **C'est LA preuve que la béquille cachait un problème de vision, pas de débruitage.** En partie 1 (avec coords cube), le mini-CNN 0.03 M suffisait car l'image était quasi inutile — l'état contenait déjà la réponse. En vision pure, **toute l'information de la tâche passe par l'image** : il faut un encodeur capable (ResNet18). Le mini-CNN n'était pas « assez bon pour Lift », il était « assez bon pour Lift *quand on trichait* ».
+
 ### Lectures clés
 
 1. **La vision pure résout Lift (~99 %)** — le `~81 %` de la partie 1 (run 73, `[64,128,256]`) n'était **pas un plafond de la vision pure** mais une **limite de capacité** : en **doublant le U-Net** (`[64,128,256]`→`[128,256,512]`) à pleines données, on passe de **81.2 % à 99.4 %** (+18 pts pour ×1.8 params). L'objectif réellement transférable (sans coords objet) est donc **atteignable**.
@@ -160,10 +174,20 @@ Succès % [IC95 Wilson]. Lignes = largeur U-Net, colonnes = nb de démos. Les **
 
 → **Bilan transférabilité** : sur Lift, viser **ResNet18 + `[128,256,512]` (~29 M)** en vision pure donne ~99 % — toujours **÷9 params vs la baseline 263.7 M**, mais loin du ÷160 « optimiste » de la partie 1 qui dépendait de la béquille. Le vrai coût de compression transférable est **modéré, pas extrême**.
 
+### Périmètre — ce qui n'a PAS été refait en vision pure
+
+Toute la grille vision pure est mesurée **à 10 pas de diffusion figés**. Deux axes de la partie 1 **n'ont pas d'équivalent vision pure** (ils resteraient à faire, via de nouveaux entraînements) :
+
+- **Pas de diffusion × données** — en partie 1, 4 pas suffisaient à pleines données et ~10 pas à données rares. Pas vérifié sans béquille : le plancher de pas pourrait être différent quand toute l'info passe par l'image.
+- **Latence × succès** (pas × U-Net) — la grille latence n'a été établie qu'avec coords objet.
+
+Tant que ces deux grilles ne sont pas refaites, les conclusions **pas/latence** de la partie 1 sont à considérer comme **non confirmées en vision pure**.
+
 ## Suite
 
-Limites du modèle bien cartographiées **en sim, avec coords objet en entrée** (capacité, pas, vision, données) **et en vision pure** (partie 2 ci-dessus).
+Limites du modèle bien cartographiées **en sim, avec coords objet en entrée** (capacité, pas, vision, données) **et en vision pure** pour l'axe **capacité × données + vision** (partie 2 ci-dessus).
 
 Frontières suivantes (faites ensuite) :
 - **Transférabilité réelle** — virage en phase 5 (vision pure, sans `cube_pos`/`can_pos`). Sur Lift : ~81 % avec ResNet18 + petit U-Net, **mais ~99 % en agrandissant le U-Net** — grille complète en **[Partie 2](#partie-2--vision-pure-sans-la-béquille-cube)**. Récit phase 5 v1 archivé : [`CAN_archive.md`](CAN_archive.md).
+- **Compléter la vision pure** — refaire en vision pure les deux grilles encore « sous béquille » : **pas de diffusion × données** et **latence × succès** (cf. *Périmètre* en partie 2). Nécessite de nouveaux entraînements.
 - **Tâche plus dure** — Can travaillé en phase 5 v1, à reprendre proprement (méthodologie convergence + sélection ckpt) en v2. Square/Tool Hang en réserve.
