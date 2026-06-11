@@ -38,6 +38,12 @@ Deux phénomènes **distincts** se cumulent dans la dentelure des courbes :
 
 → **« Convergé » = une bande, pas une valeur** : à partir de ~20k, succès ∈ [~84 %, ~94 %] ; un checkpoint pris seul peut être à l'un ou l'autre bout.
 
+## Zoom résolution 100 steps (10k-11k) — l'instabilité est intrinsèque
+
+On a évalué **11 checkpoints tous les 100 steps** entre 10k et 11k, **chacun à 500 rollouts** (fiable ±4 pts). Résultat : le succès oscille de **24 % à 57 %** (amplitude **33 pts**, écart-type 11 pts), IC95 souvent disjoints entre voisins (ex. 10700=24 % → 10800=55 %, **+30 pts en 100 steps**). Données : `rollouts_fine_10_11k.csv`, graphe `courbes_fine_10_11k.png`.
+
+**Découplage avec TOUS les signaux d'entraînement.** Dans cette même zone : la **train/val loss** est plate (~0.05), le **learning rate** est lisse (~7.5e-5, décroissance cosine), le **grad_norm** est plat (~0.62). Aucun ne bouge pendant que le succès zigzague de 33 pts. → L'instabilité n'est **pas** un artefact du LR ni de la dynamique de gradient : c'est une **sensibilité intrinsèque du succès** aux micro-changements des poids (à LR constant, les poids continuent de bouger via les gradients stochastiques × Adam, et le succès — fonction non-lisse des poids en boucle fermée — y est hyper-sensible). Graphe global 3 panneaux : `courbes_methodo.png`.
+
 ## Conclusion méthodo (à formaliser)
 Sur tâche dure :
 1. Évaluer le **succès**, pas la loss (elle est au plancher dès ~5k alors que le succès triple ensuite).
