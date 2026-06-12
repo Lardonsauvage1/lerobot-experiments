@@ -253,6 +253,20 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
     )
     # --- END PATCH ---
 
+    # --- CONTINUE mini-CNN : recharge des poids d'un checkpoint par-dessus le mini-CNN random ---
+    # (le resume natif LeRobot est casse pour le mini-CNN : le swap recree des poids aleatoires)
+    import os as _os
+    _init_ckpt = _os.environ.get("MINI_INIT_CKPT")
+    if _init_ckpt:
+        from pathlib import Path as _Path
+        from safetensors.torch import load_file as _load_file
+        _sd = _load_file(str(_Path(_init_ckpt) / "model.safetensors"), device="cpu")
+        _miss, _unexp = policy.load_state_dict(_sd, strict=False)
+        logging.info(
+            f"[continue] poids charges depuis {_init_ckpt} | missing={len(_miss)} unexpected={len(_unexp)}"
+        )
+    # --- END CONTINUE ---
+
     if cfg.peft is not None:
         logging.info("Using PEFT! Wrapping model.")
         # Convert CLI peft config to dict for overrides
@@ -304,6 +318,28 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         logging.info("Creating optimizer and scheduler")
     optimizer, lr_scheduler = make_optimizer_and_scheduler(cfg, policy)
 
+    # --- CONTINUE mini-CNN : scheduler custom pour la phase 20k->50k (1 vague cosine SGDR / LR constant) ---
+    _sched_mode = _os.environ.get("MINI_SCHED")
+    if _sched_mode:
+        import math as _math
+        _start = int(_os.environ.get("MINI_START_STEP", "0"))
+        _total = cfg.steps - _start                       # nb de steps de la phase continue
+        _warm = int(_os.environ.get("MINI_WARMUP", "500"))
+        if _sched_mode == "cosine_wave":
+            def _lr_lambda(t):                            # t = step local 0.._total
+                if t < _warm:
+                    return (t + 1) / _warm                # remontee ~0 -> 1 (pic = lr de base)
+                p = (t - _warm) / max(1, _total - _warm)
+                return 0.5 * (1.0 + _math.cos(_math.pi * p))   # cosine 1 -> 0 a 50k
+        elif _sched_mode == "constant":
+            def _lr_lambda(t):
+                return 1.0                                 # LR plat (= lr de base)
+        else:
+            raise ValueError(f"MINI_SCHED inconnu: {_sched_mode}")
+        lr_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, _lr_lambda)
+        logging.info(f"[continue] scheduler={_sched_mode} start={_start} total={_total} warmup={_warm}")
+    # --- END CONTINUE ---
+
     # Load precomputed SARM progress for RA-BC if enabled
     # Generate progress using: src/lerobot/policies/sarm/compute_rabc_weights.py
     rabc_weights = None
@@ -328,6 +364,9 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         )
 
     step = 0  # number of policy updates (forward + backward + optim)
+
+    if _os.environ.get("MINI_SCHED"):   # continue mini-CNN : on reprend la numerotation a MINI_START_STEP
+        step = int(_os.environ.get("MINI_START_STEP", "0"))
 
     if cfg.resume:
         step, optimizer, lr_scheduler = load_training_state(cfg.checkpoint_path, optimizer, lr_scheduler)
@@ -462,6 +501,11 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         train_tracker.step()
         is_log_step = cfg.log_freq > 0 and step % cfg.log_freq == 0 and is_main_process
         is_saving_step = step % cfg.save_freq == 0 or step == cfg.steps
+        # CONTINUE mini-CNN : fenetre dense (1 ckpt/10 pas) sur [MINI_DENSE_LO, MINI_DENSE_HI]
+        _dlo = int(_os.environ.get("MINI_DENSE_LO", "0"))
+        _dhi = int(_os.environ.get("MINI_DENSE_HI", "-1"))
+        if _dlo <= step <= _dhi and step % 10 == 0:
+            is_saving_step = True
         is_eval_step = cfg.eval_freq > 0 and step % cfg.eval_freq == 0
 
         if is_log_step:

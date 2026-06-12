@@ -44,9 +44,31 @@ On a évalué **11 checkpoints tous les 100 steps** entre 10k et 11k, **chacun �
 
 **Découplage avec TOUS les signaux d'entraînement.** Dans cette même zone : la **train/val loss** est plate (~0.05), le **learning rate** est lisse (~7.5e-5, décroissance cosine), le **grad_norm** est plat (~0.62). Aucun ne bouge pendant que le succès zigzague de 33 pts. → L'instabilité n'est **pas** un artefact du LR ni de la dynamique de gradient : c'est une **sensibilité intrinsèque du succès** aux micro-changements des poids (à LR constant, les poids continuent de bouger via les gradients stochastiques × Adam, et le succès — fonction non-lisse des poids en boucle fermée — y est hyper-sensible). Graphe global 3 panneaux : `courbes_methodo.png`.
 
+## La loss au plancher ne veut PAS dire « convergé » — un mini-CNN passe de 2 % à 74 % après 20k
+
+Expérience décisive (mini-CNN 1.84M params, vision 0.03M, Can vision pure). Deux runs entraînés à l'identique jusqu'à 20k (cosine vs LR constant), **loss train ET val au plancher ~0.05 dès ~5k**, succès **~2 %**. Conclusion naïve : « modèle trop faible, convergé à 2 % ». **FAUX.**
+
+Le run cosine d'origine avait **annealé son LR à ~2e-9 (≈ 0) à 20k** → poids gelés, succès figé à 2 % alors que la loss *paraissait* parfaite. En prolongeant 20k→50k :
+- **LR constant 1e-4** : succès **2 % → 74 %** (pic @46k ; plateau bruité 50-74 %). Données : `mini_constant_continue/rollouts_500.csv`.
+- **cosine « vague » (warm restart SGDR, ~0→1e-4→0)** : 2 % → 46 % (sa 2ᵉ moitié re-décroît le LR vers 0 → re-affame le modèle). Données : `mini_cosine_continue/rollouts_500.csv`.
+
+→ Le mini-CNN n'était **pas trop faible** (60× moins de params vision que le ResNet34 et il atteint ~74 % vs ~90 %) : il était **affamé de LR**. La loss était **aveugle à +72 points** de capacité réelle, et n'indiquait même pas qu'il restait tout ça à gagner. Graphe complet 1k→50k (4 panneaux) : `courbes_minicnn_full_1k_50k.png` ; comparatif 0→20k : `courbes_minicnn_cos_vs_const.png`.
+
+**Le LR constant bat le warm-restart** ici : pour décoller d'un plancher dû à l'annealing, un LR soutenu non-nul est ce qui compte ; la vague aide mais sa redescente bride le gain.
+
+## Zoom résolution 10 steps — le succès est rugueux JUSQU'EN BAS (pas d'échelle lisse)
+
+Pour vérifier la variance sans ambiguïté de trajectoire : on a densifié une fenêtre de 200 pas **jamais entraînée auparavant** (premier passage, 1 ckpt **tous les 10 pas**, run constant 1e-4 à 57000→57200), chacun à **500 rollouts**. Données : `mini_constant_finevar/rollouts_500.csv`, graphe `courbe_finevar_57k.png`.
+
+Résultat : succès **42.2 % → 75.4 %**, amplitude **33 pts**, σ 8 pts — **sur 200 pas seulement**. Sauts entre voisins **distants de 10 pas** : 57040=72.4 % → 57050=56.6 % (**−16 pts**), 57190=57.2 % → 57200=42.2 % (**−15 pts**). **8 écarts sur 20 ont des IC95 disjoints** (n=500, ±4 pts) → ce sont de **vraies différences de modèle**, pas du bruit.
+
+**L'instabilité ne se lisse à aucune échelle.** À 100 pas (10k-11k) : 33 pts d'amplitude ; en zoomant ×10 (10 pas) : **encore ~33 pts**. **10 pas de gradient** (LR 1e-4) suffisent à bouger le succès de 15+ points. → Aucune confiance possible même à un voisin à 10 pas ; le seul succès connu est celui du checkpoint exactement évalué.
+
 ## Conclusion méthodo (à formaliser)
 Sur tâche dure :
 1. Évaluer le **succès**, pas la loss (elle est au plancher dès ~5k alors que le succès triple ensuite).
 2. Avec **assez de rollouts** (500, pas 50) — l'IC95 de Wilson encadre alors correctement la vraie valeur (couverture ~95 % vérifiée).
-3. **Évaluer le checkpoint EXACT** qu'on déploiera : pas d'interpolation, pas de confiance au voisinage (instabilité réelle jusqu'à 28 pts entre checkpoints voisins).
+3. **Évaluer le checkpoint EXACT** qu'on déploiera : pas d'interpolation, pas de confiance au voisinage — l'instabilité est réelle et **ne se lisse à aucune échelle** (33 pts d'amplitude aussi bien à 100 pas qu'à 10 pas).
 4. La val_loss full 1 seed suffit comme signal lisse secondaire (≈ 5 seeds), mais ne remplace pas le rollout.
+5. **Loss au plancher ≠ convergé.** Une loss plate ne dit ni le succès ni qu'il reste de la marge : un mini-CNN « loss parfaite, 2 % » cachait 72 points récupérables par simple LR soutenu. **Ne jamais arrêter un entraînement sur la loss.**
+6. **Surveiller le LR de fin** : un scheduler qui anneal à ~0 gèle le modèle bien avant son potentiel. Sur tâche dure, un LR constant (ou un warm-restart) débloque le plancher.
