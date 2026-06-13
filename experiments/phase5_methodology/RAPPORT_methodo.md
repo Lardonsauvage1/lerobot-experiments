@@ -93,3 +93,36 @@ Sur tâche dure :
 - **Comparaison de 2 checkpoints voisins** (74 % vs 56 %) : le pic à 74 % garde un poil plus à 2 cm/2° (13 % vs 8 %) mais les deux s'effondrent pareil. L'écart d'instabilité entre checkpoints est **écrasé** par la catastrophe du déplacement caméra.
 
 **Implication sim-to-real :** tel quel, cette politique exigerait de re-fixer les caméras au millimètre / sous-degré près de la pose de collecte — irréaliste sur un vrai robot. Levier à tester en priorité : **augmentation de caméra à l'entraînement** (poses jittées pendant l'apprentissage) puis re-mesure de cette même courbe de dégradation.
+
+## Quand arrêter l'entraînement SANS simulation ?
+
+Question pratique : la sim coûte cher — peut-on décider « le modèle est fini / bon » avec des mesures **sans rollout** ? On a passé en revue tous les signaux disponibles offline. **Réponse : aucun n'est fiable seul**, mais ils échouent pour des raisons différentes et instructives. Graphes : `courbes_minicnn_valfull_1k_150k.png` (loss), `courbe_proxies.png` (proxies).
+
+### Les signaux d'entraînement classiques
+
+**1. Niveau de la loss (train ou val) — INUTILISABLE.** train/val au plancher ~0.05 dès ~5k alors que le succès continue de grimper jusqu'à 150k. La val_loss **full** (lisse, recalculée sur tout le set val) est même en **U** : minimum vers ~50k, puis remonte — donc son minimum ≈ 50k ne coïncide PAS avec le succès maximal. S'arrêter au minimum de loss raterait tout le reste.
+
+**2. Écart val − train (l'indicateur de surapprentissage) — INUTILISABLE, et c'est contre-intuitif.** Sur le constant, dans le plateau, la **train loss continue de baisser** (0.044 @65k → **0.029** @150k) pendant que la **val_loss full MONTE** (0.058 → **0.097**) : l'écart se creuse **×5**. C'est la **signature de manuel du surapprentissage** (train↓, val↑) — un manuel dirait « arrête-toi à ~50k, tu surapprends ». **Or le succès en tâche ne bouge pas (~66 %)**, et le cosine *s'améliore* même jusqu'à 81 %. Le « surapprentissage » est donc **réel au sens imitation** (le modèle colle mieux aux démos d'entraînement, généralise moins bien aux démos tenues à l'écart) mais **totalement découplé de la performance de tâche** : plusieurs séquences d'actions réussissent, s'éloigner d'une démo précise ne fait pas échouer. → L'écart val-train **crie « surapprentissage » à tort** : fausse alarme.
+
+**3. Le gradient (grad_norm) — le MOINS mauvais, mais il ne dit que la moitié.** Son plateau (~0.35 dans le plateau de succès) coïncide grossièrement avec la fin de l'amélioration → c'est le seul signal d'entraînement qui indique **QUAND** le modèle a fini de bouger (poids stabilisés ⇒ succès stabilisé *en moyenne*). **MAIS il est aveugle au NIVEAU** : grad_norm ~0.35 que le succès soit 53 % ou 74 % (cf. l'instabilité), et il ne voit pas l'oscillation résiduelle. Il répond « a-t-il fini d'apprendre ? » — **pas** « est-il bon ? ».
+
+### Les proxies dédiés (forward passes, toujours sans sim) — voir `courbe_proxies.png`, `courbe_coverage.png`
+
+On compare 3 métriques d'action (mesurées sur le set val, en générant K=16 chunks par état par diffusion) : la **MSE de la prédiction moyenne** (proxy 3), la **couverture par état** (min sur les K tirages de la distance à l'action experte — multimodalité-consciente), et le **MMD marginal** (distance entre les nuages d'actions politique/expert, agrégés sur les états). |r| avec le succès (full / plateau≥40k) :
+
+| métrique | constant | cosine |
+|---|---|---|
+| MSE moyenne | 0.39 / 0.33 | 0.51 / 0.59 |
+| couverture/état | 0.46 / 0.37 | 0.29 / **0.74** |
+| MMD marginal | **0.67** / 0.43 | 0.50 / 0.42 |
+
+**4. MSE de la prédiction moyenne (proxy 3) — NE MARCHE PAS.** En U comme la loss, incohérente entre runs, et surtout elle **punit la multimodalité** (moyenner « aller à gauche » et « aller à droite » donne « tout droit » → faux pour les deux modes valides).
+
+**5. Le compounding (erreur qui grandit le long de l'horizon) — INUTILISABLE, défaut structurel.** Tôt, l'erreur au dernier pas (h7) dépasse le 1er (h0) ; mais le gap s'écrase à ~0 dès ~30k et ne suit plus rien. Surtout : on le mesure sur les **états experts** (teacher-forcing), donc il ne peut **pas** voir la vraie dérive en **boucle fermée** (la politique s'enfonçant dans ses propres états jamais vus — la cause réelle des échecs). Le capturer exigerait un **world-model**, qu'on n'a pas.
+
+**6. MMD marginal (proxy 2) — au mieux un détecteur de plateau, moins bon que le gradient.** Sa chute puis stabilisation (plancher ~0.004) coïncide grossièrement avec le plateau de succès → il dit « le modèle a fini de bouger ». Mais c'est une statistique **comportementale en aval** (bruitée), alors que le **grad_norm mesure directement** l'amplitude des pas de poids : le gradient fait le même travail (détecter le plateau) en plus propre et plus direct. **Le MMD est une version dégradée du signal du gradient — il ne renseigne pas non plus sur le niveau de performance.** (Nuance : la *vraie* divergence par état est incalculable — chaque situation n'a qu'**une** action experte enregistrée ; le MMD marginal mélange tous les états, donc il ne vérifie même pas que l'action est juste *pour l'état donné*.)
+
+**7. Couverture par état — ferait conclure « appris par cœur » À TORT.** Métrique théoriquement la mieux adaptée (par état, multimodalité-consciente, n'utilise que l'unique action experte qu'on a). Empiriquement : **pas plus fiable** (meilleur score de tous, 0.74 en plateau cosine, mais 0.29 en full cosine et ~0.37 sur le constant — incohérent). Pire, elle **trompe** : mesurée sur les démos **tenues à l'écart**, elle **remonte dans le plateau** (0.024 @65k → 0.034 @125k) — la politique reproduit de moins en moins bien les démos held-out → **signature classique du par-cœur / surapprentissage**. On conclurait « il mémorise ». **Or le succès ne bouge pas** : la politique fait juste *d'autres* actions valides que la démo précise. **Fausse alarme**, exactement comme l'écart val-train.
+
+### Bilan
+Aucune mesure offline ne **remplace** le rollout pour décider « c'est bon ». Fil rouge : **tout signal qui monte sur le val** (val_loss, écart val-train, couverture par état) **crie « surapprentissage / par-cœur » à tort** — il mesure la fidélité aux démos précises, pas la réussite de la tâche. Le **grad_norm** est le seul signal honnête : son plateau borne le *quand* (fin de l'apprentissage moyen) sans mentir sur la performance — mais **rien** ne borne le *combien* (le niveau) sans sim. Le MMD marginal est une version bruitée du gradient. → En pratique : **grad_norm pour « quand arrêter », rollouts (ou un world-model) pour « est-ce bon »** ; aucun proxy d'action testé ne s'y substitue de façon fiable.
