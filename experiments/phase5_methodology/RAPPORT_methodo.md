@@ -124,5 +124,18 @@ On compare 3 métriques d'action (mesurées sur le set val, en générant K=16 c
 
 **7. Couverture par état — ferait conclure « appris par cœur » À TORT.** Métrique théoriquement la mieux adaptée (par état, multimodalité-consciente, n'utilise que l'unique action experte qu'on a). Empiriquement : **pas plus fiable** (meilleur score de tous, 0.74 en plateau cosine, mais 0.29 en full cosine et ~0.37 sur le constant — incohérent). Pire, elle **trompe** : mesurée sur les démos **tenues à l'écart**, elle **remonte dans le plateau** (0.024 @65k → 0.034 @125k) — la politique reproduit de moins en moins bien les démos held-out → **signature classique du par-cœur / surapprentissage**. On conclurait « il mémorise ». **Or le succès ne bouge pas** : la politique fait juste *d'autres* actions valides que la démo précise. **Fausse alarme**, exactement comme l'écart val-train.
 
+### Pourquoi TOUTES nos métriques crient « surapprentissage » à tort — le mode-averaging
+
+Constat troublant : val_loss, écart val-train, et couverture **montent** sur le set val → toutes signalent du **par-cœur / surapprentissage**. Or le modèle **généralise** (le succès tient/monte). Explication (confirmée par la littérature : *"success rate can keep climbing even while validation loss increases substantially"*, LIBERO/Robomimic) :
+
+1. **La tâche est multimodale** : pour une même image, plusieurs actions sont valides (canette par la gauche OU la droite). Mais chaque démo n'enregistre **qu'un** de ces choix. Nos métriques mesurent toutes la distance à **cette action enregistrée unique**.
+2. **La MSE récompense la MOYENNE, punit l'ENGAGEMENT** (*mode-averaging*) : moyenner deux modes valides donne un geste intermédiaire « bizarre » qui échoue ; s'engager sur un mode réussit mais s'éloigne des autres démos.
+3. **Le sens des métriques s'INVERSE au fil de l'entraînement** :
+   - tôt : modèle *flou* → prédit une moyenne hésitante, proche de n'importe quelle démo → **val basse**, mais action indécise → **échoue la tâche** ;
+   - tard : modèle *engagé* sur un mode valide → s'éloigne du choix arbitraire des démos held-out → **val haute**, mais action décisive → **réussit**.
+4. **Le train baisse** car sur les états d'entraînement le modèle a « la réponse » (l'action démontrée) et est tiré dessus → `train↓ val↑` = signature de surapprentissage **trompeuse**.
+
+→ **La métrique confond « le modèle a choisi un AUTRE mode valide » avec « il a mémorisé / ne généralise plus ».** Le mur est fondamental : avec **une seule action enregistrée par état**, on ne peut PAS distinguer « autre mode valide » de « faux ». Ironie : la diffusion policy est *faite* pour représenter les modes, et nos métriques punissent exactement la capacité multimodale qui la fait marcher.
+
 ### Bilan
 Aucune mesure offline ne **remplace** le rollout pour décider « c'est bon ». Fil rouge : **tout signal qui monte sur le val** (val_loss, écart val-train, couverture par état) **crie « surapprentissage / par-cœur » à tort** — il mesure la fidélité aux démos précises, pas la réussite de la tâche. Le **grad_norm** est le seul signal honnête : son plateau borne le *quand* (fin de l'apprentissage moyen) sans mentir sur la performance — mais **rien** ne borne le *combien* (le niveau) sans sim. Le MMD marginal est une version bruitée du gradient. → En pratique : **grad_norm pour « quand arrêter », rollouts (ou un world-model) pour « est-ce bon »** ; aucun proxy d'action testé ne s'y substitue de façon fiable.
