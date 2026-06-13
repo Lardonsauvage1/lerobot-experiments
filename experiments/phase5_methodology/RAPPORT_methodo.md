@@ -72,3 +72,24 @@ Sur tâche dure :
 4. La val_loss full 1 seed suffit comme signal lisse secondaire (≈ 5 seeds), mais ne remplace pas le rollout.
 5. **Loss au plancher ≠ convergé.** Une loss plate ne dit ni le succès ni qu'il reste de la marge : un mini-CNN « loss parfaite, 2 % » cachait 72 points récupérables par simple LR soutenu. **Ne jamais arrêter un entraînement sur la loss.**
 6. **Surveiller le LR de fin** : un scheduler qui anneal à ~0 gèle le modèle bien avant son potentiel. Sur tâche dure, un LR constant (ou un warm-restart) débloque le plancher.
+
+## Sim-to-real — fragilité catastrophique au déplacement des caméras
+
+**Question :** le modèle survit-il si les caméras ne sont pas exactement où elles étaient pendant la collecte des démos (cas du transfert vers un vrai robot) ?
+
+**Protocole :** on réutilise un modèle 2-cams déjà entraîné (agentview + birdview + proprio), sans ré-entraîner. À chaque épisode, on décale **aléatoirement et indépendamment les deux caméras** (translation + rotation, direction aléatoire, amplitude ≤ niveau) ; la caméra reste fixe pendant l'épisode (= caméra re-fixée un peu de travers pour ce déploiement), différente à chaque épisode. Sweep de niveaux, 500 rollouts chacun. Scripts : `20_eval_camshift.py` (éval), `23_camshift_gallery.py` (visuel). Données : `camshift_46k.csv`, `camshift_45k.csv` ; graphes `courbe_camshift.png`, `camshift_gallery.png`.
+
+**Résultat — effondrement immédiat :**
+
+| décalage (aléatoire/épisode) | ckpt 46000 (baseline 74 %) | ckpt 45000 (baseline 56 %) |
+|---|---|---|
+| 0 (baseline)        | 70.2 % | 59.2 % |
+| ≤2 cm / ≤2°         | **12.6 %** | **7.8 %** |
+| ≤5 cm / ≤5°         | 3.0 %  | 2.8 % |
+| ≤10 cm / ≤10°       | 2.2 %  | 1.0 % |
+
+- **Un décalage de 2 cm + 2° fait chuter le succès de ~70 % à ~13 %**. À 5 cm/5°, le modèle est mort (~3 %). Il a **mémorisé le point de vue exact** : aucune tolérance.
+- **Hypersensibilité à l'imperceptible** : sur la galerie, les vues à ≤2 cm/2° sont quasi identiques à l'œil humain — pourtant le succès s'est déjà effondré. Le modèle est perdu là où un humain ne voit presque rien.
+- **Comparaison de 2 checkpoints voisins** (74 % vs 56 %) : le pic à 74 % garde un poil plus à 2 cm/2° (13 % vs 8 %) mais les deux s'effondrent pareil. L'écart d'instabilité entre checkpoints est **écrasé** par la catastrophe du déplacement caméra.
+
+**Implication sim-to-real :** tel quel, cette politique exigerait de re-fixer les caméras au millimètre / sous-degré près de la pose de collecte — irréaliste sur un vrai robot. Levier à tester en priorité : **augmentation de caméra à l'entraînement** (poses jittées pendant l'apprentissage) puis re-mesure de cette même courbe de dégradation.
