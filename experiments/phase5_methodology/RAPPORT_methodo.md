@@ -139,3 +139,22 @@ Constat troublant : val_loss, écart val-train, et couverture **montent** sur le
 
 ### Bilan
 Aucune mesure offline ne **remplace** le rollout pour décider « c'est bon ». Fil rouge : **tout signal qui monte sur le val** (val_loss, écart val-train, couverture par état) **crie « surapprentissage / par-cœur » à tort** — il mesure la fidélité aux démos précises, pas la réussite de la tâche. Le **grad_norm** est le seul signal honnête : son plateau borne le *quand* (fin de l'apprentissage moyen) sans mentir sur la performance — mais **rien** ne borne le *combien* (le niveau) sans sim. Le MMD marginal est une version bruitée du gradient. → En pratique : **grad_norm pour « quand arrêter », rollouts (ou un world-model) pour « est-ce bon »** ; aucun proxy d'action testé ne s'y substitue de façon fiable.
+
+## État de l'art — évaluation/sélection offline (2023-2026, recherche multi-sources vérifiée)
+
+Recherche dédiée (19 sources, vérification adversariale des claims). Confirme nos constats et apporte des techniques + une correction importante.
+
+**Un THÉORÈME explique pourquoi aucun nombre offline ne peut suffire.** [Simchowitz et al., « The Pitfalls of Imitation Learning when Actions are Continuous » (2503.09722, 2025)] : même pour un système **stable et lisse**, **tout imitateur lisse et déterministe** subit une erreur en boucle fermée **exponentiellement plus grande** (en horizon H) que son erreur sur les données → une faible erreur offline **ne borne pas** l'erreur réelle. **Échappatoires** : politiques **stochastiques/non-lisses** (← la diffusion) et **données expertes bien étalées**. (Preuve empirique fondatrice : Robomimic — *« the best validation policy is 50 to 100% worse than the best performing policy »*.)
+
+**⚠️ Correction — les ENSEMBLES ne marchent pas pour le multimodal.** Le désaccord d'action d'ensemble **échoue aux points multimodaux in-distribution** : plusieurs actions valides = forte variance, **indistinguable de l'OOD** [Diff-DAgger, 2410.14868]. À ne PAS utiliser comme signal « quand arrêter » sur tâche multimodale.
+
+**Le meilleur signal sans-rollout trouvé : l'incertitude par la loss de diffusion.** Flaguer un état comme incertain quand sa loss de diffusion (espérée sur bruit+timestep) dépasse le **quantile ~95 %** des loss de diffusion sur le train → **+39 % de F1** pour prédire l'échec vs ensembles [Diff-DAgger]. *Caveat : validé en sim seulement, pour la détection OOD en ligne, PAS pour la sélection de checkpoint offline — prometteur comme pré-filtre, non prouvé pour « entraînement fini ».*
+
+**La vraie réponse du domaine = hybride OPE + budget minimal de rollouts (on ne les élimine pas, on les réduit).**
+- **OPE** (FQE, importance sampling, doubly-robust, model-based ; benchmark **DOPE**) : model-based & FQE > IS, mais **aucun n'atteint la précision oracle**, tous se dégradent en long-horizon (*curse of horizon*). Pas un substitut seul.
+- **A-OPS** (Active Offline Policy Selection, 2106.10251) : OPE en warm-start + **petit budget de rollouts réels** choisis par optim bayésienne → bat OPE-seul et online-seul sous budget (validé en robotique réelle).
+- **STEP** (Near-Optimal Stopping, 2503.10966, 2025) : comparaison de 2 politiques à nombre d'essais variable → **−40 % d'essais** avec contrôle d'erreur.
+
+**Caveats honnêtes (non confirmés par la vérification) :** (a) **world-models construits depuis les démos seules** (SIMPLER/WorldGym/Real-is-Sim) — aucun claim n'a survécu → faisabilité **non prouvée** ; (b) **métriques de vraisemblance / normalizing-flows / energy-based** — **aucune preuve** de pouvoir prédictif réel sur le succès.
+
+**Recommandation pour un bras réel (démos seules, pas de sim) :** (1) **pré-filtre sans rollout** par incertitude de loss de diffusion (PAS les ensembles) → présélectionner 2-3 checkpoints ; (2) **décision finale** par budget minimal de rollouts réels alloué **A-OPS** + comparaison **STEP** ; (3) **aucun nombre offline seul** ne décide « c'est bon » — c'est mathématiquement établi.
