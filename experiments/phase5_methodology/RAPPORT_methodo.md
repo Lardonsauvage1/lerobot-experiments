@@ -137,6 +137,15 @@ Constat troublant : val_loss, écart val-train, et couverture **montent** sur le
 
 → **La métrique confond « le modèle a choisi un AUTRE mode valide » avec « il a mémorisé / ne généralise plus ».** Le mur est fondamental : avec **une seule action enregistrée par état**, on ne peut PAS distinguer « autre mode valide » de « faux ». Ironie : la diffusion policy est *faite* pour représenter les modes, et nos métriques punissent exactement la capacité multimodale qui la fait marcher.
 
+**Preuve que ce n'est PAS du surapprentissage : le réseau ne PEUT pas mémoriser.** Méthodes anti-surapprentissage effectivement en place dans nos runs (vérifiées dans la config) :
+- **Objectif DDPM (débruitage, `num_train_timesteps=100`)** — à chaque pas l'action cible est bruitée à un **timestep aléatoire** : la cible est *mouvante*, jamais la même entrée deux fois → impossible de mémoriser un mapping. C'est une injection de bruit / augmentation massive, le mécanisme dominant.
+- **Capacité minuscule (1.84M params)** — vision 0.03M (mini-CNN) + U-Net `[32,64,128]` : pas assez de paramètres pour retenir 150 démos.
+- **Bottleneck spatial-softmax (32 keypoints)** — l'image est compressée en 32 coordonnées avant la tête → ne peut pas retenir les détails pixels.
+- **Weight decay 1e-6** (L2 faible) ; politique **générative/multimodale** (distribution, pas un mapping point-à-point).
+- *Non utilisés* : augmentation d'images (désactivée), dropout, crop (`crop_shape=None`).
+
+→ Ces mécanismes rendent la mémorisation **impossible**. Donc la val_loss qui monte ne peut PAS être du surapprentissage classique — c'est nécessairement l'artefact **mode-averaging** décrit ci-dessus. (Confirmation empirique : sur 1k→250k, train↓ et val↑ continuent indéfiniment **sans** que le succès se dégrade — un vrai surapprentissage ferait chuter le succès, ce qui n'arrive jamais.)
+
 ### Bilan
 Aucune mesure offline ne **remplace** le rollout pour décider « c'est bon ». Fil rouge : **tout signal qui monte sur le val** (val_loss, écart val-train, couverture par état) **crie « surapprentissage / par-cœur » à tort** — il mesure la fidélité aux démos précises, pas la réussite de la tâche. Le **grad_norm** est le seul signal honnête : son plateau borne le *quand* (fin de l'apprentissage moyen) sans mentir sur la performance — mais **rien** ne borne le *combien* (le niveau) sans sim. Le MMD marginal est une version bruitée du gradient. → En pratique : **grad_norm pour « quand arrêter », rollouts (ou un world-model) pour « est-ce bon »** ; aucun proxy d'action testé ne s'y substitue de façon fiable.
 
