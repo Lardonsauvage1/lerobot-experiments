@@ -61,7 +61,7 @@ Le run cosine avait **annealé son LR à ~2e-9 (≈ 0) à 20k** → poids gelés
 
 > *Haut-droite* : train **et** val loss au **plancher dès ~5k**. *Haut-gauche* : pourtant le succès reste à **~2 %** jusqu'à 20k, puis décolle vers **74 %** (constant) une fois prolongé. *Bas-gauche* : le cosine d'origine avait annealé son LR à ~0 à 20k → poids gelés. La loss était **aveugle à +72 points** de succès récupérables.
 
-> Le mini-CNN n'était **pas trop faible** : il était **affamé de LR**. La loss était **aveugle à +72 points** de capacité réelle. **Ne jamais arrêter un entraînement sur la loss.** Et **surveiller le LR de fin** : un scheduler qui anneal à ~0 gèle le modèle bien avant son potentiel (cf. [`CONVERGENCE.md`](CONVERGENCE.md)).
+> Le mini-CNN n'était **pas trop faible** : il était **affamé de LR**. La loss était **aveugle à +72 points** de capacité réelle. **Ne jamais arrêter un entraînement sur la loss.** Et **surveiller le LR de fin** : un scheduler qui anneal à ~0 gèle le modèle bien avant son potentiel (détail : [`SCHEDULE.md`](SCHEDULE.md) ; convergence : [`CONVERGENCE.md`](CONVERGENCE.md)).
 
 ### Conséquence — on entraîne désormais en LR **constant**
 

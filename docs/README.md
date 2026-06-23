@@ -18,6 +18,7 @@ Les récits ci-dessous racontent le **raisonnement** du projet, phase par phase.
 |---|---|
 | [`PERF_TEMPS_ENTRAINEMENT.md`](PERF_TEMPS_ENTRAINEMENT.md) | **Modèle calibré du temps d'entraînement (M1).** Le temps suit les FLOPs de la **vision** (caméras × backbone × résolution²), pas le compte de params ; U-Net quasi gratuit. + la **falaise mémoire** : la résolution 160² fait swapper les 16 Go (step ×440). |
 | [`CONVERGENCE.md`](CONVERGENCE.md) | **Convergence = succès (rollouts) vs steps.** La capacité accélère *et* relève la convergence (ResNet34 : 94 % à 20k ; mini-CNN : 76-81 % à 46-73k). Courbe en **sigmoïde**, décollage bien après la loss. Étude **auto-extensible** : tout nouveau `rollouts_500.csv` rejoint le graphe. |
+| [`SCHEDULE.md`](SCHEDULE.md) | **LR constant vs cosine.** Un cosine annealé à ~0 **gèle** le modèle (faux plateau : « loss parfaite, 2 % » cachait +72 pts). Constant = décolle plus tôt + **stoppable au plateau** ; cosine = pic un peu plus haut mais budget à deviner. → on entraîne en **constant**. |
 
 ## Où sont les résultats chiffrés
 
