@@ -112,7 +112,7 @@ La tâche est **multimodale** (plusieurs actions valides par image) mais chaque 
 
 ## 5. État de l'art — évaluation/sélection offline (2023-2026)
 
-Recherche dédiée et vérifiée (détail complet : [`RECHERCHE_eval_offline.md`](RECHERCHE_eval_offline.md)). Points saillants :
+Recherche dédiée et vérifiée (détail complet : [`recherche/eval_offline.md`](recherche/eval_offline.md)). Points saillants :
 
 - **Un théorème** [Simchowitz 2025] : tout imitateur **lisse et déterministe** subit une erreur boucle-fermée **exponentielle en horizon** → une faible erreur offline **ne borne pas** l'erreur réelle. Échappatoires : politiques **stochastiques/non-lisses** (← la diffusion) et données expertes bien étalées. (Robomimic : *« the best validation policy is 50 to 100 % worse than the best policy »*.)
 - **Les ensembles ne marchent pas en multimodal** (variance ≈ OOD aux points multimodaux) [Diff-DAgger].
@@ -140,4 +140,4 @@ Recherche dédiée et vérifiée (détail complet : [`RECHERCHE_eval_offline.md`
 La fragilité au déplacement de caméra (effondrement de 74 % → 13 % dès 2 cm/2°) et l'augmentation caméra constituent désormais la **Phase 6** → [`CAMERA.md`](CAMERA.md).
 
 ---
-*Figures : `results/runs/phase5_methodology/` (`courbes_methodo.png`, `courbe_finevar_57k.png`, `courbes_minicnn_full_1k_50k.png`, `courbes_minicnn_valfull_1k_150k.png`, `courbe_coverage.png`). Sources offline : `docs/RECHERCHE_eval_offline.md`.*
+*Figures : `results/runs/phase5_methodology/` (`courbes_methodo.png`, `courbe_finevar_57k.png`, `courbes_minicnn_full_1k_50k.png`, `courbes_minicnn_valfull_1k_150k.png`, `courbe_coverage.png`). Sources offline : `docs/recherche/eval_offline.md`.*

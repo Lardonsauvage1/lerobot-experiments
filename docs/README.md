@@ -20,6 +20,15 @@ Les récits ci-dessous racontent le **raisonnement** du projet, phase par phase.
 | [`CONVERGENCE.md`](CONVERGENCE.md) | **Convergence = succès (rollouts) vs steps.** La capacité accélère *et* relève la convergence (ResNet34 : 94 % à 20k ; mini-CNN : 76-81 % à 46-73k). Courbe en **sigmoïde**, décollage bien après la loss. Étude **auto-extensible** : tout nouveau `rollouts_500.csv` rejoint le graphe. |
 | [`SCHEDULE.md`](SCHEDULE.md) | **LR constant vs cosine.** Un cosine annealé à ~0 **gèle** le modèle (faux plateau : « loss parfaite, 2 % » cachait +72 pts). Constant = décolle plus tôt + **stoppable au plateau** ; cosine = pic un peu plus haut mais budget à deviner. → on entraîne en **constant**. |
 
+## Recherche / état de l'art (hors-sujet, référencé pour le détail technique)
+
+Dossier [`recherche/`](recherche/) — synthèses bibliographiques vérifiées, séparées des récits de phase pour ne pas les noyer :
+
+| Doc | En une phrase |
+|---|---|
+| [`recherche/eval_offline.md`](recherche/eval_offline.md) | **Évaluation/sélection offline (2023-2026).** Théorème de l'erreur exponentielle en boucle fermée, ensembles KO en multimodal, incertitude par loss de diffusion, hybride OPE + A-OPS + STEP. (référencé par `METHODOLOGIE.md`) |
+| [`recherche/RL.md`](recherche/RL.md) | **État de l'art RL** (apprentissage par renforcement) — pistes hors imitation. |
+
 ## Où sont les résultats chiffrés
 
 - **Tableau maître de la compression** (le plus complet) : [`../results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](../results/runs/lift/51_unet_sweep_eval/SUMMARY.md) — sweep U-Net, plafond démos, latence × succès.
