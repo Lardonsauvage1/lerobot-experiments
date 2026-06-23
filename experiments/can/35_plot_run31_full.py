@@ -54,12 +54,26 @@ hi = np.array([float(r["ci95_high"]) * 100 for r in sc])
 plt.rcParams.update({"font.size": 11})
 fig, ax = plt.subplots(2, 2, figsize=(16, 10))
 
-# --- succès + IC95 ---
+# --- succès + IC95 (trajectoire 50 rollouts) ---
 a = ax[0, 0]
 a.fill_between(ss, lo, hi, color=C, alpha=0.18)
-a.plot(ss, sr, "-o", color=C, ms=5, label="ResNet34 + gros U-Net")
-a.set_title("Succès 50-rollouts (+ IC95)"); a.set_xlabel("step"); a.set_ylabel("succès (%)")
-a.set_ylim(-3, 100); a.grid(alpha=0.3); a.legend(loc="lower right")
+a.plot(ss, sr, "-o", color=C, ms=5, label="50 rollouts (trajectoire, ±13 pts)")
+# point(s) fiable(s) à 500 rollouts en surimpression
+import os
+if os.path.exists(RUN + "/eval500_best.csv"):
+    e5 = list(csv.DictReader(open(RUN + "/eval500_best.csv")))
+    e5s = np.array([int(float(r["step"])) for r in e5])
+    e5r = np.array([float(r["success_rate"]) * 100 for r in e5])
+    e5lo = np.array([float(r["ci95_low"]) * 100 for r in e5])
+    e5hi = np.array([float(r["ci95_high"]) * 100 for r in e5])
+    a.errorbar(e5s, e5r, yerr=[e5r - e5lo, e5hi - e5r], fmt="*", color="#2ca02c",
+               ms=18, capsize=4, lw=1.5, zorder=5, label="500 rollouts (fiable, ±4 pts)")
+    for x, y in zip(e5s, e5r):
+        a.annotate(f"{y:.1f}%", (x, y), textcoords="offset points", xytext=(-44, -2),
+                   fontsize=10, color="#2ca02c", fontweight="bold")
+a.set_title("Succès vs steps — trajectoire 50r + point fiable 500r")
+a.set_xlabel("step"); a.set_ylabel("succès (%)")
+a.set_ylim(-3, 102); a.grid(alpha=0.3); a.legend(loc="lower right", fontsize=9)
 
 # --- val_loss lisse vs train live (log) ---
 a = ax[0, 1]
