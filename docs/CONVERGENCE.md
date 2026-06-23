@@ -32,15 +32,28 @@ le camshift.
 Sorties : `results/runs/phase5_methodology/convergence_rollouts.png` et
 `…/convergence_metrics.md`.
 
+> ⚠️ **Consigne permanente** : **tout nouveau run entraîné avec des rollouts réguliers doit rejoindre cette étude.** Après l'entraînement → produire `rollouts_500.csv` (ou `rollouts_50.csv` provisoire) → relancer `33_plot_convergence_rollouts.py` (graphe global) **et** `34_plot_full_per_model.py` (graphe individuel). C'est une règle de travail tenue dans la durée (mémoire `feedback_convergence_study`).
+
 ## Résultats actuels
 
-| run | capacité | plafond | décollage (>5 %) | 50 % du max | 90 % du max |
-|---|---|---|---|---|---|
-| ResNet34 dense | gros | **94 %** | 6 000 | 11 000 | **20 000** |
-| mini-CNN cosine | minuscule | 81 % | 34 000 | 45 000 | **73 000** |
-| mini-CNN constant | minuscule | 76 % | 24 000 | 30 000 | **46 000** |
+**Unité des colonnes = steps**, où **1 step = 1 batch = une mise à jour de poids**. ⚠️ Le **batch diffère selon les runs** → un step n'est pas la même quantité de données partout :
 
-Trajectoire ResNet34 : `1k:0 · 5k:3 · 10k:30 · 15k:80 · 20k:91 · 30k:93 %`.
+| run | batch | rollouts | plafond | décollage (>5 %) | 50 % du max | 90 % du max |
+|---|---|---|---|---|---|---|
+| ResNet34 + gros U-Net (run 31) | **16** | 50 (prov.) — 500 : **94,8 %** au best | 100 %@50 | 8 000 | 20 000 | **28 000** |
+| ResNet34 dense | **32** | 500 | 94 % | 6 000 | 11 000 | **20 000** |
+| mini-CNN cosine | **32** | 500 | 81 % | 34 000 | 45 000 | **73 000** |
+| mini-CNN constant | **32** | 500 | 76 % | 24 000 | 30 000 | **46 000** |
+
+> ⚠️ **Steps ≠ exemples vus** entre batchs différents : run 31 (batch **16**) voit **2× moins d'exemples par step** que les autres (batch 32). En *exemples vus*, son décollage est ~2× plus précoce que ses steps ne le suggèrent. Pour comparer à budget de données égal, raisonner en `step × batch`.
+
+### Un graphe par modèle (succès · loss · learning rate · grad_norm)
+
+<img src="../results/runs/phase5_methodology/full_run31_r34_bigunet.png" width="420"> <img src="../results/runs/phase5_methodology/full_resnet34_dense.png" width="420">
+
+<img src="../results/runs/phase5_methodology/full_mini_constant.png" width="420"> <img src="../results/runs/phase5_methodology/full_mini_cosine.png" width="420">
+
+*(Sur les quatre : la loss et le grad_norm sont au plancher bien avant que le succès ne décolle — cf. leçon 3.)*
 
 ## Leçons
 
@@ -58,4 +71,4 @@ Trajectoire ResNet34 : `1k:0 · 5k:3 · 10k:30 · 15k:80 · 20k:91 · 30k:93 %`.
    (90 %-max à 73k vs 46k) ; `constant` est plus rapide mais plafonne plus bas.
 
 ---
-*Généré le 2026-06-22 ; régénérer après chaque nouveau run à rollouts réguliers.*
+*Généré le 2026-06-22, mis à jour 2026-06-23 (run 31, unités/batch, graphes par modèle). Régénérer après chaque nouveau run à rollouts réguliers (`33_` + `34_`).*
