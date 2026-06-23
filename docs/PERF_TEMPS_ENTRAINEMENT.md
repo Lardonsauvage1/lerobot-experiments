@@ -15,6 +15,8 @@ Les logs séparent `updt_s` (calcul GPU pur du step) et `data_s` (chargement).
   gonflés par un **PC non dédié** (autres apps). Signature de contention = p75 ≫ p10.
 - `data_s` ≈ 1 % du step **tant que le dataset tient en RAM** (cache). Voir falaise.
 
+> 🔄 **Calibrage auto-extensible** : `experiments/can/41_calibrate_train_time.py` régénère `results/runs/phase5_methodology/train_time_calib.md` (p10 s/step par signature d'archi, **resserré à chaque nouveau run**). À relancer après chaque entraînement. La table ci-dessous est l'analyse figée ; le `.md` généré est la version à jour.
+
 ## Table calibrée (p10 `updt_s`, batch 32, 96², M1)
 
 | Architecture | runs (Can) | p10 calcul pur |
