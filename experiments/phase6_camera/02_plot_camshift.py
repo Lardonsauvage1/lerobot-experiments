@@ -5,7 +5,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ROOT = Path("results/runs/phase5_methodology")
+ROOT = Path("results/runs/phase6_camera")
 RUNS = {"ckpt 46000 (baseline 74%)": ("camshift_46k.csv", "tab:red"),
         "ckpt 45000 (baseline 56%, voisin)": ("camshift_45k.csv", "tab:blue")}
 

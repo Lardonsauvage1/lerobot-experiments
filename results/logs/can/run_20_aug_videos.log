@@ -1,0 +1,39 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[66315]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x10550c3a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x115dfc3a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[66315]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x10550c3f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x115dfc3f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['object', 'robot0_gripper_qpos', 'robot0_eef_quat', 'robot0_eef_pos']
+using obs modality: rgb with keys: []
+Created environment with name PickPlaceCan
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+Loading weights from local directory
+  ep 150 -> FAIL (300 frames)
+    -> sauvé results/runs/can/18_proprio_birdview_aug/videos/aug_FAIL_ep150.mp4
+  ep 151 -> FAIL (300 frames)
+    -> sauvé results/runs/can/18_proprio_birdview_aug/videos/aug_FAIL_ep151.mp4
+  ep 152 -> FAIL (300 frames)
+    -> sauvé results/runs/can/18_proprio_birdview_aug/videos/aug_FAIL_ep152.mp4
+  ep 153 -> FAIL (300 frames)
+    -> sauvé results/runs/can/18_proprio_birdview_aug/videos/aug_FAIL_ep153.mp4
+  ep 154 -> FAIL (300 frames)
+    -> sauvé results/runs/can/18_proprio_birdview_aug/videos/aug_FAIL_ep154.mp4
+  ep 155 -> FAIL (300 frames)
+    -> sauvé results/runs/can/18_proprio_birdview_aug/videos/aug_FAIL_ep155.mp4
+
+6 échec(s) filmé(s) dans results/runs/can/18_proprio_birdview_aug/videos

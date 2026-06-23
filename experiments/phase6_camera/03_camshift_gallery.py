@@ -50,5 +50,5 @@ try: env.env.close()
 except Exception: pass
 fig.suptitle(f"Perturbation caméra {CAM} — 4 niveaux × 5 décalages aléatoires (même scène)", fontsize=13, weight="bold")
 fig.tight_layout()
-out = "results/runs/phase5_methodology/camshift_gallery.png"; fig.savefig(out, dpi=130)
+out = "results/runs/phase6_camera/camshift_gallery.png"; fig.savefig(out, dpi=130)
 print(f"écrit : {out}")

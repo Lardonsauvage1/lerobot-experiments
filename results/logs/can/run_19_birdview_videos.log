@@ -1,0 +1,62 @@
+[robosuite WARNING] No private macro file found! (macros.py:57)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)
+[robosuite WARNING] To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:59)
+[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+objc[70313]: Class AVFFrameReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x107c103a8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1345243a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[70313]: Class AVFAudioReceiver is implemented in both /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x107c103f8) and /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1345243f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/robomimic/scripts/setup_macros.py
+)
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['robot0_eef_quat', 'object', 'robot0_gripper_qpos', 'robot0_eef_pos']
+using obs modality: rgb with keys: []
+Created environment with name PickPlaceCan
+Action size is 7
+ROBOMIMIC WARNING(
+    Dataset and installed environment version mismatch!
+    Dataset environment version: 1.4.1
+    Installed environment version: 1.5.2
+)
+Loading weights from local directory
+  ep 150 -> OK (109 frames)
+  ep 151 -> OK (113 frames)
+  ep 152 -> FAIL (300 frames)
+    -> sauvé results/runs/can/16_proprio_birdview/videos/birdview_FAIL_ep152.mp4
+  ep 153 -> OK (115 frames)
+  ep 154 -> FAIL (300 frames)
+    -> sauvé results/runs/can/16_proprio_birdview/videos/birdview_FAIL_ep154.mp4
+  ep 155 -> OK (140 frames)
+  ep 156 -> OK (107 frames)
+  ep 157 -> OK (121 frames)
+  ep 158 -> OK (101 frames)
+  ep 159 -> FAIL (300 frames)
+    -> sauvé results/runs/can/16_proprio_birdview/videos/birdview_FAIL_ep159.mp4
+  ep 160 -> OK (108 frames)
+  ep 161 -> OK (105 frames)
+  ep 162 -> OK (133 frames)
+  ep 163 -> OK (106 frames)
+  ep 164 -> OK (111 frames)
+  ep 165 -> OK (116 frames)
+  ep 166 -> OK (115 frames)
+  ep 167 -> OK (102 frames)
+  ep 168 -> OK (113 frames)
+  ep 169 -> OK (134 frames)
+  ep 170 -> FAIL (300 frames)
+    -> sauvé results/runs/can/16_proprio_birdview/videos/birdview_FAIL_ep170.mp4
+  ep 171 -> OK (103 frames)
+  ep 172 -> OK (123 frames)
+  ep 173 -> OK (121 frames)
+  ep 174 -> OK (116 frames)
+  ep 175 -> OK (112 frames)
+  ep 176 -> OK (129 frames)
+  ep 177 -> FAIL (300 frames)
+    -> sauvé results/runs/can/16_proprio_birdview/videos/birdview_FAIL_ep177.mp4
+  ep 178 -> FAIL (300 frames)
+    -> sauvé results/runs/can/16_proprio_birdview/videos/birdview_FAIL_ep178.mp4
+
+6 échec(s) filmé(s) dans results/runs/can/16_proprio_birdview/videos

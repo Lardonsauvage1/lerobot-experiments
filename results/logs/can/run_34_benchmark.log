@@ -1,0 +1,101 @@
+=== BENCH M1 — sweep batch [8, 16, 32], image 96², ResNet18 ×2 + tête 1D ===
+(warmup 20, mesure 100 steps/point ; t_step = O + c·B)
+
+  pt_eager (item/step)   B=  8 : 0.139 s/step
+  pt_eager (item/step)   B= 16 : 0.205 s/step
+  pt_eager (item/step)   B= 32 : 0.329 s/step
+  pt_nosync              B=  8 : 0.144 s/step
+  pt_nosync              B= 16 : 0.222 s/step
+  pt_nosync              B= 32 : 0.348 s/step
+W0623 13:22:02.692000 37326 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+  pt_compile             B=  8 : ÉCHEC (expected size 256==256, stride 1==16 at dim=1; expected size)
+/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/autograd/graph.py:865: UserWarning: Error detected in MaxPool2DBackward0. Traceback of forward call that caused the error:
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 75, in forward
+    f = torch.cat([self.e1(img1), self.e2(img2), state], dim=1)
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 62, in forward
+    x = self.l4(self.l3(self.l2(self.l1(self.stem(x)))))
+ (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:127.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1] Backend compiler exception
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1]   Explanation: Backend compiler `inductor` failed with aten.max_pool2d_backward.default. Adding a graph break.
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1]   Hint: Report an issue to the backend compiler repo.
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1] 
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1]   Developer debug context: Backend: inductor
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1]     Exception:aten.max_pool2d_backward.default
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1]     Traceback:
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1]       File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 77, in forward
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1]         return self.out(self.head(c)).transpose(1, 2)  # [B,H,A]
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1] 
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1] 
+W0623 13:22:17.046000 37326 torch/_dynamo/exc.py:582] [0/1]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0219.html
+/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/autograd/graph.py:865: UserWarning: Error detected in MaxPool2DBackward0. Traceback of forward call that caused the error:
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 75, in forward
+    f = torch.cat([self.e1(img1), self.e2(img2), state], dim=1)
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 62, in forward
+    x = self.l4(self.l3(self.l2(self.l1(self.stem(x)))))
+ (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:127.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1] Backend compiler exception
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1]   Explanation: Backend compiler `inductor` failed with aten.max_pool2d_backward.default. Adding a graph break.
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1]   Hint: Report an issue to the backend compiler repo.
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1] 
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1]   Developer debug context: Backend: inductor
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1]     Exception:aten.max_pool2d_backward.default
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1]     Traceback:
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1]       File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 77, in forward
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1]         return self.out(self.head(c)).transpose(1, 2)  # [B,H,A]
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1] 
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1] 
+W0623 13:22:19.873000 37326 torch/_dynamo/exc.py:582] [0/1_1]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0219.html
+  pt_compile             B= 16 : 0.533 s/step
+/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/autograd/graph.py:865: UserWarning: Error detected in MaxPool2DBackward0. Traceback of forward call that caused the error:
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 62, in forward
+    x = self.l4(self.l3(self.l2(self.l1(self.stem(x)))))
+ (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:127.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1] Backend compiler exception
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1]   Explanation: Backend compiler `inductor` failed with aten.max_pool2d_backward.default. Adding a graph break.
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1]   Hint: Report an issue to the backend compiler repo.
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1] 
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1]   Developer debug context: Backend: inductor
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1]     Exception:aten.max_pool2d_backward.default
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1]     Traceback:
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1]       File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 63, in forward
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1]         return x.mean(dim=(2, 3))  # [B,512]
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1] 
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1] 
+W0623 13:23:35.277000 37326 torch/_dynamo/exc.py:582] [1/1]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0219.html
+/Users/nielsmurawka/Documents/VScodeProject/experience_Le/venv312/lib/python3.12/site-packages/torch/autograd/graph.py:865: UserWarning: Error detected in MaxPool2DBackward0. Traceback of forward call that caused the error:
+  File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 62, in forward
+    x = self.l4(self.l3(self.l2(self.l1(self.stem(x)))))
+ (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:127.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1] Backend compiler exception
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1]   Explanation: Backend compiler `inductor` failed with aten.max_pool2d_backward.default. Adding a graph break.
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1]   Hint: Report an issue to the backend compiler repo.
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1] 
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1]   Developer debug context: Backend: inductor
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1]     Exception:aten.max_pool2d_backward.default
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1]     Traceback:
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1]       File "/Users/nielsmurawka/Documents/VScodeProject/experience_Le/experiments/can/34_bench_compile_mlx.py", line 63, in forward
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1]         return x.mean(dim=(2, 3))  # [B,512]
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1] 
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1] 
+W0623 13:23:36.748000 37326 torch/_dynamo/exc.py:582] [1/1_1]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0219.html
+  pt_compile             B= 32 : ÉCHEC (SyntaxError: failed to compile 
+    #include <c10/metal/util)
+  mlx_compile            B=  8 : 0.129 s/step
+  mlx_compile            B= 16 : 0.196 s/step
+  mlx_compile            B= 32 : 0.363 s/step
+
+condition               O fixe/step   c /exemple part fixe @B16
+pt_eager (item/step)        0.077s      7.92ms           38%
+pt_nosync                   0.081s      8.42ms           38%
+pt_compile                  (échec)
+mlx_compile                 0.045s      9.88ms           22%
+
+=== Prédiction t_total = N × (O + c·B) (+~15% val/ckpt) ===
+  N=20000, B=16 :  pt_eager=1.3h  pt_nosync=1.4h  pt_compile=n/a  mlx_compile=1.3h
+  N=20000, B=32 :  pt_eager=2.1h  pt_nosync=2.2h  pt_compile=n/a  mlx_compile=2.3h
+  N=40000, B=16 :  pt_eager=2.6h  pt_nosync=2.8h  pt_compile=n/a  mlx_compile=2.6h
+  N=40000, B=32 :  pt_eager=4.2h  pt_nosync=4.5h  pt_compile=n/a  mlx_compile=4.6h

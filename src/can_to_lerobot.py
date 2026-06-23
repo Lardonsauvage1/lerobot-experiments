@@ -23,7 +23,7 @@ import numpy as np
 HDF5_PATH = "data_cache/robomimic_can_ph/low_dim_v141.hdf5"
 OUTPUT_ROOT = Path("data_cache/lerobot_can_ph")
 REPO_ID = "local/can_ph"
-IMAGE_SIZE = 96
+DEFAULT_IMAGE_SIZE = 96
 CAMERA_NAME = "agentview"
 FPS = 20
 TASK_DESCRIPTION = "Pick up the can and place it in the bin."
@@ -32,19 +32,23 @@ TASK_DESCRIPTION = "Pick up the can and place it in the bin."
 STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
 
 
-def convert(proprio=False, wrist=False, wrist_only=False, birdview=False, smoke=False):
+def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
+            image_size=DEFAULT_IMAGE_SIZE, smoke=False):
     """proprio=True : state 9D = proprio SEULE (sans can_pos), test transférabilité réel.
     wrist=True : agentview + robot0_eye_in_hand (2 cams), features observation.images.X.
     wrist_only=True : robot0_eye_in_hand SEUL sous observation.image (mono-cam wrist).
     birdview=True : agentview + birdview (2 cams scene-fixées, parallaxe vraie).
-       Mutuellement exclusif avec wrist/wrist_only."""
+       Mutuellement exclusif avec wrist/wrist_only.
+    image_size : résolution de rendu (default 96 = standard Robomimic ; 128/160/224 possibles)."""
     if sum([wrist, wrist_only, birdview]) > 1:
         raise ValueError("--wrist, --wrist-only, --birdview sont mutuellement exclusifs")
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
     import robosuite as rs
 
+    IMAGE_SIZE = image_size
     suffix = ("_proprio" if proprio else "") + ("_wrist" if wrist else "") + \
-             ("_wristonly" if wrist_only else "") + ("_birdview" if birdview else "")
+             ("_wristonly" if wrist_only else "") + ("_birdview" if birdview else "") + \
+             (f"_{image_size}" if image_size != DEFAULT_IMAGE_SIZE else "")
     out_root = OUTPUT_ROOT.with_name(OUTPUT_ROOT.name + suffix)
     repo_id = REPO_ID + suffix
     out = out_root.with_name(out_root.name + "_smoke") if smoke else out_root
@@ -156,6 +160,9 @@ if __name__ == "__main__":
                     help="UNIQUEMENT la wrist camera (mono-cam, sous observation.image)")
     ap.add_argument("--birdview", action="store_true",
                     help="agentview + birdview (2 cams scene-fixées, parallaxe)")
+    ap.add_argument("--image-size", dest="image_size", type=int, default=DEFAULT_IMAGE_SIZE,
+                    help=f"résolution de rendu (default {DEFAULT_IMAGE_SIZE} ; suffixe ajouté si != default)")
     ap.add_argument("--smoke", action="store_true")
     a = ap.parse_args()
-    convert(proprio=a.proprio, wrist=a.wrist, wrist_only=a.wrist_only, birdview=a.birdview, smoke=a.smoke)
+    convert(proprio=a.proprio, wrist=a.wrist, wrist_only=a.wrist_only, birdview=a.birdview,
+            image_size=a.image_size, smoke=a.smoke)

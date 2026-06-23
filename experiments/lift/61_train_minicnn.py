@@ -244,12 +244,16 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
     )
 
     # --- PATCH mini-CNN : remplace le backbone ResNet18 par un petit CNN (avant l'optimizer) ---
-    import sys as _sys
+    # NO_SWAP=1 : on GARDE le ResNet18 natif (~11M params vision) = temoin capacite.
+    import sys as _sys, os as _os0
     _sys.path.insert(0, ".")
-    from src.mini_cnn import swap_to_tiny_cnn
-    swap_to_tiny_cnn(policy)
+    if _os0.environ.get("NO_SWAP") == "1":
+        logging.info("[no-swap] ResNet18 natif conserve (temoin capacite)")
+    else:
+        from src.mini_cnn import swap_to_tiny_cnn
+        swap_to_tiny_cnn(policy)
     logging.info(
-        f"[mini-cnn] vision = {sum(p.numel() for p in policy.diffusion.rgb_encoder.parameters()) / 1e6:.3f}M params"
+        f"[vision] vision = {sum(p.numel() for p in policy.diffusion.rgb_encoder.parameters()) / 1e6:.3f}M params"
     )
     # --- END PATCH ---
 

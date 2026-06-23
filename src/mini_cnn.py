@@ -74,9 +74,13 @@ def load_minicnn_from_ckpt(ckpt, device):
     from lerobot.policies.diffusion.modeling_diffusion import DiffusionPolicy
     from lerobot.configs.policies import PreTrainedConfig
 
+    import os as _os
     cfg = PreTrainedConfig.from_pretrained(ckpt)
     policy = DiffusionPolicy(cfg)
-    swap_to_tiny_cnn(policy)
+    if _os.environ.get("NO_SWAP") == "1":   # checkpoint ResNet18 natif (temoin capacite) : pas de swap
+        print("  [load_minicnn_ckpt] NO_SWAP=1 -> ResNet18 natif conserve")
+    else:
+        swap_to_tiny_cnn(policy)
     sd = load_file(str(Path(ckpt) / "model.safetensors"), device="cpu")
     missing, unexpected = policy.load_state_dict(sd, strict=False)
     real_missing = [k for k in missing if "num_batches_tracked" not in k]

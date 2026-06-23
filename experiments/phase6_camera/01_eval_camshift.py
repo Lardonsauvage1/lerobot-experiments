@@ -7,10 +7,10 @@ PENDANT l'episode (= camera re-fixee un peu de travers pour ce deploiement), dif
 chaque episode. Sweep de niveaux -> courbe succes vs deplacement.
 
 Usage :
-  venv312/bin/python -u experiments/phase5_methodology/20_eval_camshift.py \
+  venv312/bin/python -u experiments/phase6_camera/01_eval_camshift.py \
     --ckpt results/runs/phase5_methodology/mini_constant_continue/checkpoints/046000/pretrained_model \
     --levels 0:0,2:2,5:5,10:10  --n 100 --workers 6 --max-steps 200 --infer-steps 4 \
-    --out results/runs/phase5_methodology/camshift_46k.csv
+    --out results/runs/phase6_camera/camshift_46k.csv
 """
 import argparse, csv, math, os, sys, time
 from pathlib import Path

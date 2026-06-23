@@ -42,6 +42,9 @@ MODELS = [
     {"name": "16_proprio_birdview (séparé)", "ckpt": "results/runs/can/16_proprio_birdview/checkpoints/010000/pretrained_model",
      "cams": ["agentview", "birdview"],
      "image_keys": {"agentview": "observation.images.agentview", "birdview": "observation.images.birdview"}},
+    {"name": "26_proprio_birdview_resnet34 (20k)", "ckpt": "results/runs/can/26_proprio_birdview_resnet34/checkpoints/020000/pretrained_model",
+     "cams": ["agentview", "birdview"],
+     "image_keys": {"agentview": "observation.images.agentview", "birdview": "observation.images.birdview"}},
 ]
 
 
