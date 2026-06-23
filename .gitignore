@@ -35,3 +35,33 @@ outputs/
 # HuggingFace cache (si jamais téléchargé dans le projet)
 .cache/
 MUJOCO_LOG.TXT
+
+# Gros logs d'entraînement (spam de barres de progression) — résultats dans les CSV/PNG
+results/logs/can/run_27_resume_all.log
+results/logs/can/run_31_r34_bigunet.log
+results/logs/can/run_can_proprio_birdview_160_convert.log
+results/logs/can/run_can_proprio_birdview_convert.log
+results/logs/can/run_can_proprio_wrist_convert.log
+results/logs/lift/run_76_proprio_dataeff.log
+results/logs/phase5_methodology/run_01_train_dense.log
+results/logs/phase5_methodology/run_mini_constant_150k.log
+results/logs/phase5_methodology/run_mini_constant_200k.log
+results/logs/phase5_methodology/run_mini_constant_250k.log
+results/logs/phase5_methodology/run_mini_constant_continue.log
+results/logs/phase5_methodology/run_mini_constant_resume.log
+results/logs/phase5_methodology/run_mini_constant.log
+results/logs/phase5_methodology/run_mini_cosine_150k.log
+results/logs/phase5_methodology/run_mini_cosine_200k.log
+results/logs/phase5_methodology/run_mini_cosine_250k.log
+results/logs/phase5_methodology/run_mini_cosine_300k.log
+results/logs/phase5_methodology/run_mini_cosine_continue.log
+results/logs/phase5_methodology/run_mini_cosine_continue2.log
+results/logs/phase5_methodology/run_mini_cosine.log
+results/logs/phase6_camera/run_camaug_10.log
+results/logs/phase6_camera/run_camaug_150_resnet18.log
+results/logs/phase6_camera/run_camaug_150_resnet34_ext.log
+results/logs/phase6_camera/run_camaug_150_resnet34.log
+results/logs/phase6_camera/run_camaug_150.log
+results/logs/phase6_camera/run_camaug_30.log
+results/logs/phase6_camera/run_camaug_50.log
+results/logs/phase6_camera/run_cont_200000.log
