@@ -61,7 +61,17 @@ Le run cosine avait **annealé son LR à ~2e-9 (≈ 0) à 20k** → poids gelés
 
 > *Haut-droite* : train **et** val loss au **plancher dès ~5k**. *Haut-gauche* : pourtant le succès reste à **~2 %** jusqu'à 20k, puis décolle vers **74 %** (constant) une fois prolongé. *Bas-gauche* : le cosine d'origine avait annealé son LR à ~0 à 20k → poids gelés. La loss était **aveugle à +72 points** de succès récupérables.
 
-> Le mini-CNN n'était **pas trop faible** : il était **affamé de LR**. La loss était **aveugle à +72 points** de capacité réelle. **Ne jamais arrêter un entraînement sur la loss.** Et **surveiller le LR de fin** : un scheduler qui anneal à ~0 gèle le modèle bien avant son potentiel (cf. [`CONVERGENCE.md`](CONVERGENCE.md) ; étude schedule constant vs cosine à venir).
+> Le mini-CNN n'était **pas trop faible** : il était **affamé de LR**. La loss était **aveugle à +72 points** de capacité réelle. **Ne jamais arrêter un entraînement sur la loss.** Et **surveiller le LR de fin** : un scheduler qui anneal à ~0 gèle le modèle bien avant son potentiel (cf. [`CONVERGENCE.md`](CONVERGENCE.md)).
+
+### Conséquence — on entraîne désormais en LR **constant**
+
+Le cosine pose un **confond de budget** : en annealant le LR à ~0 à l'horizon choisi, il « dépose » le modèle à cet horizon → il **paraît convergé à N steps, quel que soit N**. Le point d'arrivée est **imposé par le budget choisi, pas révélé par le modèle**. *(Exemple : `run 31` — ResNet34 + gros U-Net — atteint 94,8 %@500 à la fin d'un cosine 40k, mais on **ne peut pas** en conclure que c'est son plafond : un cosine 80k « finirait » à 80k, un cosine 20k à 20k, et chacun semblerait « fini ».)*
+
+**Décision : entraîner en LR constant.** Le cosine peut grappiller un pic légèrement plus haut, **mais** le LR constant :
+- permet de **s'arrêter quand le succès plafonne** (on surveille succès + `grad_norm` et on coupe quand ça n'avance plus) ;
+- **élimine les deux inconnues** — durée d'entraînement et taille du cosine — qu'on ne peut pas deviner a priori.
+
+C'est décisif **pour le vrai robot** : on ne peut pas relancer l'entraînement avec plusieurs horizons de cosine pour trouver le bon. Le LR constant laisse entraîner **jusqu'au plateau, puis stopper** — sans pari sur la durée.
 
 ---
 
@@ -113,13 +123,16 @@ Recherche dédiée et vérifiée (détail complet : [`RECHERCHE_eval_offline.md`
 
 ## Leçons clés
 
-1. **500 rollouts**, pas 50 — l'IC95 de Wilson (±4 pts) encadre alors la vraie valeur (couverture ~97 % vérifiée).
+1. **500 rollouts**, pas 50 — l'IC95 de Wilson (±4 pts) encadre alors la vraie valeur.
 2. **Évaluer le checkpoint exact** : l'instabilité du succès est réelle et **ne se lisse à aucune échelle** (33 pts d'amplitude à 100 pas comme à 10 pas). Pas d'interpolation.
 3. **Loss au plancher ≠ convergé** : un mini-CNN « loss parfaite, 2 % » cachait 72 points récupérables par simple LR soutenu.
 4. **Tout signal qui monte sur le val** (val_loss, écart val-train, couverture) **crie « surapprentissage » à tort** — il mesure la fidélité aux démos, pas la réussite. Artefact **mode-averaging**, pas mémorisation.
 5. **`grad_norm` = quand ; rollouts = combien.** Aucun proxy offline ne décide « c'est bon » seul (mathématiquement établi).
+6. **LR constant, pas cosine** : le cosine fait « paraître convergé » à l'horizon choisi (confond de budget). Le constant laisse s'arrêter au vrai plateau et supprime l'inconnue durée/taille-de-cosine — crucial sur robot réel.
 
 ## Suite / pistes
+- **Entraînements futurs en LR constant** + arrêt au plateau (succès stabilisé / `grad_norm` plat), au lieu d'un cosine à horizon deviné.
+- Vérifier si le plafond de `run 31` (94,8 %@500, cosine 40k) **monte encore** en LR constant prolongé — confond de budget non encore levé.
 - **Hybride A-OPS + STEP** pour un bras réel (démos seules) : pré-filtre par incertitude de loss de diffusion, puis budget minimal de rollouts réels.
 - **World-model** depuis les démos pour capturer la dérive boucle-fermée (faisabilité non prouvée à ce jour).
 
