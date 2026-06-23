@@ -12,7 +12,7 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 | **3** | Robomimic Lift (bras Panda 7-DoF) | **100 % succès** (Diffusion Policy) | **Diffusion Policy ≫ behavior cloning** sur le multimodal (100 % vs 70 %) ; sans image → 0 %. → [`docs/LIFT.md`](docs/LIFT.md) |
 | **4** | Compression & limites du modèle | **~99 % à ÷160 params / ÷21 latence**, et **~20 démos suffisent** | U-Net surdimensionné ×160 ; ResNet18 → mini-CNN 0.03 M ; Lift peu gourmand (≥20 démos) ; à données rares un **gros U-Net sur-apprend** (grille 500 rollouts, IC95 Wilson). → [`docs/COMPRESSION.md`](docs/COMPRESSION.md) |
 | **5 v1** 🗄️ | Robomimic Can (pick-and-place) | *archivée — phase inachevée* | **Tâche plus dure** : démarrée avec coords objet, pivot mid-phase vers vision pure, méthodo finalement remise en cause (runs sous-entraînés à 10k, val_loss bruité). Résultats valent comme bornes inférieures + observations qualitatives. → [`docs/CAN_archive.md`](docs/CAN_archive.md) |
-| **5 v2** 🆕 | Can — reprise propre | *à définir* | Reprise méthodologique (convergence garantie, val_loss correctement traité). |
+| **5 v2** | Robomimic Can — **vision pure** (sans coords objet) | **94,8 %@500** (ResNet34 + gros U-Net, 61 M) | Le plafond ~75 % venait de la **capacité**, pas de la vision pure : **vision (R18→R34) et décodeur (gros U-Net) paient et se cumulent**. + **méthodologie** (mesurer juste) et **temps d'entraînement** calibré. → [`docs/CAN.md`](docs/CAN.md), [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md) |
 
 ## Résultats phares
 
@@ -38,8 +38,9 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 1. [`docs/PUSHT.md`](docs/PUSHT.md) — PushT : enquête « loss vs performance », la formulation de sortie.
 2. [`docs/LIFT.md`](docs/LIFT.md) — Lift : du behavior cloning raté (0 %) à 100 % en Diffusion Policy (+ les 5 bugs d'eval, le sim-to-real).
 3. [`docs/COMPRESSION.md`](docs/COMPRESSION.md) — compression & limites : taille U-Net, pas de diffusion, vision, et efficacité données.
-4. [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md) — Can / méthodologie : peut-on faire confiance à nos mesures ? 500 rollouts vs 50, succès non lisse, loss au plancher ≠ convergé, mode-averaging, et **le gradient comme seul signal honnête** de fin d'apprentissage.
-5. [`docs/CAN_archive.md`](docs/CAN_archive.md) — Can (pick-and-place) : phase 5 v1 archivée (effondrement wrist OOD, décorrélation val/rollout, sous-convergence systémique).
+4. [`docs/CAN.md`](docs/CAN.md) — Can vision pure : le plafond ~75 % venait de la **capacité** (pas de la vision pure) → **94,8 %@500** en cumulant ResNet34 + gros U-Net, sans coords objet.
+5. [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md) — Can / méthodologie : peut-on faire confiance à nos mesures ? 500 rollouts vs 50, succès non lisse, loss au plancher ≠ convergé, mode-averaging, et **le gradient comme seul signal honnête** de fin d'apprentissage.
+6. [`docs/CAN_archive.md`](docs/CAN_archive.md) — Can v1 archivée (effondrement wrist OOD, décorrélation val/rollout, sous-convergence systémique).
 
 Index complet de la doc : [`docs/README.md`](docs/README.md).
 
