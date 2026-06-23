@@ -39,7 +39,7 @@ Des runs indépendants de même archi retombent au même p10 (0,48/0,47 ;
 | Backbone **R18 → R34** | **×1,47** | ≈ 2× FLOPs vision, dilué par le reste |
 | **Résolution 96 → 160** | **×2,57** | loi `∝ res²` (prédit ×2,78) ✅ |
 | n_obs_steps | ∝ n_obs | empile n images à encoder |
-| Batch | ∝ B par step | mais ~constant par époque |
+| Batch | ∝ B par step | **par époque : décroît** (amortit l'overhead fixe — voir § Optimisation) |
 | Nombre d'exemples | **0** sur `t_step` | fixe N_steps/époque (sauf si dépasse le cache RAM) |
 
 **Enseignement clé : le temps suit les FLOPs de la VISION, pas le compte de
@@ -88,6 +88,47 @@ Preuve dans les mesures — les **deux** plus grosses empreintes sont les **seul
 taille du U-Net. Si ça swappe : baisser **batch** puis **résolution** en premier, ou
 passer sur une machine à VRAM dédiée (atomman).
 
+## Optimisation de la vitesse d'entraînement
+
+Benchmark dédié (`experiments/can/34_bench_compile_mlx.py` : ResNet18 ×2 + tête 1D, sweep de batch, 4 conditions, même archi des deux côtés). On décompose `t_step = O + c·B` (**O** = overhead fixe par step, **c** = calcul par échantillon) :
+
+| condition | O fixe | c /éch. | part fixe @B16 | verdict |
+|---|---|---|---|---|
+| PyTorch eager | 0,077 s | 7,9 ms | **38 %** | référence |
+| PyTorch sans synchro `.item()` | 0,081 s | 8,4 ms | 38 % | **aucun gain** (piste morte) |
+| `torch.compile` | — | — | — | **échoue sur MPS** (inductor casse sur ResNet) |
+| MLX `mx.compile` | 0,045 s | 9,9 ms | 22 % | **match nul** (voir ci-dessous) |
+
+À batch 16, le step est **38 % overhead fixe + 62 % calcul** (et non « overhead-dominé » : à cette échelle le calcul des convolutions domine).
+
+**Trois leviers logiciels qui NE marchent PAS sur Mac :**
+- `torch.compile` : cassé pour les ResNet sur MPS.
+- retirer les synchros `.item()` par step : aucun gain (même un poil pire) → la boucle n'est pas bloquée par ces synchros.
+- **MLX** : sa fusion réduit l'overhead (O 0,045 vs 0,077) **mais ses kernels de convolution sont plus lents** (c 9,9 vs 7,9 ms) → les deux s'annulent à B16, MLX devient plus lent à B32. Pas de raison de migrer.
+
+**Le seul vrai levier sur Mac = le BATCH** (amortir l'overhead). Temps **par échantillon** = `O/B + c` :
+
+| batch | temps/éch. | vs B16 |
+|---|---|---|
+| 16 | 0,0127 s | — |
+| 32 | 0,0103 s | −19 % |
+| 64 | 0,0091 s | −28 % |
+| 128 | 0,0085 s | −33 % |
+| ∞ (plancher = `c`) | 0,0079 s | **−38 % (max absolu)** |
+
+> **Plafond de gain = la fraction d'overhead au batch courant (~38 % à B16).** On ne peut amortir que l'overhead : ×2 batch ≈ −19 %, ×4 ≈ −28 %.
+
+**Grossir le batch fait-il converger en moins de steps ?** Oui, **sous la taille de batch critique (CBS)** : en dessous du CBS, doubler le batch (avec LR ajusté) **réduit proportionnellement les steps à résultat égal** — la trajectoire est préservée *en fonction des exemples vus* [McCandlish 2018 ; Goyal 2017]. Au-dessus → rendements décroissants. **On est très loin sous le CBS** (batch 16-64 ; et le CBS est *d'autant plus grand que le gradient est bruité* → notre tâche multimodale Can = gradient très bruité = CBS élevé). → le gain batch est **réel, borné par la falaise mémoire, pas par le CBS**. *Caveat Adam : ajuster le LR modestement (√ratio + warmup), pas de saut brutal.*
+
+**Combiner « bons kernels + zéro overhead » ?** C'est exactement le rôle de `torch.compile` / CUDA-graphs (garder les kernels rapides ET fusionner les lancements) — mais **indisponible sur MPS**. Le « combo du pauvre » sur Mac = **le plus gros batch que la RAM permet** (on approche le plancher de calcul `c`).
+
+**Conclusion pratique :**
+- **petits modèles** (mini-CNN, ResNet18 simple) : pousser le batch au max sous 16 Go → **~20-35 %** de temps gagné.
+- **gros modèles** (R34 + gros U-Net) : déjà **coincés à batch 16** par la mémoire → **~0 gain sur Mac** → les mettre sur **atomman/CUDA** (VRAM + `torch.compile`/graph fonctionnels).
+- abandonner `torch.compile` / MLX / suppression-de-synchro sur Mac.
+
+Sources : [McCandlish et al., *An Empirical Model of Large-Batch Training* (1812.06162)](https://arxiv.org/pdf/1812.06162) · [*Critical Batch Size Revisited* (2505.23971)](https://arxiv.org/abs/2505.23971) · [Smith et al., *Don't Decay the LR, Increase the Batch Size* (ICLR 2018)](https://openreview.net/pdf?id=B1Yy1BxCZ).
+
 ## Prédire sur une autre machine
 - Théorique : `t_autre ≈ t_M1 × (débit_M1 / débit_autre)`, mais l'efficacité varie
   énormément (MPS ~2-5 % du pic FP32 vs CUDA ~30-50 %) → le ratio TFLOPS brut
@@ -97,4 +138,4 @@ passer sur une machine à VRAM dédiée (atomman).
   d'**archi** sur une machine donnée, pas à comparer deux machines dans l'absolu.
 
 ---
-*Calibré le 2026-06-22 à partir des logs `results/logs/can/run_*.log`.*
+*Calibré le 2026-06-22 (table/coefficients) et 2026-06-23 (§ Optimisation : benchmark 4 conditions, batch critique). Logs `results/logs/can/run_*.log`, benchmark `run_34_benchmark.log`.*
