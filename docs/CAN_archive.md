@@ -1,7 +1,18 @@
-# Phase 5 — Can (PickPlaceCan) : tâche plus dure + virage transférabilité réel
+# Phase 5 v1 (ARCHIVÉE) — Can (PickPlaceCan) : tâche plus dure + virage transférabilité réel
+
+> 🗄️ **ARCHIVE — phase inachevée.** Cette première itération phase 5 a démarré sur Can avec coords objet (béquille sim), pivoté en cours vers vision pure, et accumulé un fil d'expériences (~26 runs) **dont la méthodologie a été finalement remise en cause à la fin** :
+>
+> 1. **Tous les runs à 10 000 steps étaient probablement sous-entraînés** (`best_step == max_step` quasi systématique). En passant `26 ResNet34` à 20 000 steps, succès passe de 58 % → 86 % @50 val. Donc **les rankings entre 16/25/26 à 10k ne reflètent pas les vraies asymptotes**.
+> 2. Le **val_loss** utilisé pour sélectionner les checkpoints est **bruité**, et **décorrélé du succès rollout** sur plusieurs cellules — on l'a vu plus tard avec la grille mini-CNN.
+> 3. La phase a démarré avec coords objet (`can_pos`), pivoté en vision pure, mêlé deux récits — d'où le besoin de **redémarrer une phase 5 v2** propre.
+>
+> **Les chiffres ci-dessous restent valables comme bornes inférieures et données qualitatives** (l'effondrement wrist OOD, la décorrélation val/rollout, etc.). À reconsulter quand on planifiera la suite Can.
+>
+> Liens : [◀ Phase 4 Compression](COMPRESSION.md) · **Phase 5 v1 (ARCHIVÉE)** · [index](README.md) · *phase 5 v2 à définir*
+
+---
 
 > Après Lift (résolu + compressé à ~99 %), on étend à une tâche **pick-and-place** plus longue : attraper une canette et la déposer dans un bac. Au fil de la phase, **un constat majeur a fait pivoter le projet** : tous nos résultats donnaient les **coordonnées de l'objet** au modèle — une info qu'un vrai bras n'a pas. On a donc basculé en **vision pure** (image + proprio uniquement), seule voie crédible pour le bras 5 axes visé.
-> Liens : [◀ Phase 4 Compression](COMPRESSION.md) · **Phase 5 (ici)** · [index](README.md)
 
 ## Contexte
 
