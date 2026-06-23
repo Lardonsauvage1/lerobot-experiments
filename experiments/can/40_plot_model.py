@@ -39,21 +39,22 @@ def load_rollouts(path):
 
 
 def load_log(log_glob):
-    steps, tl, gr, lr = [], [], [], []
+    steps, tl, vl_, gr, lr = [], [], [], [], []
     seen = set()
     for lg in sorted(glob.glob(log_glob)):
         txt = open(lg, errors="ignore").read()
         tr = re.findall(r"(?<!val_)loss:([0-9.]+) grdn:([0-9.]+) lr:([0-9.eE+-]+)", txt)
-        vl = re.findall(r"val_loss:[0-9.]+ valstep:(\d+)", txt)
+        vl = re.findall(r"val_loss:([0-9.]+) valstep:(\d+)", txt)
         for i in range(min(len(tr), len(vl))):
-            s = int(vl[i])
+            s = int(vl[i][1])
             if s in seen:
                 continue
             seen.add(s); steps.append(s)
-            tl.append(float(tr[i][0])); gr.append(float(tr[i][1])); lr.append(float(tr[i][2]))
+            tl.append(float(tr[i][0])); vl_.append(float(vl[i][0]))
+            gr.append(float(tr[i][1])); lr.append(float(tr[i][2]))
     o = np.argsort(steps)
-    return (np.array(steps)[o], np.array(tl)[o], np.array(gr)[o], np.array(lr)[o]) if steps \
-        else (np.array([]),) * 4
+    return (np.array(steps)[o], np.array(tl)[o], np.array(vl_)[o], np.array(gr)[o], np.array(lr)[o]) if steps \
+        else (np.array([]),) * 5
 
 
 def main():
@@ -73,7 +74,7 @@ def main():
     st, sr, lo, hi, n = load_rollouts(main_csv) if main_csv.exists() else ([], [], [], [], 0)
     e500 = rd / "eval500_best.csv"
 
-    lst, tl, gr, lr = load_log(a.log_glob) if a.log_glob else ([],) * 4
+    lst, tl, vl, gr, lr = load_log(a.log_glob) if a.log_glob else ([],) * 5
     title = a.title or rd.name
     out = a.out or str(rd / "full_curves.png")
 
@@ -93,9 +94,10 @@ def main():
     ax[0].set_xlabel("step (k)"); ax[0].legend(loc="lower right", fontsize=8)
     # 2) loss train+val (log)
     if len(lst):
-        ax[1].plot(lst / 1000, smooth(tl), "-", color=C, lw=2)
-        ax[1].set_yscale("log"); ax[1].set_title("loss (lissée) — log")
-        ax[1].grid(alpha=.3, which="both"); ax[1].set_xlabel("step (k)")
+        ax[1].plot(lst / 1000, smooth(tl), "-", color=CL, lw=1.3, label="train (lissée)")
+        ax[1].plot(lst / 1000, smooth(vl), "-", color=C, lw=2, label="val (lissée)")
+        ax[1].set_yscale("log"); ax[1].set_title("loss train + val — log")
+        ax[1].grid(alpha=.3, which="both"); ax[1].set_xlabel("step (k)"); ax[1].legend(fontsize=8)
         ax[2].plot(lst / 1000, lr, "-", color=C, lw=1.5); ax[2].set_title("learning rate")
         ax[2].grid(alpha=.3); ax[2].set_xlabel("step (k)")
         ax[3].plot(lst / 1000, gr, "-", color=C, lw=0.7, alpha=.5)
