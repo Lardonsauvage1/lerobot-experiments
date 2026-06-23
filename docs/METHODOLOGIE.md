@@ -10,15 +10,17 @@ En Lift (phase 3-4) le succès était propre et la compression facile à mesurer
 
 ## 1. Combien de rollouts ? — l'intervalle de confiance
 
-On utilise partout l'**IC95 % de Wilson** (robuste près de 0/1, contrairement à Wald). Le paramètre estimé = la **vraie probabilité de succès** `p` (celle qu'on mesurerait avec un nombre infini de rollouts). Sur `N` rollouts :
+On utilise partout l'**IC95 % de Wilson** (robuste près de 0/1, contrairement à Wald).
+
+> **IC95 %** = l'ensemble des valeurs du paramètre **compatibles** avec les données de l'échantillon. Une valeur est « incompatible » si, pour cette valeur, la probabilité d'observer les données obtenues serait faible (→ le « 95 % »).
+
+Ici le paramètre = la **vraie probabilité de succès** `p` (celle qu'on mesurerait avec un nombre infini de rollouts). Sur `N` rollouts :
 
 - largeur de l'IC ∝ **1/√N** → pour diviser l'incertitude par 2, il faut **×4 rollouts** ;
 - à p≈30 % : **±12,7 pts à N=50** → **±4,0 pts à N=500** ;
 - à p≈90 % (plateau) : **±2,6 pts à N=500**.
 
 > **50 rollouts (±~13 pts) ne permettent PAS de choisir un checkpoint ; 500 rollouts (±~4 pts), oui.** C'est la mesure de référence de toute la phase.
-
-**Vérifié empiriquement** : sur 30 checkpoints, **97 %** des mesures 500-rollouts tombent dans l'IC95 du point 50 correspondant → les 50-rollouts sont **non biaisés** (centrés sur la vérité), juste imprécis ; l'IC95 de Wilson encadre correctement l'incertitude. La variance seed-à-seed (départs différents) est bien **plus petite** que l'IC95 → c'est bien le nombre de rollouts qui domine l'incertitude, pas le choix des états.
 
 ---
 
@@ -37,6 +39,10 @@ Deux phénomènes distincts se cumulent dans la dentelure :
 - zoom **100 steps** (10k-11k, chacun 500 rollouts) : succès oscille **24 % → 57 %** (amplitude 33 pts) ;
 - zoom **10 steps** (fenêtre jamais entraînée, chacun 500 rollouts) : **encore ~33 pts** d'amplitude, sauts de −15/−16 pts entre voisins distants de **10 pas de gradient**, 8/20 écarts à IC95 disjoints.
 
+![Variance fine : 1 checkpoint tous les 10 pas sur [57000,57200], 500 rollouts chacun](../results/runs/phase5_methodology/courbe_finevar_57k.png)
+
+> Chaque point = un checkpoint distant de **10 pas de gradient**, évalué à **500 rollouts** (bande = IC95). Le succès saute de 42 % à 75 % sur 200 pas, avec des IC95 **disjoints** entre voisins → ce sont de **vraies différences de modèle**, pas du bruit. La « courbe » qui relie les points n'est qu'un artefact visuel.
+
 Et c'est **découplé de tous les signaux d'entraînement** : dans ces zones, train/val loss plate (~0,05), learning rate lisse, grad_norm plat (~0,62) — rien ne bouge pendant que le succès zigzague de 33 pts. C'est une **sensibilité intrinsèque** du succès (fonction non-lisse des poids en boucle fermée) aux micro-changements de poids, pas un artefact du LR.
 
 → **On n'évalue que le checkpoint EXACT qu'on déploiera. Pas d'interpolation, pas de confiance au voisinage.**
@@ -50,6 +56,10 @@ Expérience décisive (mini-CNN 1,84 M params, Can vision pure ; figure `courbes
 Le run cosine avait **annealé son LR à ~2e-9 (≈ 0) à 20k** → poids gelés, succès figé à 2 % alors que la loss *paraissait* parfaite. En prolongeant 20k→50k :
 - **LR constant 1e-4** : succès **2 % → 74 %** ;
 - **cosine (warm restart SGDR)** : 2 % → 46 % (sa redescente de LR ré-affame le modèle).
+
+![mini-CNN Can 1k→50k : succès vs loss vs learning rate vs grad_norm (cosine vs constant)](../results/runs/phase5_methodology/courbes_minicnn_full_1k_50k.png)
+
+> *Haut-droite* : train **et** val loss au **plancher dès ~5k**. *Haut-gauche* : pourtant le succès reste à **~2 %** jusqu'à 20k, puis décolle vers **74 %** (constant) une fois prolongé. *Bas-gauche* : le cosine d'origine avait annealé son LR à ~0 à 20k → poids gelés. La loss était **aveugle à +72 points** de succès récupérables.
 
 > Le mini-CNN n'était **pas trop faible** : il était **affamé de LR**. La loss était **aveugle à +72 points** de capacité réelle. **Ne jamais arrêter un entraînement sur la loss.** Et **surveiller le LR de fin** : un scheduler qui anneal à ~0 gèle le modèle bien avant son potentiel (cf. [`CONVERGENCE.md`](CONVERGENCE.md) ; étude schedule constant vs cosine à venir).
 
