@@ -26,6 +26,11 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 
   Le modèle final est **à égalité statistique** avec des U-Nets 3–10× plus gros (grille 500 rollouts, IC95 Wilson). Tableaux complets : [`docs/COMPRESSION.md`](docs/COMPRESSION.md) (grille données × U-Net) + [`results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](results/runs/lift/51_unet_sweep_eval/SUMMARY.md) (sweep + latence).
 - Méthode : protocole d'éval propre (train 150 / val 50 figé, métriques continues), **éval finale à 500 rollouts appariés + IC95 de Wilson** (le succès sur 50 ép. était dans le bruit à ±7 pts), env recréé par tranche (anti-dégradation renderer).
+- **Méthodologie (Can) — la loss ment, seul le gradient est honnête.** En fin d'entraînement la `val_loss` *complète* **décolle** (monte fortement) — la signature de manuel du surapprentissage — **alors que le succès en tâche ne baisse pas** (il monte même). Donc : la loss est **découplée** du succès et n'en dit rien ; ce n'est **pas** du surapprentissage (mode-averaging d'une tâche multimodale, pas de la mémorisation) ; et **seul le `grad_norm`** marque un moment net où le réseau a fini d'apprendre.
+
+  ![Méthodologie Can — succès vs val_loss (full) vs learning rate vs grad_norm](results/runs/phase5_methodology/courbes_minicnn_valfull_1k_150k.png)
+
+  *Haut-droite : la val_loss full (trait) monte pendant que le succès (haut-gauche) tient/monte. Bas-droite : le grad_norm plafonne ≈ fin d'apprentissage.* Détails : [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md).
 
 ## Naviguer dans le repo
 
@@ -33,7 +38,8 @@ Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique :
 1. [`docs/PUSHT.md`](docs/PUSHT.md) — PushT : enquête « loss vs performance », la formulation de sortie.
 2. [`docs/LIFT.md`](docs/LIFT.md) — Lift : du behavior cloning raté (0 %) à 100 % en Diffusion Policy (+ les 5 bugs d'eval, le sim-to-real).
 3. [`docs/COMPRESSION.md`](docs/COMPRESSION.md) — compression & limites : taille U-Net, pas de diffusion, vision, et efficacité données.
-4. [`docs/CAN_archive.md`](docs/CAN_archive.md) — Can (pick-and-place) : phase 5 v1 archivée. Pourquoi inachevée + ce qu'elle a tout de même appris (effondrement wrist OOD, décorrélation val/rollout, sous-convergence systémique). Phase 5 v2 à reprendre proprement.
+4. [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md) — Can / méthodologie : peut-on faire confiance à nos mesures ? 500 rollouts vs 50, succès non lisse, loss au plancher ≠ convergé, mode-averaging, et **le gradient comme seul signal honnête** de fin d'apprentissage.
+5. [`docs/CAN_archive.md`](docs/CAN_archive.md) — Can (pick-and-place) : phase 5 v1 archivée (effondrement wrist OOD, décorrélation val/rollout, sous-convergence systémique).
 
 Index complet de la doc : [`docs/README.md`](docs/README.md).
 

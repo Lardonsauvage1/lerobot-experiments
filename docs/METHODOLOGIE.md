@@ -57,7 +57,11 @@ Le run cosine avait **annealé son LR à ~2e-9 (≈ 0) à 20k** → poids gelés
 
 ## 4. Quand arrêter SANS simulation ?
 
-La sim coûte cher. Peut-on décider « fini / bon » avec des mesures **sans rollout** ? On a passé en revue tous les signaux offline. **Réponse : aucun n'est fiable seul**, mais ils échouent pour des raisons instructives (figures `courbes_minicnn_valfull_1k_150k.png`, `courbe_coverage.png`).
+La sim coûte cher. Peut-on décider « fini / bon » avec des mesures **sans rollout** ? On a passé en revue tous les signaux offline. **Réponse : aucun n'est fiable seul**, mais ils échouent pour des raisons instructives.
+
+![Succès vs val_loss full vs learning rate vs grad_norm (mini-CNN Can, 1k→150k)](../results/runs/phase5_methodology/courbes_minicnn_valfull_1k_150k.png)
+
+> **Tout est sur cette figure.** *Haut-gauche* : le succès (500 rollouts) monte et tient. *Haut-droite* : la **val_loss full décolle** (monte fortement) — signature de manuel du surapprentissage — **alors que le succès ne baisse pas** → ce n'est PAS du surapprentissage, et la loss ne dit **rien** du niveau de succès. *Bas-droite* : le **grad_norm** plafonne ≈ au moment où le réseau a fini d'apprendre — le seul signal d'entraînement qui marque un « quand ».
 
 ### Signaux d'entraînement classiques
 - **Niveau de loss (train/val)** — INUTILISABLE : au plancher dès ~5k alors que le succès grimpe jusqu'à 150k. La val_loss *full* est même en **U** (minimum ~50k puis remonte) → s'arrêter à son minimum raterait tout le reste.
