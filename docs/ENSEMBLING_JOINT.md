@@ -41,16 +41,39 @@ m-sweep sur 40k : m=0.01 → 52 % ; m=0.1 → 33 % (**plus de lissage = mieux** 
 | 30k | 77 | **90** | +13 |
 | 40k (plafond) | 97 | 97 | +0 |
 
-### EMA / SWA — *(expériences en cours, résultats à compléter)*
+### SWA — moyennage de poids de checkpoints (n=50)
 
-- **EMA** (decay 0.9999) activée sur le push joint **50k→80k** (env `EMA=1` dans `50_train_valloss.py`) → comparaison **poids bruts vs EMA sur la même plage**. → *à compléter.*
-- **SWA** (moyennage de poids de checkpoints existants) : table brut vs moyenne-des-poids sur des compositions variées (les meilleurs, les nuls, paires, médians, queue LR-constant, aléatoire, 9-10 checkpoints). → *à compléter (voir `results/runs/can/joint_r34_bigunet/swa_table.csv`).*
+On moyenne les **poids** de plusieurs checkpoints joint (sans réentraînement) et on évalue le modèle résultant. Le meilleur checkpoint individuel est à **56 %**.
+
+| Combo | Membres (taux indiv.) | Moyenne des poids |
+|---|---|---|
+| best3 | 56,48,48 | **70** |
+| best5 | 56,48,48,46,38 | 64 |
+| med3 | 34,34,30 | **76** ⬆️ |
+| late5 (5 derniers) | 0,38,48,34,46 | 70 |
+| rand5 (aléatoire) | 12,0,38,18,0 | **62** ⬆️ |
+| **late10 (10 derniers)** | 34,0,30,12,12,0,38,48,34,46 | **88** 🏆 |
+| goodonly9 (les ≥30 %) | 38,48,56,34,30,38,48,34,46 | 72 |
+| null3 | 0,0,0 | 6 |
+| best_null | 56,0 | **8** ⬇️ |
+
+**Conclusions :**
+1. **Le SWA marche spectaculairement** : `late10` = **88 %** (vs meilleur checkpoint individuel 56 %), **un seul modèle stable, gratuit, déployable**. Presque le niveau du temporal ensembling (90 %) mais sans truc d'inférence ni checkpoint chanceux.
+2. **Moyenner les poids ≠ moyenner les réussites** : presque toutes les moyennes **dépassent leur meilleur membre** (`med3` 30-34 % → 76 % ; `rand5` membres ~14 % moyenne → 62 %). Le moyennage trouve un **minimum plus plat/meilleur**.
+3. **Un checkpoint cassé empoisonne une PETITE moyenne** : `best_null` (56+0) → 8 %, `null3` → 6 %. Mais **noyé dans une grande moyenne il est dilué** : `late10` contient 2 cassés (34k, 42k = 0) et fait quand même 88 %.
+4. **Plus de checkpoints (queue LR-constant) = mieux** : late10 (88) > goodonly9 (72) > best5 (64). → la bonne pratique = moyenner ~10 checkpoints tardifs.
+
+Détails : `results/runs/can/joint_r34_bigunet/swa_table.csv`.
+
+### EMA — *(en cours, à compléter)*
+
+EMA (decay 0.9999) activée sur le push joint **50k→80k** (env `EMA=1` dans `50_train_valloss.py`) → comparaison **poids bruts vs EMA sur la même plage**. → *résultats à compléter quand le push tourne.*
 
 ## Leçons clés
 
 1. **L'espace d'action compte énormément** : cartésien (OSC) 94,8 % ≫ joint ~15 %, à archi/données identiques.
 2. **Temporal ensembling = multiplicateur, pas créateur.** Gain ∝ **marge × instabilité** : fort sur une policy saccadée avec de la marge (joint 12→52, cartésien 24k 73→87) ; **nul au plafond** (cartésien 97→97) ou **sur un checkpoint cassé** (joint 34k 0→0). Technique **générale** (pas joint-only), mais **KO en multimodal** (cf. PushT 0,67→0,40 : moyenner deux modes valides = action invalide).
-3. **Pas de solution joint stable à ce jour.** Le 90 % (30k+ensembling) est un point chanceux, pas une recette reproductible : l'entraînement joint reste bruité.
+3. **Le SWA donne une vraie solution joint stable** : moyenner ~10 checkpoints tardifs (`late10`) → **88 %**, un seul modèle déployable, gratuit (post-hoc, sans réentraînement) — bien au-dessus du meilleur checkpoint isolé (56 %) et sans dépendre d'un checkpoint chanceux comme le temporal ensembling. Limite : un checkpoint cassé empoisonne une *petite* moyenne (best_null 56+0 → 8 %), mais est dilué dans une grande.
 
 ## Détails techniques
 
