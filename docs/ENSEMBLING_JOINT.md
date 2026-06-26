@@ -65,6 +65,24 @@ On moyenne les **poids** de plusieurs checkpoints joint (sans réentraînement) 
 
 Détails : `results/runs/can/joint_r34_bigunet/swa_table.csv`.
 
+### Matrice schedule × SWA (quand le SWA aide-t-il ?)
+
+Test : appliquer le SWA à des modèles **constant** vs **cosine**, gros (cartésien) et petit (mini-CNN), avec/sans marge.
+
+| Modèle | brut | + SWA | lecture |
+|---|---|---|---|
+| **joint (constant)** | 15 | **88** (+ensembling **96**) | rebond + marge → **gros gain** ; les 2 techniques s'empilent |
+| **cart. cosine** (run31) | 94,8 | late5 **97** / late10 **89** / mid **74** | clusterisé → **no-op** (late5≈94,8) ; late10 baisse (mélange de *stages*) ; mid n'excède pas son meilleur membre |
+| **cart. constant** (run31-jumeau) | ~50 | late5 **77** / late10 **76** | rebond → **+26 pts**, MAIS **reste sous cosine (94,8)** |
+| **mini cosine** | 81 | 78 | clusterisé + capacité saturée → no-op |
+| **mini constant** | 76 | 68 | capacité saturée → pas de marge |
+
+**Conclusions de la matrice :**
+1. **Le SWA aide quand l'étalement « REBONDIT » + marge** (joint 15→88, cart-constant 50→77). Mesuré : le constant est 16× plus étalé que le cosine.
+2. **Neutre quand clusterisé** (cosine annélé : cos_late5 97≈94,8 ; mini-cosine 78≈81) → le cosine a déjà fait le settling, **rien à moyenner**.
+3. **Peut DÉGRADER si on moyenne à travers les *stages***: cos_late10 (89) < cos_late5 (97) car il inclut des checkpoints plus précoces/différents ; et cos_mid (étalé mais « qui AVANCE », pas « qui rebondit ») n'excède pas son meilleur membre (74≈74). → **étalement-qui-avance ≠ étalement-qui-rebondit.**
+4. ⚠️ **NUANCE clé** : « constant + SWA ≈ cosine » n'est que **PARTIEL**. Sur le gros cartésien, constant+SWA **récupère beaucoup** (50→77) mais **ne rejoint PAS** cosine (94,8) — résidu ~18 pts. → Le SWA **répare le non-settling, pas le sous-entraînement** : le run constant lui-même sous-converge vs cosine à 40k (le constant décolle plus lentement, cf. [`SCHEDULE.md`](SCHEDULE.md)). Pour fermer le résidu : plus de steps constant, ou meilleur merge (fenêtre + poids dérivés).
+
 ### EMA — *(en cours, à compléter)*
 
 EMA (decay 0.9999) activée sur le push joint **50k→80k** (env `EMA=1` dans `50_train_valloss.py`) → comparaison **poids bruts vs EMA sur la même plage**. → *résultats à compléter quand le push tourne.*
