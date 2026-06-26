@@ -51,7 +51,37 @@ C'est **décisif pour le vrai robot** : on ne peut pas relancer l'entraînement 
 3. **Allonger l'horizon ne dégrade pas le succès** (pas de vrai surapprentissage) ; ça plafonne.
 
 ## Suite
-- Vérifier sur les **gros modèles** que le constant atteint le plafond du cosine (run 31 = 94,8 % en cosine 40k → tester en constant prolongé, cf. [`CAN.md`](CAN.md)).
+- ✅ Test en cours : **run31-jumeau** (= run31 en LR constant) — brut ~50 %@40k vs cosine 94,8 % ; mais c'est du **non-posé** (cf. ci-dessous), le SWA/cooldown le rattrape.
 
 ---
-*Figures : `results/runs/phase5_methodology/` (`courbes_minicnn_cos_vs_const.png`, `courbes_minicnn_full_1k_150k.png`, `courbes_minicnn_valfull_1k_150k.png`).*
+
+# Mise à jour 2026 — État de l'art LR (au-delà de cos vs constant) + spécificités imitation learning
+
+> Synthèse de recherche (sources vérifiées). **Le débat n'est plus « cos vs constant » mais « comment se POSER » (settling)** ; et en **imitation learning** la contrainte dominante (loss≠succès) change tout.
+
+## 1. WSD (Warmup-Stable-Decay) & le « river valley »
+La réponse moderne (LLM, 2024-25) : **warmup → phase stable à LR constant (aussi longue qu'on veut) → court cooldown final (~10 % des steps) vers 0**. ≥ cosine en perf, **sans pari de budget**.
+- **Mécanisme « river valley »** ([arXiv 2410.05192](https://arxiv.org/abs/2410.05192)) : en phase constante l'optimiseur **rebondit en travers de la vallée** (loss haute) mais **avance le long de la rivière** ; le cooldown **amortit le rebond → se pose au fond**. **On l'a confirmé empiriquement par les poids** : à steps égaux, le constant est **16× plus étalé** que le cosine (0,98 % vs 16 %).
+- **Limites** : (a) on ne peut **pas juger la qualité avant de décroître** ; (b) hypothèse issue de la **stochasticité des tokens (LLM)** → transfert à la diffusion-policy **non garanti** ; (c) la forme du cooldown compte (sqrt/power/D2Z, [2508.01483](https://arxiv.org/pdf/2508.01483)). **Condition cachée** : la phase constante doit *réellement* faire progresser (à vérifier — test « profil rivière » : fond SWA par fenêtre).
+
+## 2. Merge ≥ decay : WSM & Schedule-Free (= notre SWA)
+- **WSM** ([2507.17634](https://arxiv.org/html/2507.17634)) : **remplace la décroissance par du merging de checkpoints**. Théorème : merger ≡ décroissance synthétique. **Bat WSD** (+3,5 % MATH, +5,5 % MMLU-Pro). **La DURÉE de la fenêtre de merge est le levier dominant** → explique notre `late10` (18k) = 88 % ≫ `late5` (8k) = 70 %. Poids uniformes ≈ décroissance linéaire ; poids dérivés (≈cosine) mieux ; **EMA-pour-le-merge = mauvais**. Merge et decay **ne se combinent pas**.
+- **Schedule-Free** (Defazio, [2605.19095](https://arxiv.org/html/2605.19095)) : LR constant + averaging, **aucune décroissance**, bat cosine ET WSD à batch moyen.
+→ **Notre SWA est dans cette famille SOTA**, pas un pis-aller.
+
+## 3. ⭐ Spécificité IMITATION LEARNING — le plus important pour nous
+L'IL = petits datasets, multi-époques, et surtout **objectif d'entraînement ≠ objectif d'éval**. L'étude **Robomimic** (sur notre tâche Can, [arXiv 2108.03298](https://arxiv.org/pdf/2108.03298)) :
+- **La loss de validation n'est PAS la performance** : la policy « meilleure val » est **50-100 % PIRE** que la meilleure ; la val monte **pendant que le succès monte**. → **ne pas early-stop sur la loss ; entraîner long, sélectionner par ROLLOUT.**
+- → **Annéler tôt = geler avant le pic de succès** (exactement notre mini-CNN gelé à 2 %). Le **constant ne gèle jamais → on ne rate pas le pic.** C'est une justification **IL-spécifique** de notre choix constant, indépendante de la théorie LLM.
+- **L'instabilité des checkpoints** (notre joint 12-56 %) est un **phénomène connu et non résolu** en 2025-26 ; pratique standard = top-3 par rollout. **Notre SWA (moyenne de poids) = la version déployable** (un seul modèle robuste).
+- **EMA** validé en Diffusion Policy (+5-10 %, régime from-scratch) ; LeRobot l'avait **retiré** → **réactivé** chez nous (`EMA=1`).
+
+## 4. LR par composant (pour notre ResNet34 + U-Net, from scratch)
+- **CNN from-scratch** : 1e-4→5e-4 ; **U-Net diffusion** : ~1e-4 → **plages qui se recouvrent → notre LR unique 1e-4 est bien fondé.**
+- Le ratio **« encodeur 10× plus bas »** ne vaut **QUE pour un encodeur PRÉ-ENTRAÎNÉ** (le nôtre est random-init `pretrained_backbone_weights:null`). Levier futur : **ResNet34 pré-entraîné ImageNet** (taille exacte, dispo torchvision ; garder BatchNorm) → *alors* le 10:1 + recette DP (98 %) deviennent pertinents. cf. backlog.
+
+## Recommandation affinée (remplace « on entraîne en constant » seul)
+**LR constant (ne jamais geler avant le pic) + SWA/merge sur la queue (settling gratuit ; fenêtre large = le levier ; poids ≈cosine, PAS l'EMA pour le merge) + EMA pendant l'entraînement + sélection par ROLLOUT.** Cooldown WSD et merge sont **redondants** (ne pas combiner). Garde-fou : toute la théorie « settling » vient du LLM → **nos tests empiriques (profil rivière, matrice SWA) tranchent pour notre domaine.**
+
+---
+*Figures : `results/runs/phase5_methodology/` (`courbes_minicnn_cos_vs_const.png`, `courbes_minicnn_full_1k_150k.png`, `courbes_minicnn_valfull_1k_150k.png`). Sources LR : voir aussi [`ENSEMBLING_JOINT.md`](ENSEMBLING_JOINT.md).*
