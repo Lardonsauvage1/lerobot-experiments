@@ -95,9 +95,16 @@ Test de la prémisse WSD chez nous : on calcule le **fond** (SWA) sur des **fen�
 - *(Densification + extension 50→80k en cours pour confirmer que ce n'est pas 4 points chanceux et voir si le fond monte au-delà de 50k.)*
 - ⚠️ Ces fonds sont du **SWA pur** (éval standard, **sans** temporal ensembling) → un *plancher* ; l'ensembling par-dessus les lèverait encore (late10 88→96).
 
-### EMA — *(en cours, à compléter)*
+### EMA — settling « online » (résultats)
 
-EMA (decay 0.9999) activée sur le push joint **50k→80k** (env `EMA=1` dans `50_train_valloss.py`) → comparaison **poids bruts vs EMA sur la même plage**. → *résultats à compléter quand le push tourne.*
+EMA (decay 0.9999, env `EMA=1` dans `50_train_valloss.py`) activée sur le push joint **50k→80k** → on a sauvé en parallèle les poids **bruts** et **EMA**, puis évalué les deux (n=50) :
+
+| step (k) | 54 | 58 | 62 | 66 | 70 | 74 | 78 | 80 | moyenne |
+|---|---|---|---|---|---|---|---|---|---|
+| **brut** | 66 | 56 | 28 | 36 | 52 | 34 | 64 | 20 | **~44** |
+| **EMA** | 48 | 66 | 76 | 74 | 82 | 78 | **86** | 74 | **~73** |
+
+**Conclusion :** l'**EMA bat largement le brut** (~73 vs ~44 %) **et le stabilise** : le brut **rebondit** (20-66 %), l'EMA reste **haut et régulier** (74-86 %). À 80k, brut 20 % vs EMA 74 % (+54 pts). L'EMA atteint **86 % ≈ SWA late10 (88 %)** → **EMA (moyenne online pendant l'entraînement) ≈ SWA (moyenne post-hoc)** : deux routes vers le même settling. C'est le stabilisateur standard de Diffusion Policy (LeRobot l'avait retiré → réactivé). **L'EMA est « gratuite » côté déploiement** (un seul modèle, pas de coût d'inférence, contrairement au temporal ensembling).
 
 ## Leçons clés
 
