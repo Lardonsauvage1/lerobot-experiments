@@ -83,6 +83,18 @@ Test : appliquer le SWA à des modèles **constant** vs **cosine**, gros (carté
 3. **Peut DÉGRADER si on moyenne à travers les *stages***: cos_late10 (89) < cos_late5 (97) car il inclut des checkpoints plus précoces/différents ; et cos_mid (étalé mais « qui AVANCE », pas « qui rebondit ») n'excède pas son meilleur membre (74≈74). → **étalement-qui-avance ≠ étalement-qui-rebondit.**
 4. ⚠️ **NUANCE clé** : « constant + SWA ≈ cosine » n'est que **PARTIEL**. Sur le gros cartésien, constant+SWA **récupère beaucoup** (50→77) mais **ne rejoint PAS** cosine (94,8) — résidu ~18 pts. → Le SWA **répare le non-settling, pas le sous-entraînement** : le run constant lui-même sous-converge vs cosine à 40k (le constant décolle plus lentement, cf. [`SCHEDULE.md`](SCHEDULE.md)). Pour fermer le résidu : plus de steps constant, ou meilleur merge (fenêtre + poids dérivés).
 
+### Profil de la « rivière » (le LR constant fait-il progresser globalement ?)
+
+![Profil rivière joint — fond SWA par fenêtre](../results/runs/can/joint_r34_bigunet/river_profile.png)
+
+Test de la prémisse WSD chez nous : on calcule le **fond** (SWA) sur des **fenêtres** successives de l'entraînement joint (LR constant). Si le fond monte puis plafonne → le constant fait progresser globalement (rivière qui monte), confirmant le mécanisme « river valley » de WSD — *pour notre diffusion policy, pas seulement le LLM.*
+
+- **Fond SWA par fenêtre (5 ckpts)** : W1(12-20k) **54** → W2(22-30k) **70** → W3(32-40k) **70** → W4(42-50k) **76** → **MONTE puis PLAFONNE.** ✅ Prémisse validée.
+- **Rebond énorme** : à W1, le brut moyen ~12 % alors que le fond est à 54 % (le brut bouge en travers de la vallée, le fond est haut).
+- **Fenêtre large = plus haut** : late10 (32-50k, 10 ckpts) = **88** > W4 (76) → confirme WSM (la *durée de fenêtre* est le levier). Sur le graphe : barre = étendue de la fenêtre, n = nb checkpoints ; LR plat à 1e-4.
+- *(Densification + extension 50→80k en cours pour confirmer que ce n'est pas 4 points chanceux et voir si le fond monte au-delà de 50k.)*
+- ⚠️ Ces fonds sont du **SWA pur** (éval standard, **sans** temporal ensembling) → un *plancher* ; l'ensembling par-dessus les lèverait encore (late10 88→96).
+
 ### EMA — *(en cours, à compléter)*
 
 EMA (decay 0.9999) activée sur le push joint **50k→80k** (env `EMA=1` dans `50_train_valloss.py`) → comparaison **poids bruts vs EMA sur la même plage**. → *résultats à compléter quand le push tourne.*

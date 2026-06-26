@@ -50,8 +50,16 @@ C'est **décisif pour le vrai robot** : on ne peut pas relancer l'entraînement 
 2. **Constant** = décollage plus tôt, simple, **stoppable au plateau**. **Cosine** = pic un peu plus haut, mais **budget à deviner**.
 3. **Allonger l'horizon ne dégrade pas le succès** (pas de vrai surapprentissage) ; ça plafonne.
 
-## Suite
-- ✅ Test en cours : **run31-jumeau** (= run31 en LR constant) — brut ~50 %@40k vs cosine 94,8 % ; mais c'est du **non-posé** (cf. ci-dessous), le SWA/cooldown le rattrape.
+## Suite — ✅ run31 COSINE vs run31-jumeau CONSTANT (mesure directe, même archi/données)
+
+![run31 cosine vs jumeau constant — 4 panneaux](../results/runs/can/run31_constLR/cosine_vs_constant.png)
+
+Trois choses sautent aux yeux :
+1. **Panneau LR = la seule vraie différence** : cosine annéle 1e-4 → **1e-10** ; constant reste **plat à 1e-4**.
+2. **Loss val QUASI IDENTIQUES** (~0,04, superposées) → **la loss est aveugle à la différence** (« loss ≠ succès », cf. Robomimic).
+3. **Succès = abîme** : cosine monte proprement vers **94,8 %** ; constant **oscille et plafonne ~50-69 %**, ne rejoint jamais le cosine.
+
+→ À loss identique, l'**annealing du cosine "pose" le modèle** dans un bien meilleur minimum. Le **constant ne le fait pas seul** (non-posé) → c'est ce que le **SWA rattrape** (50→77), mais **partiellement** (résidu ~18 pts = sous-convergence, cf. [`ENSEMBLING_JOINT.md`](ENSEMBLING_JOINT.md)).
 
 ---
 
