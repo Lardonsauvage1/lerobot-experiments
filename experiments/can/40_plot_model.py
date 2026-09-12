@@ -30,6 +30,11 @@ def smooth(y, w=15):
 def load_rollouts(path):
     rows = list(csv.DictReader(open(path)))
     g = lambda r, k, d=None: float(r[k]) if r.get(k) not in (None, "") else d
+    # dédup : garde la DERNIÈRE éval d'un même step (rollouts.csv s'empile au fil des sessions)
+    by_step = {}
+    for r in rows:
+        by_step[int(float(r["step"]))] = r
+    rows = [by_step[s] for s in sorted(by_step)]  # tri croissant par step
     st = np.array([int(float(r["step"])) for r in rows])
     sr = np.array([g(r, "success_rate") * 100 for r in rows])
     lo = np.array([g(r, "ci95_low", g(r, "success_rate")) * 100 for r in rows])
@@ -69,6 +74,8 @@ def main():
     # --- succès : 500r prioritaire, sinon 50r ; + eval500_best en overlay ---
     main_csv = rd / "rollouts_500.csv"
     rollN = 500
+    if not main_csv.exists():
+        main_csv = rd / "rollouts_100.csv"; rollN = 100
     if not main_csv.exists():
         main_csv = rd / "rollouts_50.csv"; rollN = 50
     st, sr, lo, hi, n = load_rollouts(main_csv) if main_csv.exists() else ([], [], [], [], 0)

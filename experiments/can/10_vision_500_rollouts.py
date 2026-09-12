@@ -29,6 +29,7 @@ OUT = Path("results/runs/can/vision_500.json")
 N_EVAL = 500
 STEPS = 10
 CHUNK = 50
+RENDER_SIZE = 96   # résolution de rendu des caméras (96 par défaut ; 224 pour les modèles hi-res)
 
 MODELS = [
     {"name": "02_proprio (mono-cam)", "ckpt": "results/runs/can/02_proprio/checkpoints/010000/pretrained_model",
@@ -101,7 +102,7 @@ def rollout_can(policy, pre, post, states, device, image_keys, chunk=CHUNK):
             for step_i in range(can_eval.MAX_STEPS):
                 images = {}
                 for cam, key in image_keys.items():
-                    img = env.env.sim.render(height=96, width=96, camera_name=cam)[::-1]
+                    img = env.env.sim.render(height=RENDER_SIZE, width=RENDER_SIZE, camera_name=cam)[::-1]
                     img_t = torch.from_numpy(img.copy()).permute(2, 0, 1).float() / 255.0
                     images[key] = img_t.unsqueeze(0).to(device)
                 state_t = torch.from_numpy(state_proprio(obs))
