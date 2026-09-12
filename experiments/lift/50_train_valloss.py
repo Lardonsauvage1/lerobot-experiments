@@ -227,6 +227,97 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
     if not is_main_process:
         dataset = make_dataset(cfg)
 
+    # --- PATCH RELJOINT : actions articulaires RELATIVES chunk-wise (ancre = obs courante) ---
+    # Override les stats de normalisation des dims joints (0..DIMS-1) par les stats RELATIVES
+    # (delta chunk-wise), gripper reste absolu. Le batch est rendu relatif avant le preprocessor.
+    import os as _os  # local (nom réassigné plus loin dans la fonction -> local partout)
+    if _os.environ.get("RELJOINT") == "1":
+        import json as _json, numpy as _np
+        _dims = int(_os.environ.get("RELJOINT_DIMS", "7"))
+        _rs_path = _os.environ.get("RELJOINT_STATS",
+            "data_cache/lerobot_can_ph_joint_birdview/meta/relstats_chunkwise.json")
+        _rs = _json.load(open(_rs_path))
+        _sa = dataset.meta.stats["action"]
+        for _k in ("min", "max", "mean", "std"):
+            _was_t = torch.is_tensor(_sa[_k])
+            _v = (_sa[_k].cpu().numpy() if _was_t else _np.asarray(_sa[_k])).astype(_np.float32).copy()
+            _v[:_dims] = _np.asarray(_rs[_k], dtype=_np.float32)[:_dims]
+            _sa[_k] = torch.as_tensor(_v) if _was_t else _v
+        logging.info(f"[RELJOINT] actions joints 0-{_dims-1} RELATIVES chunk-wise ; "
+                     f"stats action override depuis {_rs_path} (gripper absolu)")
+
+    # --- PATCH CAMP : mémoire compressée de l'historique d'ACTIONS concaténée à l'état ---
+    # CAMP-lite (variante B) : le module mémoire est PRÉ-ENTRAÎNÉ ET GELÉ, donc on précalcule
+    # m_t une fois pour toutes les frames. La boucle d'entraînement reste alors RIGOUREUSEMENT
+    # celle d'un run normal — c'est ce qui satisfait la contrainte "pas plus long à entraîner".
+    # cf. src/camp.py et docs/recherche/MEMOIRE.md.
+    #   CAMP=1 CAMP_CKPT=results/runs/can/camp/memory_L64_K32_m32.pt
+    _camp_M = None
+    _camp_bank = None     # ⚠️ doit exister même sans CAMP : il est lu à chaque checkpoint
+    if _os.environ.get("CAMP") == "1":
+        import numpy as _np
+        _camp_ft = _os.environ.get("CAMP_FINETUNE") == "1"   # variante A (papier) si 1
+        # ce script vit dans experiments/lift/ ; la racine du repo n'est pas sur sys.path
+        # quand il est lancé directement -> `from src import camp` échouait
+        # (ModuleNotFoundError, nuit du 2026-09-09). On l'ajoute ici, sans dépendre du lanceur.
+        import sys as _sys
+        _root = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+        if _root not in _sys.path:
+            _sys.path.insert(0, _root)
+        from src import camp as _camp
+        _ck = torch.load(_os.environ["CAMP_CKPT"], weights_only=False)
+        _ca = _ck["args"]
+        _sdim = int(dataset.meta.features["observation.state"]["shape"][0])
+        _adim = int(dataset.meta.features["action"]["shape"][0])
+        _mem = _camp.CampMemory(_adim, _sdim, n_coef=_ca["K"], mem_dim=_ca["mem_dim"],
+                                codebook_size=_ca["codebook"])
+        _mem.load_state_dict(_ck["state_dict"])
+        # variante A (papier) : le LSTM est DÉGELÉ et finetuné conjointement à lr x alpha.
+        # variante B (défaut) : module gelé, codes précalculés une fois.
+        for _prm in _mem.parameters():
+            _prm.requires_grad_(_camp_ft)
+        _nobs = int(getattr(cfg.policy, "n_obs_steps", 1))
+        # ⚠️ précalcul sur TOUS les épisodes, pas seulement le train : LeRobot conserve
+        # l'index GLOBAL dans les sous-ensembles (vérifié : ép. 150-151 -> index 17252+),
+        # or la val-loss tire d'un LeRobotDataset séparé. Un M dimensionné sur le seul train
+        # partirait hors bornes dès la première val-loss.
+        from lerobot.datasets.lerobot_dataset import LeRobotDataset as _LRD
+        _full = _LRD(cfg.dataset.repo_id, root=cfg.dataset.root,
+                     delta_timestamps=dataset.delta_timestamps)
+        if _camp_ft:
+            # déroulement À LA VOLÉE depuis le début de l'épisode -> le gradient atteint le LSTM.
+            # Coût mesuré : 66 ms/step à batch 32 (vs ~950 ms pour le step complet) = +7 %.
+            _mem = _mem.to(cfg.policy.device)
+            _camp_bank = _camp.EpisodeBank(_full, torch.device(cfg.policy.device))
+            _camp_M = _camp.precompute_memory(_full, _mem.cpu(), _nobs, torch.device("cpu"))
+            _mem = _mem.to(cfg.policy.device)
+            logging.info("[CAMP] mode FINETUNING CONJOINT (variante A du papier) : LSTM dégelé")
+        else:
+            _camp_M = _camp.precompute_memory(_full, _mem, _nobs, torch.device("cpu"))
+        del _full
+        _md = int(_ca["mem_dim"])
+
+        # la policy dérive ses shapes de ds_meta -> on étend la feature AVANT make_policy
+        dataset.meta.features["observation.state"]["shape"] = (_sdim + _md,)
+        # ... et les stats de normalisation, sinon le normaliseur reçoit 9 dims pour 41
+        _flat = _camp_M[:, -1, :].numpy()
+        _ext = {"min": _flat.min(0), "max": _flat.max(0), "mean": _flat.mean(0),
+                "std": _flat.std(0) + 1e-6}
+        for _q in (1, 10, 50, 90, 99):
+            _ext[f"q{_q:02d}"] = _np.percentile(_flat, _q, axis=0)
+        _ss = dataset.meta.stats["observation.state"]
+        for _k, _v in list(_ss.items()):
+            if _k == "count":
+                continue
+            _was_t = torch.is_tensor(_v)
+            _arr = (_v.cpu().numpy() if _was_t else _np.asarray(_v)).astype(_np.float32)
+            _add = _ext.get(_k, _np.zeros(_md, dtype=_np.float32)).astype(_np.float32)
+            _new = _np.concatenate([_arr, _add])
+            _ss[_k] = torch.as_tensor(_new) if _was_t else _new
+        logging.info(f"[CAMP] mémoire GELÉE {_os.environ['CAMP_CKPT']} | "
+                     f"state {_sdim}D -> {_sdim + _md}D | {_camp_M.shape[0]} frames précalculées "
+                     f"| n_obs_steps={_nobs}")
+
     # Create environment used for evaluating checkpoints during training on simulation data.
     # On real-world data, no need to create an environment as evaluations are done outside train.py,
     # using the eval.py instead, with gym_dora environment and dora-rs.
@@ -242,6 +333,61 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         ds_meta=dataset.meta,
         rename_map=cfg.rename_map,
     )
+
+    # --- PATCH KPAMP : ajoute l'AMPLITUDE d'activation à chaque keypoint ------------------
+    # Le spatial softmax NORMALISE : quelle que soit la force de l'activation, il sort une
+    # distribution qui somme à 1, donc toujours 2 coordonnées. Il ne peut JAMAIS signaler
+    # « ce motif est absent ». Mesuré le 2026-09-11 : quand la canette disparaît de l'image,
+    # les keypoints se REPLACENT silencieusement (déplacement moyen 3,3 px, max 42,8 px) et
+    # le dénoiseur reçoit une représentation d'apparence normale décrivant une scène qu'il
+    # n'a pas. C'est peut-être le mécanisme derrière « il relève le bras comme s'il l'avait ».
+    #
+    # KPAMP=1 conserve, pour chaque keypoint, le LOGIT MAXIMAL de son canal avant softmax —
+    # exactement l'information que la normalisation jette. 3 nombres par keypoint au lieu
+    # de 2. Aucun autre changement : le Linear de sortie ramène au même feature_dim.
+    if _os.environ.get("KPAMP") == "1":
+        import torch.nn as _nn
+        # ⚠️ au COOLDOWN, make_policy a déjà chargé --policy.pretrained_path dans un modèle
+        # STANDARD -> les poids KPAMP (Linear 3*kp) ne rentrent pas et ça plante.
+        # On patche l'architecture PUIS on recharge les poids du checkpoint.
+        _reload = getattr(getattr(cfg, "policy", None), "pretrained_path", None)
+        _enc = policy.diffusion.rgb_encoder
+        _pool = _enc.pool
+
+        class _SpatialSoftmaxAmp(_nn.Module):
+            def __init__(self, base):
+                super().__init__()
+                self.base = base
+
+            def forward(self, features):
+                if self.base.nets is not None:
+                    features = self.base.nets(features)
+                B, K, H, W = features.shape
+                flat = features.reshape(B * K, H * W)
+                att = _nn.functional.softmax(flat, dim=-1)
+                xy = att @ self.base.pos_grid                      # (B*K, 2) — inchangé
+                amp = flat.max(dim=-1, keepdim=True).values        # (B*K, 1) — l'info jetée
+                return torch.cat([xy, amp], dim=-1).reshape(B, K, 3)
+
+        _kp = int(policy.config.spatial_softmax_num_keypoints)
+        _enc.pool = _SpatialSoftmaxAmp(_pool)
+        _old = _enc.out
+        _enc.out = _nn.Linear(_kp * 3, _old.out_features).to(_old.weight.device)
+        with torch.no_grad():                                      # on repart des poids appris
+            _enc.out.weight.zero_()
+            _enc.out.weight[:, : _kp * 2] = _old.weight
+            _enc.out.bias.copy_(_old.bias)
+        logging.info(f"[KPAMP] amplitude ajoutée : {_kp} keypoints x 3 = {_kp*3} -> "
+                     f"Linear({_kp*3}, {_old.out_features})")
+        if _reload:
+            from safetensors.torch import load_file as _lf
+            import os as _os3
+            _mp = _os3.path.join(str(_reload), "model.safetensors")
+            if _os3.path.exists(_mp):
+                _r = policy.load_state_dict(_lf(_mp), strict=False)
+                logging.info(f"[KPAMP] poids rechargés depuis {_reload} "
+                             f"(manquants {len(_r.missing_keys)}, inattendus {len(_r.unexpected_keys)})")
+
 
     if cfg.peft is not None:
         logging.info("Using PEFT! Wrapping model.")
@@ -293,6 +439,74 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
     if is_main_process:
         logging.info("Creating optimizer and scheduler")
     optimizer, lr_scheduler = make_optimizer_and_scheduler(cfg, policy)
+    if _camp_M is not None and _os.environ.get("CAMP_FINETUNE") == "1":
+        # ⚠️ ajouter le groupe APRÈS la création du scheduler casse LambdaLR (il garde une
+        # lambda par groupe -> "zip() argument 2 is shorter"). On l'ajoute donc ici, puis on
+        # RECRÉE le scheduler pour qu'il voie les deux groupes.
+        # ⚠️ le lr des param_groups vaut 0 au démarrage (warmup) -> on lit cfg, pas le groupe.
+        _alpha = float(_os.environ.get("CAMP_ALPHA", "0.1"))
+        _base = float(cfg.optimizer.lr)
+        optimizer.add_param_group({"params": [q for q in _mem.parameters() if q.requires_grad],
+                                   "lr": _base * _alpha})
+        _o2, lr_scheduler = make_optimizer_and_scheduler(cfg, policy)
+        del _o2
+        if lr_scheduler is not None and hasattr(lr_scheduler, "base_lrs"):
+            lr_scheduler.optimizer = optimizer
+            lr_scheduler.base_lrs = [g["lr"] for g in optimizer.param_groups]
+            if hasattr(lr_scheduler, "lr_lambdas") and len(lr_scheduler.lr_lambdas) < len(optimizer.param_groups):
+                lr_scheduler.lr_lambdas = list(lr_scheduler.lr_lambdas) + \
+                    [lr_scheduler.lr_lambdas[-1]] * (len(optimizer.param_groups) - len(lr_scheduler.lr_lambdas))
+        logging.info(f"[CAMP] LSTM dans l'optimiseur : lr = {_base} x {_alpha} = {_base*_alpha}")
+    # --- LR CONSTANT (decision methodo : pas de cosine) : CONST_LR=1 desactive le scheduler ---
+    import os as _os
+    if _os.environ.get("CONST_LR"):
+        _clr = float(_os.environ.get("CONST_LR_VALUE", "1e-4"))
+        for _g in optimizer.param_groups:
+            _g["lr"] = _clr
+        lr_scheduler = None  # update_policy ne fait .step() que si lr_scheduler is not None -> LR fixe
+        if is_main_process:
+            logging.info(f"[CONST_LR] scheduler desactive -> LR constant = {_clr}")
+
+    # --- COOLDOWN LR (test WSD) : COOLDOWN_STEPS=N decroit le LR de COOLDOWN_LR0 -> 0 lineairement ---
+    #     A utiliser SANS resume (charge les poids via --policy.pretrained_path, optimiseur frais),
+    #     pour annealer proprement depuis un plateau constant et mesurer si on depasse le SWA/merge.
+    if _os.environ.get("COOLDOWN_STEPS") and not _os.environ.get("ENCODER_LR"):  # ENCODER_LR gère son propre cooldown par groupe
+        from torch.optim.lr_scheduler import LambdaLR
+        _n_cd = int(_os.environ["COOLDOWN_STEPS"])
+        _lr0 = float(_os.environ.get("COOLDOWN_LR0", "1e-4"))
+        for _g in optimizer.param_groups:
+            _g["lr"] = _lr0
+        lr_scheduler = LambdaLR(optimizer, lambda s: max(0.0, 1.0 - s / _n_cd))
+        if is_main_process:
+            logging.info(f"[COOLDOWN] LR lineaire {_lr0} -> 0 sur {_n_cd} steps")
+
+    # --- ENCODER_LR : LR par GROUPE pour backbone PRÉ-ENTRAÎNÉ (test B) ---
+    #     encodeur vision (rgb_encoder.*) a un LR plus bas que le reste pour ne pas detruire ImageNet.
+    #     ENCODER_LR = LR encodeur (ex 1e-5) ; UNET_LR = LR du reste (defaut 1e-4). LR constant (pas de scheduler).
+    if _os.environ.get("ENCODER_LR"):
+        import torch as _torch
+        _enc_lr = float(_os.environ["ENCODER_LR"])
+        _base_lr = float(_os.environ.get("UNET_LR", "1e-4"))
+        _enc_p, _other_p = [], []
+        for _n, _p in policy.named_parameters():
+            if not _p.requires_grad:
+                continue
+            (_enc_p if "rgb_encoder" in _n else _other_p).append(_p)
+        _def = dict(optimizer.defaults); _def.pop("lr", None)
+        optimizer = type(optimizer)(
+            [{"params": _enc_p, "lr": _enc_lr}, {"params": _other_p, "lr": _base_lr}],
+            lr=_base_lr, **_def)
+        # COOLDOWN par GROUPE : LambdaLR multiplie l'initial_lr de CHAQUE groupe -> ratio 1e-5/1e-4 préservé -> 0
+        if _os.environ.get("COOLDOWN_STEPS"):
+            from torch.optim.lr_scheduler import LambdaLR
+            _n_cd = int(_os.environ["COOLDOWN_STEPS"])
+            lr_scheduler = LambdaLR(optimizer, lambda s: max(0.0, 1.0 - s / _n_cd))
+            if is_main_process:
+                logging.info(f"[ENCODER_LR+COOLDOWN] 2 groupes ({_enc_lr}/{_base_lr}) -> 0 lineaire sur {_n_cd} steps")
+        else:
+            lr_scheduler = None  # LR constant par groupe
+            if is_main_process:
+                logging.info(f"[ENCODER_LR] 2 groupes : encodeur={_enc_lr} ({len(_enc_p)} tenseurs) / reste={_base_lr} ({len(_other_p)} tenseurs)")
 
     # Load precomputed SARM progress for RA-BC if enabled
     # Generate progress using: src/lerobot/policies/sarm/compute_rabc_weights.py
@@ -393,6 +607,22 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
                 logging.info(f"[val-loss] {len(val_episodes)} episodes val, {val_ds.num_frames} frames")
     # --- END PATCH ---
 
+    # --- PATCH EMA (optionnel) : EMA=1 maintient une moyenne mobile expo des poids ---
+    #     sauvée à chaque save_freq dans <output_dir>_ema (permet d'évaluer brut vs EMA
+    #     sur EXACTEMENT la même plage d'entraînement). EMA_DECAY par défaut 0.9999.
+    import os as _os_ema
+    from pathlib import Path as _PathEma
+    _ema_params = None
+    if bool(_os_ema.environ.get("EMA")):
+        _ema_decay = float(_os_ema.environ.get("EMA_DECAY", "0.9999"))
+        _ema_model0 = accelerator.unwrap_model(policy)
+        _ema_params = {n: p.detach().clone().float()
+                       for n, p in _ema_model0.named_parameters() if p.requires_grad}
+        if is_main_process:
+            logging.info(f"[EMA] activé decay={_ema_decay} ({len(_ema_params)} tenseurs) "
+                         f"-> {cfg.output_dir}_ema")
+    # --- END PATCH EMA ---
+
     policy.train()
 
     train_metrics = {
@@ -427,10 +657,45 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
             f"Start offline training on a fixed dataset, with effective batch size: {effective_batch_size}"
         )
 
+    # PATCH RELJOINT : rend le batch relatif (action[:, :, :dims] -= obs.state[:, -1, :dims]) AVANT normalisation
+    _reljoint = _os.environ.get("RELJOINT") == "1"
+    _rj_dims = int(_os.environ.get("RELJOINT_DIMS", "7"))
+    def _to_relative(b):
+        if not _reljoint:
+            return b
+        st, act = b.get("observation.state"), b.get("action")
+        if st is None or act is None:
+            return b
+        anchor = st[:, -1:, :_rj_dims]            # (B, 1, dims)
+        act = act.clone()
+        act[:, :, :_rj_dims] = act[:, :, :_rj_dims] - anchor
+        b = dict(b); b["action"] = act
+        return b
+
+    def _add_memory(b):
+        """Concatène m_t (32 dims) à observation.state, avant le preprocessor donc avant
+        normalisation. `b["index"]` = index GLOBAL de la frame courante ; les n_obs_steps
+        codes ont été pré-empilés et clampés aux frontières d'épisode par precompute_memory."""
+        if _camp_M is None:
+            return b
+        st = b.get("observation.state")
+        if st is None or "index" not in b:
+            return b
+        if _camp_bank is not None:
+            # (B, mem) au pas courant, gradient inclus ; on réplique sur les n_obs_steps
+            m_t, _lvq = _camp_bank.memory_for(_mem, b["episode_index"], b["frame_index"])
+            # le batch brut est encore sur CPU ici (le transfert se fait dans le preprocessor)
+            # alors que la banque vit sur le device -> ramener explicitement.
+            mm = m_t.unsqueeze(1).expand(-1, st.shape[1], -1).to(st.device, st.dtype)
+        else:
+            mm = _camp_M[b["index"].cpu()].to(st.device, st.dtype)
+        b = dict(b)
+        b["observation.state"] = torch.cat([st, mm], dim=-1)
+        return b
+
     for _ in range(step, cfg.steps):
         start_time = time.perf_counter()
-        batch = next(dl_iter)
-        batch = preprocessor(batch)
+        batch = preprocessor(_add_memory(_to_relative(next(dl_iter))))
         train_tracker.dataloading_s = time.perf_counter() - start_time
 
         train_tracker, output_dict = update_policy(
@@ -447,6 +712,11 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         # Note: eval and checkpoint happens *after* the `step`th training update has completed, so we
         # increment `step` here.
         step += 1
+        if _ema_params is not None:
+            _m_ema = accelerator.unwrap_model(policy)
+            for _n, _p in _m_ema.named_parameters():
+                if _n in _ema_params:
+                    _ema_params[_n].mul_(_ema_decay).add_(_p.detach().float(), alpha=1.0 - _ema_decay)
         if is_main_process:
             progbar.update(1)
         train_tracker.step()
@@ -460,7 +730,7 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
             if val_iter is not None:
                 policy.eval()
                 with torch.no_grad():
-                    val_loss, _ = policy.forward(preprocessor(next(val_iter)))
+                    val_loss, _ = policy.forward(preprocessor(_add_memory(_to_relative(next(val_iter)))))
                 policy.train()
                 logging.info(f"val_loss:{float(val_loss):.4f} valstep:{step}")
             # --- END PATCH ---
@@ -495,7 +765,40 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
                     preprocessor=preprocessor,
                     postprocessor=postprocessor,
                 )
+                if _camp_bank is not None:
+                    # ⭐ variante A : le LSTM a été MODIFIÉ par le finetuning conjoint. Sans
+                    # cette sauvegarde, l'éval rechargerait le module pré-entraîné d'origine
+                    # et la variante A serait indiscernable de la B — échec SILENCIEUX.
+                    import os as _os2
+                    _mp = _os2.path.join(str(checkpoint_dir), "memory_finetuned.pt")
+                    torch.save({"state_dict": {k: v.cpu() for k, v in _mem.state_dict().items()},
+                                "args": _ck["args"]}, _mp)
+                    logging.info(f"[CAMP] LSTM finetuné sauvé -> {_mp}")
                 update_last_checkpoint(checkpoint_dir)
+                if _ema_params is not None:
+                    # sauve les poids EMA dans <output_dir>_ema/checkpoints/<step> (swap in/out, exception-safe)
+                    try:
+                        _ema_ckpt = _PathEma(
+                            str(checkpoint_dir).replace(str(cfg.output_dir), str(cfg.output_dir) + "_ema", 1)
+                        )
+                        _m_ema = accelerator.unwrap_model(policy)
+                        _bak = {n: p.detach().clone() for n, p in _m_ema.named_parameters() if n in _ema_params}
+                        try:
+                            for _n, _p in _m_ema.named_parameters():
+                                if _n in _ema_params:
+                                    _p.data.copy_(_ema_params[_n].to(_p.dtype))
+                            save_checkpoint(
+                                checkpoint_dir=_ema_ckpt, step=step, cfg=cfg, policy=_m_ema,
+                                optimizer=optimizer, scheduler=lr_scheduler,
+                                preprocessor=preprocessor, postprocessor=postprocessor,
+                            )
+                        finally:
+                            for _n, _p in _m_ema.named_parameters():
+                                if _n in _bak:
+                                    _p.data.copy_(_bak[_n])
+                        logging.info(f"[EMA] checkpoint EMA sauvé: {_ema_ckpt}")
+                    except Exception as _e_ema:
+                        logging.warning(f"[EMA] save échoué (ignoré): {_e_ema}")
                 if wandb_logger:
                     wandb_logger.log_policy(checkpoint_dir)
 

@@ -108,13 +108,20 @@ def build_state_vector(obs):
 # --------------------------------------------------------------------------- rollout
 def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
                  image_size=96, num_inference_steps=10, verbose=True, stop_on_success=False,
-                 fix_obs_fn=fix_obs_sign, state_fn=build_state_vector):
+                 fix_obs_fn=fix_obs_sign, state_fn=build_state_vector,
+                 render_fn=None, probe=None):
     """Évalue `policy` sur les init_states fournis. Retourne (per_episode, aggregate).
 
     stop_on_success : coupe l'épisode au 1er succès. Le succès = "réussi à un moment"
       → l'arrêt ne change PAS le taux de succès (seuls les échecs vont au bout des
       max_steps), mais accélère ~2.5x. NB : rend max_z / hold_fraction tronqués (à
       n'utiliser que quand on ne mesure que success_rate + t_success).
+
+    render_fn : rendu de l'image, paramétrable — callable(env, obs, image_size) -> HxWx3
+      uint8. Défaut = rendu agentview habituel. Sert au banc Can-Occluded, qui re-rend la
+      scène sans la canette quand le bras la masque (voir src/can_occlusion.py).
+    probe : sonde optionnelle instrumentant l'épisode (start_episode / observe / summary).
+      Ses métriques sont fusionnées dans le dict par-épisode.
 
     fix_obs_fn / state_fn : préprocessing d'obs et constructeur du vecteur d'état,
       paramétrables par tâche (défauts = Lift). Pour Can, l'obs `object` est réordonnée
@@ -127,11 +134,18 @@ def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
     for ep in range(n):
         obs = fix_obs_fn(env.reset_to(dict(states=init_states[ep])))
         policy.reset()
+        if probe is not None:
+            probe.start_episode()
         max_z = 0.0
         succ_flags = []
         t_success = None
         for step_i in range(max_steps):
-            img = env.env.sim.render(height=image_size, width=image_size, camera_name="agentview")[::-1]
+            if probe is not None:
+                probe.observe(env, obs)
+            if render_fn is not None:
+                img = render_fn(env, obs, image_size)
+            else:
+                img = env.env.sim.render(height=image_size, width=image_size, camera_name="agentview")[::-1]
             img_t = torch.from_numpy(img.copy()).permute(2, 0, 1).float() / 255.0
             state_t = torch.from_numpy(state_fn(obs))
             obs_dict = {"observation.image": img_t.unsqueeze(0).to(device),
@@ -156,6 +170,8 @@ def rollout_eval(policy, pre, post, env, init_states, *, device, max_steps=200,
         hold = float(np.mean(succ_flags[t_success:])) if success else 0.0
         m = {"success": success, "t_success": t_success if success else None,
              "max_z": max_z, "hold_fraction": hold}
+        if probe is not None:
+            m.update(probe.summary(success))
         per_ep.append(m)
         if verbose:
             run = sum(e["success"] for e in per_ep) / len(per_ep)
