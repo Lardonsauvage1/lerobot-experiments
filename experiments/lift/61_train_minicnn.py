@@ -338,6 +338,9 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         elif _sched_mode == "constant":
             def _lr_lambda(t):
                 return 1.0                                 # LR plat (= lr de base)
+        elif _sched_mode == "cooldown":
+            def _lr_lambda(t):                             # annealing : lr de base -> 0 lineaire (pas de warmup)
+                return max(0.0, 1.0 - t / max(1, _total))
         else:
             raise ValueError(f"MINI_SCHED inconnu: {_sched_mode}")
         lr_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, _lr_lambda)
