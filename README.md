@@ -104,8 +104,38 @@ Le problème n'était pas la mémoire. Il était dans le dernier centimètre.
 `robosuite` / `robomimic` / `MuJoCo` · `ROS 2 jazzy` · entraînement sur MPS, CUDA et
 Intel Arc (XPU)
 
-<!-- TROU 4 : un schéma d'architecture (donnée → entraînement → déploiement).
-     Utile pour montrer la vue d'ensemble en un coup d'œil. -->
+### Le pipeline, de bout en bout
+
+```mermaid
+flowchart LR
+    subgraph S1["1 · Données"]
+        A1["Robomimic HDF5<br/>Lift · Can · PushT"]
+        A2["rosbags ROS 2 mcap<br/>robot réel, 79 ép."]
+        A1 --> C["Format LeRobot<br/>parquet + vidéo"]
+        A2 --> C
+    end
+
+    subgraph S2["2 · Entraînement"]
+        C --> D["Diffusion Policy<br/>ResNet18/34 + U-Net 1D"]
+        D --> E["EMA · LR constant<br/>cooldown · SWA"]
+    end
+
+    subgraph S3["3 · Évaluation"]
+        E --> F["Rollouts robosuite<br/>500 états figés"]
+        F --> G["Wilson · McNemar<br/>comparaisons appariées"]
+    end
+
+    subgraph S4["4 · Déploiement"]
+        G --> H["Nœud ROS 2<br/>inférence CPU"]
+        H --> I["Bras 5 axes + pince<br/>368 ms / budget 530 ms"]
+    end
+
+    G -. "le succès mesuré décide,<br/>pas la val-loss" .-> D
+```
+
+Le point important est la **boucle 3 → 2** : aucun modèle n'est retenu sur sa loss de
+validation. Le juge est le taux de réussite en rollouts, parce que les deux ne sont pas
+corrélés — [c'est la leçon de la phase PushT](docs/METHODOLOGIE.md).
 
 ---
 
