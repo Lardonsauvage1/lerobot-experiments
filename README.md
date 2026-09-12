@@ -108,29 +108,13 @@ Intel Arc (XPU)
 
 ```mermaid
 flowchart LR
-    subgraph S1["1 · Données"]
-        A1["Robomimic HDF5<br/>Lift · Can · PushT"]
-        A2["rosbags ROS 2 mcap<br/>robot réel, 79 ép."]
-        A1 --> C["Format LeRobot<br/>parquet + vidéo"]
-        A2 --> C
-    end
+    A["<b>1 · Données</b><br/>Robomimic HDF5<br/>rosbags ROS 2 mcap<br/>→ format LeRobot"]
+    B["<b>2 · Entraînement</b><br/>Diffusion Policy<br/>ResNet18/34 + U-Net 1D<br/>EMA · LR constant · SWA"]
+    C["<b>3 · Évaluation</b><br/>rollouts robosuite<br/>500 états figés<br/>Wilson · McNemar"]
+    D["<b>4 · Déploiement</b><br/>nœud ROS 2, CPU<br/>bras 5 axes + pince<br/>368 ms / budget 530 ms"]
 
-    subgraph S2["2 · Entraînement"]
-        C --> D["Diffusion Policy<br/>ResNet18/34 + U-Net 1D"]
-        D --> E["EMA · LR constant<br/>cooldown · SWA"]
-    end
-
-    subgraph S3["3 · Évaluation"]
-        E --> F["Rollouts robosuite<br/>500 états figés"]
-        F --> G["Wilson · McNemar<br/>comparaisons appariées"]
-    end
-
-    subgraph S4["4 · Déploiement"]
-        G --> H["Nœud ROS 2<br/>inférence CPU"]
-        H --> I["Bras 5 axes + pince<br/>368 ms / budget 530 ms"]
-    end
-
-    G -. "le succès mesuré décide,<br/>pas la val-loss" .-> D
+    A --> B --> C --> D
+    C -. "le juge, c'est le succès mesuré —<br/>pas la val-loss" .-> B
 ```
 
 Le point important est la **boucle 3 → 2** : aucun modèle n'est retenu sur sa loss de
