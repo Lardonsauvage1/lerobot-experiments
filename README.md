@@ -9,10 +9,24 @@ des tâches simulées jusqu'à un bras 5 axes physique.
      Idéal = 3 vidéos côte à côte (simulation / robot réel / échec analysé).
      Il manque une vidéo du ROBOT RÉEL — à filmer et déposer dans docs/assets/. -->
 
-| Simulation — saisie réussie | Effet d'une occlusion | Échec analysé image par image |
+| Robomimic Can — saisie réussie | Même départ, avec et sans occlusion | Échec analysé image par image |
 |:---:|:---:|:---:|
 | ![](docs/assets/demo_can_reussite.gif) | ![](docs/assets/demo_occlusion_comparee.gif) | ![](docs/assets/demo_echec_prehension.gif) |
-| Robomimic Can, vision pure | même départ, avec et sans occlusion | la pince se referme 4 cm trop haut |
+| vision pure, sans coordonnées de l'objet | à gauche il réussit, à droite il part à vide | la pince se referme 4 cm trop haut |
+
+---
+
+## Les tâches, du plus simple au plus dur
+
+| PushT (2D) | Robomimic Can — 1 caméra | Robomimic Can — 2 caméras |
+|:---:|:---:|:---:|
+| ![](docs/assets/demo_pusht.gif) | ![](docs/assets/demo_can_monocam.gif) | ![](docs/assets/demo_can_bicam.gif) |
+| pousser un T sur une cible | agentview seule — **70,4 %** | + vue de dessus — **74,8 %** |
+| *là où j'ai découvert que la loss ment* | *bras Panda 7 axes, 500 rollouts* | *les deux vues que voit le réseau* |
+
+<!-- TROU 1b : il manque un GIF de **Lift** (la tâche résolue à 100 %).
+     Aucun checkpoint ni vidéo Lift n'a survécu aux purges de disque — il faudrait
+     réentraîner un modèle (~1 h) puis filmer un rollout avec le harnais d'éval. -->
 
 ---
 
