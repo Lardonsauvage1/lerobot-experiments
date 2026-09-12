@@ -1,80 +1,107 @@
-# lerobot-experiments
+# Apprendre à un bras robotique à saisir un objet
 
-Projet d'apprentissage de l'**imitation learning** pour le contrôle robotique : on teste plusieurs approches (MLP, RNN, Transformer, **Diffusion Policy**) sur des tâches publiques, en mesurant et comparant, avant de viser un bras 5 axes + pince custom.
+**De la simulation au matériel réel — en mesurant chaque étape.**
 
-> ⚠️ **Projet pédagogique.** L'objectif est de **comprendre** (essayer, comparer, mesurer), pas la performance brute. La doc raconte donc le *raisonnement*, pas juste les résultats.
+Projet mené seul sur 5 mois : ~45 000 lignes de Python, 186 modèles entraînés,
+des tâches simulées jusqu'à un bras 5 axes physique.
 
-## Le parcours en un coup d'œil
+<!-- TROU 1 : bandeau d'accroche.
+     Idéal = 3 vidéos côte à côte (simulation / robot réel / échec analysé).
+     Il manque une vidéo du ROBOT RÉEL — à filmer et déposer dans docs/assets/. -->
 
-| Phase | Tâche | Meilleur résultat | Leçon clé |
-|---|---|---|---|
-| **1-2** | PushT (cube 2D à pousser) | 46.5 % coverage | La **formulation de la sortie** compte plus que les features (la classification discrète rattrape « image+position ») ; **loss basse ≠ bonne perf**. → [`docs/PUSHT.md`](docs/PUSHT.md) |
-| **3** | Robomimic Lift (bras Panda 7-DoF) | **100 % succès** (Diffusion Policy) | **Diffusion Policy ≫ behavior cloning** sur le multimodal (100 % vs 70 %) ; sans image → 0 %. → [`docs/LIFT.md`](docs/LIFT.md) |
-| **4** | Compression & limites du modèle | **~99 % à ÷160 params / ÷21 latence**, et **~20 démos suffisent** | U-Net surdimensionné ×160 ; ResNet18 → mini-CNN 0.03 M ; Lift peu gourmand (≥20 démos) ; à données rares un **gros U-Net sur-apprend** (grille 500 rollouts, IC95 Wilson). → [`docs/COMPRESSION.md`](docs/COMPRESSION.md) |
-| **5 v1** 🗄️ | Robomimic Can (pick-and-place) | *archivée — phase inachevée* | **Tâche plus dure** : démarrée avec coords objet, pivot mid-phase vers vision pure, méthodo finalement remise en cause (runs sous-entraînés à 10k, val_loss bruité). Résultats valent comme bornes inférieures + observations qualitatives. → [`docs/CAN_archive.md`](docs/CAN_archive.md) |
-| **5 v2** | Robomimic Can — **vision pure** (sans coords objet) | **94,8 %@500** (ResNet34 + gros U-Net, 61 M) | Le plafond ~75 % venait de la **capacité**, pas de la vision pure : **vision (R18→R34) et décodeur (gros U-Net) paient et se cumulent**. + **méthodologie** (mesurer juste) et **temps d'entraînement** calibré. → [`docs/CAN.md`](docs/CAN.md), [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md) |
+| Simulation — saisie réussie | Effet d'une occlusion | Échec analysé image par image |
+|:---:|:---:|:---:|
+| ![](docs/assets/demo_can_reussite.gif) | ![](docs/assets/demo_occlusion_comparee.gif) | ![](docs/assets/demo_echec_prehension.gif) |
+| Robomimic Can, vision pure | même départ, avec et sans occlusion | la pince se referme 4 cm trop haut |
 
-## Résultats phares
+---
 
-- **Lift résolu à 100 %** avec une Diffusion Policy entraînée sur 150 démos (run 46/47).
-- **Compression** : ÷160 params et ÷21 latence **sans perte de succès** —
+## Ce que j'ai construit
 
-  | | Modèle | Params | Latence/décision | Succès |
-  |---|---|---|---|---|
-  | Départ | baseline + ResNet18 @ 10 pas | 263.7 M | 938 ms | 100 % (50 ép.) |
-  | **Final** | `[32,64,128]` + mini-CNN @ 4 pas | **1.65 M** | **43.7 ms** | **98.6 %** (500 rollouts) |
+**Un pipeline complet, de la donnée au robot.** Conversion de démonstrations
+(HDF5 Robomimic et rosbags ROS 2 `mcap`) vers le format LeRobot, entraînement de
+Diffusion Policies, évaluation par rollouts en simulation, déploiement sur un bras réel
+via un nœud ROS 2.
 
-  Le modèle final est **à égalité statistique** avec des U-Nets 3–10× plus gros (grille 500 rollouts, IC95 Wilson). Tableaux complets : [`docs/COMPRESSION.md`](docs/COMPRESSION.md) (grille données × U-Net) + [`results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](results/runs/lift/51_unet_sweep_eval/SUMMARY.md) (sweep + latence).
-- Méthode : protocole d'éval propre (train 150 / val 50 figé, métriques continues), **éval finale à 500 rollouts appariés + IC95 de Wilson** (le succès sur 50 ép. était dans le bruit à ±7 pts), env recréé par tranche (anti-dégradation renderer).
-- **Méthodologie (Can) — la loss ment, seul le gradient est honnête.** En fin d'entraînement la `val_loss` *complète* **décolle** (monte fortement) — la signature de manuel du surapprentissage — **alors que le succès en tâche ne baisse pas** (il monte même). Donc : la loss est **découplée** du succès et n'en dit rien ; ce n'est **pas** du surapprentissage (mode-averaging d'une tâche multimodale, pas de la mémorisation) ; et **seul le `grad_norm`** marque un moment net où le réseau a fini d'apprendre.
+**Un protocole d'évaluation que je peux défendre.** 500 rollouts avec intervalles de
+Wilson, comparaisons appariées par test de McNemar, états initiaux figés, contrôles
+systématiques. Parce qu'une mesure sur 50 épisodes a un intervalle de ±13 points — soit
+plus large que la plupart des écarts qu'on cherche à démontrer.
 
-  ![Méthodologie Can — succès vs val_loss (full) vs learning rate vs grad_norm](results/runs/phase5_methodology/courbes_minicnn_valfull_1k_150k.png)
+**Des résultats négatifs documentés.** Cinq pistes invalidées par la mesure sur le seul
+dernier chantier. C'est la partie du dépôt dont je suis le plus satisfait.
 
-  *Haut-droite : la val_loss full (trait) monte pendant que le succès (haut-gauche) tient/monte. Bas-droite : le grad_norm plafonne ≈ fin d'apprentissage.* Détails : [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md).
+---
 
-## Naviguer dans le repo
+## Quelques chiffres
 
-**📖 Pour comprendre la logique** (récits, à lire dans l'ordre) :
-1. [`docs/PUSHT.md`](docs/PUSHT.md) — PushT : enquête « loss vs performance », la formulation de sortie.
-2. [`docs/LIFT.md`](docs/LIFT.md) — Lift : du behavior cloning raté (0 %) à 100 % en Diffusion Policy (+ les 5 bugs d'eval, le sim-to-real).
-3. [`docs/COMPRESSION.md`](docs/COMPRESSION.md) — compression & limites : taille U-Net, pas de diffusion, vision, et efficacité données.
-4. [`docs/CAN.md`](docs/CAN.md) — Can vision pure : le plafond ~75 % venait de la **capacité** (pas de la vision pure) → **94,8 %@500** en cumulant ResNet34 + gros U-Net, sans coords objet.
-5. [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md) — Can / méthodologie : peut-on faire confiance à nos mesures ? 500 rollouts vs 50, succès non lisse, loss au plancher ≠ convergé, mode-averaging, et **le gradient comme seul signal honnête** de fin d'apprentissage.
-6. [`docs/CAN_archive.md`](docs/CAN_archive.md) — Can v1 archivée (effondrement wrist OOD, décorrélation val/rollout, sous-convergence systémique).
+| | |
+|---|---|
+| Robomimic Lift, Diffusion Policy | **100 %** de réussite |
+| Compression du même modèle | **÷160 paramètres, ÷21 latence**, 98,6 % conservés |
+| Robomimic Can, vision pure (sans coordonnées de l'objet) | **94,8 %** sur 500 rollouts |
+| Robot réel, premier contrôle autonome | **5 réussites sur 14 essais** |
+| Coût mesuré d'une occlusion de la cible | **−16,7 points** (p = 0,002) |
 
-Index complet de la doc : [`docs/README.md`](docs/README.md).
+<!-- TROU 2 : une photo du robot réel avec la pomme. C'est le visuel qui ancre
+     le projet dans le concret — actuellement absent du dépôt. -->
 
-**📊 Résultats détaillés** : `results/runs/<tâche>/<run>/` → `run_info.md` (fiche lisible) + courbes.
-- **Tableau maître de la compression** : [`results/runs/lift/51_unet_sweep_eval/SUMMARY.md`](results/runs/lift/51_unet_sweep_eval/SUMMARY.md).
+---
 
-**🧪 Code** : `experiments/<tâche>/` = scripts numérotés (1 expérience = 1 fichier) · `src/` = bibliothèque commune.
+## Le robot réel
 
-**📁 Le reste** : `results/logs/` (logs des runs) · `notebooks/` (Colab/Kaggle) · `data_cache/` (données, non versionné).
+Bras 5 axes + pince, tâche de préhension d'objet à position variable, dataset construit
+à partir de rosbags ROS 2 (79 épisodes, 24 681 frames, 2 caméras).
 
-## Setup & lancer
+Le modèle déployé est une Diffusion Policy de 263 M de paramètres tournant **sur CPU**,
+avec une latence de 368 ms au banc pour un budget de 530 ms.
 
-```bash
-python -m venv venv312 && source venv312/bin/activate
-pip install -r requirements.txt          # + 'lerobot[pusht]' pour PushT
+**Ce qui marche** : le robot mène la pomme jusqu'à la cible en autonomie.
+**Ce qui reste** : il échoue une fois sur deux, et j'ai passé trois jours à mesurer pourquoi.
 
-# lancer une expérience (mode unbuffered pour suivre en live)
-venv312/bin/python -u experiments/lift/47_phase0_eval.py --checkpoint <ckpt>
-```
+<!-- TROU 3 : vidéo d'un rollout autonome réussi sur le vrai robot.
+     À filmer. C'est probablement le contenu le plus convaincant du portfolio. -->
 
-> **Setup machine** : Mac (M1, analyse/dev) + une box Linux+GPU pour les trainings lourds. Workflow : édit/plan sur Mac → `git push` → `pull` sur la box → exécution → résultats → `pull` sur Mac.
+---
 
-## Structure (compacte)
+## L'enquête qui m'a le plus appris
 
-```
-experiments/<tâche>/   scripts numérotés (pusht/, lift/) + archive/
-src/                   lib commune (lift_data, lift_eval, lift_to_lerobot, tracker, benchmark…)
-results/runs/<tâche>/  fiches + courbes par run (poids/vidéos = locaux, non versionnés)
-results/logs/          logs textuels
-docs/                  récits par phase (PUSHT, LIFT, COMPRESSION, CAN) + index
-notebooks/             Colab/Kaggle
-```
+Le robot perdait l'objet de vue quand son propre bras le masquait. J'ai voulu lui donner
+une mémoire.
 
-## Liens utiles
+J'ai construit un banc reproduisant l'occlusion en simulation, mesuré son coût
+(**−16,7 points**), implémenté deux mécanismes de mémoire tirés de la littérature,
+balayé quatre tailles d'encodeur visuel. **Douze comparaisons, aucune concluante.**
 
-- LeRobot : https://huggingface.co/docs/lerobot · Diffusion Policy (paper) : https://arxiv.org/abs/2303.04137
-- Dataset PushT : https://huggingface.co/datasets/lerobot/pusht · Robomimic : https://robomimic.github.io
+Puis une mesure de contrôle a montré que le vrai goulot était ailleurs : même en
+fournissant au modèle la position exacte de l'objet, **23 % des tentatives échouent à la
+préhension** — la pince se referme 1,8 cm trop haut. Une fois l'objet saisi, tout
+réussit à 95 %.
+
+Le problème n'était pas la mémoire. Il était dans le dernier centimètre.
+
+→ [`docs/recherche/MEMOIRE.md`](docs/recherche/MEMOIRE.md)
+
+---
+
+## Stack
+
+`PyTorch 2.10` · `LeRobot 0.5` · `Diffusion Policy` (U-Net 1D, DDPM/DDIM) ·
+`robosuite` / `robomimic` / `MuJoCo` · `ROS 2 jazzy` · entraînement sur MPS, CUDA et
+Intel Arc (XPU)
+
+<!-- TROU 4 : un schéma d'architecture (donnée → entraînement → déploiement).
+     Utile pour montrer la vue d'ensemble en un coup d'œil. -->
+
+---
+
+## Pour aller plus loin
+
+- [`docs/PARCOURS.md`](docs/PARCOURS.md) — le parcours détaillé phase par phase
+- [`docs/recherche/MEMOIRE.md`](docs/recherche/MEMOIRE.md) — l'enquête mémoire et occlusion
+- [`docs/METHODOLOGIE.md`](docs/METHODOLOGIE.md) — pourquoi la loss ment, et ce qu'il faut mesurer
+- [`docs/COMPRESSION.md`](docs/COMPRESSION.md) — compression et limites du modèle
+- [`docs/README.md`](docs/README.md) — index complet
+
+<!-- TROU 5 : une ligne « qui je suis / ce que je cherche » + contact.
+     Indispensable pour un portfolio de stage, à écrire ensemble. -->
