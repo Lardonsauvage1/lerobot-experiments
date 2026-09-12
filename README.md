@@ -52,7 +52,7 @@ dernier chantier. C'est la partie du dépôt dont je suis le plus satisfait.
 | | |
 |---|---|
 | Robomimic Lift, Diffusion Policy | **100 %** de réussite |
-| Compression du même modèle | **÷160 paramètres, ÷21 latence**, 98,6 % conservés |
+| Compression du même modèle | **÷160 paramètres, ÷21 latence**, 98,6 % conservés<br/><sub>÷9 seulement en vision pure — le facteur 160 tient à une béquille</sub> |
 | Robomimic Can, vision pure (sans coordonnées de l'objet) | **94,8 %** sur 500 rollouts |
 | Robot réel, premier contrôle autonome | **5 réussites sur 14 essais** |
 | Coût mesuré d'une occlusion de la cible | **−16,7 points** (p = 0,002) |
@@ -75,6 +75,70 @@ avec une latence de 368 ms au banc pour un budget de 530 ms.
 
 <!-- TROU 3 : vidéo d'un rollout autonome réussi sur le vrai robot.
      À filmer. C'est probablement le contenu le plus convaincant du portfolio. -->
+
+---
+
+## Pourquoi ce modèle, et pas un autre
+
+Chaque choix d'architecture ci-dessous a été **mesuré**, pas supposé. Les chiffres sont des
+taux de réussite sur rollouts, à états initiaux figés, avec leur intervalle de confiance.
+
+### Une seule caméra fixe — et surtout pas de caméra au poignet
+
+C'est le résultat qui m'a le plus surpris, parce qu'il va contre l'intuition : **ajouter une
+caméra dégrade le modèle.** Deux entraînements identiques, une seule différence — B reçoit en
+plus le flux de la caméra embarquée dans la pince, avec son propre encodeur.
+
+| configuration | A · agentview seule | B · + caméra poignet | écart |
+|---|---:|---:|---:|
+| 96 px, ResNet34, U-Net [128,256,512] | **67,4 %** | 42,0 % | −25,4 |
+| 224 px + augmentation | **72,4 %** | 35,2 % | −37,2 |
+| 84 px, U-Net [512,1024,2048], 196 démos | **96,0 %** | 34,6 % | −61,4 |
+
+<sub>500 rollouts par cellule. Les trois lignes ne sont pas comparables entre elles (résolution,
+capacité et budget diffèrent) ; à l'intérieur d'une ligne, A et B sont appariés.</sub>
+
+La dernière ligne mérite une note d'humilité : ce n'est pas une de mes configurations, c'est la
+**recette standard publiée** pour Diffusion Policy sur Robomimic — 84 px avec crop aléatoire, gros
+U-Net, 196 démonstrations, entraînement long. Elle atteint 96 % là où mes variantes maison
+plafonnaient entre 67 et 81 %. Savoir reproduire la référence avant de l'améliorer m'aurait fait
+gagner plusieurs semaines.
+
+Trois capacités, trois résolutions, toujours le même verdict. Ce n'est donc pas un accident
+d'entraînement ni un manque de capacité. L'hypothèse que je retiens : en approche, le poignet
+ne voit qu'une bouillie de pixels sans repère global, et cette vue domine la décision au
+moment précis où la vue d'ensemble serait utile. Le poignet reste pertinent pour la
+manipulation fine au contact — pas pour aller chercher un objet.
+
+<!-- TROU 6 : un GIF A vs B côte à côte (script prêt : experiments/can/123_video_wristcap_AB.py),
+     à tourner quand la machine est libre. -->
+
+### Un décodeur qu'on ne peut pas rétrécir, un encodeur qu'on peut
+
+La compression ne se joue pas là où on croit. Le U-Net est déroulé dix fois par inférence :
+c'est lui qui fait la latence. Mais c'est aussi lui qui porte la performance.
+
+| ce qu'on réduit | effet mesuré |
+|---|---|
+| U-Net [64,128,256] → [32,64,128] | **−18 points** (p = 0,002), 150 rollouts appariés |
+| U-Net [32,64,128] → [16,32,64] | falaise : **2 %** de réussite |
+| encodeur ResNet18 → mini-CNN 0,03 M | **aucune perte**, entraînement **÷4** plus rapide |
+
+L'encodeur visuel était donc massivement surdimensionné, et le décodeur à peine assez grand.
+C'est l'inverse de ce que j'avais supposé en commençant.
+
+### Plus de points d'intérêt n'aide pas
+
+Le spatial softmax résume l'image en K coordonnées. J'ai balayé K sur le banc d'occlusion :
+
+| K | 32 (baseline) | 64 | 128 | 256 |
+|---|---:|---:|---:|---:|
+| réussite | 56,0 % | 64,7 % | 60,7 % | 53,3 % |
+| p (McNemar) | — | 0,105 | 0,464 | — |
+
+Aucun écart significatif, et la tendance s'inverse au-delà de 64. Sur 150 rollouts appariés,
+**environ 55 épisodes basculent d'un entraînement à l'autre** : tout écart inférieur à 12 points
+est simplement indétectable à cette taille d'échantillon. Savoir cela évite de conclure sur du bruit.
 
 ---
 
