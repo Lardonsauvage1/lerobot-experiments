@@ -1,0 +1,39 @@
+{
+  "n_eval": 500,
+  "steps": 10,
+  "results": [
+    {
+      "name": "wristcap_A_agentview_hicap (cd)",
+      "ckpt": "results/runs/can/wristcap_A_agentview/cooldown/checkpoints/005000/pretrained_model",
+      "cams": [
+        "agentview"
+      ],
+      "n": 500,
+      "n_success": 337,
+      "success_rate": 0.674,
+      "ci95": [
+        0.6317212496204101,
+        0.7136253831308357
+      ],
+      "t_success_median": 109.0,
+      "elapsed_min": 45.041403504212695
+    },
+    {
+      "name": "wristcap_B_wrist_hicap (cd)",
+      "ckpt": "results/runs/can/wristcap_B_wrist/cooldown/checkpoints/005000/pretrained_model",
+      "cams": [
+        "agentview",
+        "robot0_eye_in_hand"
+      ],
+      "n": 500,
+      "n_success": 210,
+      "success_rate": 0.42,
+      "ci95": [
+        0.3775085874060515,
+        0.46371135155889304
+      ],
+      "t_success_median": 99.0,
+      "elapsed_min": 73.53515253067016
+    }
+  ]
+}

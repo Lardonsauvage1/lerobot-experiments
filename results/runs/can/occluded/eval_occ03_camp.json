@@ -1,0 +1,21 @@
+{
+  "tag": "occ03_camp",
+  "ckpt": "results/runs/can/occ03_camp/cooldown/checkpoints/005000/pretrained_model",
+  "radius": 0.03,
+  "camp": "results/runs/can/camp/memory_L64_K32_m32.pt",
+  "n": 150,
+  "n_success": 7,
+  "success_rate": 0.04666666666666667,
+  "ci95": [
+    0.02278625890187786,
+    0.09318757392357377
+  ],
+  "z_cycles_failed": 2.272727272727273,
+  "elapsed_min": 24.711881864070893,
+  "n_episodes_occluded": 59,
+  "recovery_rate": 0.11864406779661017,
+  "occl_fraction_mean": 0.0285653725090071,
+  "n_approaches_mean": 0.48,
+  "z_cycles_mean_failed": 2.272727272727273,
+  "n_approaches_mean_failed": 0.45454545454545453
+}

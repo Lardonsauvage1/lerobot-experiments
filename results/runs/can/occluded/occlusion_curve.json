@@ -1,0 +1,115 @@
+{
+  "ckpt": "results/runs/can/wristcap_A_agentview/cooldown/checkpoints/005000/pretrained_model",
+  "n_eval": 250,
+  "steps": 10,
+  "results": [
+    {
+      "radius": 0.0,
+      "label": "t\u00e9moin (jamais occlus)",
+      "n": 250,
+      "n_success": 172,
+      "success_rate": 0.688,
+      "ci95": [
+        0.6280876301153657,
+        0.7422220433187758
+      ],
+      "t_success_median": 109.0,
+      "elapsed_min": 22.55556035041809,
+      "n_episodes_occluded": 0,
+      "recovery_rate": null,
+      "occl_fraction_mean": 0.0,
+      "n_approaches_mean": 1.008,
+      "n_approaches_mean_failed": 1.0256410256410255
+    },
+    {
+      "radius": 0.01,
+      "label": "1 cm",
+      "n": 250,
+      "n_success": 151,
+      "success_rate": 0.604,
+      "ci95": [
+        0.5422409376574205,
+        0.6626112221146577
+      ],
+      "t_success_median": 110.0,
+      "elapsed_min": 24.361875851949055,
+      "n_episodes_occluded": 149,
+      "recovery_rate": 0.8053691275167785,
+      "occl_fraction_mean": 0.18203286533713559,
+      "n_approaches_mean": 1.056,
+      "n_approaches_mean_failed": 1.1313131313131313
+    },
+    {
+      "radius": 0.02,
+      "label": "2 cm",
+      "n": 250,
+      "n_success": 132,
+      "success_rate": 0.528,
+      "ci95": [
+        0.4661614622155369,
+        0.5889910423384842
+      ],
+      "t_success_median": 110.0,
+      "elapsed_min": 26.27008896668752,
+      "n_episodes_occluded": 211,
+      "recovery_rate": 0.6113744075829384,
+      "occl_fraction_mean": 0.30530023402800127,
+      "n_approaches_mean": 1.016,
+      "n_approaches_mean_failed": 1.0254237288135593
+    },
+    {
+      "radius": 0.03,
+      "label": "3 cm",
+      "n": 250,
+      "n_success": 94,
+      "success_rate": 0.376,
+      "ci95": [
+        0.31825876924195456,
+        0.4374944248759521
+      ],
+      "t_success_median": 111.0,
+      "elapsed_min": 30.605681121349335,
+      "n_episodes_occluded": 234,
+      "recovery_rate": 0.4017094017094017,
+      "occl_fraction_mean": 0.32077412711046305,
+      "n_approaches_mean": 1.016,
+      "n_approaches_mean_failed": 1.0256410256410255
+    },
+    {
+      "radius": 0.04,
+      "label": "4 cm",
+      "n": 250,
+      "n_success": 58,
+      "success_rate": 0.232,
+      "ci95": [
+        0.18396999526506153,
+        0.2881417468607366
+      ],
+      "t_success_median": 112.5,
+      "elapsed_min": 34.50340548356374,
+      "n_episodes_occluded": 244,
+      "recovery_rate": 0.23770491803278687,
+      "occl_fraction_mean": 0.2606942279603486,
+      "n_approaches_mean": 1.076,
+      "n_approaches_mean_failed": 1.0885416666666667
+    },
+    {
+      "radius": 1000000000.0,
+      "label": "jamais visible",
+      "n": 250,
+      "n_success": 3,
+      "success_rate": 0.012,
+      "ci95": [
+        0.004089245839774545,
+        0.034681389075857876
+      ],
+      "t_success_median": 98.0,
+      "elapsed_min": 39.2866317987442,
+      "n_episodes_occluded": 250,
+      "recovery_rate": 0.012,
+      "occl_fraction_mean": 1.0,
+      "n_approaches_mean": 0.164,
+      "n_approaches_mean_failed": 0.15384615384615385
+    }
+  ]
+}

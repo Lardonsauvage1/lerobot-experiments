@@ -1,0 +1,23 @@
+{
+  "tag": "oracle12d",
+  "ckpt": "results/runs/can/atomman/oracle",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 110,
+  "success_rate": 0.7333333333333333,
+  "ci95": [
+    0.6573840257093969,
+    0.7976294426892675
+  ],
+  "z_cycles_failed": 4.625,
+  "can_lifted_frac": 0.7733333333333333,
+  "max_can_z_mean": 1.0232296172394915,
+  "elapsed_min": 15.931783564885457,
+  "n_episodes_occluded": 141,
+  "recovery_rate": 0.7801418439716312,
+  "occl_fraction_mean": 0.24478713173669234,
+  "n_approaches_mean": 0.9866666666666667,
+  "z_cycles_mean_failed": 4.625,
+  "n_approaches_mean_failed": 0.85
+}

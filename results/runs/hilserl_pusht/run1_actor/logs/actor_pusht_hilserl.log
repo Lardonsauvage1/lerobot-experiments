@@ -1,0 +1,1948 @@
+INFO 2026-07-25 15:25:19 rl/actor.py:120 Actor logging initialized, writing to results/runs/hilserl_pusht/run1_actor/logs/actor_pusht_hilserl.log
+INFO 2026-07-25 15:25:19 rl/actor.py:454 [ACTOR] Learner service client created
+INFO 2026-07-25 15:25:19 rl/actor.py:130 [ACTOR] Establishing connection with Learner
+INFO 2026-07-25 15:25:19 rl/actor.py:428 [ACTOR] Send ready message to Learner
+INFO 2026-07-25 15:25:19 rl/actor.py:140 [ACTOR] Connection with Learner established
+INFO 2026-07-25 15:25:19 rl/actor.py:472 [ACTOR] Start receiving parameters from the Learner
+INFO 2026-07-25 15:25:19 rl/actor.py:238 make_env online
+INFO 2026-07-25 15:25:19 ort/utils.py:77 [ACTOR] parameters Starting receiver
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:25:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:25:19 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:25:19 rt/utils.py:107 [ACTOR] parameters Queue updated
+WARNING 2026-07-25 15:25:19 ils/utils.py:72 Using CPU, this will be slow.
+INFO 2026-07-25 15:25:19 rl/actor.py:249 make_policy
+WARNING 2026-07-25 15:25:19 /factory.py:460 You are instantiating a policy from scratch and its features are parsed from an environment rather than a dataset. Normalization modules inside the policy will have infinite values by default without stats from a dataset.
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 connect_tcp.started host='huggingface.co' port=443 local_address=None timeout=10 socket_options=None
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x355ad1670>
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 start_tls.started ssl_context=<ssl.SSLContext object at 0x355b1ddd0> server_hostname='huggingface.co' timeout=10
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x17329c440>
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:25:19 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'242'), (b'Connection', b'keep-alive'), (b'Date', b'Sat, 25 Jul 2026 13:25:20 GMT'), (b'Location', b'/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/config.json?%2Fhelper2424%2Fresnet10%2Fresolve%2Fmain%2Fconfig.json=&etag=%22661ebcf4aec142f47be95003ad8784697d8d0af2%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a64b940-2e16451a22fe08ae037db3b4;dcfe701e-04e9-434f-8bcb-ff96cf4997c7'), (b'RateLimit', b'"resolvers";r=2999;t=264'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"661ebcf4aec142f47be95003ad8784697d8d0af2"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 5cb605e8100138acccc04f094724133e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'fxwjyTspWkMF5IbccrMbE0dCrEbgMaMw5rzde7f5WQAjetZvNn9oxg==')])
+INFO 2026-07-25 15:25:20 _client.py:1025 HTTP Request: HEAD https://huggingface.co/helper2424/resnet10/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'443'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 24 Jul 2026 14:08:16 GMT'), (b'ETag', b'"661ebcf4aec142f47be95003ad8784697d8d0af2"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a6371d0-75028e101fc79f581a861cba;bf826290-bc1f-4ed7-8e18-3df6642a62d1'), (b'RateLimit', b'"resolvers";r=1011;t=44'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 5cb605e8100138acccc04f094724133e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'VVprlM9kwoNSOvSBviqWxjjkWPw4CeueSBSFUWAuscJWi7NDZfMsww=='), (b'Age', b'83824')])
+INFO 2026-07-25 15:25:20 _client.py:1025 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/config.json "HTTP/1.1 200 OK"
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'266'), (b'Connection', b'keep-alive'), (b'Date', b'Sat, 25 Jul 2026 13:25:20 GMT'), (b'Location', b'/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/configuration_resnet.py?%2Fhelper2424%2Fresnet10%2Fresolve%2Fmain%2Fconfiguration_resnet.py=&etag=%2245462bc579c3395177ea0d4f4cbf1f4cbfee26f6%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a64b940-1b448254257d77eb6c713cb5;cbc59420-177f-4249-a101-3d671c6974ce'), (b'RateLimit', b'"resolvers";r=2998;t=264'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'X-HF-Warning', b'unauthenticated; Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'configuration_resnet.py; filename="configuration_resnet.py";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"45462bc579c3395177ea0d4f4cbf1f4cbfee26f6"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 5cb605e8100138acccc04f094724133e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'F7w-_T86x4BHZf_CJfQy02AntGE7yG7HIBT4At-SEjuKENd563lJnw==')])
+INFO 2026-07-25 15:25:20 _client.py:1025 HTTP Request: HEAD https://huggingface.co/helper2424/resnet10/resolve/main/configuration_resnet.py "HTTP/1.1 307 Temporary Redirect"
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.complete
+WARNING 2026-07-25 15:25:20 ls/_http.py:916 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'3391'), (b'Connection', b'keep-alive'), (b'Date', b'Wed, 22 Jul 2026 08:36:45 GMT'), (b'ETag', b'"45462bc579c3395177ea0d4f4cbf1f4cbfee26f6"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a60811d-01be8b4f11bd12f431acc771;c05e5888-112e-4a9b-a299-2c6062cde680'), (b'RateLimit', b'"resolvers";r=2914;t=179'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'configuration_resnet.py; filename="configuration_resnet.py";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 5cb605e8100138acccc04f094724133e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'gAZmeOSl0uDPLDyN-fN_4TOrcVU8d_pI7oYBuwX8UzHg92eXej094Q=='), (b'Age', b'276515')])
+INFO 2026-07-25 15:25:20 _client.py:1025 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/configuration_resnet.py "HTTP/1.1 200 OK"
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'256'), (b'Connection', b'keep-alive'), (b'Date', b'Sat, 25 Jul 2026 13:25:20 GMT'), (b'Location', b'/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/modeling_resnet.py?%2Fhelper2424%2Fresnet10%2Fresolve%2Fmain%2Fmodeling_resnet.py=&etag=%22812c34b19509122af0867a401e000ba5f01e55a0%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a64b940-3e61e3bb204890df2e7ce6fa;32fc1437-b740-4a97-bbde-b4d23bd56339'), (b'RateLimit', b'"resolvers";r=2997;t=264'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'X-HF-Warning', b'unauthenticated; Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modeling_resnet.py; filename="modeling_resnet.py";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"812c34b19509122af0867a401e000ba5f01e55a0"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 5cb605e8100138acccc04f094724133e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'L2IVmp9n6Q9_XGJGSXp61aUDUDuxcb1bu22qt0O4NGwZcGR7W7-bXw==')])
+INFO 2026-07-25 15:25:20 _client.py:1025 HTTP Request: HEAD https://huggingface.co/helper2424/resnet10/resolve/main/modeling_resnet.py "HTTP/1.1 307 Temporary Redirect"
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'9820'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 24 Jul 2026 14:08:17 GMT'), (b'ETag', b'"812c34b19509122af0867a401e000ba5f01e55a0"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a6371d1-6b7280056e0b5a8412de86cd;664c3694-f4df-4b31-b192-3084881f3445'), (b'RateLimit', b'"resolvers";r=1002;t=43'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modeling_resnet.py; filename="modeling_resnet.py";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 5cb605e8100138acccc04f094724133e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'3G4wuO6E0UWkGXQ6mPRHbMqFn-KAFeKW1rHspWmsg4mfbUaY2k8Zog=='), (b'Age', b'83823')])
+INFO 2026-07-25 15:25:20 _client.py:1025 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/modeling_resnet.py "HTTP/1.1 200 OK"
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:25:20 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:25:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:25:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:25:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:25:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:25:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:25:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:25:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:25:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:25:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:25:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:25:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:25:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+WARNING 2026-07-25 15:27:38 rl/actor.py:728 [ACTOR] Policy FPS 5.5 below required 10 at step 119
+DEBUG 2026-07-25 15:27:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:27:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+WARNING 2026-07-25 15:27:39 rl/actor.py:728 [ACTOR] Policy FPS 6.5 below required 10 at step 120
+DEBUG 2026-07-25 15:27:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:27:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:27:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:27:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:27:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:27:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:27:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:27:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:08 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:08 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:10 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:10 rl/actor.py:637 [ACTOR] Interaction queue is empty
+WARNING 2026-07-25 15:35:11 rl/actor.py:728 [ACTOR] Policy FPS 9.7 below required 10 at step 247
+DEBUG 2026-07-25 15:35:12 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:12 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:14 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:14 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:16 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:16 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:18 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:18 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:20 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:20 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:22 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:22 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:24 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:24 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:26 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:26 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:28 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:28 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:30 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:30 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:32 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:32 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:34 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:34 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:36 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:36 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:38 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:38 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:40 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:40 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:42 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:42 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:44 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:44 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:46 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:46 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:48 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:48 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:50 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:50 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:52 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:52 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:54 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:54 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:56 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:35:56 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:58 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:35:58 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:00 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:00 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:02 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:02 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:04 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:04 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:06 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:06 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:08 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:08 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:10 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:10 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:12 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:12 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:14 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:14 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:16 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:16 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:18 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:18 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:20 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:20 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:22 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:22 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:24 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:24 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:26 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:26 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:28 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:28 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:30 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:30 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:32 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:32 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:34 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:34 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:36 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:36 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:38 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:38 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:40 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:40 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:42 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:42 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:44 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:44 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:46 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:46 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:48 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:48 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:50 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:50 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:52 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:52 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:54 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:54 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:56 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:56 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:36:58 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:36:58 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:00 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:00 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:02 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:02 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:04 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:04 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:06 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:06 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:08 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:08 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:10 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:10 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:12 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:12 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:14 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:14 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:16 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:16 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:18 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:18 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:20 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:20 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:22 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:22 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:24 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:24 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:26 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:26 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:28 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:28 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:30 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:30 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:32 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:32 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:34 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:34 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:36 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:36 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:38 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:38 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:40 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:40 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:42 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:42 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:44 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:44 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:46 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:46 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:48 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:48 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:50 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:50 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:52 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:52 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:54 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:54 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:56 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:56 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:37:58 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:37:58 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:00 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:00 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:02 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:02 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:04 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:04 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:06 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:06 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:08 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:08 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:10 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:10 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:12 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:12 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:14 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:14 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:16 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:16 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:18 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:18 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:20 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:20 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:22 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:22 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:24 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:24 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:26 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:26 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:28 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:28 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:30 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:30 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:32 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:32 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:34 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:34 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:36 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:36 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:38 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:38 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:40 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:40 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:42 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:42 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:44 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:44 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:46 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:46 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:48 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:48 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:50 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:50 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:52 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:52 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:54 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:54 rl/actor.py:637 [ACTOR] Interaction queue is empty
+INFO 2026-07-25 15:38:55 rl/actor.py:352 [ACTOR] Global step 499: Episode reward: 0.0
+INFO 2026-07-25 15:38:55 rl/actor.py:655 [ACTOR] Load new parameters from Learner.
+DEBUG 2026-07-25 15:38:55 rl/actor.py:717 [ACTOR] Average policy frame rate: 112.0484270517226
+DEBUG 2026-07-25 15:38:55 rl/actor.py:718 [ACTOR] Policy frame rate 90th percentile: 92.63018951459374
+DEBUG 2026-07-25 15:38:55 ort/utils.py:53 [ACTOR] Send interactions Buffer size 0.00018310546875 MB with
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send interactions Sent 192/192 bytes with state 3
+DEBUG 2026-07-25 15:38:55 ort/utils.py:70 [ACTOR] Send interactions Published 0.00018310546875 MB
+DEBUG 2026-07-25 15:38:55 ort/utils.py:53 [ACTOR] Send transitions Buffer size 53.38855457305908 MB with
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 2097152/55981957 bytes with state 1
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 4194304/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 6291456/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 8388608/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 10485760/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 12582912/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 14680064/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 16777216/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 18874368/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 20971520/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 23068672/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 25165824/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 27262976/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 29360128/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 31457280/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 33554432/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 35651584/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 37748736/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 39845888/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 41943040/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 44040192/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 46137344/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 48234496/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 50331648/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 52428800/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 54525952/55981957 bytes with state 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:68 [ACTOR] Send transitions Sent 55981957/55981957 bytes with state 3
+DEBUG 2026-07-25 15:38:55 ort/utils.py:70 [ACTOR] Send transitions Published 53.38855457305908 MB
+DEBUG 2026-07-25 15:38:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:38:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:38:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:39:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:13 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:39:13 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:39:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:39:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:29 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:39:29 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:39:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:39:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:39:46 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:39:46 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:39:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:49 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:49 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:39:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:39:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:40:03 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:03 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:40:03 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:40:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:40:19 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:19 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:40:19 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:40:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:40:35 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:35 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:40:35 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:40:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:49 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:49 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:40:52 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:40:52 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:40:52 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:40:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:40:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:40:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:41:08 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:08 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:41:08 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:41:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:41:24 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:24 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:41:24 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:41:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:41:39 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:39 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:41:39 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:41:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:49 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:49 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:41:54 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:41:54 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:41:54 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:41:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:41:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:41:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:42:10 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:10 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:42:10 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:42:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:42:25 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:25 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:42:25 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:42:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:42:41 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:41 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:42:41 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:42:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:49 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:49 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:42:57 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:42:57 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:42:57 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:42:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:42:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:42:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:43:12 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:12 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:43:12 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:43:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:43:28 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:28 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:43:28 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:43:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:43:43 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:43 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:43:43 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:43:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:49 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:49 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:43:58 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:43:58 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:43:58 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:43:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:43:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:44:13 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:13 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:44:13 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:44:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:44:29 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:29 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:44:29 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:44:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:44:44 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:44 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:44:44 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:44:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:49 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:49 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:44:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:44:59 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:44:59 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:44:59 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:45:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:45:15 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:15 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:45:15 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:45:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:45:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:30 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:45:30 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:45:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:45:45 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:45:45 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:45:45 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:45:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:49 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:49 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:45:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:45:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:46:00 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:00 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:46:00 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:46:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:46:16 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:16 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:46:16 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:46:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:46:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:46:31 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:31 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:46:31 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:46:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:46:46 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:46:46 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:46:46 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:46:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:49 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:49 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:46:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:46:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:47:01 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:01 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:47:01 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:47:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:47:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:47:17 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:17 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:47:17 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:47:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:47:33 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:33 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:47:33 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:47:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+INFO 2026-07-25 15:47:48 rl/actor.py:352 [ACTOR] Global step 999: Episode reward: 0.0
+INFO 2026-07-25 15:47:48 rl/actor.py:655 [ACTOR] Load new parameters from Learner.
+DEBUG 2026-07-25 15:47:49 rl/actor.py:717 [ACTOR] Average policy frame rate: 87.73617990679018
+DEBUG 2026-07-25 15:47:49 rl/actor.py:718 [ACTOR] Policy frame rate 90th percentile: 74.13443580714922
+DEBUG 2026-07-25 15:47:49 ort/utils.py:53 [ACTOR] Send interactions Buffer size 0.00018310546875 MB with
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send interactions Sent 192/192 bytes with state 3
+DEBUG 2026-07-25 15:47:49 ort/utils.py:70 [ACTOR] Send interactions Published 0.00018310546875 MB
+DEBUG 2026-07-25 15:47:49 ort/utils.py:53 [ACTOR] Send transitions Buffer size 53.38855457305908 MB with
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 2097152/55981957 bytes with state 1
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 4194304/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 6291456/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 8388608/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 10485760/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 12582912/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 14680064/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 16777216/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 18874368/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 20971520/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 23068672/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 25165824/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 27262976/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 29360128/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 31457280/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 33554432/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 35651584/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 37748736/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 39845888/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 41943040/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 44040192/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 46137344/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 48234496/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 50331648/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 52428800/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 54525952/55981957 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [ACTOR] Send transitions Sent 55981957/55981957 bytes with state 3
+DEBUG 2026-07-25 15:47:49 ort/utils.py:70 [ACTOR] Send transitions Published 53.38855457305908 MB
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:47:49 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:47:51 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:51 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:53 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:53 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:55 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:55 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:57 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:57 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:47:59 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:47:59 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:01 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:01 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:03 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:03 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:05 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:05 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:48:06 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:06 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:48:06 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:48:07 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:07 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:09 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:09 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:11 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:11 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:13 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:13 rl/actor.py:618 [ACTOR] Transition queue is empty
+WARNING 2026-07-25 15:48:13 rl/actor.py:728 [ACTOR] Policy FPS 6.0 below required 10 at step 1023
+DEBUG 2026-07-25 15:48:15 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:15 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:17 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:17 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:19 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:19 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:21 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:21 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:23 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:23 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:25 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:25 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:27 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:27 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:29 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:29 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:48:30 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:30 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:48:30 rt/utils.py:107 [ACTOR] parameters Queue updated
+DEBUG 2026-07-25 15:48:31 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:31 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:33 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:33 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:35 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:35 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:37 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:37 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:39 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:39 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:41 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:41 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:43 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:43 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:45 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:45 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:47 rl/actor.py:637 [ACTOR] Interaction queue is empty
+DEBUG 2026-07-25 15:48:47 rl/actor.py:618 [ACTOR] Transition queue is empty
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:88 [ACTOR] parameters Received data at step 0
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 1
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 3
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 4
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 5
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 6
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 7
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 8
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 9
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:93 [ACTOR] parameters Received data at step 10
+DEBUG 2026-07-25 15:48:47 ort/utils.py:79 [ACTOR] parameters Received item
+DEBUG 2026-07-25 15:48:47 ort/utils.py:96 [ACTOR] parameters Received data at step end size 24788856
+DEBUG 2026-07-25 15:48:47 rt/utils.py:107 [ACTOR] parameters Queue updated

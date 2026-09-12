@@ -1,0 +1,23 @@
+{
+  "tag": "oracle12d_clair",
+  "ckpt": "results/runs/can/atomman/oracle",
+  "radius": 0.0,
+  "camp": null,
+  "n": 150,
+  "n_success": 99,
+  "success_rate": 0.66,
+  "ci95": [
+    0.5810413820559243,
+    0.7309678534174459
+  ],
+  "z_cycles_failed": 4.411764705882353,
+  "can_lifted_frac": 0.72,
+  "max_can_z_mean": 1.0077983004529452,
+  "elapsed_min": 57.70446356534958,
+  "n_episodes_occluded": 0,
+  "recovery_rate": null,
+  "occl_fraction_mean": 0.0,
+  "n_approaches_mean": 0.96,
+  "z_cycles_mean_failed": 4.411764705882353,
+  "n_approaches_mean_failed": 0.8823529411764706
+}

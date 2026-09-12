@@ -1,0 +1,51 @@
+{
+  "device": "mps",
+  "n_seeds": 5,
+  "val_episodes": [
+    40,
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "deployable cooldown5k@2000": {
+      "path": "results/runs/real/apple_joint_224_r34/cooldown_002000/checkpoints/005000/pretrained_model",
+      "val_loss": 0.01683639453835291,
+      "std": 0.0007522825567437498
+    },
+    "cooldown5k@12000 brut": {
+      "path": "results/runs/real/apple_joint_224_r34/cooldown_012000/checkpoints/005000/pretrained_model",
+      "val_loss": 0.010687314868138164,
+      "std": 0.0005539733454727854
+    },
+    "cooldown5k@12000 EMA": {
+      "path": "results/runs/real/apple_joint_224_r34/cooldown_012000_ema/checkpoints/005000/pretrained_model",
+      "val_loss": 0.01362402812779708,
+      "std": 0.0006418681641152712
+    }
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "name": "cooldown5k@12000 brut",
+      "val_loss": 0.010687314868138164,
+      "std": 0.0005539733454727854
+    },
+    {
+      "rank": 2,
+      "name": "cooldown5k@12000 EMA",
+      "val_loss": 0.01362402812779708,
+      "std": 0.0006418681641152712
+    },
+    {
+      "rank": 3,
+      "name": "deployable cooldown5k@2000",
+      "val_loss": 0.01683639453835291,
+      "std": 0.0007522825567437498
+    }
+  ],
+  "deployable": "cooldown5k@12000 brut",
+  "deployable_path": "results/runs/real/apple_joint_224_r34/cooldown_012000/checkpoints/005000/pretrained_model"
+}

@@ -1,0 +1,21 @@
+{
+  "tag": "SANITY_temoin",
+  "ckpt": "results/runs/can/wristcap_A_agentview/cooldown/checkpoints/005000/pretrained_model",
+  "radius": 0.03,
+  "camp": null,
+  "n": 20,
+  "n_success": 5,
+  "success_rate": 0.25,
+  "ci95": [
+    0.11186005278940309,
+    0.4687050099580636
+  ],
+  "z_cycles_failed": 4.133333333333334,
+  "elapsed_min": 5.843379779656728,
+  "n_episodes_occluded": 18,
+  "recovery_rate": 0.2777777777777778,
+  "occl_fraction_mean": 0.14116834752221522,
+  "n_approaches_mean": 1.05,
+  "z_cycles_mean_failed": 4.133333333333334,
+  "n_approaches_mean_failed": 1.0666666666666667
+}

@@ -1,0 +1,21 @@
+{
+  "tag": "SANITY_brasA_sans_occlusion",
+  "ckpt": "results/runs/can/occ03_baseline/cooldown/checkpoints/005000/pretrained_model",
+  "radius": 0.0,
+  "camp": null,
+  "n": 30,
+  "n_success": 0,
+  "success_rate": 0.0,
+  "ci95": [
+    -1.3877787807814457e-17,
+    0.113517091390478
+  ],
+  "z_cycles_failed": 3.566666666666667,
+  "elapsed_min": 10.17562118768692,
+  "n_episodes_occluded": 0,
+  "recovery_rate": null,
+  "occl_fraction_mean": 0.0,
+  "n_approaches_mean": 0.1,
+  "z_cycles_mean_failed": 3.566666666666667,
+  "n_approaches_mean_failed": 0.1
+}

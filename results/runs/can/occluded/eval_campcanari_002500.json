@@ -1,0 +1,23 @@
+{
+  "tag": "campcanari_002500",
+  "ckpt": "results/runs/can/b3_camp/checkpoints/002500/pretrained_model",
+  "radius": 0.0,
+  "camp": "results/runs/can/camp/memory_L64_K32_m32.pt",
+  "n": 30,
+  "n_success": 1,
+  "success_rate": 0.03333333333333333,
+  "ci95": [
+    0.0059084379948573795,
+    0.16670751396958874
+  ],
+  "z_cycles_failed": 3.2413793103448274,
+  "can_lifted_frac": 0.06666666666666667,
+  "max_can_z_mean": 0.8772397850619622,
+  "elapsed_min": 11.966700597604115,
+  "n_episodes_occluded": 0,
+  "recovery_rate": null,
+  "occl_fraction_mean": 0.0,
+  "n_approaches_mean": 0.2,
+  "z_cycles_mean_failed": 3.2413793103448274,
+  "n_approaches_mean_failed": 0.1724137931034483
+}

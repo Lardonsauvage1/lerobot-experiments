@@ -1,0 +1,21 @@
+{
+  "tag": "ctrl_clair",
+  "ckpt": "results/runs/can/ctrl_clair/cooldown/checkpoints/005000/pretrained_model",
+  "radius": 0.0,
+  "camp": null,
+  "n": 150,
+  "n_success": 4,
+  "success_rate": 0.02666666666666667,
+  "ci95": [
+    0.010417772291104764,
+    0.06655490610017561
+  ],
+  "z_cycles_failed": 3.3904109589041096,
+  "elapsed_min": 23.236641029516857,
+  "n_episodes_occluded": 0,
+  "recovery_rate": null,
+  "occl_fraction_mean": 0.0,
+  "n_approaches_mean": 0.14666666666666667,
+  "z_cycles_mean_failed": 3.3904109589041096,
+  "n_approaches_mean_failed": 0.1232876712328767
+}

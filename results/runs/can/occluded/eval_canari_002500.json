@@ -1,0 +1,23 @@
+{
+  "tag": "canari_002500",
+  "ckpt": "results/runs/can/b3_baseline/checkpoints/002500/pretrained_model",
+  "radius": 0.0,
+  "camp": null,
+  "n": 30,
+  "n_success": 0,
+  "success_rate": 0.0,
+  "ci95": [
+    -1.3877787807814457e-17,
+    0.113517091390478
+  ],
+  "z_cycles_failed": 3.4,
+  "can_lifted_frac": 0.0,
+  "max_can_z_mean": 0.860921855381265,
+  "elapsed_min": 9.18947327931722,
+  "n_episodes_occluded": 0,
+  "recovery_rate": null,
+  "occl_fraction_mean": 0.0,
+  "n_approaches_mean": 0.2,
+  "z_cycles_mean_failed": 3.4,
+  "n_approaches_mean_failed": 0.2
+}

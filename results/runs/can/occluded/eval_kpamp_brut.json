@@ -1,0 +1,23 @@
+{
+  "tag": "kpamp_brut",
+  "ckpt": "results/runs/can/atomman/kpamp",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 82,
+  "success_rate": 0.5466666666666666,
+  "ci95": [
+    0.46682631163294025,
+    0.6241763820467925
+  ],
+  "z_cycles_failed": 4.514705882352941,
+  "can_lifted_frac": 0.58,
+  "max_can_z_mean": 0.9848485836740546,
+  "elapsed_min": 18.670922168095906,
+  "n_episodes_occluded": 127,
+  "recovery_rate": 0.6456692913385826,
+  "occl_fraction_mean": 0.19510810714916482,
+  "n_approaches_mean": 0.96,
+  "z_cycles_mean_failed": 4.514705882352941,
+  "n_approaches_mean_failed": 0.9117647058823529
+}

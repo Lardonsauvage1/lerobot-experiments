@@ -1,0 +1,57 @@
+[
+  {
+    "tag": "01",
+    "n_paires": 250,
+    "perdus": 49,
+    "gagn\u00e9s": 33,
+    "inchang\u00e9s": 168,
+    "p_mcnemar": 0.09703091129729906,
+    "perdus_occlus": 15,
+    "n_expos\u00e9s": 109,
+    "survie_expos\u00e9s": 0.8623853211009175
+  },
+  {
+    "tag": "02",
+    "n_paires": 250,
+    "perdus": 68,
+    "gagn\u00e9s": 33,
+    "inchang\u00e9s": 149,
+    "p_mcnemar": 0.0006412485021695937,
+    "perdus_occlus": 52,
+    "n_expos\u00e9s": 149,
+    "survie_expos\u00e9s": 0.6510067114093959
+  },
+  {
+    "tag": "03",
+    "n_paires": 250,
+    "perdus": 94,
+    "gagn\u00e9s": 21,
+    "inchang\u00e9s": 135,
+    "p_mcnemar": 3.240204200619262e-12,
+    "perdus_occlus": 89,
+    "n_expos\u00e9s": 162,
+    "survie_expos\u00e9s": 0.4506172839506173
+  },
+  {
+    "tag": "04",
+    "n_paires": 250,
+    "perdus": 132,
+    "gagn\u00e9s": 23,
+    "inchang\u00e9s": 95,
+    "p_mcnemar": 8.752471259021746e-20,
+    "perdus_occlus": 128,
+    "n_expos\u00e9s": 163,
+    "survie_expos\u00e9s": 0.2147239263803681
+  },
+  {
+    "tag": "inf",
+    "n_paires": 250,
+    "perdus": 166,
+    "gagn\u00e9s": 2,
+    "inchang\u00e9s": 82,
+    "p_mcnemar": 7.58904811783578e-47,
+    "perdus_occlus": 166,
+    "n_expos\u00e9s": 167,
+    "survie_expos\u00e9s": 0.005988023952095809
+  }
+]

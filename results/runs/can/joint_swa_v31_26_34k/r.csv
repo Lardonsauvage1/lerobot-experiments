@@ -1,0 +1,2 @@
+step,n_success,n,success_rate,ci95_low,ci95_high,elapsed_sec
+0,32,50,0.64,0.5014076201030195,0.7586143703281711,669.7365958690643

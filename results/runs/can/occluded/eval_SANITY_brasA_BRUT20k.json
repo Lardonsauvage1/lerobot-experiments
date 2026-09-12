@@ -1,0 +1,21 @@
+{
+  "tag": "SANITY_brasA_BRUT20k",
+  "ckpt": "results/runs/can/occ03_baseline/checkpoints/020000/pretrained_model",
+  "radius": 0.0,
+  "camp": null,
+  "n": 30,
+  "n_success": 1,
+  "success_rate": 0.03333333333333333,
+  "ci95": [
+    0.0059084379948573795,
+    0.16670751396958874
+  ],
+  "z_cycles_failed": 3.689655172413793,
+  "elapsed_min": 10.343152848879496,
+  "n_episodes_occluded": 0,
+  "recovery_rate": null,
+  "occl_fraction_mean": 0.0,
+  "n_approaches_mean": 0.1,
+  "z_cycles_mean_failed": 3.689655172413793,
+  "n_approaches_mean_failed": 0.06896551724137931
+}

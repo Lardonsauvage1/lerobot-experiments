@@ -1,0 +1,1431 @@
+INFO 2026-07-25 15:24:29 /learner.py:150 Learner logging initialized, writing to results/runs/hilserl_pusht/run1/logs/learner_pusht_hilserl.log
+INFO 2026-07-25 15:24:29 /learner.py:151 {'batch_size': 128,
+ 'checkpoint_path': None,
+ 'cudnn_deterministic': False,
+ 'dataset': {'episodes': None,
+             'image_transforms': {'enable': False,
+                                  'max_num_transforms': 3,
+                                  'random_order': False,
+                                  'tfs': {'affine': {'kwargs': {'degrees': [-5.0,
+                                                                            5.0],
+                                                                'translate': [0.05,
+                                                                              0.05]},
+                                                     'type': 'RandomAffine',
+                                                     'weight': 1.0},
+                                          'brightness': {'kwargs': {'brightness': [0.8,
+                                                                                   1.2]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'contrast': {'kwargs': {'contrast': [0.8,
+                                                                               1.2]},
+                                                       'type': 'ColorJitter',
+                                                       'weight': 1.0},
+                                          'hue': {'kwargs': {'hue': [-0.05,
+                                                                     0.05]},
+                                                  'type': 'ColorJitter',
+                                                  'weight': 1.0},
+                                          'saturation': {'kwargs': {'saturation': [0.5,
+                                                                                   1.5]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'sharpness': {'kwargs': {'sharpness': [0.5,
+                                                                                 1.5]},
+                                                        'type': 'SharpnessJitter',
+                                                        'weight': 1.0}}},
+             'repo_id': 'local/pusht_sparse',
+             'revision': None,
+             'root': 'data_cache/lerobot_pusht_sparse',
+             'streaming': False,
+             'use_imagenet_stats': True,
+             'video_backend': 'torchcodec'},
+ 'env': {'disable_env_checker': True,
+         'features': {'action': {'shape': [2],
+                                 'type': <FeatureType.ACTION: 'ACTION'>},
+                      'agent_pos': {'shape': [2],
+                                    'type': <FeatureType.STATE: 'STATE'>},
+                      'pixels': {'shape': [96, 96, 3],
+                                 'type': <FeatureType.VISUAL: 'VISUAL'>}},
+         'features_map': {'action': 'action',
+                          'agent_pos': 'observation.state',
+                          'pixels': 'observation.image'},
+         'fps': 10,
+         'max_parallel_tasks': 1,
+         'name': 'gym_hil',
+         'processor': {'control_mode': 'gamepad',
+                       'gripper': None,
+                       'image_preprocessing': None,
+                       'inverse_kinematics': None,
+                       'max_gripper_pos': 100.0,
+                       'observation': None,
+                       'reset': None,
+                       'reward_classifier': None},
+         'robot': None,
+         'task': 'PushT-v0',
+         'teleop': None,
+         'type': 'gym_manipulator'},
+ 'eval': {'batch_size': 50, 'n_episodes': 50, 'use_async_envs': False},
+ 'eval_freq': 20000,
+ 'job_name': 'pusht_hilserl',
+ 'log_freq': 200,
+ 'num_workers': 4,
+ 'optimizer': {'grad_clip_norm': 10.0,
+               'lr': 0.001,
+               'optimizer_groups': {'actor': {'lr': 0.0003},
+                                    'critic': {'lr': 0.0003},
+                                    'temperature': {'lr': 0.0003}},
+               'type': 'multi_adam',
+               'weight_decay': 0.0},
+ 'output_dir': 'results/runs/hilserl_pusht/run1',
+ 'peft': None,
+ 'policy': {'actor_learner_config': {'learner_host': '127.0.0.1',
+                                     'learner_port': 50051,
+                                     'policy_parameters_push_frequency': 4,
+                                     'queue_get_timeout': 2.0},
+            'actor_lr': 0.0003,
+            'actor_network_kwargs': {'activate_final': True,
+                                     'hidden_dims': [256, 256]},
+            'async_prefetch': False,
+            'concurrency': {'actor': 'threads', 'learner': 'threads'},
+            'critic_lr': 0.0003,
+            'critic_network_kwargs': {'activate_final': True,
+                                      'final_activation': None,
+                                      'hidden_dims': [256, 256]},
+            'critic_target_update_weight': 0.005,
+            'dataset_stats': {'action': {'max': [512.0, 512.0],
+                                         'min': [0.0, 0.0]},
+                              'observation.image': {'mean': [0.485,
+                                                             0.456,
+                                                             0.406],
+                                                    'std': [0.229,
+                                                            0.224,
+                                                            0.225]},
+                              'observation.state': {'max': [512.0, 512.0],
+                                                    'min': [0.0, 0.0]}},
+            'device': 'cpu',
+            'discount': 0.99,
+            'discrete_critic_network_kwargs': {'activate_final': True,
+                                               'final_activation': None,
+                                               'hidden_dims': [256, 256]},
+            'freeze_vision_encoder': True,
+            'grad_clip_norm': 40.0,
+            'image_embedding_pooling_dim': 8,
+            'image_encoder_hidden_dim': 32,
+            'input_features': {},
+            'latent_dim': 256,
+            'license': None,
+            'n_obs_steps': 1,
+            'normalization_mapping': {'ACTION': <NormalizationMode.MIN_MAX: 'MIN_MAX'>,
+                                      'ENV': <NormalizationMode.MIN_MAX: 'MIN_MAX'>,
+                                      'STATE': <NormalizationMode.MIN_MAX: 'MIN_MAX'>,
+                                      'VISUAL': <NormalizationMode.MEAN_STD: 'MEAN_STD'>},
+            'num_critics': 10,
+            'num_discrete_actions': None,
+            'num_subsample_critics': 2,
+            'offline_buffer_capacity': 100000,
+            'online_buffer_capacity': 100000,
+            'online_step_before_learning': 500,
+            'online_steps': 1000000,
+            'output_features': {},
+            'policy_kwargs': {'init_final': 0.05,
+                              'std_max': 10.0,
+                              'std_min': 1e-05,
+                              'use_tanh_squash': True},
+            'policy_update_freq': 1,
+            'pretrained_path': None,
+            'private': None,
+            'push_to_hub': False,
+            'repo_id': None,
+            'shared_encoder': True,
+            'state_encoder_hidden_dim': 256,
+            'storage_device': 'cpu',
+            'tags': None,
+            'target_entropy': None,
+            'temperature_init': 1.0,
+            'temperature_lr': 0.0003,
+            'type': 'sac',
+            'use_amp': False,
+            'use_backup_entropy': True,
+            'use_peft': False,
+            'use_torch_compile': False,
+            'utd_ratio': 10,
+            'vision_encoder_name': 'helper2424/resnet10'},
+ 'rabc_epsilon': 1e-06,
+ 'rabc_head_mode': 'sparse',
+ 'rabc_kappa': 0.01,
+ 'rabc_progress_path': None,
+ 'rename_map': {},
+ 'resume': False,
+ 'save_checkpoint': True,
+ 'save_freq': 5000,
+ 'scheduler': None,
+ 'seed': 1,
+ 'steps': 100000,
+ 'tolerance_s': 0.0001,
+ 'use_policy_training_preset': True,
+ 'use_rabc': False,
+ 'wandb': {'disable_artifact': False,
+           'enable': False,
+           'entity': None,
+           'mode': None,
+           'notes': None,
+           'project': 'lerobot',
+           'run_id': None}}
+INFO 2026-07-25 15:24:29 /learner.py:160 Logs will be saved locally.
+WARNING 2026-07-25 15:24:29 ils/utils.py:72 Using CPU, this will be slow.
+INFO 2026-07-25 15:24:29 /learner.py:307 Initializing policy
+WARNING 2026-07-25 15:24:29 /factory.py:460 You are instantiating a policy from scratch and its features are parsed from an environment rather than a dataset. Normalization modules inside the policy will have infinite values by default without stats from a dataset.
+INFO 2026-07-25 15:24:29 /learner.py:666 [LEARNER] gRPC server started
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 connect_tcp.started host='huggingface.co' port=443 local_address=None timeout=10 socket_options=None
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x17ee32240>
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 start_tls.started ssl_context=<ssl.SSLContext object at 0x17ee03150> server_hostname='huggingface.co' timeout=10
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x17ee32150>
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:24:29 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'242'), (b'Connection', b'keep-alive'), (b'Date', b'Sat, 25 Jul 2026 13:24:30 GMT'), (b'Location', b'/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/config.json?%2Fhelper2424%2Fresnet10%2Fresolve%2Fmain%2Fconfig.json=&etag=%22661ebcf4aec142f47be95003ad8784697d8d0af2%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a64b90e-280e6a132c9deb194e09b648;207a8e43-5eea-470a-a8e0-7ddeece92851'), (b'RateLimit', b'"resolvers";r=2992;t=14'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"661ebcf4aec142f47be95003ad8784697d8d0af2"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 c812f87630e842766e842cb048d8c94e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'DlxPvoc58VOydZIIrWX5c5ACEFiZZu-E9Ca-xip4gfKPsVi5_rNhCA==')])
+INFO 2026-07-25 15:24:30 _client.py:1025 HTTP Request: HEAD https://huggingface.co/helper2424/resnet10/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'443'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 24 Jul 2026 14:08:16 GMT'), (b'ETag', b'"661ebcf4aec142f47be95003ad8784697d8d0af2"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a6371d0-75028e101fc79f581a861cba;bf826290-bc1f-4ed7-8e18-3df6642a62d1'), (b'RateLimit', b'"resolvers";r=1011;t=44'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 c812f87630e842766e842cb048d8c94e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'xFWB8WoIpy0sERDhfHW_lNrU-CwU97tlEDaos_AsDPFzKGnPicsV3w=='), (b'Age', b'83774')])
+INFO 2026-07-25 15:24:30 _client.py:1025 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/config.json "HTTP/1.1 200 OK"
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'266'), (b'Connection', b'keep-alive'), (b'Date', b'Sat, 25 Jul 2026 13:24:30 GMT'), (b'Location', b'/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/configuration_resnet.py?%2Fhelper2424%2Fresnet10%2Fresolve%2Fmain%2Fconfiguration_resnet.py=&etag=%2245462bc579c3395177ea0d4f4cbf1f4cbfee26f6%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a64b90e-65a0e5df3e41aec3217085fe;0522fd4c-650f-40f1-bee2-eb679456578c'), (b'RateLimit', b'"resolvers";r=2991;t=14'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'X-HF-Warning', b'unauthenticated; Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'configuration_resnet.py; filename="configuration_resnet.py";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"45462bc579c3395177ea0d4f4cbf1f4cbfee26f6"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 c812f87630e842766e842cb048d8c94e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'GJIMzOfEXGkpqLNu3koxkGUtY6RLnnHw52fvfb6l2uhOVxIKzXb6Xg==')])
+INFO 2026-07-25 15:24:30 _client.py:1025 HTTP Request: HEAD https://huggingface.co/helper2424/resnet10/resolve/main/configuration_resnet.py "HTTP/1.1 307 Temporary Redirect"
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.complete
+WARNING 2026-07-25 15:24:30 ls/_http.py:916 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'3391'), (b'Connection', b'keep-alive'), (b'Date', b'Wed, 22 Jul 2026 08:36:45 GMT'), (b'ETag', b'"45462bc579c3395177ea0d4f4cbf1f4cbfee26f6"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a60811d-01be8b4f11bd12f431acc771;c05e5888-112e-4a9b-a299-2c6062cde680'), (b'RateLimit', b'"resolvers";r=2914;t=179'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'configuration_resnet.py; filename="configuration_resnet.py";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 c812f87630e842766e842cb048d8c94e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'i3iEzZb0e3TkzQ6yqGEmyo-spEv5CRCWRqxFjais0bJdgUe7Jr1-Dw=='), (b'Age', b'276465')])
+INFO 2026-07-25 15:24:30 _client.py:1025 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/configuration_resnet.py "HTTP/1.1 200 OK"
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'256'), (b'Connection', b'keep-alive'), (b'Date', b'Sat, 25 Jul 2026 13:24:30 GMT'), (b'Location', b'/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/modeling_resnet.py?%2Fhelper2424%2Fresnet10%2Fresolve%2Fmain%2Fmodeling_resnet.py=&etag=%22812c34b19509122af0867a401e000ba5f01e55a0%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a64b90e-2fef4cbf55a7cf906ac6aa68;6dbf77f4-b579-4fda-95af-9419d6be49ea'), (b'RateLimit', b'"resolvers";r=2990;t=14'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'X-HF-Warning', b'unauthenticated; Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.'), (b'X-Hub-Cache', b'MISS'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modeling_resnet.py; filename="modeling_resnet.py";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"812c34b19509122af0867a401e000ba5f01e55a0"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 c812f87630e842766e842cb048d8c94e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'wqk7Z-KGqAryIxfqjcGxpiY3_PW9iIUBNu1-vEy36QRU84aa9mEofA==')])
+INFO 2026-07-25 15:24:30 _client.py:1025 HTTP Request: HEAD https://huggingface.co/helper2424/resnet10/resolve/main/modeling_resnet.py "HTTP/1.1 307 Temporary Redirect"
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_headers.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 send_request_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'9820'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 24 Jul 2026 14:08:17 GMT'), (b'ETag', b'"812c34b19509122af0867a401e000ba5f01e55a0"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-6a6371d1-6b7280056e0b5a8412de86cd;664c3694-f4df-4b31-b192-3084881f3445'), (b'RateLimit', b'"resolvers";r=1002;t=43'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'b96bcce6aec60c64ac7f37dd218f826020b98a90'), (b'Accept-Ranges', b'bytes'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'modeling_resnet.py; filename="modeling_resnet.py";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 c812f87630e842766e842cb048d8c94e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'CDG52-P4'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'W6SOcdG92yQhwXWaABBqQvJuMy51A5BYYvfRmbjgqm5ESdOa7LGBqA=='), (b'Age', b'83773')])
+INFO 2026-07-25 15:24:30 _client.py:1025 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/helper2424/resnet10/b96bcce6aec60c64ac7f37dd218f826020b98a90/modeling_resnet.py "HTTP/1.1 200 OK"
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.started request=<Request [b'HEAD']>
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 receive_response_body.complete
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.started
+DEBUG 2026-07-25 15:24:30 re/_trace.py:47 response_closed.complete
+DEBUG 2026-07-25 15:24:30 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+INFO 2026-07-25 15:24:30 /learner.py:925 Output dir: results/runs/hilserl_pusht/run1
+INFO 2026-07-25 15:24:30 /learner.py:926 cfg.env.task='PushT-v0'
+INFO 2026-07-25 15:24:30 /learner.py:927 cfg.policy.online_steps=1000000
+INFO 2026-07-25 15:24:30 /learner.py:928 num_learnable_params=5264921 (5M)
+INFO 2026-07-25 15:24:30 /learner.py:929 num_total_params=10170713 (10M)
+INFO 2026-07-25 15:24:31 /learner.py:992 make_dataset offline buffer
+DEBUG 2026-07-25 15:24:31 ock/_api.py:497 Attempting to acquire lock 14298599632 on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-6e105fedc3e3e4a8_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:500 Lock 14298599632 acquired on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-6e105fedc3e3e4a8_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ns/local.py:383 open file: /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb/dataset_info.json
+DEBUG 2026-07-25 15:24:31 ock/_api.py:537 Attempting to release lock 14298599632 on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-6e105fedc3e3e4a8_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:541 Lock 14298599632 released on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-6e105fedc3e3e4a8_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:497 Attempting to acquire lock 14291718928 on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:500 Lock 14291718928 acquired on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ns/local.py:383 open file: /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb/dataset_info.json
+DEBUG 2026-07-25 15:24:31 ock/_api.py:537 Attempting to release lock 14291718928 on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:541 Lock 14291718928 released on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+INFO 2026-07-25 15:24:31 eo_utils.py:106 Using video codec: libsvtav1
+DEBUG 2026-07-25 15:24:31 ock/_api.py:497 Attempting to acquire lock 14300438864 on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-6e105fedc3e3e4a8_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:500 Lock 14300438864 acquired on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-6e105fedc3e3e4a8_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ns/local.py:383 open file: /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb/dataset_info.json
+DEBUG 2026-07-25 15:24:31 ock/_api.py:537 Attempting to release lock 14300438864 on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-6e105fedc3e3e4a8_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:541 Lock 14300438864 released on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-6e105fedc3e3e4a8_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:497 Attempting to acquire lock 14300440448 on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:500 Lock 14300440448 acquired on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ns/local.py:383 open file: /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb/dataset_info.json
+DEBUG 2026-07-25 15:24:31 ock/_api.py:537 Attempting to release lock 14300440448 on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:541 Lock 14300440448 released on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-6e105fedc3e3e4a8/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:497 Attempting to acquire lock 14300616400 on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-fb5e3774d668207e_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:500 Lock 14300616400 acquired on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-fb5e3774d668207e_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ns/local.py:383 open file: /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-fb5e3774d668207e/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb/dataset_info.json
+DEBUG 2026-07-25 15:24:31 ock/_api.py:537 Attempting to release lock 14300616400 on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-fb5e3774d668207e_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:541 Lock 14300616400 released on /Users/nielsmurawka/.cache/huggingface/datasets/_Users_nielsmurawka_.cache_huggingface_datasets_parquet_default-fb5e3774d668207e_0.0.0_ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:497 Attempting to acquire lock 14300622832 on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-fb5e3774d668207e/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:500 Lock 14300622832 acquired on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-fb5e3774d668207e/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ns/local.py:383 open file: /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-fb5e3774d668207e/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb/dataset_info.json
+DEBUG 2026-07-25 15:24:31 ock/_api.py:537 Attempting to release lock 14300622832 on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-fb5e3774d668207e/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+DEBUG 2026-07-25 15:24:31 ock/_api.py:541 Lock 14300622832 released on /Users/nielsmurawka/.cache/huggingface/datasets/parquet/default-fb5e3774d668207e/0.0.0/ec3958b52035e87929642b609b5a781870321434b151a14fbe8fd5a26ff494bb_builder.lock
+INFO 2026-07-25 15:24:31 learner.py:1002 Convert to a offline replay buffer
+DEBUG 2026-07-25 15:24:31 ns/local.py:383 open file: /Users/nielsmurawka/Documents/VScodeProject/experience_Le/data_cache/lerobot_pusht_sparse/videos/observation.image/chunk-000/file-000.mp4
+INFO 2026-07-25 15:25:04 /learner.py:341 Starting learner thread
+INFO 2026-07-25 15:25:19 r_service.py:90 [LEARNER] Received request to receive transitions from the Actor
+INFO 2026-07-25 15:25:19 ort/utils.py:77 [LEARNER] transitions Starting receiver
+INFO 2026-07-25 15:25:19 _service.py:104 [LEARNER] Received request to receive interactions from the Actor
+INFO 2026-07-25 15:25:19 ort/utils.py:77 [LEARNER] interactions Starting receiver
+INFO 2026-07-25 15:25:19 r_service.py:55 [LEARNER] Received request to stream parameters from the Actor
+INFO 2026-07-25 15:25:19 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:25:19 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:25:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:25:19 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:25:19 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:25:23 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:25:25 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:25:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:25:40 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:25:42 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:27:39 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:27:41 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:27:43 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:27:45 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:27:47 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:08 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:10 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:14 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:16 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:18 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:24 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:26 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:28 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:30 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:32 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:34 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:36 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:40 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:42 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:44 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:46 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:48 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:50 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:52 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:54 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:56 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:35:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:00 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:02 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:04 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:06 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:08 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:10 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:14 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:16 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:18 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:24 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:26 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:28 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:30 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:32 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:34 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:36 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:40 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:42 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:44 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:46 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:48 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:50 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:52 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:54 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:56 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:36:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:00 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:02 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:04 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:06 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:08 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:10 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:14 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:16 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:18 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:24 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:26 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:28 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:30 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:32 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:34 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:36 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:40 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:42 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:44 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:46 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:48 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:50 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:52 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:54 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:56 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:37:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:00 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:02 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:04 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:06 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:08 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:10 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:14 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:16 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:18 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:24 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:26 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:28 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:30 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:32 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:34 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:36 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:40 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:42 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:44 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:46 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:48 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:50 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:52 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:38:54 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] interactions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:96 [LEARNER] interactions Received data at step end size 192
+DEBUG 2026-07-25 15:38:55 rt/utils.py:107 [LEARNER] interactions Queue updated
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:88 [LEARNER] transitions Received data at step 0
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 1
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 2
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 3
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 4
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 5
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 6
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 7
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 8
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 9
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 10
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 11
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 12
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 13
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 14
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 15
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 16
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 17
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 18
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 19
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 20
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 21
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 22
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 23
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 24
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:93 [LEARNER] transitions Received data at step 25
+DEBUG 2026-07-25 15:38:55 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:38:55 ort/utils.py:96 [LEARNER] transitions Received data at step end size 55981957
+DEBUG 2026-07-25 15:38:55 rt/utils.py:107 [LEARNER] transitions Queue updated
+INFO 2026-07-25 15:38:56 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:38:57 ock/_api.py:497 Attempting to acquire lock 16618981136 on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/precompiled_headers/locks/cyruzfd6owgyj5dy2fcipwkgfbhvvvyiak4vr4pk2f62gmsqfgl2.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:500 Lock 16618981136 acquired on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/precompiled_headers/locks/cyruzfd6owgyj5dy2fcipwkgfbhvvvyiak4vr4pk2f62gmsqfgl2.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:537 Attempting to release lock 16618981136 on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/precompiled_headers/locks/cyruzfd6owgyj5dy2fcipwkgfbhvvvyiak4vr4pk2f62gmsqfgl2.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:541 Lock 16618981136 released on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/precompiled_headers/locks/cyruzfd6owgyj5dy2fcipwkgfbhvvvyiak4vr4pk2f62gmsqfgl2.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:497 Attempting to acquire lock 16610027488 on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/locks/c6d5xlobat7f2xncr7g4wjczzoag23pgzr5rdzxfug4otwbddbhg.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:500 Lock 16610027488 acquired on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/locks/c6d5xlobat7f2xncr7g4wjczzoag23pgzr5rdzxfug4otwbddbhg.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:537 Attempting to release lock 16610027488 on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/locks/c6d5xlobat7f2xncr7g4wjczzoag23pgzr5rdzxfug4otwbddbhg.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:541 Lock 16610027488 released on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/locks/c6d5xlobat7f2xncr7g4wjczzoag23pgzr5rdzxfug4otwbddbhg.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:497 Attempting to acquire lock 16610032624 on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/locks/c6d5xlobat7f2xncr7g4wjczzoag23pgzr5rdzxfug4otwbddbhg.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:500 Lock 16610032624 acquired on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/locks/c6d5xlobat7f2xncr7g4wjczzoag23pgzr5rdzxfug4otwbddbhg.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:537 Attempting to release lock 16610032624 on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/locks/c6d5xlobat7f2xncr7g4wjczzoag23pgzr5rdzxfug4otwbddbhg.lock
+DEBUG 2026-07-25 15:38:57 ock/_api.py:541 Lock 16610032624 released on /var/folders/d_/q2twvxj55txc0_3q07hv65zw0000gn/T/torchinductor_nielsmurawka/locks/c6d5xlobat7f2xncr7g4wjczzoag23pgzr5rdzxfug4otwbddbhg.lock
+INFO 2026-07-25 15:38:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:00 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:02 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:04 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:06 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:08 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:10 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:39:13 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:39:13 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:39:13 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:39:13 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:39:13 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.055328708313904296
+INFO 2026-07-25 15:39:17 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:19 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:21 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:23 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:25 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:27 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:39:29 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+INFO 2026-07-25 15:39:29 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:39:29 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:39:29 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:39:29 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:39:29 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06197818948084179
+INFO 2026-07-25 15:39:33 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:35 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:37 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:39 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:41 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:43 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:45 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:39:46 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:39:46 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:39:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:39:46 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:39:46 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:39:46 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06090844385782693
+INFO 2026-07-25 15:39:50 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:52 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:54 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:56 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:39:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:00 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:02 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:40:02 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:40:03 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:03 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:40:03 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:40:03 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:40:03 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.059483212303562516
+INFO 2026-07-25 15:40:07 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:09 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:11 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:13 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:15 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:17 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:19 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:40:19 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:40:19 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:19 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:40:19 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:40:19 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:40:19 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06085036942440905
+INFO 2026-07-25 15:40:23 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:25 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:27 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:29 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:31 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:33 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:35 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:40:35 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:40:35 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:35 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:40:35 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:40:35 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:40:35 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06080001688107367
+INFO 2026-07-25 15:40:39 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:41 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:43 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:45 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:47 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:49 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:51 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:40:52 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:40:52 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:40:52 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:40:52 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:40:52 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:40:52 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.05892775913978731
+INFO 2026-07-25 15:40:56 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:40:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:00 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:02 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:04 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:06 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:41:08 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:41:08 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:08 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:41:08 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:41:08 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:41:08 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.063494256846531
+INFO 2026-07-25 15:41:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:14 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:16 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:18 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:41:23 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:41:24 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:24 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:41:24 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:41:24 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:41:24 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06484963550664985
+INFO 2026-07-25 15:41:28 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:30 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:32 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:34 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:36 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:41:39 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:41:39 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:39 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:41:39 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:41:39 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:41:39 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06419495927222621
+INFO 2026-07-25 15:41:43 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:45 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:47 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:49 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:51 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:41:53 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:41:54 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:41:54 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:41:54 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:41:54 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:41:54 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:41:54 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06523489204277831
+INFO 2026-07-25 15:41:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:00 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:02 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:04 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:06 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:08 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:42:10 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:42:10 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:10 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:42:10 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:42:10 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:42:10 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06560979871742004
+INFO 2026-07-25 15:42:14 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:16 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:18 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:24 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:42:25 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:42:25 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:25 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:42:25 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:42:25 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:42:25 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06529917925824474
+INFO 2026-07-25 15:42:29 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:31 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:33 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:35 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:37 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:39 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:42:41 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:42:41 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:41 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:42:41 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:42:41 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:42:41 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06369491248374515
+INFO 2026-07-25 15:42:45 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:47 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:49 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:51 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:53 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:55 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:42:57 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:42:57 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:42:57 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:42:57 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:42:57 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:42:57 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:42:57 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06185470833129114
+INFO 2026-07-25 15:43:01 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:03 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:05 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:07 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:09 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:11 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:43:12 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:43:12 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:12 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:43:12 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:43:12 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:43:12 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06436091450890705
+INFO 2026-07-25 15:43:16 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:18 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:24 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:26 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:43:28 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:43:28 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:28 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:43:28 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:43:28 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:43:28 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06541906750124593
+INFO 2026-07-25 15:43:32 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:34 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:36 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:40 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:42 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:43:43 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:43:43 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:43 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:43:43 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:43:43 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:43:43 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06558670671833332
+INFO 2026-07-25 15:43:47 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:49 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:51 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:53 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:55 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:43:57 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:43:58 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:43:58 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:43:58 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:43:58 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:43:58 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:43:58 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06562304588999213
+INFO 2026-07-25 15:44:02 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:04 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:06 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:08 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:10 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:44:13 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:44:13 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:13 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:44:13 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:44:13 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:44:13 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06561472741629827
+INFO 2026-07-25 15:44:17 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:19 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:21 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:23 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:25 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:27 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:44:29 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:44:29 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:29 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:44:29 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:44:29 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:44:29 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06532944665928878
+INFO 2026-07-25 15:44:33 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:35 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:37 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:39 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:41 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:43 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:44:44 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:44:44 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:44 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:44:44 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:44:44 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:44:44 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06537089864125532
+INFO 2026-07-25 15:44:48 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:50 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:52 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:54 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:56 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:44:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:44:59 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:44:59 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:44:59 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:44:59 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:44:59 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:44:59 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06563426474537629
+INFO 2026-07-25 15:45:03 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:05 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:07 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:09 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:11 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:13 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:45:14 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:45:15 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:15 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:45:15 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:45:15 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:45:15 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.0656191353389781
+INFO 2026-07-25 15:45:19 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:21 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:23 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:25 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:27 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:29 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:45:30 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:45:30 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:45:30 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:45:30 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:45:30 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06548783369402623
+INFO 2026-07-25 15:45:34 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:36 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:40 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:42 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:44 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:45:45 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:45:45 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:45:45 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:45:45 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:45:45 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:45:45 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06494609361267703
+INFO 2026-07-25 15:45:49 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:51 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:53 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:55 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:57 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:45:59 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:46:00 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:46:00 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:00 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:46:00 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:46:00 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:46:00 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06574599475750909
+INFO 2026-07-25 15:46:04 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:06 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:08 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:10 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:14 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:46:16 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:46:16 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:16 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:46:16 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:46:16 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:46:16 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06493148482832956
+INFO 2026-07-25 15:46:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:24 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:26 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:28 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:30 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:46:31 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:46:31 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:31 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:46:31 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:46:31 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:46:31 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.0657449404983893
+INFO 2026-07-25 15:46:35 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:37 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:39 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:41 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:43 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:45 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:46:46 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:46:46 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:46:46 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:46:46 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:46:46 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:46:46 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06569146294847886
+INFO 2026-07-25 15:46:50 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:52 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:54 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:56 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:46:58 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:00 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:47:01 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:47:01 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:01 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:47:01 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:47:01 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:47:01 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06587874859623072
+INFO 2026-07-25 15:47:05 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:07 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:09 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:11 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:13 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:15 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:47:17 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:47:17 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:17 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:47:17 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:47:17 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:47:17 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06367402524634713
+INFO 2026-07-25 15:47:21 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:23 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:25 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:27 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:29 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:31 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:47:33 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:47:33 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:33 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:47:33 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:47:33 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:47:33 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.0638866600542324
+INFO 2026-07-25 15:47:37 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:39 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:41 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:43 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:45 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:47 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] interactions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:96 [LEARNER] interactions Received data at step end size 192
+DEBUG 2026-07-25 15:47:49 rt/utils.py:107 [LEARNER] interactions Queue updated
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:88 [LEARNER] transitions Received data at step 0
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 1
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 3
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 4
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 5
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 6
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 7
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 8
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 9
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 10
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 11
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 12
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 13
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 14
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 15
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 16
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 17
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 18
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 19
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 20
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 21
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 22
+INFO 2026-07-25 15:47:49 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 23
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 24
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:93 [LEARNER] transitions Received data at step 25
+DEBUG 2026-07-25 15:47:49 ort/utils.py:79 [LEARNER] transitions Received item
+DEBUG 2026-07-25 15:47:49 ort/utils.py:96 [LEARNER] transitions Received data at step end size 55981957
+DEBUG 2026-07-25 15:47:49 rt/utils.py:107 [LEARNER] transitions Queue updated
+DEBUG 2026-07-25 15:47:49 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:47:49 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:47:49 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:47:49 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:47:49 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:47:49 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.06097021584965457
+INFO 2026-07-25 15:47:53 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:55 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:57 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:47:59 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:01 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:03 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:05 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:48:06 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:48:06 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:06 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:48:06 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:48:06 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:48:06 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.061631233769950305
+INFO 2026-07-25 15:48:10 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:12 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:14 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:16 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:18 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:20 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:22 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:24 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:26 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:28 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:30 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:48:30 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:48:30 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:30 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:48:30 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:48:30 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:48:30 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.041215851420993106
+INFO 2026-07-25 15:48:34 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:36 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:38 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:40 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:42 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:44 r_service.py:67 [LEARNER] Push parameters to the Actor
+INFO 2026-07-25 15:48:46 r_service.py:67 [LEARNER] Push parameters to the Actor
+DEBUG 2026-07-25 15:48:47 learner.py:1095 [LEARNER] Pushing actor policy to the queue
+DEBUG 2026-07-25 15:48:47 ort/utils.py:53 [LEARNER] Sending parameters Buffer size 23.64049530029297 MB with
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 2097152/24788856 bytes with state 1
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 4194304/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 6291456/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 8388608/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 10485760/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 12582912/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 14680064/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 16777216/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 18874368/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 20971520/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 23068672/24788856 bytes with state 2
+DEBUG 2026-07-25 15:48:47 ort/utils.py:68 [LEARNER] Sending parameters Sent 24788856/24788856 bytes with state 3
+DEBUG 2026-07-25 15:48:47 ort/utils.py:70 [LEARNER] Sending parameters Published 23.64049530029297 MB
+INFO 2026-07-25 15:48:47 r_service.py:83 [LEARNER] Parameters sent
+INFO 2026-07-25 15:48:47 /learner.py:571 [LEARNER] Optimization frequency loop [Hz]: 0.057329502910635655

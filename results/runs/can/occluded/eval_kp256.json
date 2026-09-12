@@ -1,0 +1,23 @@
+{
+  "tag": "kp256",
+  "ckpt": "results/runs/can/atomman/kp256",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 80,
+  "success_rate": 0.5333333333333333,
+  "ci95": [
+    0.45366104879756924,
+    0.611340875259383
+  ],
+  "z_cycles_failed": 6.071428571428571,
+  "can_lifted_frac": 0.5533333333333333,
+  "max_can_z_mean": 0.9844743283112801,
+  "elapsed_min": 15.621000532309214,
+  "n_episodes_occluded": 120,
+  "recovery_rate": 0.6666666666666666,
+  "occl_fraction_mean": 0.18393913752818108,
+  "n_approaches_mean": 0.8133333333333334,
+  "z_cycles_mean_failed": 6.071428571428571,
+  "n_approaches_mean_failed": 0.6
+}

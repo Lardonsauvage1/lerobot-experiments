@@ -1,0 +1,23 @@
+{
+  "tag": "small64",
+  "ckpt": "results/runs/can/atomman/small64",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 70,
+  "success_rate": 0.4666666666666667,
+  "ci95": [
+    0.38865912474061715,
+    0.5463389512024308
+  ],
+  "z_cycles_failed": 3.95,
+  "can_lifted_frac": 0.54,
+  "max_can_z_mean": 0.9745295925515864,
+  "elapsed_min": 16.46250743071238,
+  "n_episodes_occluded": 120,
+  "recovery_rate": 0.5833333333333334,
+  "occl_fraction_mean": 0.1828071909317543,
+  "n_approaches_mean": 0.9866666666666667,
+  "z_cycles_mean_failed": 3.95,
+  "n_approaches_mean_failed": 0.975
+}

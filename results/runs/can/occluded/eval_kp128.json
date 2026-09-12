@@ -1,0 +1,23 @@
+{
+  "tag": "kp128",
+  "ckpt": "results/runs/can/atomman/kp128",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 91,
+  "success_rate": 0.6066666666666667,
+  "ci95": [
+    0.5267647239233271,
+    0.6812414330589196
+  ],
+  "z_cycles_failed": 5.0,
+  "can_lifted_frac": 0.6266666666666667,
+  "max_can_z_mean": 0.9952482263328833,
+  "elapsed_min": 14.676333785057068,
+  "n_episodes_occluded": 128,
+  "recovery_rate": 0.7109375,
+  "occl_fraction_mean": 0.21443163552855599,
+  "n_approaches_mean": 0.9533333333333334,
+  "z_cycles_mean_failed": 5.0,
+  "n_approaches_mean_failed": 0.864406779661017
+}

@@ -1,0 +1,39 @@
+{
+  "n_eval": 500,
+  "steps": 10,
+  "results": [
+    {
+      "name": "wristcap224_A_agentview_aug (cd)",
+      "ckpt": "results/runs/can/wristcap224_A_agentview/cooldown/checkpoints/005000/pretrained_model",
+      "cams": [
+        "agentview"
+      ],
+      "n": 500,
+      "n_success": 362,
+      "success_rate": 0.724,
+      "ci95": [
+        0.6832216523131053,
+        0.76136251858505
+      ],
+      "t_success_median": 108.0,
+      "elapsed_min": 45.72235156695048
+    },
+    {
+      "name": "wristcap224_B_wrist_aug (cd)",
+      "ckpt": "results/runs/can/wristcap224_B_wrist/cooldown/checkpoints/005000/pretrained_model",
+      "cams": [
+        "agentview",
+        "robot0_eye_in_hand"
+      ],
+      "n": 500,
+      "n_success": 176,
+      "success_rate": 0.352,
+      "ci95": [
+        0.31141012174922117,
+        0.39484676533592616
+      ],
+      "t_success_median": 102.0,
+      "elapsed_min": 83.61558656692505
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "tag": "clair_ref",
+  "ckpt": "results/runs/can/atomman/clair",
+  "radius": 0.0,
+  "camp": null,
+  "n": 150,
+  "n_success": 104,
+  "success_rate": 0.6933333333333334,
+  "ci95": [
+    0.61548006161501,
+    0.761531097915312
+  ],
+  "z_cycles_failed": 3.3043478260869565,
+  "can_lifted_frac": 0.7333333333333333,
+  "max_can_z_mean": 1.0196604054673901,
+  "elapsed_min": 15.901009098688762,
+  "n_episodes_occluded": 0,
+  "recovery_rate": null,
+  "occl_fraction_mean": 0.0,
+  "n_approaches_mean": 1.0266666666666666,
+  "z_cycles_mean_failed": 3.3043478260869565,
+  "n_approaches_mean_failed": 1.0869565217391304
+}

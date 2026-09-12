@@ -1,0 +1,23 @@
+{
+  "tag": "b3_baseline",
+  "ckpt": "results/runs/can/b3_baseline/cooldown/checkpoints/005000/pretrained_model",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 84,
+  "success_rate": 0.56,
+  "ci95": [
+    0.48004707281221837,
+    0.6369563904902955
+  ],
+  "z_cycles_failed": 2.8181818181818183,
+  "can_lifted_frac": 0.5866666666666667,
+  "max_can_z_mean": 0.989415569770955,
+  "elapsed_min": 14.861687517166137,
+  "n_episodes_occluded": 137,
+  "recovery_rate": 0.6131386861313869,
+  "occl_fraction_mean": 0.2096876772170898,
+  "n_approaches_mean": 1.04,
+  "z_cycles_mean_failed": 2.8181818181818183,
+  "n_approaches_mean_failed": 1.0606060606060606
+}

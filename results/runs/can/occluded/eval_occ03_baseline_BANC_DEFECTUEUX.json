@@ -1,0 +1,21 @@
+{
+  "tag": "occ03_baseline",
+  "ckpt": "results/runs/can/occ03_baseline/cooldown/checkpoints/005000/pretrained_model",
+  "radius": 0.03,
+  "camp": null,
+  "n": 250,
+  "n_success": 7,
+  "success_rate": 0.028,
+  "ci95": [
+    0.013627884857773491,
+    0.056658466945870976
+  ],
+  "z_cycles_failed": 4.152263374485597,
+  "elapsed_min": 331.61519103050233,
+  "n_episodes_occluded": 65,
+  "recovery_rate": 0.1076923076923077,
+  "occl_fraction_mean": 0.02810825500521811,
+  "n_approaches_mean": 0.18,
+  "z_cycles_mean_failed": 4.152263374485597,
+  "n_approaches_mean_failed": 0.15637860082304528
+}

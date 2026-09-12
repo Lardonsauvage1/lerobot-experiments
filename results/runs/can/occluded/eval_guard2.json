@@ -1,0 +1,23 @@
+{
+  "tag": "guard2",
+  "ckpt": "results/runs/can/b3_baseline/cooldown/checkpoints/005000/pretrained_model",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 76,
+  "success_rate": 0.5066666666666667,
+  "ci95": [
+    0.42749574524160977,
+    0.5855046395697807
+  ],
+  "z_cycles_failed": 2.6216216216216215,
+  "can_lifted_frac": 0.6066666666666667,
+  "max_can_z_mean": 0.9931757509860911,
+  "elapsed_min": 16.535142354170482,
+  "n_episodes_occluded": 140,
+  "recovery_rate": 0.5428571428571428,
+  "occl_fraction_mean": 0.23673475464364382,
+  "n_approaches_mean": 1.2466666666666666,
+  "z_cycles_mean_failed": 2.6216216216216215,
+  "n_approaches_mean_failed": 1.4594594594594594
+}

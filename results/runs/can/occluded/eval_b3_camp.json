@@ -1,0 +1,23 @@
+{
+  "tag": "b3_camp",
+  "ckpt": "results/runs/can/b3_camp/cooldown/checkpoints/005000/pretrained_model",
+  "radius": 0.03,
+  "camp": "results/runs/can/camp/memory_L64_K32_m32.pt",
+  "n": 150,
+  "n_success": 90,
+  "success_rate": 0.6,
+  "ci95": [
+    0.5200476798506317,
+    0.6749580923202245
+  ],
+  "z_cycles_failed": 2.9,
+  "can_lifted_frac": 0.6666666666666666,
+  "max_can_z_mean": 0.9998837514928508,
+  "elapsed_min": 15.458039887746175,
+  "n_episodes_occluded": 142,
+  "recovery_rate": 0.6338028169014085,
+  "occl_fraction_mean": 0.22779364597069113,
+  "n_approaches_mean": 1.02,
+  "z_cycles_mean_failed": 2.9,
+  "n_approaches_mean_failed": 1.05
+}

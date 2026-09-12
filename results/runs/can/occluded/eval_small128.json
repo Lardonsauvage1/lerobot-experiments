@@ -1,0 +1,23 @@
+{
+  "tag": "small128",
+  "ckpt": "results/runs/can/atomman/small128",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 73,
+  "success_rate": 0.4866666666666667,
+  "ci95": [
+    0.4080157160222476,
+    0.5659835143549716
+  ],
+  "z_cycles_failed": 5.662337662337662,
+  "can_lifted_frac": 0.5,
+  "max_can_z_mean": 0.9677994189038954,
+  "elapsed_min": 17.13693956534068,
+  "n_episodes_occluded": 130,
+  "recovery_rate": 0.5615384615384615,
+  "occl_fraction_mean": 0.17158847074083947,
+  "n_approaches_mean": 0.9733333333333334,
+  "z_cycles_mean_failed": 5.662337662337662,
+  "n_approaches_mean_failed": 0.935064935064935
+}

@@ -1,0 +1,26 @@
+{
+  "ckpt": "results/runs/can/wristcap_A_agentview/cooldown/checkpoints/005000/pretrained_model",
+  "n_eval": 250,
+  "steps": 10,
+  "results": [
+    {
+      "radius": 0.0,
+      "label": "t\u00e9moin (jamais occlus)",
+      "n": 250,
+      "n_success": 167,
+      "success_rate": 0.668,
+      "ci95": [
+        0.6074679599095894,
+        0.7234470674145372
+      ],
+      "t_success_median": 109.0,
+      "elapsed_min": 22.994460348288218,
+      "n_episodes_occluded": 0,
+      "recovery_rate": null,
+      "occl_fraction_mean": 0.0,
+      "n_approaches_mean": 0.988,
+      "z_cycles_mean_failed": 3.6144578313253013,
+      "n_approaches_mean_failed": 0.963855421686747
+    }
+  ]
+}

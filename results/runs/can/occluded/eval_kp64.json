@@ -1,0 +1,23 @@
+{
+  "tag": "kp64",
+  "ckpt": "results/runs/can/atomman/kp64",
+  "radius": 0.03,
+  "camp": null,
+  "n": 150,
+  "n_success": 97,
+  "success_rate": 0.6466666666666666,
+  "ci95": [
+    0.5673798898960487,
+    0.7186285759545403
+  ],
+  "z_cycles_failed": 4.0754716981132075,
+  "can_lifted_frac": 0.6866666666666666,
+  "max_can_z_mean": 1.0042094364343914,
+  "elapsed_min": 13.9036505818367,
+  "n_episodes_occluded": 134,
+  "recovery_rate": 0.7238805970149254,
+  "occl_fraction_mean": 0.21216530641172374,
+  "n_approaches_mean": 0.9866666666666667,
+  "z_cycles_mean_failed": 4.0754716981132075,
+  "n_approaches_mean_failed": 0.9245283018867925
+}
