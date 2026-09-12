@@ -65,3 +65,16 @@ results/logs/phase6_camera/run_camaug_150.log
 results/logs/phase6_camera/run_camaug_30.log
 results/logs/phase6_camera/run_camaug_50.log
 results/logs/phase6_camera/run_cont_200000.log
+
+# Tableau de bord vivant des runs (état local, churn constant)
+RUNS_EN_COURS.md
+
+# --- ajouts 2026-09-12 : garder le CODE et les RÉSULTATS, pas les traces brutes ---
+# logs d'entraînement : spam de barres de progression tqdm, plusieurs Mo chacun
+results/logs/**/*.log
+# trajectoires de rollout enregistrées (proprio/actions/can_pos) : régénérables par l'éval
+results/runs/**/*.npz
+# checkpoints rapatriés depuis atomman
+results/runs/can/atomman/
+# maillages CAO
+robot_sim/meshes/*.stl
