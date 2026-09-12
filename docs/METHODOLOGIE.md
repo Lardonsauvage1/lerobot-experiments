@@ -6,6 +6,8 @@
 
 En Lift (phase 3-4) le succès était propre et la compression facile à mesurer. Sur **Can** (pick-and-place, vision pure), les courbes de succès **dentellent** violemment d'un checkpoint à l'autre. Avant de conclure quoi que ce soit sur la capacité ou le schedule, il fallait répondre à une question préalable : **nos mesures sont-elles fiables, et que disent-elles vraiment ?**
 
+C'est une phase **méta** : on ne cherche pas à battre un score, mais à **savoir si on peut faire confiance à nos scores** (`val_loss` train/eval, courbes de loss) pour décider *quand arrêter* et *quel checkpoint choisir* — et sinon, comment faire. Le **dispositif expérimental** (modèle étudié, protocole de mesure, questions Q1-Q5) est détaillé en [annexe](#annexe--le-dispositif-expérimental-protocole-a-priori) ; le corps ci-dessous donne les **résultats**.
+
 ---
 
 ## 1. Combien de rollouts ? — l'intervalle de confiance
@@ -138,6 +140,62 @@ Recherche dédiée et vérifiée (détail complet : [`recherche/eval_offline.md`
 
 ## Volet caméra / sim-to-real
 La fragilité au déplacement de caméra (effondrement de 74 % → 13 % dès 2 cm/2°) et l'augmentation caméra constituent désormais la **Phase 6** → [`CAMERA.md`](CAMERA.md).
+
+---
+
+## Annexe — Le dispositif expérimental (protocole *a priori*)
+
+> Le **plan initial** de cette phase, écrit avant les expériences. Les questions **Q1-Q5** posées ici sont traitées dans le corps ci-dessus (§1-4). *Note : l'architecture de code décrite était le plan ; la chaîne réelle va de `01_train_dense.py` à `33_*` — les noms `02_eval_worker`/`04_analyse` n'ont pas été conservés tels quels.*
+
+### Sujet expérimental
+**`26` ResNet34 + birdview**, entraîné **from scratch** sur Can :
+- Vision : 2× ResNet34 séparés (~42 M) ; U-Net `[64,128,256]` (~5 M) ; état **9D proprio** (vision pure) ; caméras **agentview + birdview** ; dataset `lerobot_can_ph_proprio_birdview` (200 démos ph, **150 train / 50 val**) ; **≈ 48 M params**.
+- **Pourquoi ce modèle** : c'est celui qui montrait le plus gros écart 10k vs 20k (**+28 pts**), donc le plus pédagogique pour étudier la trajectoire complète d'apprentissage.
+
+### Protocole de mesure
+- **Plage** : train **30 000 steps** (au-delà de la convergence supposée ~25k), **save toutes les 100 steps = 300 checkpoints**.
+
+**Mesures *cheap* (inline, pendant le train) :**
+| Mesure | Définition | Coût |
+|---|---|---|
+| `train_loss` | loss du batch courant | 0 |
+| `train_loss_smooth` | moyenne mobile fenêtre 100 | 0 |
+| `val_loss_live_1batch` | 1 batch random de val | ~1 s |
+| `val_loss_full_1seed` | moyenne sur les 50 ép. complètes (1 seed) | ~5 s |
+| `val_loss_full_5seeds` | mean ± std sur 5 seeds (tous les 500 steps) | ~25 s |
+
+**Mesures *chères* (eval worker, après train) :**
+| Mesure | Définition | Fréquence | Coût |
+|---|---|---|---|
+| `rollout_50` | succès sur 50 ép. val | /200 steps (×150) | ~12,5 h |
+| `rollout_500` | succès sur 500 init figés (`can_eval500.npy`) | /1 000 steps (×30) | ~25 h |
+| `rollout_50_variance` | rollout 50 répété 5× sur le MÊME ckpt | 5 ckpts clés | ~2 h |
+
+- **Compute total** ≈ **52-55 h** Mac MPS (train+cheap ~12-15 h + worker ~40 h). **Stockage** : 300 ckpts × ~200 MB ≈ **60 GB**.
+
+### Architecture du code (plan)
+```
+experiments/phase5_methodology/
+├── 01_train_dense.py            # Train + cheap measures inline
+├── 02_eval_worker.py            # Worker séquentiel sur ckpts sauvés
+├── 03_variance_pure.py          # Variance répétée sur ckpts clés
+└── 04_analyse.py                # Corrélation, variance, heuristiques sélection
+results/runs/phase5_methodology/26_resnet34_dense/
+├── checkpoints/  losses.csv  rollouts_50.csv  rollouts_500.csv  variance_pure.csv  train_config.json
+```
+
+### Analyses finales — questions Q1-Q5 *(traitées §1-4)*
+- **Q1 — Variance pure de chaque métrique** : distribution de `val_loss_live_1batch` (N=300), `std` inter-seeds de `val_loss_full_5seeds`, et `rollout_50_variance` (IC95 attendu vs observé).
+- **Q2 — Corrélation val_loss ↔ succès rollout** : Pearson/Spearman entre `val_loss_live_1batch`↔`rollout_50`, `val_loss_full_1seed`↔`rollout_50`, `val_loss_full_5seeds_mean`↔`rollout_500` ; par régime (0-10k / 10-20k / 20-30k).
+- **Q3 — Heuristiques de sélection de checkpoint** : comparer rétrospectivement quelle heuristique aurait choisi le vrai meilleur ckpt (`argmax rollout_500`) — `argmin val_loss_live`, `argmin val_loss_full_1seed`, `argmin val_loss_full_5seeds`, `argmin moyenne_mobile(val_loss)`, `argmax rollout_50` — et mesurer l'écart au best réel (en % et en steps).
+- **Q4 — Convergence et règles d'arrêt** : à partir de quand `rollout_500` plateau ? `train_loss`/`val_loss_full` le détectent-ils ? quelle règle d'arrêt aurait été optimale ?
+- **Q5 — Caveat sur le sujet** : `26` ResNet34 est UN modèle ; les conclusions généralisent-elles (mini-CNN, ResNet18, gros U-Net) ? → rester prudent sur la généralisation.
+
+### Sortie attendue & suite
+1. Courbes/tableaux d'analyse (variance, corrélation, comparaison d'heuristiques).
+2. **Cette doc** (`METHODOLOGIE.md`) — recommandations pour toute la suite du projet.
+3. Caveat méthodologique standardisé dans `COMPRESSION.md` et les docs suivantes.
+→ Permet de redémarrer une **phase Can propre** avec une méthodologie solide (règle de sélection de checkpoint + règle d'arrêt quantifiées).
 
 ---
 *Figures : `results/runs/phase5_methodology/` (`courbes_methodo.png`, `courbe_finevar_57k.png`, `courbes_minicnn_full_1k_50k.png`, `courbes_minicnn_valfull_1k_150k.png`, `courbe_coverage.png`). Sources offline : `docs/recherche/eval_offline.md`.*

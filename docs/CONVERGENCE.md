@@ -66,7 +66,7 @@ Sorties : `results/runs/phase5_methodology/convergence_rollouts.png` et
 3. **Le décollage du succès arrive bien après la convergence de la loss** (loss 90 %-
    convergée vers 750–6000 steps, succès qui décolle à 6–34k). → La val_loss est un
    mauvais chronomètre de convergence ; **seul le rollout** dit quand le modèle marche.
-   (Cohérent avec [`PHASE5_PROTOCOLE.md`](PHASE5_PROTOCOLE.md) et [`CAMERA.md`](CAMERA.md).)
+   (Cohérent avec [`METHODOLOGIE.md`](METHODOLOGIE.md) et [`CAMERA.md`](CAMERA.md).)
 4. **Schedule** : `cosine` plafonne plus haut (81 % vs 76 %) mais converge plus lentement
    (90 %-max à 73k vs 46k) ; `constant` est plus rapide mais plafonne plus bas.
 

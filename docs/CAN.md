@@ -57,3 +57,23 @@ Tous ces runs partagent le **même petit U-Net [64,128,256]** — exactement la 
 - **Robustesse caméra** du 61 M (augmentation caméra) → casser le plafond camshift (cf. [`CAMERA.md`](CAMERA.md)).
 - **Commande moteur** (articulaire) : le 61 M est-il aussi bon en espace **joints** qu'en cartésien ? (en cours).
 - **Test LR constant** du 61 M pour lever le confond cosine (94,8 % est-il dépassable ?).
+
+## Le poignet à HAUTE capacité — hypothèse réfutée (2026-07-16)
+
+Les runs poignet (`06`/`08`/`14`) étaient tous en **petite capacité (R18)**. Or on a découvert *après*
+que Can était bridé par la capacité (`31` R34+gros U-Net → 94,8 %). Hypothèse : le poignet échouait
+peut-être faute de capacité pour exploiter une 2ᵉ vue. **Test matched** (seule différence = le poignet,
+même R34 + gros U-Net [128,256,512], 96px, cartésien, const 1e-4 + EMA + cooldown 5k, 500 rollouts) :
+
+| Bras | Vision | Succès @500 | IC95 |
+|---|---|---|---|
+| **A** agentview SEULE | R34 + gros U-Net | **67,4 %** | [63,2-71,4] |
+| **B** agentview + poignet (séparés) | R34 + gros U-Net | **42,0 %** | [37,8-46,4] |
+
+**Verdict : le poignet fait perdre 25 pts, IC95 disjoints → hypothèse RÉFUTÉE.** La capacité n'était
+pas le frein. Pire, `B` (R34) < `08` (R18, 55 %) : **plus de capacité vision sur la vue poignet =
+plus de sur-apprentissage du bruit égocentrique** (canette hors-champ la plupart du temps = variable
+nuisible). Conclusion renforcée : **sur Can, agentview seule ≥ tout ajout de poignet ; le point de vue
+prime sur le nombre de caméras.** Le poignet ne se justifie (littérature eye-in-hand) que pour la manip
+fine/contact (insertion, sub-mm), pas Can/Lift. Piste résiduelle non testée : 224px (détail fin perdu à
+96px) — mais le −25 pts rend un retournement peu probable. Graphe `../results/runs/can/wristcap_comparison.png`.

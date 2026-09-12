@@ -4,7 +4,7 @@
 
 C'est la première phase tournée **explicitement vers le réel** : on ne cherche plus à battre un score en sim, mais à savoir ce qui survit à un changement de point de vue.
 
-Liens : [◀ Compression (4)](COMPRESSION.md) · [Can / méthodologie (5)](PHASE5_PROTOCOLE.md) · **Caméra (6)** · [index](README.md)
+Liens : [◀ Compression (4)](COMPRESSION.md) · [Can / méthodologie (5)](METHODOLOGIE.md) · **Caméra (6)** · [index](README.md)
 
 ## Contexte
 
