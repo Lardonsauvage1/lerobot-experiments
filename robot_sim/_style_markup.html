@@ -1,0 +1,121 @@
+<style>
+  :root{
+    --bg:#0e1217; --panel:#141b24; --panel2:#1a222d; --line:#27323f;
+    --txt:#ccd6e1; --muted:#7d8b9b; --accent:#f2a33c; --accent-dim:#8a6a35;
+    --ok:#5ec27a; --bad:#ff6b6b;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--txt);font-family:var(--sans);overflow:hidden}
+  #app{display:flex;height:100vh;width:100vw}
+  #viewport{flex:1;position:relative;min-width:0;background:
+    radial-gradient(120% 100% at 50% 0%, #131a22 0%, #0c1015 70%)}
+  #cv{display:block;width:100%;height:100%;cursor:grab}
+  #cv:active{cursor:grabbing}
+  #hud{position:absolute;left:14px;top:12px;font-family:var(--mono);font-size:11px;
+    color:var(--muted);line-height:1.6;pointer-events:none;letter-spacing:.02em}
+  #hud b{color:var(--accent);font-weight:600}
+  #panel{width:340px;flex:none;background:var(--panel);border-left:1px solid var(--line);
+    display:flex;flex-direction:column;overflow-y:auto}
+  .head{padding:18px 18px 14px;border-bottom:1px solid var(--line)}
+  .head h1{margin:0;font-size:15px;font-weight:650;letter-spacing:.01em}
+  .head p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+  .sec{padding:16px 18px;border-bottom:1px solid var(--line)}
+  .sec h2{margin:0 0 12px;font-size:10.5px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.13em;color:var(--muted)}
+  .jrow{display:grid;grid-template-columns:44px 1fr 58px;gap:10px;align-items:center;margin:9px 0}
+  .jrow label{font-family:var(--mono);font-size:12px;color:var(--txt)}
+  .jrow .val{font-family:var(--mono);font-size:12px;text-align:right;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;
+    background:var(--line);outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;
+    border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #0e1217}
+  input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:var(--accent);cursor:pointer;border:2px solid #0e1217}
+  textarea{width:100%;height:96px;resize:vertical;background:var(--panel2);color:var(--txt);
+    border:1px solid var(--line);border-radius:6px;font-family:var(--mono);font-size:11px;
+    padding:8px;line-height:1.5}
+  textarea:focus{outline:none;border-color:var(--accent-dim)}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  button{font-family:var(--sans);font-size:12px;font-weight:550;color:var(--txt);
+    background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:7px 12px;
+    cursor:pointer}
+  button:hover{border-color:var(--accent-dim);color:#fff}
+  button.primary{background:var(--accent);color:#141b24;border-color:var(--accent)}
+  button.primary:hover{background:#ffb658}
+  button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .seg button{border:none;border-radius:0;padding:5px 11px;background:var(--panel2)}
+  .seg button.on{background:var(--accent);color:#141b24}
+  .mut{color:var(--muted);font-size:11.5px}
+  .scrub{display:grid;grid-template-columns:1fr 66px;gap:10px;align-items:center;margin-top:10px}
+  .scrub .cnt{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:right;
+    font-variant-numeric:tabular-nums}
+  .tcp{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}
+  .tcp b{color:var(--txt)}
+  label.chk{display:inline-flex;gap:6px;align-items:center;font-size:12px;color:var(--muted);cursor:pointer}
+</style>
+
+<div id="app">
+  <div id="viewport">
+    <canvas id="cv"></canvas>
+    <div id="hud">
+      bras 5 axes · <b id="hud_frame">manuel</b><br>
+      glisser = orbite · molette = zoom
+    </div>
+  </div>
+  <aside id="panel">
+    <div class="head">
+      <h1>Visualiseur du bras</h1>
+      <p>Pose articulaire &amp; lecture de trajectoire</p>
+    </div>
+
+    <div class="sec">
+      <h2>Articulations (degrés)</h2>
+      <div id="joints"></div>
+    </div>
+
+    <div class="sec">
+      <h2>Trajectoire</h2>
+      <div class="row" style="margin-bottom:10px">
+        <span class="mut">Unité&nbsp;</span>
+        <span class="seg" id="unit"><button data-u="deg" class="on">deg</button><button data-u="rad">rad</button></span>
+        <button id="loadDemo">Démo ep8</button>
+        <button id="loadPred">Prédiction ep0</button>
+      </div>
+      <div class="row" style="margin:0 0 8px">
+        <span class="mut" style="width:100%;margin-bottom:2px">Prédit — 5 endroits au hasard (16 pas @ 1/s) :</span>
+        <span id="predBtns" class="row" style="gap:6px"></span>
+      </div>
+      <div class="row" style="margin:0 0 10px">
+        <span class="mut" style="width:100%;margin-bottom:2px">Réel — mêmes endroits, 16 frames enregistrées :</span>
+        <span id="realBtns" class="row" style="gap:6px"></span>
+      </div>
+      <textarea id="traj" spellcheck="false" placeholder="Une pose par ligne : j1 j2 j3 j4 j5 [gripper]
+ex : 30 -30 -40 0 20"></textarea>
+      <div class="row" style="margin-top:10px">
+        <button class="primary" id="play">▶ Lire</button>
+        <span class="mut">vitesse</span>
+        <input type="range" id="speed" min="1" max="60" value="20" style="width:80px">
+        <span class="cnt mut" id="speedv" style="width:auto">20/s</span>
+        <label class="chk"><input type="checkbox" id="loop" checked> boucle</label>
+      </div>
+      <div class="scrub">
+        <input type="range" id="frame" min="0" max="0" value="0">
+        <span class="cnt" id="framev">– / –</span>
+      </div>
+    </div>
+
+    <div class="sec" style="border-bottom:none">
+      <h2>Effecteur (TCP)</h2>
+      <div class="tcp" id="tcp">position : –</div>
+      <div class="row" style="margin-top:12px">
+        <button id="resetView">Recentrer la vue</button>
+        <button id="resetPose">Pose zéro</button>
+      </div>
+    </div>
+  </aside>
+</div>
