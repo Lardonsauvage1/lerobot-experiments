@@ -693,9 +693,45 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         b["observation.state"] = torch.cat([st, mm], dim=-1)
         return b
 
+    # PATCH CAMDROP : dropout de caméra (anti-copycat sur la caméra de poignet).
+    # Hypothèse visée : l'image du poignet est une fonction quasi déterministe de la pose de
+    # la pince, déjà présente dans observation.state. Elle prédit donc l'action du moment
+    # sans rien apprendre de l'approche -> raccourci causal (copycat, Wen et al. 2020).
+    # Remède : avec probabilité p, masquer UNE caméra tirée au hasard, pour que le réseau ne
+    # puisse jamais se reposer sur une seule. Appliqué APRÈS le preprocessor : sur une entrée
+    # normalisée, 0 correspond exactement à l'image moyenne — un signal « absent » neutre,
+    # pas une image noire (qui serait, elle, une valeur extrême).
+    # ⚠️ jamais appliqué à la val-loss (chemin séparé ligne ~733) : on veut mesurer le modèle
+    # complet, pas le modèle amputé.
+    _camdrop_p = float(_os.environ.get("CAMDROP", "0") or 0)
+    if _camdrop_p > 0:
+        logging.info(f"[CAMDROP] dropout de caméra actif : p={_camdrop_p} "
+                     f"(une caméra masquée au hasard sur {_camdrop_p:.0%} des échantillons)")
+
+    def _cam_dropout(b):
+        if _camdrop_p <= 0:
+            return b
+        keys = sorted(k for k in b if k.startswith("observation.images"))
+        if len(keys) < 2:
+            return b                      # mono-caméra : rien à masquer
+        ref = b[keys[0]]
+        n = ref.shape[0]
+        drop = torch.rand(n, device=ref.device) < _camdrop_p
+        which = torch.randint(len(keys), (n,), device=ref.device)
+        if not bool(drop.any()):
+            return b
+        b = dict(b)
+        for j, k in enumerate(keys):
+            m = drop & (which == j)
+            if bool(m.any()):
+                x = b[k].clone()
+                x[m] = 0.0                # = image moyenne après normalisation
+                b[k] = x
+        return b
+
     for _ in range(step, cfg.steps):
         start_time = time.perf_counter()
-        batch = preprocessor(_add_memory(_to_relative(next(dl_iter))))
+        batch = _cam_dropout(preprocessor(_add_memory(_to_relative(next(dl_iter)))))
         train_tracker.dataloading_s = time.perf_counter() - start_time
 
         train_tracker, output_dict = update_policy(

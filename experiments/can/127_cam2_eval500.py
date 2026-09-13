@@ -42,11 +42,23 @@ MODELS = [
      "ckpt": "results/runs/can/cam2_C_side_wrist/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.images.agentview",
                     "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "C2_wrist_fixstats", "label": "côté + embarquée, stats CORRIGÉES",
+     "ckpt": "results/runs/can/cam2_C2_wrist_fixstats/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "C3_camdrop", "label": "côté + embarquée, stats corrigées + DROPOUT caméra",
+     "ckpt": "results/runs/can/cam2_C3_camdrop/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
 # plus C vs B pour départager les deux façons d'ajouter un 2e capteur.
-PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", "B_side_top")]
+PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", "B_side_top"),
+         ("C2_wrist_fixstats", "C_side_wrist"),   # LE contrôle : la normalisation explique-t-elle la chute ?
+         ("C2_wrist_fixstats", "A_side"),
+         ("C3_camdrop", "C2_wrist_fixstats"),  # LE test : le dropout débloque-t-il le poignet ?
+         ("C3_camdrop", "A_side")]
 
 
 def mcnemar_exact(b, c):
