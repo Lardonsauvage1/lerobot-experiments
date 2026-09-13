@@ -18,15 +18,18 @@ des tâches simulées jusqu'à un bras 5 axes physique.
 
 ## Les tâches, du plus simple au plus dur
 
-| PushT (2D) | Robomimic Can — 1 caméra | Robomimic Can — 2 caméras |
-|:---:|:---:|:---:|
-| ![](docs/assets/demo_pusht.gif) | ![](docs/assets/demo_can_monocam.gif) | ![](docs/assets/demo_can_bicam.gif) |
-| pousser un T sur une cible | agentview seule — **70,4 %** | + vue de dessus — **74,8 %** |
-| *là où j'ai découvert que la loss ment* | *bras Panda 7 axes, 500 rollouts* | *les deux vues que voit le réseau* |
+| PushT — pousser un T sur une cible | Robomimic Lift — soulever un cube |
+|:---:|:---:|
+| ![](docs/assets/demo_pusht.gif) | ![](docs/assets/demo_lift.gif) |
+| *là où j'ai découvert que la loss ment* | **100 %** de réussite |
 
-<!-- TROU 1b : il manque un GIF de **Lift** (la tâche résolue à 100 %).
-     Aucun checkpoint ni vidéo Lift n'a survécu aux purges de disque — il faudrait
-     réentraîner un modèle (~1 h) puis filmer un rollout avec le harnais d'éval. -->
+| Robomimic Can — 1 caméra | Robomimic Can — 2 caméras |
+|:---:|:---:|
+| ![](docs/assets/demo_can_monocam.gif) | ![](docs/assets/demo_can_bicam.gif) |
+| agentview seule — **70,4 %** | + vue de dessus — **74,8 %** |
+
+<sub>500 rollouts par mesure, états initiaux figés. Le modèle Lift filmé ici a été réentraîné
+pour la démonstration (6/6 sur les épisodes filmés) ; le 100 % vient de l'évaluation d'origine.</sub>
 
 ---
 
@@ -55,7 +58,7 @@ dernier chantier. C'est la partie du dépôt dont je suis le plus satisfait.
 | Compression du même modèle | **÷160 paramètres, ÷21 latence**, 98,6 % conservés<br/><sub>÷9 seulement en vision pure — le facteur 160 tient à une béquille</sub> |
 | Robomimic Can, vision pure (sans coordonnées de l'objet) | **94,8 %** sur 500 rollouts |
 | Robot réel, premier contrôle autonome | **5 réussites sur 14 essais** |
-| Coût mesuré d'une occlusion de la cible | **−16,7 points** (p = 0,002) |
+| Coût mesuré d'une occlusion de la cible | **−13,3 points** (p = 0,013) |
 
 <!-- TROU 2 : une photo du robot réel avec la pomme. C'est le visuel qui ancre
      le projet dans le concret — actuellement absent du dépôt. -->
@@ -110,8 +113,11 @@ ne voit qu'une bouillie de pixels sans repère global, et cette vue domine la d�
 moment précis où la vue d'ensemble serait utile. Le poignet reste pertinent pour la
 manipulation fine au contact — pas pour aller chercher un objet.
 
-<!-- TROU 6 : un GIF A vs B côte à côte (script prêt : experiments/can/123_video_wristcap_AB.py),
-     à tourner quand la machine est libre. -->
+![](docs/assets/demo_wrist_ab.gif)
+
+<sub>Même état initial, même graine. À gauche A (agentview seule) saisit la canette. À droite B,
+qui reçoit <b>en plus</b> la caméra de poignet — son flux est en médaillon — n'y arrive pas.
+Épisode choisi parmi les discordants : ce sont eux qui portent l'effet mesuré.</sub>
 
 ### Un décodeur qu'on ne peut pas rétrécir, un encodeur qu'on peut
 
@@ -148,7 +154,7 @@ Le robot perdait l'objet de vue quand son propre bras le masquait. J'ai voulu lu
 une mémoire.
 
 J'ai construit un banc reproduisant l'occlusion en simulation, mesuré son coût
-(**−16,7 points**), implémenté deux mécanismes de mémoire tirés de la littérature,
+(**−13,3 points**), implémenté deux mécanismes de mémoire tirés de la littérature,
 balayé quatre tailles d'encodeur visuel. **Douze comparaisons, aucune concluante.**
 
 Puis une mesure de contrôle a montré que le vrai goulot était ailleurs : même en

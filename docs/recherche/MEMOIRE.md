@@ -991,9 +991,9 @@ enregistrement dès la fin de la courbe.
 
 | | succès (150 rollouts appariés) |
 |---|---|
-| **plafond sans occlusion** (clair/clair) | **72,7 %** |
+| **plafond sans occlusion** (clair/clair) | **69,3 %** |
 | baseline sous occlusion 3 cm | **56,0 %** |
-| **coût de l'occlusion** | **+16,7 pts** IC95 [+6,6 ; +26,7] · p = 0,002 ★ |
+| **coût de l'occlusion** | **+13,3 pts** IC95 [+3,4 ; +23,2] · p = 0,013 ★ |
 
 Et au-dessus du plafond, **27 % d'échecs de PRÉHENSION** que ni l'occlusion ni la mémoire n'expliquent.
 
@@ -1023,11 +1023,11 @@ ce qui rend indétectable tout écart < ~12 points.
 ### Les 3 résultats significatifs
 
 1. **oracle 12D** : 73,3 % (+17,3 pts, p = 0,0007) — mais c'est la béquille `can_pos`, et elle donne
-   *exactement* le même plafond que l'absence d'occlusion (72,7 %) → **donner la position compense
+   le plafond de l'absence d'occlusion (69,3 %), et le dépasse même légèrement → **donner la position compense
    exactement l'occlusion**, ce qui confirme que l'information perdue est bien la position.
 2. **réduire le U-Net** [64,128,256]→[32,64,128] coûte **−18 pts** (p = 0,002) → le décodeur porte la
    performance, il n'est PAS compressible. ⚠️ important pour la latence : il est déroulé **10×** par inférence.
-3. **coût de l'occlusion** : +16,7 pts (p = 0,002).
+3. **coût de l'occlusion** : +13,3 pts (p = 0,013).
 
 ### Ce qu'on a appris sur le spatial softmax
 
