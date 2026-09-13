@@ -38,7 +38,15 @@ MODELS = [
      "ckpt": "results/runs/can/cam2_B_side_top/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.images.agentview",
                     "birdview": "observation.images.birdview"}},
+    {"name": "C_side_wrist", "label": "côté + embarquée (agentview + poignet)",
+     "ckpt": "results/runs/can/cam2_C_side_wrist/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
 ]
+
+# comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
+# plus C vs B pour départager les deux façons d'ajouter un 2e capteur.
+PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", "B_side_top")]
 
 
 def mcnemar_exact(b, c):
@@ -96,18 +104,31 @@ def main():
         del policy
 
     by = {r["name"]: r for r in results}
-    if "A_side" in by and "B_side_top" in by:
-        r = paired_report(by["A_side"]["per_episode"], by["B_side_top"]["per_episode"])
-        print("\n=== COMPARAISON APPARIÉE (McNemar exact) ===")
-        print(f"  côté seule    : {r['k_a']}/{r['n']} = {r['k_a']/r['n']:.1%}")
-        print(f"  côté + dessus : {r['k_b']}/{r['n']} = {r['k_b']/r['n']:.1%}")
-        print(f"  apport de la 2e caméra : {r['delta']*100:+.1f} pts "
-              f"IC95 [{r['lo']*100:+.1f} ; {r['hi']*100:+.1f}]   p = {r['p']:.4g}"
-              f"{'  ★ significatif' if r['p'] < 0.05 else '  (non significatif)'}")
-        print(f"  épisodes gagnés par la 2e caméra : {r['gagnes_par_2e_cam']} · "
-              f"perdus : {r['perdus_par_2e_cam']}")
+    print("\n=== NIVEAUX (500 rollouts, états figés) ===")
+    for m in MODELS:
+        if m["name"] in by:
+            r = by[m["name"]]
+            print(f"  {r['label']:44s} {r['n_success']:3d}/{r['n']} = {r['success_rate']:6.1%} "
+                  f"[{r['ci95'][0]:.1%}, {r['ci95'][1]:.1%}]")
+
+    pairs_out = {}
+    header = False
+    for tag, ref in PAIRS:
+        if tag not in by or ref not in by:
+            continue
+        if not header:
+            print("\n=== COMPARAISONS APPARIÉES (McNemar exact) ===")
+            header = True
+        r = paired_report(by[ref]["per_episode"], by[tag]["per_episode"])
+        pairs_out[f"{tag}_vs_{ref}"] = r
+        print(f"  {tag} vs {ref:12s} {r['delta']*100:+6.1f} pts  "
+              f"IC95 [{r['lo']*100:+6.1f} ; {r['hi']*100:+6.1f}]  p = {r['p']:9.4g}"
+              f"{'  ★' if r['p'] < 0.05 else ''}")
+        print(f"      gagnés {r['gagnes_par_2e_cam']:3d} · perdus {r['perdus_par_2e_cam']:3d}"
+              f"   (discordants = ce qui porte l'effet)")
+    if pairs_out:
         payload = json.loads(OUT.read_text())
-        payload["paired"] = r
+        payload["paired"] = pairs_out
         OUT.write_text(json.dumps(payload, indent=2))
     print(f"\nJSON : {OUT}")
 
