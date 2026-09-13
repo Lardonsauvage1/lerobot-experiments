@@ -1,0 +1,7585 @@
+{
+  "n_eval": 500,
+  "results": [
+    {
+      "name": "A_side",
+      "label": "c\u00f4t\u00e9 seule (agentview)",
+      "ckpt": "results/runs/can/cam2_A_side/cooldown/checkpoints/005000/pretrained_model",
+      "n": 500,
+      "n_success": 383,
+      "success_rate": 0.766,
+      "ci95": [
+        0.7269477983375824,
+        0.8009959046039771
+      ],
+      "elapsed_min": 39.44788061380386,
+      "per_episode": [
+        {
+          "ep": 0,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 1,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 2,
+          "success": true,
+          "t_success": 134
+        },
+        {
+          "ep": 3,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 4,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 5,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 6,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 7,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 8,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 9,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 10,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 11,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 12,
+          "success": true,
+          "t_success": 138
+        },
+        {
+          "ep": 13,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 14,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 15,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 16,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 17,
+          "success": true,
+          "t_success": 133
+        },
+        {
+          "ep": 18,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 19,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 20,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 21,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 22,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 23,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 24,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 25,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 26,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 27,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 28,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 29,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 30,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 31,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 32,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 33,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 34,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 35,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 36,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 37,
+          "success": true,
+          "t_success": 128
+        },
+        {
+          "ep": 38,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 39,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 40,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 41,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 42,
+          "success": true,
+          "t_success": 141
+        },
+        {
+          "ep": 43,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 44,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 45,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 46,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 47,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 48,
+          "success": true,
+          "t_success": 135
+        },
+        {
+          "ep": 49,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 50,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 51,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 52,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 53,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 54,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 55,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 56,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 57,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 58,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 59,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 60,
+          "success": true,
+          "t_success": 146
+        },
+        {
+          "ep": 61,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 62,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 63,
+          "success": true,
+          "t_success": 135
+        },
+        {
+          "ep": 64,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 65,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 66,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 67,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 68,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 69,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 70,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 71,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 72,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 73,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 74,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 75,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 76,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 77,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 78,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 79,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 80,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 81,
+          "success": true,
+          "t_success": 145
+        },
+        {
+          "ep": 82,
+          "success": true,
+          "t_success": 135
+        },
+        {
+          "ep": 83,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 84,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 85,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 86,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 87,
+          "success": true,
+          "t_success": 135
+        },
+        {
+          "ep": 88,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 89,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 90,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 91,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 92,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 93,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 94,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 95,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 96,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 97,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 98,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 99,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 100,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 101,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 102,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 103,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 104,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 105,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 106,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 107,
+          "success": true,
+          "t_success": 136
+        },
+        {
+          "ep": 108,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 109,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 110,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 111,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 112,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 113,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 114,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 115,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 116,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 117,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 118,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 119,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 120,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 121,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 122,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 123,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 124,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 125,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 126,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 127,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 128,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 129,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 130,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 131,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 132,
+          "success": true,
+          "t_success": 135
+        },
+        {
+          "ep": 133,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 134,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 135,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 136,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 137,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 138,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 139,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 140,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 141,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 142,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 143,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 144,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 145,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 146,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 147,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 148,
+          "success": true,
+          "t_success": 81
+        },
+        {
+          "ep": 149,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 150,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 151,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 152,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 153,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 154,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 155,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 156,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 157,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 158,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 159,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 160,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 161,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 162,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 163,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 164,
+          "success": true,
+          "t_success": 128
+        },
+        {
+          "ep": 165,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 166,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 167,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 168,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 169,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 170,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 171,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 172,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 173,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 174,
+          "success": true,
+          "t_success": 137
+        },
+        {
+          "ep": 175,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 176,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 177,
+          "success": true,
+          "t_success": 84
+        },
+        {
+          "ep": 178,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 179,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 180,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 181,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 182,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 183,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 184,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 185,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 186,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 187,
+          "success": true,
+          "t_success": 133
+        },
+        {
+          "ep": 188,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 189,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 190,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 191,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 192,
+          "success": true,
+          "t_success": 133
+        },
+        {
+          "ep": 193,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 194,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 195,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 196,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 197,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 198,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 199,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 200,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 201,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 202,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 203,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 204,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 205,
+          "success": true,
+          "t_success": 133
+        },
+        {
+          "ep": 206,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 207,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 208,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 209,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 210,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 211,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 212,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 213,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 214,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 215,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 216,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 217,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 218,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 219,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 220,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 221,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 222,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 223,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 224,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 225,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 226,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 227,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 228,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 229,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 230,
+          "success": true,
+          "t_success": 83
+        },
+        {
+          "ep": 231,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 232,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 233,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 234,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 235,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 236,
+          "success": true,
+          "t_success": 135
+        },
+        {
+          "ep": 237,
+          "success": true,
+          "t_success": 143
+        },
+        {
+          "ep": 238,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 239,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 240,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 241,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 242,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 243,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 244,
+          "success": true,
+          "t_success": 128
+        },
+        {
+          "ep": 245,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 246,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 247,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 248,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 249,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 250,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 251,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 252,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 253,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 254,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 255,
+          "success": true,
+          "t_success": 84
+        },
+        {
+          "ep": 256,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 257,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 258,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 259,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 260,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 261,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 262,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 263,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 264,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 265,
+          "success": true,
+          "t_success": 84
+        },
+        {
+          "ep": 266,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 267,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 268,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 269,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 270,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 271,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 272,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 273,
+          "success": true,
+          "t_success": 86
+        },
+        {
+          "ep": 274,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 275,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 276,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 277,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 278,
+          "success": true,
+          "t_success": 81
+        },
+        {
+          "ep": 279,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 280,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 281,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 282,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 283,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 284,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 285,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 286,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 287,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 288,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 289,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 290,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 291,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 292,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 293,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 294,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 295,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 296,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 297,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 298,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 299,
+          "success": true,
+          "t_success": 131
+        },
+        {
+          "ep": 300,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 301,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 302,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 303,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 304,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 305,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 306,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 307,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 308,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 309,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 310,
+          "success": true,
+          "t_success": 126
+        },
+        {
+          "ep": 311,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 312,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 313,
+          "success": true,
+          "t_success": 140
+        },
+        {
+          "ep": 314,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 315,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 316,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 317,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 318,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 319,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 320,
+          "success": true,
+          "t_success": 138
+        },
+        {
+          "ep": 321,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 322,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 323,
+          "success": true,
+          "t_success": 146
+        },
+        {
+          "ep": 324,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 325,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 326,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 327,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 328,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 329,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 330,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 331,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 332,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 333,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 334,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 335,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 336,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 337,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 338,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 339,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 340,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 341,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 342,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 343,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 344,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 345,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 346,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 347,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 348,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 349,
+          "success": true,
+          "t_success": 133
+        },
+        {
+          "ep": 350,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 351,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 352,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 353,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 354,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 355,
+          "success": true,
+          "t_success": 139
+        },
+        {
+          "ep": 356,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 357,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 358,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 359,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 360,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 361,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 362,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 363,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 364,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 365,
+          "success": true,
+          "t_success": 133
+        },
+        {
+          "ep": 366,
+          "success": true,
+          "t_success": 141
+        },
+        {
+          "ep": 367,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 368,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 369,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 370,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 371,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 372,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 373,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 374,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 375,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 376,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 377,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 378,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 379,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 380,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 381,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 382,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 383,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 384,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 385,
+          "success": true,
+          "t_success": 131
+        },
+        {
+          "ep": 386,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 387,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 388,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 389,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 390,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 391,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 392,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 393,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 394,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 395,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 396,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 397,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 398,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 399,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 400,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 401,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 402,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 403,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 404,
+          "success": true,
+          "t_success": 136
+        },
+        {
+          "ep": 405,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 406,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 407,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 408,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 409,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 410,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 411,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 412,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 413,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 414,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 415,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 416,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 417,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 418,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 419,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 420,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 421,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 422,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 423,
+          "success": true,
+          "t_success": 154
+        },
+        {
+          "ep": 424,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 425,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 426,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 427,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 428,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 429,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 430,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 431,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 432,
+          "success": true,
+          "t_success": 81
+        },
+        {
+          "ep": 433,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 434,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 435,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 436,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 437,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 438,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 439,
+          "success": true,
+          "t_success": 135
+        },
+        {
+          "ep": 440,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 441,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 442,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 443,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 444,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 445,
+          "success": true,
+          "t_success": 138
+        },
+        {
+          "ep": 446,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 447,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 448,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 449,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 450,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 451,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 452,
+          "success": true,
+          "t_success": 126
+        },
+        {
+          "ep": 453,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 454,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 455,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 456,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 457,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 458,
+          "success": true,
+          "t_success": 133
+        },
+        {
+          "ep": 459,
+          "success": true,
+          "t_success": 84
+        },
+        {
+          "ep": 460,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 461,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 462,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 463,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 464,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 465,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 466,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 467,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 468,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 469,
+          "success": true,
+          "t_success": 83
+        },
+        {
+          "ep": 470,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 471,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 472,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 473,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 474,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 475,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 476,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 477,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 478,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 479,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 480,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 481,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 482,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 483,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 484,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 485,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 486,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 487,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 488,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 489,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 490,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 491,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 492,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 493,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 494,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 495,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 496,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 497,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 498,
+          "success": true,
+          "t_success": 137
+        },
+        {
+          "ep": 499,
+          "success": true,
+          "t_success": 110
+        }
+      ]
+    },
+    {
+      "name": "B_side_top",
+      "label": "c\u00f4t\u00e9 + dessus (agentview + birdview)",
+      "ckpt": "results/runs/can/cam2_B_side_top/cooldown/checkpoints/005000/pretrained_model",
+      "n": 500,
+      "n_success": 400,
+      "success_rate": 0.8,
+      "ci95": [
+        0.7627101702740526,
+        0.8327150586074055
+      ],
+      "elapsed_min": 48.109586083889006,
+      "per_episode": [
+        {
+          "ep": 0,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 1,
+          "success": true,
+          "t_success": 131
+        },
+        {
+          "ep": 2,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 3,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 4,
+          "success": true,
+          "t_success": 128
+        },
+        {
+          "ep": 5,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 6,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 7,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 8,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 9,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 10,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 11,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 12,
+          "success": true,
+          "t_success": 139
+        },
+        {
+          "ep": 13,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 14,
+          "success": true,
+          "t_success": 126
+        },
+        {
+          "ep": 15,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 16,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 17,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 18,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 19,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 20,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 21,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 22,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 23,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 24,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 25,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 26,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 27,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 28,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 29,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 30,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 31,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 32,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 33,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 34,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 35,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 36,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 37,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 38,
+          "success": true,
+          "t_success": 223
+        },
+        {
+          "ep": 39,
+          "success": true,
+          "t_success": 144
+        },
+        {
+          "ep": 40,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 41,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 42,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 43,
+          "success": true,
+          "t_success": 138
+        },
+        {
+          "ep": 44,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 45,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 46,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 47,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 48,
+          "success": true,
+          "t_success": 138
+        },
+        {
+          "ep": 49,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 50,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 51,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 52,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 53,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 54,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 55,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 56,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 57,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 58,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 59,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 60,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 61,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 62,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 63,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 64,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 65,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 66,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 67,
+          "success": true,
+          "t_success": 137
+        },
+        {
+          "ep": 68,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 69,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 70,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 71,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 72,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 73,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 74,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 75,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 76,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 77,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 78,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 79,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 80,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 81,
+          "success": true,
+          "t_success": 134
+        },
+        {
+          "ep": 82,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 83,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 84,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 85,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 86,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 87,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 88,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 89,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 90,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 91,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 92,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 93,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 94,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 95,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 96,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 97,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 98,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 99,
+          "success": true,
+          "t_success": 141
+        },
+        {
+          "ep": 100,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 101,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 102,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 103,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 104,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 105,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 106,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 107,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 108,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 109,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 110,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 111,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 112,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 113,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 114,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 115,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 116,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 117,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 118,
+          "success": true,
+          "t_success": 131
+        },
+        {
+          "ep": 119,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 120,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 121,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 122,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 123,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 124,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 125,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 126,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 127,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 128,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 129,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 130,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 131,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 132,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 133,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 134,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 135,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 136,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 137,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 138,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 139,
+          "success": true,
+          "t_success": 136
+        },
+        {
+          "ep": 140,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 141,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 142,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 143,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 144,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 145,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 146,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 147,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 148,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 149,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 150,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 151,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 152,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 153,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 154,
+          "success": true,
+          "t_success": 83
+        },
+        {
+          "ep": 155,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 156,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 157,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 158,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 159,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 160,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 161,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 162,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 163,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 164,
+          "success": true,
+          "t_success": 86
+        },
+        {
+          "ep": 165,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 166,
+          "success": true,
+          "t_success": 75
+        },
+        {
+          "ep": 167,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 168,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 169,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 170,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 171,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 172,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 173,
+          "success": true,
+          "t_success": 137
+        },
+        {
+          "ep": 174,
+          "success": true,
+          "t_success": 138
+        },
+        {
+          "ep": 175,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 176,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 177,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 178,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 179,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 180,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 181,
+          "success": true,
+          "t_success": 131
+        },
+        {
+          "ep": 182,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 183,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 184,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 185,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 186,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 187,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 188,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 189,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 190,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 191,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 192,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 193,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 194,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 195,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 196,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 197,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 198,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 199,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 200,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 201,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 202,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 203,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 204,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 205,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 206,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 207,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 208,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 209,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 210,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 211,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 212,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 213,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 214,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 215,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 216,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 217,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 218,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 219,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 220,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 221,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 222,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 223,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 224,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 225,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 226,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 227,
+          "success": true,
+          "t_success": 136
+        },
+        {
+          "ep": 228,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 229,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 230,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 231,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 232,
+          "success": true,
+          "t_success": 137
+        },
+        {
+          "ep": 233,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 234,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 235,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 236,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 237,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 238,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 239,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 240,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 241,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 242,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 243,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 244,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 245,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 246,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 247,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 248,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 249,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 250,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 251,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 252,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 253,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 254,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 255,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 256,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 257,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 258,
+          "success": true,
+          "t_success": 126
+        },
+        {
+          "ep": 259,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 260,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 261,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 262,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 263,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 264,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 265,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 266,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 267,
+          "success": true,
+          "t_success": 84
+        },
+        {
+          "ep": 268,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 269,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 270,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 271,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 272,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 273,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 274,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 275,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 276,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 277,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 278,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 279,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 280,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 281,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 282,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 283,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 284,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 285,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 286,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 287,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 288,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 289,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 290,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 291,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 292,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 293,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 294,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 295,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 296,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 297,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 298,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 299,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 300,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 301,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 302,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 303,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 304,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 305,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 306,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 307,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 308,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 309,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 310,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 311,
+          "success": true,
+          "t_success": 131
+        },
+        {
+          "ep": 312,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 313,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 314,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 315,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 316,
+          "success": true,
+          "t_success": 130
+        },
+        {
+          "ep": 317,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 318,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 319,
+          "success": true,
+          "t_success": 126
+        },
+        {
+          "ep": 320,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 321,
+          "success": true,
+          "t_success": 144
+        },
+        {
+          "ep": 322,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 323,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 324,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 325,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 326,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 327,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 328,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 329,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 330,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 331,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 332,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 333,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 334,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 335,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 336,
+          "success": true,
+          "t_success": 81
+        },
+        {
+          "ep": 337,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 338,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 339,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 340,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 341,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 342,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 343,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 344,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 345,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 346,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 347,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 348,
+          "success": true,
+          "t_success": 126
+        },
+        {
+          "ep": 349,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 350,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 351,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 352,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 353,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 354,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 355,
+          "success": true,
+          "t_success": 128
+        },
+        {
+          "ep": 356,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 357,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 358,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 359,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 360,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 361,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 362,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 363,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 364,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 365,
+          "success": true,
+          "t_success": 126
+        },
+        {
+          "ep": 366,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 367,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 368,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 369,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 370,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 371,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 372,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 373,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 374,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 375,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 376,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 377,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 378,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 379,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 380,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 381,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 382,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 383,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 384,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 385,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 386,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 387,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 388,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 389,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 390,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 391,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 392,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 393,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 394,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 395,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 396,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 397,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 398,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 399,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 400,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 401,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 402,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 403,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 404,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 405,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 406,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 407,
+          "success": true,
+          "t_success": 132
+        },
+        {
+          "ep": 408,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 409,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 410,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 411,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 412,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 413,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 414,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 415,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 416,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 417,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 418,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 419,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 420,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 421,
+          "success": true,
+          "t_success": 154
+        },
+        {
+          "ep": 422,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 423,
+          "success": true,
+          "t_success": 138
+        },
+        {
+          "ep": 424,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 425,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 426,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 427,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 428,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 429,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 430,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 431,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 432,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 433,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 434,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 435,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 436,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 437,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 438,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 439,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 440,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 441,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 442,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 443,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 444,
+          "success": true,
+          "t_success": 120
+        },
+        {
+          "ep": 445,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 446,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 447,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 448,
+          "success": true,
+          "t_success": 140
+        },
+        {
+          "ep": 449,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 450,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 451,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 452,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 453,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 454,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 455,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 456,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 457,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 458,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 459,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 460,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 461,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 462,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 463,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 464,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 465,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 466,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 467,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 468,
+          "success": true,
+          "t_success": 122
+        },
+        {
+          "ep": 469,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 470,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 471,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 472,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 473,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 474,
+          "success": true,
+          "t_success": 129
+        },
+        {
+          "ep": 475,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 476,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 477,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 478,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 479,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 480,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 481,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 482,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 483,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 484,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 485,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 486,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 487,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 488,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 489,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 490,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 491,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 492,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 493,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 494,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 495,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 496,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 497,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 498,
+          "success": true,
+          "t_success": 125
+        },
+        {
+          "ep": 499,
+          "success": true,
+          "t_success": 108
+        }
+      ]
+    },
+    {
+      "name": "C_side_wrist",
+      "label": "c\u00f4t\u00e9 + embarqu\u00e9e (agentview + poignet)",
+      "ckpt": "results/runs/can/cam2_C_side_wrist/cooldown/checkpoints/005000/pretrained_model",
+      "n": 500,
+      "n_success": 271,
+      "success_rate": 0.542,
+      "ci95": [
+        0.4981733601090301,
+        0.5851861719343742
+      ],
+      "elapsed_min": 72.92181446949641,
+      "per_episode": [
+        {
+          "ep": 0,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 1,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 2,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 3,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 4,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 5,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 6,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 7,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 8,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 9,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 10,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 11,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 12,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 13,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 14,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 15,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 16,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 17,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 18,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 19,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 20,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 21,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 22,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 23,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 24,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 25,
+          "success": true,
+          "t_success": 121
+        },
+        {
+          "ep": 26,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 27,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 28,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 29,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 30,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 31,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 32,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 33,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 34,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 35,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 36,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 37,
+          "success": true,
+          "t_success": 233
+        },
+        {
+          "ep": 38,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 39,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 40,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 41,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 42,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 43,
+          "success": true,
+          "t_success": 190
+        },
+        {
+          "ep": 44,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 45,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 46,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 47,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 48,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 49,
+          "success": true,
+          "t_success": 77
+        },
+        {
+          "ep": 50,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 51,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 52,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 53,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 54,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 55,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 56,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 57,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 58,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 59,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 60,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 61,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 62,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 63,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 64,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 65,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 66,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 67,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 68,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 69,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 70,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 71,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 72,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 73,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 74,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 75,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 76,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 77,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 78,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 79,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 80,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 81,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 82,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 83,
+          "success": true,
+          "t_success": 83
+        },
+        {
+          "ep": 84,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 85,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 86,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 87,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 88,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 89,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 90,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 91,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 92,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 93,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 94,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 95,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 96,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 97,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 98,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 99,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 100,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 101,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 102,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 103,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 104,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 105,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 106,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 107,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 108,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 109,
+          "success": true,
+          "t_success": 143
+        },
+        {
+          "ep": 110,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 111,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 112,
+          "success": true,
+          "t_success": 83
+        },
+        {
+          "ep": 113,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 114,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 115,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 116,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 117,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 118,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 119,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 120,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 121,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 122,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 123,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 124,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 125,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 126,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 127,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 128,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 129,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 130,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 131,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 132,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 133,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 134,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 135,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 136,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 137,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 138,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 139,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 140,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 141,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 142,
+          "success": true,
+          "t_success": 185
+        },
+        {
+          "ep": 143,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 144,
+          "success": true,
+          "t_success": 113
+        },
+        {
+          "ep": 145,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 146,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 147,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 148,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 149,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 150,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 151,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 152,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 153,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 154,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 155,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 156,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 157,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 158,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 159,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 160,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 161,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 162,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 163,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 164,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 165,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 166,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 167,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 168,
+          "success": true,
+          "t_success": 124
+        },
+        {
+          "ep": 169,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 170,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 171,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 172,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 173,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 174,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 175,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 176,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 177,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 178,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 179,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 180,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 181,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 182,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 183,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 184,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 185,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 186,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 187,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 188,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 189,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 190,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 191,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 192,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 193,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 194,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 195,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 196,
+          "success": true,
+          "t_success": 212
+        },
+        {
+          "ep": 197,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 198,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 199,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 200,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 201,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 202,
+          "success": true,
+          "t_success": 128
+        },
+        {
+          "ep": 203,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 204,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 205,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 206,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 207,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 208,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 209,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 210,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 211,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 212,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 213,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 214,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 215,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 216,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 217,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 218,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 219,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 220,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 221,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 222,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 223,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 224,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 225,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 226,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 227,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 228,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 229,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 230,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 231,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 232,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 233,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 234,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 235,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 236,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 237,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 238,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 239,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 240,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 241,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 242,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 243,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 244,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 245,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 246,
+          "success": true,
+          "t_success": 189
+        },
+        {
+          "ep": 247,
+          "success": true,
+          "t_success": 87
+        },
+        {
+          "ep": 248,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 249,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 250,
+          "success": true,
+          "t_success": 127
+        },
+        {
+          "ep": 251,
+          "success": true,
+          "t_success": 116
+        },
+        {
+          "ep": 252,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 253,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 254,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 255,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 256,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 257,
+          "success": true,
+          "t_success": 203
+        },
+        {
+          "ep": 258,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 259,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 260,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 261,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 262,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 263,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 264,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 265,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 266,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 267,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 268,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 269,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 270,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 271,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 272,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 273,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 274,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 275,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 276,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 277,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 278,
+          "success": true,
+          "t_success": 82
+        },
+        {
+          "ep": 279,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 280,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 281,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 282,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 283,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 284,
+          "success": true,
+          "t_success": 186
+        },
+        {
+          "ep": 285,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 286,
+          "success": true,
+          "t_success": 218
+        },
+        {
+          "ep": 287,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 288,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 289,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 290,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 291,
+          "success": true,
+          "t_success": 83
+        },
+        {
+          "ep": 292,
+          "success": true,
+          "t_success": 142
+        },
+        {
+          "ep": 293,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 294,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 295,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 296,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 297,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 298,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 299,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 300,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 301,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 302,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 303,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 304,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 305,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 306,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 307,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 308,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 309,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 310,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 311,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 312,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 313,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 314,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 315,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 316,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 317,
+          "success": true,
+          "t_success": 135
+        },
+        {
+          "ep": 318,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 319,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 320,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 321,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 322,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 323,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 324,
+          "success": true,
+          "t_success": 250
+        },
+        {
+          "ep": 325,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 326,
+          "success": true,
+          "t_success": 131
+        },
+        {
+          "ep": 327,
+          "success": true,
+          "t_success": 88
+        },
+        {
+          "ep": 328,
+          "success": true,
+          "t_success": 190
+        },
+        {
+          "ep": 329,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 330,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 331,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 332,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 333,
+          "success": true,
+          "t_success": 101
+        },
+        {
+          "ep": 334,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 335,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 336,
+          "success": true,
+          "t_success": 85
+        },
+        {
+          "ep": 337,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 338,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 339,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 340,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 341,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 342,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 343,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 344,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 345,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 346,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 347,
+          "success": true,
+          "t_success": 100
+        },
+        {
+          "ep": 348,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 349,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 350,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 351,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 352,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 353,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 354,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 355,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 356,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 357,
+          "success": true,
+          "t_success": 84
+        },
+        {
+          "ep": 358,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 359,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 360,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 361,
+          "success": true,
+          "t_success": 119
+        },
+        {
+          "ep": 362,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 363,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 364,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 365,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 366,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 367,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 368,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 369,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 370,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 371,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 372,
+          "success": true,
+          "t_success": 118
+        },
+        {
+          "ep": 373,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 374,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 375,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 376,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 377,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 378,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 379,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 380,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 381,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 382,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 383,
+          "success": true,
+          "t_success": 136
+        },
+        {
+          "ep": 384,
+          "success": true,
+          "t_success": 106
+        },
+        {
+          "ep": 385,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 386,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 387,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 388,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 389,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 390,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 391,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 392,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 393,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 394,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 395,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 396,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 397,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 398,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 399,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 400,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 401,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 402,
+          "success": true,
+          "t_success": 85
+        },
+        {
+          "ep": 403,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 404,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 405,
+          "success": true,
+          "t_success": 104
+        },
+        {
+          "ep": 406,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 407,
+          "success": true,
+          "t_success": 114
+        },
+        {
+          "ep": 408,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 409,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 410,
+          "success": true,
+          "t_success": 83
+        },
+        {
+          "ep": 411,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 412,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 413,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 414,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 415,
+          "success": true,
+          "t_success": 89
+        },
+        {
+          "ep": 416,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 417,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 418,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 419,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 420,
+          "success": true,
+          "t_success": 102
+        },
+        {
+          "ep": 421,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 422,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 423,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 424,
+          "success": true,
+          "t_success": 83
+        },
+        {
+          "ep": 425,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 426,
+          "success": true,
+          "t_success": 107
+        },
+        {
+          "ep": 427,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 428,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 429,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 430,
+          "success": true,
+          "t_success": 96
+        },
+        {
+          "ep": 431,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 432,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 433,
+          "success": true,
+          "t_success": 91
+        },
+        {
+          "ep": 434,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 435,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 436,
+          "success": true,
+          "t_success": 108
+        },
+        {
+          "ep": 437,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 438,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 439,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 440,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 441,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 442,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 443,
+          "success": true,
+          "t_success": 90
+        },
+        {
+          "ep": 444,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 445,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 446,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 447,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 448,
+          "success": true,
+          "t_success": 99
+        },
+        {
+          "ep": 449,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 450,
+          "success": true,
+          "t_success": 117
+        },
+        {
+          "ep": 451,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 452,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 453,
+          "success": true,
+          "t_success": 97
+        },
+        {
+          "ep": 454,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 455,
+          "success": true,
+          "t_success": 133
+        },
+        {
+          "ep": 456,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 457,
+          "success": true,
+          "t_success": 112
+        },
+        {
+          "ep": 458,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 459,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 460,
+          "success": true,
+          "t_success": 111
+        },
+        {
+          "ep": 461,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 462,
+          "success": true,
+          "t_success": 93
+        },
+        {
+          "ep": 463,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 464,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 465,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 466,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 467,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 468,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 469,
+          "success": true,
+          "t_success": 110
+        },
+        {
+          "ep": 470,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 471,
+          "success": true,
+          "t_success": 95
+        },
+        {
+          "ep": 472,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 473,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 474,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 475,
+          "success": true,
+          "t_success": 92
+        },
+        {
+          "ep": 476,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 477,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 478,
+          "success": true,
+          "t_success": 98
+        },
+        {
+          "ep": 479,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 480,
+          "success": true,
+          "t_success": 115
+        },
+        {
+          "ep": 481,
+          "success": true,
+          "t_success": 85
+        },
+        {
+          "ep": 482,
+          "success": true,
+          "t_success": 126
+        },
+        {
+          "ep": 483,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 484,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 485,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 486,
+          "success": true,
+          "t_success": 109
+        },
+        {
+          "ep": 487,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 488,
+          "success": true,
+          "t_success": 105
+        },
+        {
+          "ep": 489,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 490,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 491,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 492,
+          "success": true,
+          "t_success": 123
+        },
+        {
+          "ep": 493,
+          "success": true,
+          "t_success": 103
+        },
+        {
+          "ep": 494,
+          "success": true,
+          "t_success": 94
+        },
+        {
+          "ep": 495,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 496,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 497,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 498,
+          "success": false,
+          "t_success": null
+        },
+        {
+          "ep": 499,
+          "success": true,
+          "t_success": 114
+        }
+      ]
+    }
+  ],
+  "paired": {
+    "B_side_top_vs_A_side": {
+      "n": 500,
+      "k_a": 383,
+      "k_b": 400,
+      "delta": 0.03400000000000003,
+      "lo": -0.010075514980542169,
+      "hi": 0.07807551498054223,
+      "p": 0.155400100083905,
+      "gagnes_par_2e_cam": 72,
+      "perdus_par_2e_cam": 55
+    },
+    "C_side_wrist_vs_A_side": {
+      "n": 500,
+      "k_a": 383,
+      "k_b": 271,
+      "delta": -0.22399999999999998,
+      "lo": -0.2798392958121787,
+      "hi": -0.16816070418782125,
+      "p": 6.023604425374595e-14,
+      "gagnes_par_2e_cam": 58,
+      "perdus_par_2e_cam": 170
+    },
+    "C_side_wrist_vs_B_side_top": {
+      "n": 500,
+      "k_a": 400,
+      "k_b": 271,
+      "delta": -0.258,
+      "lo": -0.3128405057890607,
+      "hi": -0.20315949421093932,
+      "p": 3.178260554893492e-18,
+      "gagnes_par_2e_cam": 50,
+      "perdus_par_2e_cam": 179
+    }
+  }
+}

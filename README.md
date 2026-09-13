@@ -86,11 +86,34 @@ avec une latence de 368 ms au banc pour un budget de 530 ms.
 Chaque choix d'architecture ci-dessous a été **mesuré**, pas supposé. Les chiffres sont des
 taux de réussite sur rollouts, à états initiaux figés, avec leur intervalle de confiance.
 
-### Une seule caméra fixe — et surtout pas de caméra au poignet
+### Une seule caméra fixe suffit — et le poignet nuit
 
 C'est le résultat qui m'a le plus surpris, parce qu'il va contre l'intuition : **ajouter une
-caméra dégrade le modèle.** Deux entraînements identiques, une seule différence — B reçoit en
-plus le flux de la caméra embarquée dans la pince, avec son propre encodeur.
+caméra ne fait jamais mieux, et l'embarquer dans la pince fait beaucoup plus mal.**
+
+Pour trancher, j'ai entraîné trois modèles strictement identiques — seule la deuxième caméra
+change — et je les ai évalués sur **les mêmes 500 états initiaux**, ce qui autorise un test
+apparié. C'est la mesure qui manquait : les comparaisons précédentes ne sauvegardaient que les
+moyennes, et leurs intervalles se chevauchaient.
+
+| câblage | réussite (500 rollouts) | vs caméra seule |
+|---|---:|---|
+| **côté seule** | **76,6 %** [72,7 ; 80,1] | référence |
+| côté + **dessus** | 80,0 % [76,3 ; 83,3] | +3,4 pts, p = 0,16 — **non significatif** |
+| côté + **poignet** | 54,2 % [49,8 ; 58,5] | **−22,4 pts, p = 6·10⁻¹⁴** |
+
+Le détail des épisodes discordants dit mieux que les moyennes ce qui se passe. La vue de dessus
+fait **gagner 72 épisodes et en perdre 55** : elle ne fait pas mieux, elle fait *différemment*,
+pour un solde de 17 sur 500. Le poignet, lui, fait gagner 58 épisodes et en perd **170** — ce
+n'est pas du bruit, c'est une dégradation franche.
+
+L'écart entre les deux façons d'ajouter un capteur atteint **25,8 points** (p = 3·10⁻¹⁸).
+
+Le même verdict sur le poignet ressort de trois autres configurations, à des capacités et des
+résolutions différentes :
+
+| configuration | A · agentview seule | B · + caméra poignet | écart |
+|---|---:|---:|---:|
 
 | configuration | A · agentview seule | B · + caméra poignet | écart |
 |---|---:|---:|---:|
@@ -107,11 +130,16 @@ U-Net, 196 démonstrations, entraînement long. Elle atteint 96 % là où mes va
 plafonnaient entre 67 et 81 %. Savoir reproduire la référence avant de l'améliorer m'aurait fait
 gagner plusieurs semaines.
 
-Trois capacités, trois résolutions, toujours le même verdict. Ce n'est donc pas un accident
+Quatre capacités, quatre résolutions, toujours le même verdict. Ce n'est donc pas un accident
 d'entraînement ni un manque de capacité. L'hypothèse que je retiens : en approche, le poignet
 ne voit qu'une bouillie de pixels sans repère global, et cette vue domine la décision au
 moment précis où la vue d'ensemble serait utile. Le poignet reste pertinent pour la
 manipulation fine au contact — pas pour aller chercher un objet.
+
+**Ce que j'en tire pour le matériel.** Une seule caméra bien placée suffit. La deuxième coûte un
+capteur, un encodeur — le modèle passe de 62 à 112 Mo — et 22 % de temps d'inférence, pour un
+gain que 500 rollouts n'arrivent pas à distinguer de zéro. Sur le même budget, activer l'EMA et
+un cooldown a rapporté ~6 points sans un gramme de matériel.
 
 ![](docs/assets/demo_wrist_ab.gif)
 
