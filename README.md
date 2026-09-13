@@ -11,6 +11,25 @@ Espace d'apprentissage et d'expérimentation autour de l'**imitation learning** 
 - **Best success rate** : 0% — on n'a pas encore réussi à finaliser la tâche, en partie à cause d'archis non-multimodales (MLP collapse to mean)
 - **Prochain step** : Diffusion Policy via `lerobot-train` (référence SOTA sur PushT, ~84-91% success en littérature)
 
+## Depuis août 2026 : le bras réel (Roby)
+
+L'état ci-dessus (PushT) date d'avril 2026. Le travail s'est ensuite porté sur le vrai bras
+(Diffusion Policy LeRobot, tâche « pomme », 2 caméras). Ce dépôt en garde la partie
+**entraînement et recherche** ; le code qui pilote le robot (inférence, garde, panneaux,
+entraînement XPU `roby_train_xpu.py`) est dans
+[`roby-le-gentil-robot`](https://github.com/Lardonsauvage1/roby-le-gentil-robot), `tools/pc/`.
+
+- `experiments/real/entrainements_2026-09/` : lanceurs et configs des modèles essayés sur le
+  bras en septembre 2026, avec la correspondance config → run.
+- `src/can_occlusion.py` : banc « Can occluded » (simulation) qui reproduit le mode d'échec
+  dominant du robot réel (le bras masque la cible).
+- `src/camp.py` : CAMP-lite, mémoire compressée de l'historique d'actions (d'après
+  arXiv 2606.21188).
+- `experiments/lift/50_train_valloss.py` : script d'entraînement LeRobot modifié (perte de
+  validation).
+
+Non versionnés : `outputs/`, `results/`, `data_cache/`, poids (`*.safetensors`).
+
 ## Setup machine
 
 Deux environnements coexistent :
