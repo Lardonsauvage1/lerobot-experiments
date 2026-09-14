@@ -98,9 +98,9 @@ moyennes, et leurs intervalles se chevauchaient.
 
 | câblage | réussite (500 rollouts) | vs caméra seule |
 |---|---:|---|
-| **côté seule** | **80,4 %** [76,7 ; 83,6] | référence |
+| **côté seule** | **76,6 %** et **80,4 %** *(deux entraînements)* | référence |
 | côté + **dessus** | 80,0 % [76,3 ; 83,3] | +3,4 pts, p = 0,16 — **non significatif** |
-| côté + **poignet** | 61,6 % [57,3 ; 65,8] | **−18,8 pts, p = 1·10⁻¹⁰** |
+| côté + **poignet** | 54,2 % et 61,6 % *(deux entraînements)* | **−18,8 à −22,4 pts, p < 10⁻⁷** |
 | côté + poignet + dropout de caméra | 64,2 % [59,9 ; 68,3] | −16,2 pts, p = 4·10⁻⁹ |
 
 Le détail des épisodes discordants dit mieux que les moyennes ce qui se passe. La vue de dessus
@@ -108,19 +108,26 @@ fait **gagner 72 épisodes et en perdre 55** : elle ne fait pas mieux, elle fait
 pour un solde de 17 sur 500. Le poignet, lui, en fait perdre 142 pour 67 gagnés — ce n'est pas
 du bruit, c'est une dégradation franche.
 
-**Deux remèdes essayés, un seul a payé.** Corriger un défaut de normalisation que j'ai découvert
-en enquêtant vaut **+7,4 points** sur le bras poignet (p = 0,0007). Ajouter un *dropout de caméra*
-— masquer aléatoirement un flux pour empêcher le réseau de s'y fier — ne vaut que **+2,6 points**,
-intervalle [−1,2 ; +6,4], donc rien de démontrable. L'hypothèse du raccourci causal n'est pas
-confirmée sous cette forme.
+### Le plancher de bruit, et pourquoi il change tout
 
-**Et le résultat qui tranche vraiment.** Une fois la normalisation corrigée, la caméra seule
-atteint 80,4 % — soit exactement ce que donnait l'ajout d'une deuxième caméra extérieure.
-Autrement dit : *un fichier de statistiques bien calculé rapporte autant qu'un capteur
-supplémentaire*, et ne coûte ni matériel, ni latence, ni mémoire.
+Deux colonnes ci-dessus portent **deux chiffres** : j'ai, par accident, entraîné deux fois la même
+configuration. Les écarts obtenus sont de **+3,8 et +7,4 points** — entre des entraînements
+strictement identiques, à graine égale. La non-reproductibilité vient du chargement de données
+multi-processus et du GPU.
 
-<sub>Réserve honnête : le bras « côté + dessus » n'a pas été réentraîné avec les statistiques
-corrigées, faute de temps machine. Son propre plafond corrigé reste donc inconnu.</sub>
+Le test de McNemar déclare pourtant le second « significatif » (p = 0,0007). Ce n'est pas une
+erreur du test : **McNemar compare deux modèles, pas deux configurations.** Avec une seule graine
+par condition, il ne peut pas distinguer l'effet d'un réglage du hasard d'un entraînement.
+
+Conséquence que je tire pour ce dépôt : **tout écart inférieur à ~8 points sur 500 rollouts
+demande plusieurs graines avant d'être annoncé.** Les résultats ci-dessus qui survivent à ce
+critère sont le coût de la caméra de poignet (−18,8 à −22,4) et l'absence d'effet démontrable
+de la deuxième caméra extérieure. Les autres sont des pistes, pas des conclusions.
+
+<sub>C'est une leçon que j'ai apprise en me trompant : j'avais d'abord attribué ces 7,4 points à
+la correction d'un défaut de normalisation, avant de découvrir que LeRobot écrase les statistiques
+d'image du dataset par celles d'ImageNet (`use_imagenet_stats=True`) — ce que je croyais corriger
+n'était donc jamais lu.</sub>
 
 Le même verdict sur le poignet ressort de trois autres configurations, à des capacités et des
 résolutions différentes :
