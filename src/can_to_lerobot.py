@@ -35,6 +35,7 @@ STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
 
 
 def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
+            birdview_only=False, birdview_wrist=False,
             image_size=DEFAULT_IMAGE_SIZE, smoke=False, joint=False, delta=False, coherent=False,
             occlude=0.0):
     """proprio=True : state 9D = proprio SEULE (sans can_pos), test transférabilité réel.
@@ -42,14 +43,22 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
     wrist_only=True : robot0_eye_in_hand SEUL sous observation.image (mono-cam wrist).
     birdview=True : agentview + birdview (2 cams scene-fixées, parallaxe vraie).
        Mutuellement exclusif avec wrist/wrist_only.
+    birdview_only=True : birdview SEULE sous observation.image (mono-cam vue de dessus).
+    birdview_wrist=True : birdview + robot0_eye_in_hand (2 cams).
+       Ces deux modes servent le cas RÉEL : là-bas il n'y a pas de vue extérieure qui voit
+       tout, et le bras — qui arrive par le haut — masque justement la vue de dessus. C'est
+       la seule configuration où la caméra embarquée peut apporter une information que la
+       caméra fixe n'a pas.
     image_size : résolution de rendu (default 96 = standard Robomimic ; 128/160/224 possibles).
     occlude : rayon d'occlusion en MÈTRES (0 = désactivé). La canette est retirée de la
        scène au rendu quand le préhenseur est au-dessus d'elle à moins de `occlude` m en XY
        (voir src/can_occlusion.py). Sert au banc Can-Occluded : le robot réel a été entraîné
        SUR des données où la cible disparaît — entraîner en clair et n'occlure qu'à l'éval
        mesurerait un décalage train/test, pas le problème de mémoire."""
-    if sum([wrist, wrist_only, birdview]) > 1:
-        raise ValueError("--wrist, --wrist-only, --birdview sont mutuellement exclusifs")
+    _modes = [wrist, wrist_only, birdview, birdview_only, birdview_wrist]
+    if sum(_modes) > 1:
+        raise ValueError("--wrist, --wrist-only, --birdview, --birdview-only, "
+                         "--birdview-wrist sont mutuellement exclusifs")
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
     import robosuite as rs
 
@@ -57,6 +66,7 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
     occ_tag = f"_occ{int(round(occlude * 100)):02d}" if occlude > 0 else ""
     suffix = ("_joint" if joint else "") + ("_delta" if delta else "") + ("_coh" if coherent else "") + ("_proprio" if proprio else "") + ("_wrist" if wrist else "") + \
              ("_wristonly" if wrist_only else "") + ("_birdview" if birdview else "") + \
+             ("_birdviewonly" if birdview_only else "") + ("_birdviewwrist" if birdview_wrist else "") + \
              (f"_{image_size}" if image_size != DEFAULT_IMAGE_SIZE else "") + occ_tag
     out_root = OUTPUT_ROOT.with_name(OUTPUT_ROOT.name + suffix)
     repo_id = REPO_ID + suffix
@@ -85,6 +95,9 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
     elif birdview:
         image_features = {"observation.images.agentview": img_feat,
                           "observation.images.birdview": img_feat}
+    elif birdview_wrist:
+        image_features = {"observation.images.birdview": img_feat,
+                          "observation.images.wrist": img_feat}
     else:
         image_features = {"observation.image": img_feat}
     features = {
@@ -151,16 +164,22 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
                     return env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=cam)[::-1]
 
                 fr = {}
-                if wrist or birdview:
-                    cam_pairs = ([("observation.images.agentview", "agentview"),
-                                  ("observation.images.wrist", "robot0_eye_in_hand")] if wrist else
-                                 [("observation.images.agentview", "agentview"),
-                                  ("observation.images.birdview", "birdview")])
+                if wrist or birdview or birdview_wrist:
+                    if wrist:
+                        cam_pairs = [("observation.images.agentview", "agentview"),
+                                     ("observation.images.wrist", "robot0_eye_in_hand")]
+                    elif birdview:
+                        cam_pairs = [("observation.images.agentview", "agentview"),
+                                     ("observation.images.birdview", "birdview")]
+                    else:   # birdview_wrist
+                        cam_pairs = [("observation.images.birdview", "birdview"),
+                                     ("observation.images.wrist", "robot0_eye_in_hand")]
                     for key, cam in cam_pairs:
                         img = _shot(cam)
                         fr[key] = np.ascontiguousarray(img.transpose(2, 0, 1))
                 else:
-                    cam = "robot0_eye_in_hand" if wrist_only else CAMERA_NAME
+                    cam = ("robot0_eye_in_hand" if wrist_only else
+                           "birdview" if birdview_only else CAMERA_NAME)
                     img = _shot(cam)
                     fr["observation.image"] = np.ascontiguousarray(img.transpose(2, 0, 1))
                 return fr
@@ -225,6 +244,10 @@ if __name__ == "__main__":
                     help="UNIQUEMENT la wrist camera (mono-cam, sous observation.image)")
     ap.add_argument("--birdview", action="store_true",
                     help="agentview + birdview (2 cams scene-fixées, parallaxe)")
+    ap.add_argument("--birdview-only", dest="birdview_only", action="store_true",
+                    help="birdview SEULE sous observation.image (mono-cam vue de dessus)")
+    ap.add_argument("--birdview-wrist", dest="birdview_wrist", action="store_true",
+                    help="birdview + poignet : le cas RÉEL (pas de vue extérieure complète)")
     ap.add_argument("--image-size", dest="image_size", type=int, default=DEFAULT_IMAGE_SIZE,
                     help=f"résolution de rendu (default {DEFAULT_IMAGE_SIZE} ; suffixe ajouté si != default)")
     ap.add_argument("--joint", action="store_true",
@@ -239,5 +262,6 @@ if __name__ == "__main__":
     ap.add_argument("--smoke", action="store_true")
     a = ap.parse_args()
     convert(proprio=a.proprio, wrist=a.wrist, wrist_only=a.wrist_only, birdview=a.birdview,
+            birdview_only=a.birdview_only, birdview_wrist=a.birdview_wrist,
             image_size=a.image_size, smoke=a.smoke, joint=a.joint, delta=a.delta,
             coherent=a.coherent, occlude=a.occlude)

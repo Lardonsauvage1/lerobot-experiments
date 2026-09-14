@@ -77,6 +77,13 @@ MODELS = [
      "ckpt": "results/runs/can/cam2_ref_s43/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.images.agentview",
                     "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "D_birdview_only", "label": "DESSUS seule (le bras la masque)",
+     "ckpt": "results/runs/can/cam2_D_birdview_only/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"birdview": "observation.image"}},
+    {"name": "E_birdview_wrist", "label": "DESSUS + embarquée (le cas réel)",
+     "ckpt": "results/runs/can/cam2_E_birdview_wrist/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"birdview": "observation.images.birdview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
@@ -93,7 +100,9 @@ PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", 
          ("B2_fixstats", "A2_fixstats"),   # 2 caméras vs 1, tout corrigé
          ("C4_auxhead", "C2_wrist_fixstats"),  # LE test : la tête auxiliaire débloque-t-elle le poignet ?
          ("C4_auxhead", "C3_camdrop"),     # tête auxiliaire vs dropout, à armes égales
-         ("C4_auxhead", "A2_fixstats")]    # reste-t-il un écart avec la caméra seule ?
+         ("C4_auxhead", "A2_fixstats"),   # reste-t-il un écart avec la caméra seule ?
+         ("E_birdview_wrist", "D_birdview_only")]  # ⭐ LA question : le poignet aide-t-il
+                                          # quand la caméra fixe EST masquée ? (cas réel)
 
 
 def mcnemar_exact(b, c):
