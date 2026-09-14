@@ -53,6 +53,14 @@ MODELS = [
     {"name": "A2_fixstats", "label": "côté seule, stats CORRIGÉES",
      "ckpt": "results/runs/can/cam2_A2_fixstats/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.image"}},
+    {"name": "B2_fixstats", "label": "côté + dessus, stats CORRIGÉES",
+     "ckpt": "results/runs/can/cam2_B2_fixstats/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "birdview": "observation.images.birdview"}},
+    {"name": "C4_auxhead", "label": "côté + embarquée, stats corrigées + TÊTE AUXILIAIRE",
+     "ckpt": "results/runs/can/cam2_C4_auxhead/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
@@ -64,7 +72,12 @@ PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", 
          ("C3_camdrop", "A_side"),
          ("A2_fixstats", "A_side"),          # les stats valent-elles aussi 7 pts en mono-caméra ?
          ("C2_wrist_fixstats", "A2_fixstats"),  # LA comparaison propre : poignet vs seule, tous deux corrigés
-         ("C3_camdrop", "A2_fixstats")]
+         ("C3_camdrop", "A2_fixstats"),
+         ("B2_fixstats", "B_side_top"),     # la correction vaut-elle aussi pour le bi-caméra ?
+         ("B2_fixstats", "A2_fixstats"),   # 2 caméras vs 1, tout corrigé
+         ("C4_auxhead", "C2_wrist_fixstats"),  # LE test : la tête auxiliaire débloque-t-elle le poignet ?
+         ("C4_auxhead", "C3_camdrop"),     # tête auxiliaire vs dropout, à armes égales
+         ("C4_auxhead", "A2_fixstats")]    # reste-t-il un écart avec la caméra seule ?
 
 
 def mcnemar_exact(b, c):

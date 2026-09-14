@@ -436,9 +436,92 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         **postprocessor_kwargs,
     )
 
+    # ===================== PATCH AUXHEAD : têtes auxiliaires par caméra =====================
+    # Problème visé : un modèle 2 caméras CONTIENT le modèle 1 caméra (poids du 2e encodeur à
+    # zéro) et fait pourtant moins bien -> ce n'est pas l'expressivité, c'est l'optimisation.
+    # Mécanisme documenté : compétition entre modalités / gradient starvation (Wang et al.
+    # CVPR 2020 « What Makes Training Multi-modal Classification Networks Hard? » ; Pezeshki
+    # et al. NeurIPS 2021). La branche la plus vite prédictive capte le gradient et affame
+    # l'autre. Le dropout de caméra agit sur l'ENTRÉE et n'a rien donné (+2,6 pts, p=0,22) ;
+    # ici on agit sur le GRADIENT : chaque encodeur reçoit sa propre tête de régression et sa
+    # propre perte, donc chaque branche doit être prédictive SEULE.
+    #
+    # Coût : ~0,39 M par caméra pendant l'entraînement, et **0 au déploiement** — les têtes
+    # ne sont volontairement PAS attachées à la policy, donc absentes du state_dict et des
+    # checkpoints. Le modèle sauvegardé est bit-à-bit de même structure que sans AUXHEAD.
+    _aux_w = float(_os.environ.get("AUXHEAD", "0") or 0)
+    _aux_heads = None
+    if _aux_w > 0:
+        import einops as _ein
+        from lerobot.utils.constants import ACTION as _K_ACT, OBS_IMAGES as _K_IMG, OBS_STATE as _K_ST
+        _dm = policy.diffusion
+        if not getattr(_dm, "rgb_encoder", None) or not isinstance(_dm.rgb_encoder, torch.nn.ModuleList):
+            raise RuntimeError("AUXHEAD exige use_separate_rgb_encoder_per_camera=true")
+        _n_cam = len(_dm.rgb_encoder)
+        _fdim = _dm.rgb_encoder[0].feature_dim
+        _sdim = cfg.policy.robot_state_feature.shape[0]
+        _nobs = cfg.policy.n_obs_steps
+        _H = cfg.policy.horizon
+        _adim = cfg.policy.action_feature.shape[0]
+        _hid = int(_os.environ.get("AUXHEAD_HIDDEN", "512"))
+        _aux_heads = torch.nn.ModuleList([
+            torch.nn.Sequential(
+                torch.nn.Linear(_nobs * (_fdim + _sdim), _hid), torch.nn.ReLU(),
+                torch.nn.Linear(_hid, _hid), torch.nn.ReLU(),
+                torch.nn.Linear(_hid, _H * _adim))
+            for _ in range(_n_cam)]).to(device)
+        _np_aux = sum(q.numel() for q in _aux_heads.parameters())
+        logging.info(f"[AUXHEAD] {_n_cam} tête(s), poids={_aux_w}, {_np_aux/1e6:.3f} M params "
+                     f"(entraînement seulement, absentes du checkpoint)")
+
+        # On réimplémente le conditionnement pour MÉMORISER les features par caméra.
+        # Strictement équivalent à l'original dans le cas « encodeurs séparés ».
+        _orig_prep = _dm._prepare_global_conditioning
+
+        def _prep_stash(batch, _dm=_dm, _ein=_ein):
+            B, S = batch[_K_ST].shape[:2]
+            imgs = _ein.rearrange(batch[_K_IMG], "b s n ... -> n (b s) ...")
+            per = [enc(im) for enc, im in zip(_dm.rgb_encoder, imgs, strict=True)]
+            _dm._percam = [_ein.rearrange(f, "(b s) d -> b s d", b=B, s=S) for f in per]
+            img_features = _ein.rearrange(torch.cat(per), "(n b s) ... -> b s (n ...)", b=B, s=S)
+            return torch.cat([batch[_K_ST], img_features], dim=-1).flatten(start_dim=1)
+
+        _dm._percam = None
+        _dm._prepare_global_conditioning = _prep_stash
+
+        _orig_closs = _dm.compute_loss
+
+        def _closs_aux(batch, _dm=_dm, _heads=_aux_heads, _w=_aux_w):
+            main = _orig_closs(batch)
+            feats = getattr(_dm, "_percam", None)
+            if not feats or not _dm.training:
+                return main
+            tgt = batch[_K_ACT]
+            st = batch[_K_ST]
+            aux = 0.0
+            for h, f in zip(_heads, feats, strict=True):
+                x = torch.cat([f, st], dim=-1).flatten(start_dim=1)
+                aux = aux + torch.nn.functional.mse_loss(h(x).reshape(tgt.shape), tgt)
+            return main + _w * aux / len(_heads)
+
+        _dm.compute_loss = _closs_aux
+
     if is_main_process:
         logging.info("Creating optimizer and scheduler")
     optimizer, lr_scheduler = make_optimizer_and_scheduler(cfg, policy)
+    if _aux_heads is not None:
+        # même précaution que CAMP : ajouter le groupe AVANT de (re)créer le scheduler,
+        # sinon LambdaLR garde une lambda par groupe et casse au premier .step().
+        optimizer.add_param_group({"params": list(_aux_heads.parameters()),
+                                   "lr": float(cfg.optimizer.lr)})
+        _o2, lr_scheduler = make_optimizer_and_scheduler(cfg, policy)
+        del _o2
+        if lr_scheduler is not None and hasattr(lr_scheduler, "base_lrs"):
+            lr_scheduler.optimizer = optimizer
+            lr_scheduler.base_lrs = [g["lr"] for g in optimizer.param_groups]
+            if hasattr(lr_scheduler, "lr_lambdas") and len(lr_scheduler.lr_lambdas) < len(optimizer.param_groups):
+                lr_scheduler.lr_lambdas = list(lr_scheduler.lr_lambdas) + \
+                    [lr_scheduler.lr_lambdas[-1]] * (len(optimizer.param_groups) - len(lr_scheduler.lr_lambdas))
     if _camp_M is not None and _os.environ.get("CAMP_FINETUNE") == "1":
         # ⚠️ ajouter le groupe APRÈS la création du scheduler casse LambdaLR (il garde une
         # lambda par groupe -> "zip() argument 2 is shorter"). On l'ajoute donc ici, puis on
