@@ -98,16 +98,29 @@ moyennes, et leurs intervalles se chevauchaient.
 
 | câblage | réussite (500 rollouts) | vs caméra seule |
 |---|---:|---|
-| **côté seule** | **76,6 %** [72,7 ; 80,1] | référence |
+| **côté seule** | **80,4 %** [76,7 ; 83,6] | référence |
 | côté + **dessus** | 80,0 % [76,3 ; 83,3] | +3,4 pts, p = 0,16 — **non significatif** |
-| côté + **poignet** | 54,2 % [49,8 ; 58,5] | **−22,4 pts, p = 6·10⁻¹⁴** |
+| côté + **poignet** | 61,6 % [57,3 ; 65,8] | **−18,8 pts, p = 1·10⁻¹⁰** |
+| côté + poignet + dropout de caméra | 64,2 % [59,9 ; 68,3] | −16,2 pts, p = 4·10⁻⁹ |
 
 Le détail des épisodes discordants dit mieux que les moyennes ce qui se passe. La vue de dessus
 fait **gagner 72 épisodes et en perdre 55** : elle ne fait pas mieux, elle fait *différemment*,
-pour un solde de 17 sur 500. Le poignet, lui, fait gagner 58 épisodes et en perd **170** — ce
-n'est pas du bruit, c'est une dégradation franche.
+pour un solde de 17 sur 500. Le poignet, lui, en fait perdre 142 pour 67 gagnés — ce n'est pas
+du bruit, c'est une dégradation franche.
 
-L'écart entre les deux façons d'ajouter un capteur atteint **25,8 points** (p = 3·10⁻¹⁸).
+**Deux remèdes essayés, un seul a payé.** Corriger un défaut de normalisation que j'ai découvert
+en enquêtant vaut **+7,4 points** sur le bras poignet (p = 0,0007). Ajouter un *dropout de caméra*
+— masquer aléatoirement un flux pour empêcher le réseau de s'y fier — ne vaut que **+2,6 points**,
+intervalle [−1,2 ; +6,4], donc rien de démontrable. L'hypothèse du raccourci causal n'est pas
+confirmée sous cette forme.
+
+**Et le résultat qui tranche vraiment.** Une fois la normalisation corrigée, la caméra seule
+atteint 80,4 % — soit exactement ce que donnait l'ajout d'une deuxième caméra extérieure.
+Autrement dit : *un fichier de statistiques bien calculé rapporte autant qu'un capteur
+supplémentaire*, et ne coûte ni matériel, ni latence, ni mémoire.
+
+<sub>Réserve honnête : le bras « côté + dessus » n'a pas été réentraîné avec les statistiques
+corrigées, faute de temps machine. Son propre plafond corrigé reste donc inconnu.</sub>
 
 Le même verdict sur le poignet ressort de trois autres configurations, à des capacités et des
 résolutions différentes :

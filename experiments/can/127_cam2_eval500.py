@@ -50,6 +50,9 @@ MODELS = [
      "ckpt": "results/runs/can/cam2_C3_camdrop/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.images.agentview",
                     "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "A2_fixstats", "label": "côté seule, stats CORRIGÉES",
+     "ckpt": "results/runs/can/cam2_A2_fixstats/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.image"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
@@ -58,7 +61,10 @@ PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", 
          ("C2_wrist_fixstats", "C_side_wrist"),   # LE contrôle : la normalisation explique-t-elle la chute ?
          ("C2_wrist_fixstats", "A_side"),
          ("C3_camdrop", "C2_wrist_fixstats"),  # LE test : le dropout débloque-t-il le poignet ?
-         ("C3_camdrop", "A_side")]
+         ("C3_camdrop", "A_side"),
+         ("A2_fixstats", "A_side"),          # les stats valent-elles aussi 7 pts en mono-caméra ?
+         ("C2_wrist_fixstats", "A2_fixstats"),  # LA comparaison propre : poignet vs seule, tous deux corrigés
+         ("C3_camdrop", "A2_fixstats")]
 
 
 def mcnemar_exact(b, c):
