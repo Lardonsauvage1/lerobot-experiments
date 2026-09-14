@@ -1,0 +1,53 @@
+{
+  "essai": "rollout_20260913_012103_pince_cooldown_20260909-004000_RTC",
+  "debut": "2026-09-13 01:21:03",
+  "modele": {
+    "chemin": "/home/sam/lerobot-experiments/outputs/pince_cooldown_20260909/checkpoints/004000/pretrained_model",
+    "entrainement": "pince_cooldown_20260909",
+    "checkpoint": "004000",
+    "corpus": "local/apple_pince_2cam_128",
+    "etat_action": "7D/7D",
+    "cameras": [
+      "fixed"
+    ],
+    "reprise_de": "/home/sam/lerobot-experiments/outputs/pince_const_20260909/checkpoints/036000/pretrained_model",
+    "export_openvino_present": true
+  },
+  "inference": {
+    "mode": "RTC",
+    "rtc_delay": "4 (defaut)",
+    "rtc_guide": "4 (defaut)",
+    "exec_offset": null,
+    "accelerateur": "GPU",
+    "cpus_modele": "0-11",
+    "omp_num_threads": "6",
+    "hz": "15",
+    "pas_de_diffusion": "10",
+    "w_ori": "0.5",
+    "j3_scale": "0.9299",
+    "camera_modele": "right",
+    "commande": "taskset -c 0-11 /home/sam/lerobot-experiments/venv/bin/python /home/sam/roby_infer_cart.py --model /home/sam/lerobot-experiments/outputs/pince_cooldown_20260909/checkpoints/004000/pretrained_model --hz 15 --steps 10 --w-ori 0.5 --go --igpu GPU --rtc"
+  },
+  "pose_de_remontee": "depart_infer_comp",
+  "fin": "2026-09-13 01:21:47",
+  "duree_s": 44.1,
+  "bag_ferme_proprement": true,
+  "resultat": "ECHEC (observe par Niels, 2026-09-13 01:33)",
+  "remarques": [
+    "Pose de depart REELLE differente d'un essai a l'autre (camera right, zone tete du bras : ecart d'image 8.1 et 11.5 vs 1er essai, bruit table 2-3), alors que la pose COMMANDEE est identique a <1 deg (/joint_states, open-loop). Cause non determinee (pas perdus / derive / jeu). Le modele recoit l'etat calcule depuis /joint_states (commande) : il 'croit' partir du meme point. Constate le 2026-09-13 01:37, remarque de Niels verifiee sur les images. Image : SERIE-20260913-0117_depart_tete_du_bras.jpg"
+  ],
+  "serie": {
+    "id": "SERIE-20260913-0117",
+    "rang": "2/3",
+    "note": "Meme position de la pomme dans les 3 essais, et meme echec, exactement (meme comportement, memes positions, meme attente a la fin) - observe par Niels",
+    "marque_le": "2026-09-13 01:21:48",
+    "deroule_de_l_echec": [
+      "le bras va vers la pomme et va trop loin : il cache la pomme a la camera",
+      "il essaie de l'attraper",
+      "il remonte ; quand la pomme reapparait a la camera, il y retourne",
+      "il descend trop bas et essaie de l'attraper",
+      "il reste quasiment immobile, pince ouverte, alors que la pomme est un peu visible au-dessus du bras"
+    ],
+    "note_ajoutee_le": "2026-09-13 01:33"
+  }
+}

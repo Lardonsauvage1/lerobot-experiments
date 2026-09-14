@@ -1,0 +1,62 @@
+{
+  "essai": "rollout_20260913_000156",
+  "debut_enregistrement": "2026-09-13 00:01:56",
+  "duree_enregistree_s": 200.8,
+  "modele_actif_s": 22.3,
+  "modele": {
+    "chemin": "/home/sam/lerobot-experiments/outputs/propre_long_20260908/checkpoints/036000/pretrained_model",
+    "entrainement": "propre_long_20260908",
+    "checkpoint": "036000",
+    "corpus": "local/apple_propre_2cam_128",
+    "etat_action": "6D/7D",
+    "cameras": [
+      "fixed"
+    ],
+    "reprise_de": null
+  },
+  "inference": {
+    "mode": "async exec-offset (tampon vide entre deux calculs) [deduit des donnees du bag]",
+    "accelerateur": "iGPU Arc via OpenVINO [DEDUIT : panneau lance avec iGPU par defaut, latence ~0,25 s ; non ecrit dans le bag]",
+    "cpu": "taskset -c 0-11, OMP_NUM_THREADS=6 [DEDUIT du code du panneau en service]",
+    "hz": 15,
+    "pas_de_diffusion": 10,
+    "w_ori": 0.5,
+    "latence_ms": {
+      "mediane": 260.5,
+      "min": 233,
+      "max": 456
+    }
+  },
+  "mesures": {
+    "actions_publiees": 335,
+    "actions_neuves_pct": 74,
+    "maintien_median_ms": 201.0,
+    "vitesse_bras_mediane_deg_s": 7.1,
+    "temps_bras_a_l_arret_pct": 21,
+    "rejets_du_garde": 0,
+    "pince_commandee_fermee_au_moins_une_fois": true
+  },
+  "conditions": {
+    "luminance_camera_right": {
+      "mediane": 105.0,
+      "min": 94.7,
+      "max": 113.5,
+      "methode": "moyenne 3 canaux, 128x128, ~1 image/s (methode du 2026-09-10)"
+    },
+    "pose_articulaire_depart_deg": [
+      -21.7,
+      10.2,
+      -3.8,
+      0.3,
+      81.1
+    ]
+  },
+  "resultat": "A RENSEIGNER par Niels (observe sur le robot, non deductible des donnees)",
+  "remarques": [
+    "Enregistrement poursuivi ~2 min 50 apres STOP (defaut du veilleur corrige a 00:05) : la partie utile est la fenetre 'modele_actif'."
+  ],
+  "fichiers": {
+    "bag": "/home/sam/roby_datasets/rollouts/rollout_20260913_000156",
+    "video": "/home/sam/roby_datasets/rollouts/rollout_20260913_000156.mp4"
+  }
+}

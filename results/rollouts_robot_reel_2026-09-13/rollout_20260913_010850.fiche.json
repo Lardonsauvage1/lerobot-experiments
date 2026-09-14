@@ -1,0 +1,60 @@
+{
+  "essai": "rollout_20260913_010850",
+  "debut_enregistrement": "2026-09-13 01:08:50",
+  "duree_enregistree_s": 29.2,
+  "modele_actif_s": 18.2,
+  "modele": {
+    "chemin": "/home/sam/lerobot-experiments/outputs/pince_cooldown_20260909/checkpoints/004000/pretrained_model",
+    "entrainement": "pince_cooldown_20260909",
+    "checkpoint": "004000",
+    "corpus": "local/apple_pince_2cam_128",
+    "etat_action": "7D/7D",
+    "cameras": [
+      "fixed"
+    ],
+    "reprise_de": "/home/sam/lerobot-experiments/outputs/pince_const_20260909/checkpoints/036000/pretrained_model"
+  },
+  "inference": {
+    "mode": "RTC (tampon ~9, 100 % d'actions neuves) [deduit des donnees du bag]",
+    "accelerateur": "iGPU Arc via OpenVINO [DEDUIT : panneau lance avec iGPU par defaut, latence ~0,25 s ; non ecrit dans le bag]",
+    "cpu": "taskset -c 0-11, OMP_NUM_THREADS=6 [DEDUIT du code du panneau en service]",
+    "hz": 15,
+    "pas_de_diffusion": 10,
+    "w_ori": 0.5,
+    "latence_ms": {
+      "mediane": 245,
+      "min": 233,
+      "max": 437
+    }
+  },
+  "mesures": {
+    "actions_publiees": 274,
+    "actions_neuves_pct": 100,
+    "maintien_median_ms": 0,
+    "vitesse_bras_mediane_deg_s": 3.7,
+    "temps_bras_a_l_arret_pct": 28,
+    "rejets_du_garde": 0,
+    "pince_commandee_fermee_au_moins_une_fois": true
+  },
+  "conditions": {
+    "luminance_camera_right": {
+      "mediane": 111.9,
+      "min": 105.6,
+      "max": 117.5,
+      "methode": "moyenne 3 canaux, 128x128, ~1 image/s (methode du 2026-09-10)"
+    },
+    "pose_articulaire_depart_deg": [
+      -21.0,
+      10.1,
+      -3.1,
+      0.7,
+      80.5
+    ]
+  },
+  "resultat": "A RENSEIGNER par Niels (observe sur le robot, non deductible des donnees)",
+  "remarques": [],
+  "fichiers": {
+    "bag": "/home/sam/roby_datasets/rollouts/rollout_20260913_010850",
+    "video": "/home/sam/roby_datasets/rollouts/rollout_20260913_010850.mp4"
+  }
+}

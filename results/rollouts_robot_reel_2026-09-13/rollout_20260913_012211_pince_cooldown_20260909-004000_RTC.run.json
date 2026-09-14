@@ -1,0 +1,39 @@
+{
+  "essai": "rollout_20260913_012211_pince_cooldown_20260909-004000_RTC",
+  "debut": "2026-09-13 01:22:11",
+  "modele": {
+    "chemin": "/home/sam/lerobot-experiments/outputs/pince_cooldown_20260909/checkpoints/004000/pretrained_model",
+    "entrainement": "pince_cooldown_20260909",
+    "checkpoint": "004000",
+    "corpus": "local/apple_pince_2cam_128",
+    "etat_action": "7D/7D",
+    "cameras": [
+      "fixed"
+    ],
+    "reprise_de": "/home/sam/lerobot-experiments/outputs/pince_const_20260909/checkpoints/036000/pretrained_model",
+    "export_openvino_present": true
+  },
+  "inference": {
+    "mode": "RTC",
+    "rtc_delay": "4 (defaut)",
+    "rtc_guide": "4 (defaut)",
+    "exec_offset": null,
+    "accelerateur": "GPU",
+    "cpus_modele": "0-11",
+    "omp_num_threads": "6",
+    "hz": "15",
+    "pas_de_diffusion": "10",
+    "w_ori": "0.5",
+    "j3_scale": "0.9299",
+    "camera_modele": "right",
+    "commande": "taskset -c 0-11 /home/sam/lerobot-experiments/venv/bin/python /home/sam/roby_infer_cart.py --model /home/sam/lerobot-experiments/outputs/pince_cooldown_20260909/checkpoints/004000/pretrained_model --hz 15 --steps 10 --w-ori 0.5 --go --igpu GPU --rtc"
+  },
+  "pose_de_remontee": "depart_infer_comp",
+  "fin": "2026-09-13 01:22:37",
+  "duree_s": 25.8,
+  "bag_ferme_proprement": true,
+  "resultat": "A RENSEIGNER (observe par l'operateur, jamais deduit)",
+  "remarques": [
+    "Retire de SERIE-20260913-0117 (etait 3/3) a la demande de Niels le 2026-09-13 01:25 ; fichiers conserves."
+  ]
+}
