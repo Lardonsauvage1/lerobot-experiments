@@ -29,6 +29,7 @@ OUT = Path("results/runs/can/vision_500.json")
 N_EVAL = 500
 STEPS = 10
 CHUNK = 50
+MASK_CAM = None    # nom (partiel) de la caméra à masquer pour le diagnostic d'ablation
 RENDER_SIZE = 96   # résolution de rendu des caméras (96 par défaut ; 224 pour les modèles hi-res)
 
 MODELS = [
@@ -107,6 +108,13 @@ def rollout_can(policy, pre, post, states, device, image_keys, chunk=CHUNK):
                     images[key] = img_t.unsqueeze(0).to(device)
                 state_t = torch.from_numpy(state_proprio(obs))
                 obs_dict = pre({**images, "observation.state": state_t.unsqueeze(0).to(device)})
+                # ABLATION DE MODALITÉ : masque une caméra APRÈS normalisation (0 = image
+                # moyenne, signal « absent » neutre). Sert de diagnostic d'effondrement :
+                # si masquer une caméra ne change RIEN au succès, le modèle ne s'en servait pas.
+                if MASK_CAM:
+                    for _k in list(obs_dict.keys()):
+                        if _k.startswith("observation.image") and MASK_CAM in _k:
+                            obs_dict[_k] = torch.zeros_like(obs_dict[_k])
                 with torch.no_grad():
                     a = policy.select_action(obs_dict)
                 a = np.clip(post(a).squeeze(0).cpu().numpy(), -1.0, 1.0).astype(np.float32)
