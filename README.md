@@ -16,6 +16,27 @@ pince. Il approche, referme, transporte, relâche — sans intervention.</sub>
 <sub>Sur cette série : **7 réussites sur 15 essais**. Le résultat de chaque essai est relevé par
 l'opérateur, jamais déduit des données — les fiches du dépôt distinguent explicitement les deux.</sub>
 
+## Ce que coûte la latence, vu à l'œil nu
+
+![](docs/assets/demo_latence_avant_apres.gif)
+
+<sub>Le même robot, la même tâche, deux réussites. Seule différence : le temps que met le modèle
+à décider. <b>À gauche, la vidéo est accélérée</b> — le bras s'immobilisait plusieurs secondes
+entre chaque mouvement, le temps du calcul. <b>À droite, c'est du temps réel</b>, après
+optimisation.</sub>
+
+C'est la raison d'être de tout le travail de compression de ce dépôt. Un tableau qui annonce
+« ÷160 paramètres, ÷21 latence, 4 pas de diffusion au lieu de 10 » reste abstrait. Un bras qui
+passe du saccadé au fluide ne s'oublie pas.
+
+Et c'est aussi ce qui rend les choix d'architecture non négociables : sur ce robot, le budget
+est de **530 ms** par décision. Tout ce qui dépasse ne se déploie pas, quelle que soit sa
+précision en simulation. C'est pourquoi une deuxième caméra — qui fait passer le modèle de
+16 à 28 M de paramètres pour un gain non démontrable — est refusée ici alors qu'elle serait
+gratuite sur un banc d'essai.
+
+---
+
 ---
 
 ## La même tâche, en simulation
