@@ -84,6 +84,13 @@ MODELS = [
      "ckpt": "results/runs/can/cam2_E_birdview_wrist/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"birdview": "observation.images.birdview",
                     "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "F_wrist_crop", "label": "côté + poignet + CROP aléatoire",
+     "ckpt": "results/runs/can/cam2_F_wrist_crop/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "G_side_crop", "label": "côté seule + CROP aléatoire",
+     "ckpt": "results/runs/can/cam2_G_side_crop/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.image"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
@@ -101,7 +108,11 @@ PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", 
          ("C4_auxhead", "C2_wrist_fixstats"),  # LE test : la tête auxiliaire débloque-t-elle le poignet ?
          ("C4_auxhead", "C3_camdrop"),     # tête auxiliaire vs dropout, à armes égales
          ("C4_auxhead", "A2_fixstats"),   # reste-t-il un écart avec la caméra seule ?
-         ("E_birdview_wrist", "D_birdview_only")]  # ⭐ LA question : le poignet aide-t-il
+         ("E_birdview_wrist", "D_birdview_only"),  # le poignet aide-t-il
+         ("F_wrist_crop", "C2_wrist_fixstats"),    # l'augmentation sauve-t-elle le poignet ?
+         ("G_side_crop", "A2_fixstats"),           # et que vaut-elle sur une seule caméra ?
+         ("F_wrist_crop", "G_side_crop")]          # ⭐ l'ÉCART se referme-t-il ?
+#                                          # (question d'origine : le poignet aide-t-il
                                           # quand la caméra fixe EST masquée ? (cas réel)
 
 
