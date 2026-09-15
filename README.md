@@ -5,9 +5,23 @@
 Projet mené seul sur 5 mois : ~45 000 lignes de Python, 186 modèles entraînés,
 des tâches simulées jusqu'à un bras 5 axes physique.
 
-<!-- TROU 1 : bandeau d'accroche.
-     Idéal = 3 vidéos côte à côte (simulation / robot réel / échec analysé).
-     Il manque une vidéo du ROBOT RÉEL — à filmer et déposer dans docs/assets/. -->
+## Le robot, en autonomie
+
+![](docs/assets/demo_robot_reel.gif)
+
+<sub>Un essai réussi du 13 septembre 2026. Les deux flux que reçoit le modèle, et l'incrustation
+qui indique à chaque instant s'il pilote (<b>MODÈLE ACTIF</b>) et quelle consigne il envoie à la
+pince. Il approche, referme, transporte, relâche — sans intervention.</sub>
+
+<sub>Sur cette série : **7 réussites sur 15 essais**. Le résultat de chaque essai est relevé par
+l'opérateur, jamais déduit des données — les fiches du dépôt distinguent explicitement les deux.</sub>
+
+---
+
+## La même tâche, en simulation
+
+C'est là que tout se mesure : en simulation on peut rejouer mille fois le même état initial,
+ce qui est impossible sur un bras physique.
 
 | Robomimic Can — saisie réussie | Même départ, avec et sans occlusion | Échec analysé image par image |
 |:---:|:---:|:---:|
@@ -60,18 +74,6 @@ dernier chantier. C'est la partie du dépôt dont je suis le plus satisfait.
 | Robot réel, contrôle autonome | **5/14** le 8 sept., puis **7/15** le 13 |
 | Coût mesuré d'une occlusion de la cible | **−13,3 points** (p = 0,013) |
 
-### Le robot, et ce qu'il voit
-
-![](docs/assets/real_robot_vues.jpg)
-
-<sub>Les deux caméras du bras, sur un même instant, telles que le modèle les reçoit.
-Sur cette capture leur colorimétrie n'a rien à voir — la seconde vire au magenta. D'autres
-séances ne présentent pas cet écart : la balance des blancs dérive d'une session à l'autre.
-C'est typiquement ce qu'un simulateur ne reproduit pas, et qu'il faut traiter avant de se
-demander pourquoi un modèle transfère mal.</sub>
-
-<!-- TROU 2b : il manque une photo « large » du poste complet — bras, établi, caméras —
-     et surtout une VIDÉO d'un rollout autonome. Aucune n'existe dans le dépôt. -->
 
 ---
 
@@ -85,20 +87,6 @@ avec une latence de 368 ms au banc pour un budget de 530 ms.
 
 **Ce qui marche** : le robot mène la pomme jusqu'à la cible en autonomie.
 **Ce qui reste** : il échoue une fois sur deux, et j'ai passé trois jours à mesurer pourquoi.
-
-### Le robot en autonomie
-
-![](docs/assets/demo_robot_reel.gif)
-
-<sub>Un essai réussi du 13 septembre 2026. Les deux flux que reçoit le modèle, et l'incrustation
-qui indique à chaque instant s'il pilote (<b>MODÈLE ACTIF</b>) et quelle consigne il envoie à la
-pince. Il approche, referme, transporte, relâche — sans intervention.</sub>
-
-<sub>Sur cette série : **7 réussites sur 15 essais**. Le résultat de chaque essai est relevé par
-l'opérateur et jamais déduit des données — les fiches du dépôt distinguent explicitement les
-deux.</sub>
-
----
 
 ## Pourquoi ce modèle, et pas un autre
 
