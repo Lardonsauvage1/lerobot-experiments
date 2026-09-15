@@ -57,17 +57,18 @@ dernier chantier. C'est la partie du dépôt dont je suis le plus satisfait.
 | Robomimic Lift, Diffusion Policy | **100 %** de réussite |
 | Compression du même modèle | **÷160 paramètres, ÷21 latence**, 98,6 % conservés<br/><sub>÷9 seulement en vision pure — le facteur 160 tient à une béquille</sub> |
 | Robomimic Can, vision pure (sans coordonnées de l'objet) | **94,8 %** sur 500 rollouts |
-| Robot réel, premier contrôle autonome | **5 réussites sur 14 essais** |
+| Robot réel, contrôle autonome | **5/14** le 8 sept., puis **7/15** le 13 |
 | Coût mesuré d'une occlusion de la cible | **−13,3 points** (p = 0,013) |
 
 ### Le robot, et ce qu'il voit
 
 ![](docs/assets/real_robot_vues.jpg)
 
-<sub>Les deux caméras du bras, sur un même instant. À gauche la caméra fixe, à droite
-l'embarquée au poignet. Leur colorimétrie n'a rien à voir : l'embarquée vire au magenta.
-C'est le genre d'écart qu'on ne voit pas dans un simulateur, et qu'il faut traiter avant
-de se demander pourquoi un modèle transfère mal.</sub>
+<sub>Les deux caméras du bras, sur un même instant, telles que le modèle les reçoit.
+Sur cette capture leur colorimétrie n'a rien à voir — la seconde vire au magenta. D'autres
+séances ne présentent pas cet écart : la balance des blancs dérive d'une session à l'autre.
+C'est typiquement ce qu'un simulateur ne reproduit pas, et qu'il faut traiter avant de se
+demander pourquoi un modèle transfère mal.</sub>
 
 <!-- TROU 2b : il manque une photo « large » du poste complet — bras, établi, caméras —
      et surtout une VIDÉO d'un rollout autonome. Aucune n'existe dans le dépôt. -->
@@ -85,8 +86,17 @@ avec une latence de 368 ms au banc pour un budget de 530 ms.
 **Ce qui marche** : le robot mène la pomme jusqu'à la cible en autonomie.
 **Ce qui reste** : il échoue une fois sur deux, et j'ai passé trois jours à mesurer pourquoi.
 
-<!-- TROU 3 : vidéo d'un rollout autonome réussi sur le vrai robot.
-     À filmer. C'est probablement le contenu le plus convaincant du portfolio. -->
+### Le robot en autonomie
+
+![](docs/assets/demo_robot_reel.gif)
+
+<sub>Un essai réussi du 13 septembre 2026. Les deux flux que reçoit le modèle, et l'incrustation
+qui indique à chaque instant s'il pilote (<b>MODÈLE ACTIF</b>) et quelle consigne il envoie à la
+pince. Il approche, referme, transporte, relâche — sans intervention.</sub>
+
+<sub>Sur cette série : **7 réussites sur 15 essais**. Le résultat de chaque essai est relevé par
+l'opérateur et jamais déduit des données — les fiches du dépôt distinguent explicitement les
+deux.</sub>
 
 ---
 
