@@ -60,8 +60,17 @@ dernier chantier. C'est la partie du dépôt dont je suis le plus satisfait.
 | Robot réel, premier contrôle autonome | **5 réussites sur 14 essais** |
 | Coût mesuré d'une occlusion de la cible | **−13,3 points** (p = 0,013) |
 
-<!-- TROU 2 : une photo du robot réel avec la pomme. C'est le visuel qui ancre
-     le projet dans le concret — actuellement absent du dépôt. -->
+### Le robot, et ce qu'il voit
+
+![](docs/assets/real_robot_vues.jpg)
+
+<sub>Les deux caméras du bras, sur un même instant. À gauche la caméra fixe, à droite
+l'embarquée au poignet. Leur colorimétrie n'a rien à voir : l'embarquée vire au magenta.
+C'est le genre d'écart qu'on ne voit pas dans un simulateur, et qu'il faut traiter avant
+de se demander pourquoi un modèle transfère mal.</sub>
+
+<!-- TROU 2b : il manque une photo « large » du poste complet — bras, établi, caméras —
+     et surtout une VIDÉO d'un rollout autonome. Aucune n'existe dans le dépôt. -->
 
 ---
 
@@ -166,6 +175,38 @@ un cooldown a rapporté ~6 points sans un gramme de matériel.
 <sub>Même état initial, même graine. À gauche A (agentview seule) saisit la canette. À droite B,
 qui reçoit <b>en plus</b> la caméra de poignet — son flux est en médaillon — n'y arrive pas.
 Épisode choisi parmi les discordants : ce sont eux qui portent l'effet mesuré.</sub>
+
+### La caméra de poignet : la même mesure dit oui et non
+
+C'est l'enquête dont je suis le plus content, parce qu'elle a commencé par cinq échecs.
+
+Ajouter une caméra embarquée à côté d'une caméra fixe bien placée fait **perdre une vingtaine
+de points**, reproductible sur quatre configurations. Mais les systèmes publiés l'utilisent et
+s'en portent mieux. J'ai donc cherché ce que je faisais de travers : j'ai éliminé le rendu
+(images d'entraînement et d'évaluation identiques à 3/255 près), un défaut de normalisation,
+un *dropout* de caméra, des têtes auxiliaires par branche. Rien n'a rien changé.
+
+La réponse est venue d'un changement de question. Sur le robot réel il n'y a **pas** de caméra
+extérieure qui voit tout, et le bras masque celle qu'on a. J'ai donc rejoué la comparaison dans
+ce régime-là :
+
+| | caméra fixe seule | + caméra de poignet |
+|---|---:|---:|
+| vue de côté (voit toute la scène) | **78,5 %** | 54,8 % — **−24 pts** |
+| vue de dessus (masquée par le bras) | 20,4 % | **46,2 %** — **+26 pts**, p = 2·10⁻¹⁴ |
+
+**Le même capteur, ajouté au même modèle, fait perdre vingt points ou en gagner vingt-six selon
+ce qu'il remplace.**
+
+Un diagnostic d'ablation — rejouer les mêmes épisodes en masquant une caméra — explique
+pourquoi. Retirer le poignet ramène le modèle à **0 %** dans les deux cas : il en est devenu
+totalement dépendant, alors qu'un réseau entraîné sans lui atteint 78 %. Le gros plan du
+poignet est l'entrée la plus prédictive de l'action immédiate, donc celle que la descente de
+gradient s'approprie en premier ; le réseau bâtit sa représentation autour d'elle et n'apprend
+jamais à s'en passer. Quand la vue globale était bonne, on a échangé du robuste contre du
+fragile. Quand elle était mauvaise, le raccourci était aussi le meilleur signal disponible.
+
+→ [`docs/POURQUOI_LE_POIGNET.md`](docs/POURQUOI_LE_POIGNET.md)
 
 ### Un décodeur qu'on ne peut pas rétrécir, un encodeur qu'on peut
 
