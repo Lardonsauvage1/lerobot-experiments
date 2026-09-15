@@ -7,7 +7,7 @@ set -u
 cd /Users/nielsmurawka/Documents/VScodeProject/experience_Le || exit 1
 PY=venv312/bin/python
 TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale
-IP=100.110.237.53
+IP="${MAC2_HOST:-mac2}"
 RUN=results/runs/can/joint_r34_bigunet
 OUT=$RUN/rollouts_50.csv
 STEPS="40000 38000 36000 34000 32000 30000 28000 26000 24000 22000 20000 18000 16000 14000 12000 10000 8000 6000 4000 2000"

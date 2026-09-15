@@ -4,7 +4,7 @@
 set -u
 cd /Users/nielsmurawka/Documents/VScodeProject/experience_Le || exit 1
 RD=results/runs/phase6_camera/lookat_finetune_run31
-TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP=100.110.237.53
+TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP="${MAC2_HOST:-mac2}"
 PY=venv312/bin/python
 
 echo "[56] $(date '+%H:%M') transfert checkpoints fine-tune depuis mac2..."

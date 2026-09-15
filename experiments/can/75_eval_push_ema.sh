@@ -4,7 +4,7 @@ set -u
 cd /Users/nielsmurawka/Documents/VScodeProject/experience_Le || exit 1
 PY=venv312/bin/python
 RDJ=results/runs/can/joint_r34_bigunet
-TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP=100.110.237.53
+TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP="${MAC2_HOST:-mac2}"
 for s in 054000 058000 062000 066000 070000 074000 078000 080000; do
   "$TS" ping -c 2 "$IP" >/dev/null 2>&1
   ssh -o BatchMode=yes mac2 "cd ~/lerobot-experiments && tar czf - $RDJ/checkpoints/$s/pretrained_model ${RDJ}_ema/checkpoints/$s/pretrained_model 2>/dev/null" | tar xzf - -C . 2>/dev/null

@@ -7,7 +7,7 @@
 
 cd /Users/nielsmurawka/Documents/VScodeProject/experience_Le || exit 1
 TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale
-IP=100.110.237.53
+IP="${MAC2_HOST:-mac2}"
 DS=data_cache/lerobot_can_ph_proprio_birdview_lookat
 RUN=results/runs/phase6_camera/lookat_r34_bigunet
 PAT="50_train_valloss.*lookat"

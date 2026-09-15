@@ -7,7 +7,7 @@ for s in 18000 20000 22000 24000; do
   pad=$(printf "%06d" "$s")
   CK=$RD/checkpoints/$pad/pretrained_model
   if [ ! -s "$CK/model.safetensors" ]; then
-    /Applications/Tailscale.app/Contents/MacOS/Tailscale ping -c 2 100.110.237.53 >/dev/null 2>&1
+    /Applications/Tailscale.app/Contents/MacOS/Tailscale ping -c 2 ${MAC2_HOST:-mac2} >/dev/null 2>&1
     ssh -o BatchMode=yes mac2 "cd ~/lerobot-experiments && tar czf - $RD/checkpoints/$pad/pretrained_model" | tar xzf - -C . 2>/dev/null
   fi
   [ -s "$CK/model.safetensors" ] || { echo "[55] $pad absent, skip"; continue; }

@@ -5,7 +5,7 @@
 set -u
 cd /Users/nielsmurawka/Documents/VScodeProject/experience_Le || exit 1
 PY=venv312/bin/python
-TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP=100.110.237.53
+TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP="${MAC2_HOST:-mac2}"
 RDJ=results/runs/can/joint_r34_bigunet
 log(){ echo "[74] $(date '+%H:%M') $*"; }
 

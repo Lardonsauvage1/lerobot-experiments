@@ -5,7 +5,7 @@
 set -u
 cd /Users/nielsmurawka/Documents/VScodeProject/experience_Le || exit 1
 PY=venv312/bin/python
-TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP=100.110.237.53
+TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP="${MAC2_HOST:-mac2}"
 RUN=results/runs/can/run31_constLR
 
 echo "[68] $(date '+%H:%M') complète run31-jumeau 28k->2k (n=100)"

@@ -7,7 +7,7 @@ set -u
 cd /Users/nielsmurawka/Documents/VScodeProject/experience_Le || exit 1
 PY=venv312/bin/python
 RDJ=results/runs/can/joint_r34_bigunet
-TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP=100.110.237.53
+TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale; IP="${MAC2_HOST:-mac2}"
 
 echo "[78] $(date '+%H:%M') attente fin training joint 100k (mac2)..."
 while true; do

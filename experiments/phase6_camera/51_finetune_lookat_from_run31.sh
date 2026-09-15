@@ -8,7 +8,7 @@
 set -u
 cd /Users/nielsmurawka/Documents/VScodeProject/experience_Le || exit 1
 TS=/Applications/Tailscale.app/Contents/MacOS/Tailscale
-IP=100.110.237.53
+IP="${MAC2_HOST:-mac2}"
 R31=results/runs/can/31_proprio_birdview_r34_bigunet/checkpoints/040000/pretrained_model
 RUN=results/runs/phase6_camera/lookat_finetune_run31
 PAT="50_train_valloss.*lookat_finetune_run31"

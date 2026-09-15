@@ -21,6 +21,7 @@ from pprint import pformat
 from typing import Any
 
 import torch
+from pathlib import Path as _PathR
 from accelerate import Accelerator
 from termcolor import colored
 from torch.optim import Optimizer
@@ -506,9 +507,104 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
 
         _dm.compute_loss = _closs_aux
 
+    # ===================== PATCH CAMROUTER : routage dynamique des caméras =====================
+    # Idée : au lieu de concaténer aveuglément les features des N caméras, un petit MLP prédit
+    # À CHAQUE PAS DE TEMPS un poids par caméra. Le réseau peut ainsi fermer une vue devenue
+    # inutile (la fixe quand le bras la masque) au lieu de subir sa présence.
+    #
+    # ⚠️ CONTRAINTE DE DÉPLOIEMENT : les entrées du routeur sont les features des caméras et la
+    # PROPRIOCEPTION — tout est disponible sur le robot réel. Aucune géométrie privilégiée,
+    # aucune annotation. C'est la leçon de l'oracle 12D : une méthode validée avec une béquille
+    # ne transfère pas. La vérité géométrique de la sim servira à VÉRIFIER le routeur appris,
+    # jamais à l'entraîner.
+    #
+    # Forme résiduelle : f_i <- f_i * (1 + gamma * (N*g_i - 1)), gamma appris et initialisé à 0.
+    # Au démarrage le modèle est donc STRICTEMENT identique à la baseline — la porte ne peut
+    # que gagner sa place.
+    #
+    # Anti-effondrement : perte d'équilibrage de charge (Switch-Transformer). Elle n'interdit
+    # pas une porte tranchée sur un échantillon donné ; elle interdit que ce soit TOUJOURS la
+    # même caméra. Sans elle, le routeur convergerait vers « toujours le poignet », qui est
+    # déjà ce que fait le réseau actuel (mesuré à l'ablation).
+    _router_w = float(_os.environ.get("CAMROUTER", "0") or 0)
+    _router = None
+    if _router_w > 0:
+        import einops as _ein_r
+        from lerobot.utils.constants import OBS_IMAGES as _RK_IMG, OBS_STATE as _RK_ST
+        _dmr = policy.diffusion
+        if not isinstance(getattr(_dmr, "rgb_encoder", None), torch.nn.ModuleList):
+            raise RuntimeError("CAMROUTER exige use_separate_rgb_encoder_per_camera=true")
+        _ncam = len(_dmr.rgb_encoder)
+        _fd = _dmr.rgb_encoder[0].feature_dim
+        _sd = cfg.policy.robot_state_feature.shape[0]
+        _hid_r = int(_os.environ.get("CAMROUTER_HIDDEN", "64"))
+        _router = torch.nn.ModuleDict({
+            "mlp": torch.nn.Sequential(
+                torch.nn.Linear(_ncam * _fd + _sd, _hid_r), torch.nn.ReLU(),
+                torch.nn.Linear(_hid_r, _ncam)),
+            }).to(device)
+        _router.gamma = torch.nn.Parameter(torch.zeros(1, device=device))
+        _router.register_parameter("gamma", _router.gamma)
+        _nb = sum(q.numel() for q in _router.parameters())
+        logging.info(f"[CAMROUTER] {_ncam} caméras, poids équilibrage={_router_w}, "
+                     f"{_nb} params, gamma init 0 (identité au démarrage)")
+
+        _orig_prep_r = _dmr._prepare_global_conditioning
+
+        def _prep_router(batch, _dm=_dmr, _ein=_ein_r, _R=_router):
+            B, S = batch[_RK_ST].shape[:2]
+            imgs = _ein.rearrange(batch[_RK_IMG], "b s n ... -> n (b s) ...")
+            per = [_ein.rearrange(enc(im), "(b s) d -> b s d", b=B, s=S)
+                   for enc, im in zip(_dm.rgb_encoder, imgs, strict=True)]
+            st = batch[_RK_ST]
+            x = torch.cat(per + [st], dim=-1)                  # (B,S,N*D+sd)
+            g = torch.softmax(_R["mlp"](x), dim=-1)            # (B,S,N)
+            _dm._gate = g                                      # pour la perte d'équilibrage
+            n = len(per)
+            per = [f * (1.0 + _R.gamma * (n * g[..., i:i+1] - 1.0)) for i, f in enumerate(per)]
+            return torch.cat([st] + per, dim=-1).flatten(start_dim=1)
+
+        # reprise (cooldown) : si un routeur accompagne le checkpoint de départ, on le reprend.
+        _rload = _os.environ.get("CAMROUTER_LOAD") or (
+            str(_PathR(cfg.policy.pretrained_path) / "camrouter.pt")
+            if getattr(cfg.policy, "pretrained_path", None) else None)
+        if _rload and _PathR(_rload).exists():
+            _router.load_state_dict(torch.load(_rload, map_location=device))
+            logging.info(f"[CAMROUTER] routeur repris depuis {_rload} "
+                         f"(gamma={float(_router.gamma):.4f})")
+        else:
+            logging.info("[CAMROUTER] routeur NEUF (gamma=0)")
+
+        _dmr._gate = None
+        _dmr._prepare_global_conditioning = _prep_router
+        _orig_closs_r = _dmr.compute_loss
+
+        def _closs_router(batch, _dm=_dmr, _w=_router_w):
+            main = _orig_closs_r(batch)
+            g = getattr(_dm, "_gate", None)
+            if g is None or not _dm.training:
+                return main
+            n = g.shape[-1]
+            mean_g = g.reshape(-1, n).mean(dim=0)              # usage moyen par caméra
+            bal = n * (mean_g ** 2).sum()                      # minimal (=1) si uniforme
+            return main + _w * bal
+
+        _dmr.compute_loss = _closs_router
+
     if is_main_process:
         logging.info("Creating optimizer and scheduler")
     optimizer, lr_scheduler = make_optimizer_and_scheduler(cfg, policy)
+    if _router is not None:
+        optimizer.add_param_group({"params": list(_router.parameters()),
+                                   "lr": float(cfg.optimizer.lr)})
+        _o3, lr_scheduler = make_optimizer_and_scheduler(cfg, policy)
+        del _o3
+        if lr_scheduler is not None and hasattr(lr_scheduler, "base_lrs"):
+            lr_scheduler.optimizer = optimizer
+            lr_scheduler.base_lrs = [g["lr"] for g in optimizer.param_groups]
+            if hasattr(lr_scheduler, "lr_lambdas") and len(lr_scheduler.lr_lambdas) < len(optimizer.param_groups):
+                lr_scheduler.lr_lambdas = list(lr_scheduler.lr_lambdas) + \
+                    [lr_scheduler.lr_lambdas[-1]] * (len(optimizer.param_groups) - len(lr_scheduler.lr_lambdas))
     if _aux_heads is not None:
         # même précaution que CAMP : ajouter le groupe AVANT de (re)créer le scheduler,
         # sinon LambdaLR garde une lambda par groupe et casse au premier .step().
@@ -884,6 +980,12 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
                     preprocessor=preprocessor,
                     postprocessor=postprocessor,
                 )
+                # Le routeur n'est pas un sous-module de la policy (pour garder les
+                # checkpoints chargeables partout) : on l'écrit à côté, explicitement.
+                if _router is not None:
+                    _rp = _PathR(checkpoint_dir) / "pretrained_model" / "camrouter.pt"
+                    torch.save(_router.state_dict(), _rp)
+                    logging.info(f"[CAMROUTER] routeur sauvé : {_rp}")
                 if _camp_bank is not None:
                     # ⭐ variante A : le LSTM a été MODIFIÉ par le finetuning conjoint. Sans
                     # cette sauvegarde, l'éval rechargerait le module pré-entraîné d'origine
