@@ -1,0 +1,36 @@
+{
+  "cam2_E_birdview_wrist": {
+    "aucune (mod\u00e8le complet)": {
+      "n": 200,
+      "n_success": 97,
+      "rate": 0.485
+    },
+    "sans birdview": {
+      "n": 200,
+      "n_success": 92,
+      "rate": 0.46
+    },
+    "sans wrist": {
+      "n": 200,
+      "n_success": 0,
+      "rate": 0.0
+    }
+  },
+  "cam2_C2_wrist_fixstats": {
+    "aucune (mod\u00e8le complet)": {
+      "n": 200,
+      "n_success": 121,
+      "rate": 0.605
+    },
+    "sans agentview": {
+      "n": 200,
+      "n_success": 74,
+      "rate": 0.37
+    },
+    "sans wrist": {
+      "n": 200,
+      "n_success": 0,
+      "rate": 0.0
+    }
+  }
+}
