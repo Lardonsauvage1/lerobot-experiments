@@ -591,6 +591,24 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
 
         _dmr.compute_loss = _closs_router
 
+    # PATCH FREEZE_CAM0 : gèle l'encodeur de la caméra 0 (la vue globale).
+    # Protocole à encodeur gelé : on part d'un modèle mono-caméra qui marche, on l'insère
+    # dans l'architecture bi-caméra avec les colonnes du poignet à zéro (cf.
+    # experiments/can/141_init_from_mono.py), et on EMPÊCHE le poignet de corrompre la
+    # représentation qui fonctionne. Il ne peut plus que la compléter.
+    if _os.environ.get("FREEZE_CAM0") == "1":
+        _dmf = policy.diffusion
+        if not isinstance(getattr(_dmf, "rgb_encoder", None), torch.nn.ModuleList):
+            raise RuntimeError("FREEZE_CAM0 exige use_separate_rgb_encoder_per_camera=true")
+        _nf = 0
+        for _q in _dmf.rgb_encoder[0].parameters():
+            _q.requires_grad_(False); _nf += _q.numel()
+        _dmf.rgb_encoder[0].eval()
+        _tot = sum(q.numel() for q in policy.parameters())
+        logging.info(f"[FREEZE_CAM0] encodeur vue globale GELÉ : {_nf/1e6:.2f} M params "
+                     f"sur {_tot/1e6:.2f} M ({_nf/_tot*100:.0f} %) — le poignet ne peut plus "
+                     f"corrompre la représentation qui marche")
+
     if is_main_process:
         logging.info("Creating optimizer and scheduler")
     optimizer, lr_scheduler = make_optimizer_and_scheduler(cfg, policy)

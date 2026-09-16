@@ -95,6 +95,16 @@ MODELS = [
      "ckpt": "results/runs/can/cam2_H_router/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.images.agentview",
                     "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "R1_rattrapage", "label": "150 expertes + 75 RATTRAPAGES",
+     "ckpt": "results/runs/can/cam2_R1_rattrapage/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.image"}},
+    {"name": "R2_200expert", "label": "200 expertes (contrôle quantité)",
+     "ckpt": "results/runs/can/cam2_R2_200expert/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.image"}},
+    {"name": "I_frozen", "label": "poignet ajouté sur encodeur GELÉ (départ A2)",
+     "ckpt": "results/runs/can/cam2_I_frozen/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
@@ -118,7 +128,12 @@ PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", 
          ("F_wrist_crop", "G_side_crop"),          # ⭐ l'ÉCART se referme-t-il ?
          ("H_router", "C2_wrist_fixstats"),        # le routeur bat-il la concaténation ?
          ("H_router", "C3_camdrop"),               # ... et le dropout seul ?
-         ("H_router", "A2_fixstats")]              # reste-t-il un écart avec 1 caméra ?
+         ("H_router", "A2_fixstats"),              # reste-t-il un écart avec 1 caméra ?
+         ("R1_rattrapage", "A2_fixstats"),         # ⭐ les rattrapages aident-ils ?
+         ("R2_200expert", "A2_fixstats"),          # ... ou est-ce juste PLUS DE DONNÉES ?
+         ("R1_rattrapage", "R2_200expert"),        # le test qui separe les deux
+         ("I_frozen", "A2_fixstats"),              # ⭐ le poignet apporte-t-il ENFIN quelque chose ?
+         ("I_frozen", "C2_wrist_fixstats")]        # ... et bat-il la concaténation naïve ?
 #                                          # (question d'origine : le poignet aide-t-il
                                           # quand la caméra fixe EST masquée ? (cas réel)
 
