@@ -107,8 +107,23 @@ globale.** Trois régimes, trois mesures indépendantes.
 | dropout de caméra | 64,2 % | +9,4 — dans le bruit |
 | tête auxiliaire par caméra | 45,8 % | −9,0 — dans le bruit |
 | routeur de caméras (porte apprise) | 42,2 % | −12,6 — sous les 3 répliques |
-| crop aléatoire | 34,8 % | **−20,0** |
+| crop aléatoire | 34,8 % | **−20,0** ⚠️ voir ci-dessous |
 | budget ×10 (100 000 steps) | 60,0 % | +5,2 — insuffisant |
+
+## ⚠️ Nuance sur le crop — à ne pas généraliser
+
+Le crop **n'est pas mauvais en soi**. Notre meilleur modèle Can, `wristcap84_A` à **96 %**,
+en utilise un (76←84). Le bras G qui s'effondre à 21,6 % a le même type d'augmentation mais
+**huit fois moins de budget** : 0,32 M échantillons contre 2,56 M, un U-Net dix fois plus
+petit et 150 démonstrations au lieu de 196.
+
+L'explication la plus économique est classique : **l'augmentation rend l'apprentissage plus
+difficile et ne paie qu'avec assez d'entraînement.** À 10 000 steps le modèle subit le bruit
+sans avoir le temps d'en tirer la robustesse.
+
+Ce qui est donc établi ici : **ajouter du crop à un petit budget dégrade massivement.**
+Ce qui ne l'est pas : que le crop soit inutile. Tester proprement demanderait de faire varier
+le crop À budget constant et élevé — ce qu'on n'a pas fait.
 
 ## Trois enseignements qui dépassent le sujet
 
