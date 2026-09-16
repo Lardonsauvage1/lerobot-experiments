@@ -91,6 +91,10 @@ MODELS = [
     {"name": "G_side_crop", "label": "côté seule + CROP aléatoire",
      "ckpt": "results/runs/can/cam2_G_side_crop/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.image"}},
+    {"name": "H_router", "label": "côté + poignet + ROUTEUR de caméras",
+     "ckpt": "results/runs/can/cam2_H_router/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
@@ -111,7 +115,10 @@ PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", 
          ("E_birdview_wrist", "D_birdview_only"),  # le poignet aide-t-il
          ("F_wrist_crop", "C2_wrist_fixstats"),    # l'augmentation sauve-t-elle le poignet ?
          ("G_side_crop", "A2_fixstats"),           # et que vaut-elle sur une seule caméra ?
-         ("F_wrist_crop", "G_side_crop")]          # ⭐ l'ÉCART se referme-t-il ?
+         ("F_wrist_crop", "G_side_crop"),          # ⭐ l'ÉCART se referme-t-il ?
+         ("H_router", "C2_wrist_fixstats"),        # le routeur bat-il la concaténation ?
+         ("H_router", "C3_camdrop"),               # ... et le dropout seul ?
+         ("H_router", "A2_fixstats")]              # reste-t-il un écart avec 1 caméra ?
 #                                          # (question d'origine : le poignet aide-t-il
                                           # quand la caméra fixe EST masquée ? (cas réel)
 
@@ -213,6 +220,45 @@ def _fix_device(ckpt, device):
             print(f"  device réécrit dans {f} -> {device.type}", flush=True)
 
 
+def _apply_router(policy, ckpt, device):
+    """Ré-applique la porte de routage des caméras si le checkpoint en contient une.
+
+    ⚠️ Sans ça on évaluerait le modèle AMPUTÉ de sa porte : le routeur n'est pas un
+    sous-module de la policy (pour garder les checkpoints chargeables partout), il vit
+    dans camrouter.pt à côté. Un modèle entraîné AVEC porte et évalué SANS ne mesure rien.
+    """
+    import torch as _t
+    rp = Path(ckpt) / "camrouter.pt"
+    if not rp.exists():
+        return False
+    sd = _t.load(rp, map_location=device)
+    dm = policy.diffusion
+    n_cam = len(dm.rgb_encoder)
+    hid = sd["mlp.0.weight"].shape[0]
+    in_dim = sd["mlp.0.weight"].shape[1]
+    mlp = _t.nn.Sequential(_t.nn.Linear(in_dim, hid), _t.nn.ReLU(),
+                           _t.nn.Linear(hid, n_cam)).to(device)
+    mlp.load_state_dict({k[len("mlp."):]: v for k, v in sd.items() if k.startswith("mlp.")})
+    mlp.eval()
+    gamma = sd["gamma"].to(device)
+    import einops as _ein
+    from lerobot.utils.constants import OBS_IMAGES as _I, OBS_STATE as _S
+
+    def _prep(batch, dm=dm, mlp=mlp, gamma=gamma, n=n_cam):
+        B, S = batch[_S].shape[:2]
+        imgs = _ein.rearrange(batch[_I], "b s n ... -> n (b s) ...")
+        per = [_ein.rearrange(e(i), "(b s) d -> b s d", b=B, s=S)
+               for e, i in zip(dm.rgb_encoder, imgs, strict=True)]
+        st = batch[_S]
+        g = torch.softmax(mlp(torch.cat(per + [st], dim=-1)), dim=-1)
+        per = [f * (1.0 + gamma * (n * g[..., i:i + 1] - 1.0)) for i, f in enumerate(per)]
+        return torch.cat([st] + per, dim=-1).flatten(start_dim=1)
+
+    dm._prepare_global_conditioning = _prep
+    print(f"  [ROUTEUR] porte réappliquée (gamma={float(gamma):.4f}, {n_cam} caméras)", flush=True)
+    return True
+
+
 def _load(ckpt, device):
     _fix_device(ckpt, device)
     from lerobot.policies.diffusion.modeling_diffusion import DiffusionPolicy
@@ -226,6 +272,7 @@ def _load(ckpt, device):
         to_transition=batch_to_transition, to_output=transition_to_batch)
     post = PolicyProcessorPipeline.from_pretrained(ckpt, config_filename="policy_postprocessor.json",
         to_transition=policy_action_to_transition, to_output=transition_to_policy_action)
+    _apply_router(p, ckpt, device)
     return p, pre, post
 
 
