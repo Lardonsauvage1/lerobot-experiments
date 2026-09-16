@@ -82,3 +82,53 @@ suffit à une seule caméra. On comparerait alors un modèle convergé à un mod
 Sur le robot, il n'y a pas de vue extérieure qui voit tout, et le bras masque la caméra fixe.
 C'est **exactement** le régime « dessus + poignet », où le poignet a gagné 26 points. Le résultat
 qui compte pour le déploiement est donc le positif, pas le négatif.
+
+---
+
+# Bilan de la campagne (2026-09-14 → 16)
+
+**Vingt modèles, 500 rollouts chacun, états initiaux figés, comparaisons appariées.**
+
+## La loi
+
+| état de la caméra fixe | apport du poignet |
+|---|---:|
+| bonne (vue de côté) | **−24 pts** |
+| dégradée par le crop | **+13 pts** |
+| masquée par le bras (vue de dessus) | **+26 pts** |
+
+**La valeur de la caméra embarquée est inversement proportionnelle à la qualité de la vue
+globale.** Trois régimes, trois mesures indépendantes.
+
+## Cinq remèdes essayés, aucun ne marche
+
+| | réussite | vs référence 54,8 % |
+|---|---:|---|
+| dropout de caméra | 64,2 % | +9,4 — dans le bruit |
+| tête auxiliaire par caméra | 45,8 % | −9,0 — dans le bruit |
+| routeur de caméras (porte apprise) | 42,2 % | −12,6 — sous les 3 répliques |
+| crop aléatoire | 34,8 % | **−20,0** |
+| budget ×10 (100 000 steps) | 60,0 % | +5,2 — insuffisant |
+
+## Trois enseignements qui dépassent le sujet
+
+**1. Le plancher de bruit d'abord.** Trois entraînements STRICTEMENT identiques donnent
+54,2 · 61,6 · 48,6 — **13 points d'étendue**. Sans cette mesure, trois des résultats
+ci-dessus auraient été annoncés comme des effets. McNemar compare deux *modèles*, jamais
+deux *configurations*.
+
+**2. La val-loss et la boucle fermée pointent en sens opposés.** Le bras avec crop a la
+**meilleure** val-loss du lot (0,0557) et la pire réussite (34,8 %). Le crop rend l'image
+peu fiable comme repère de position absolue ; le réseau se rabat sur la proprioception, qui
+prédit très bien l'action suivante dans une démonstration lisse et ne sert à rien pour se
+corriger en boucle fermée.
+
+**3. Un mécanisme peut être utilisé par le réseau et nuire quand même.** Le `gamma` du
+routeur, initialisé à 0 dans une forme résiduelle, est monté à 0,45 : la descente de gradient
+a *choisi* d'ouvrir la porte. Elle a réduit la perte d'entraînement et dégradé la réussite.
+
+## Ce qu'on en retient pour le robot réel
+
+Une caméra extérieure bien placée suffit — la deuxième n'apporte rien de démontrable
+(+2,5 pts, p = 0,40). Mais **là où le bras masque la vue fixe, le poignet vaut 26 points**,
+et c'est exactement la situation du robot. Aucune augmentation par crop, sous aucun prétexte.
