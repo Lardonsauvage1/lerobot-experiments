@@ -575,8 +575,47 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         else:
             logging.info("[CAMROUTER] routeur NEUF (gamma=0)")
 
+        # ---- PORTE DURE (HARDGATE=1) : une SEULE caméra encodée par pas ----------------
+        # Différence avec la porte douce ci-dessus : ici la porte ne PONDÈRE pas, elle CHOISIT.
+        # Deux contraintes de déploiement, toutes deux respectées ici pendant l'entraînement,
+        # sinon le modèle apprendrait un mécanisme qu'on ne peut pas exécuter sur le robot :
+        #   1. CAUSALITÉ — la décision au pas t ne lit QUE le pas t-1 (features déjà calculées
+        #      au pas de contrôle précédent + proprioception). Rien du pas t : on ne peut pas
+        #      encoder une image pour décider si on va l'encoder.
+        #   2. RÉUTILISATION — la caméra non retenue n'est pas encodée du tout ; on rejoue ses
+        #      features de t-1 (le « reuses historical information » de HCMS, arXiv 2104.09760).
+        #      Le modèle doit donc apprendre à travailler avec une vue périmée d'un pas.
+        # Gumbel-softmax `hard=True` : sélection binaire en avant, gradient qui passe en arrière
+        # (straight-through), plus un bruit qui évite de se figer tôt sur une caméra.
+        # Le pas 0 garde les deux vues : il n'a pas de passé d'où décider.
+        _hard = _os.environ.get("HARDGATE") == "1"
+        _tau = float(_os.environ.get("HARDGATE_TAU", "1.0"))
+
+        def _prep_hard(batch, _dm=_dmr, _ein=_ein_r, _R=_router, _t=_tau):
+            B, S = batch[_RK_ST].shape[:2]
+            imgs = _ein.rearrange(batch[_RK_IMG], "b s n ... -> n (b s) ...")
+            per = [_ein.rearrange(enc(im), "(b s) d -> b s d", b=B, s=S)
+                   for enc, im in zip(_dm.rgb_encoder, imgs, strict=True)]
+            st = batch[_RK_ST]
+            logits = _R["mlp"](torch.cat([f[:, :-1] for f in per] + [st[:, :-1]], dim=-1))
+            g = torch.softmax(logits, dim=-1)
+            _dm._gate = g                                      # perte d'équilibrage inchangée
+            if _dm.training:
+                sel = torch.nn.functional.gumbel_softmax(logits, tau=_t, hard=True, dim=-1)
+            else:                                              # déploiement : argmax déterministe
+                oh = torch.zeros_like(g).scatter_(-1, g.argmax(-1, keepdim=True), 1.0)
+                sel = oh + g - g.detach()
+            out = []
+            for i, f in enumerate(per):
+                keep = sel[..., i:i + 1]
+                out.append(torch.cat([f[:, :1], keep * f[:, 1:] + (1 - keep) * f[:, :-1]], dim=1))
+            return torch.cat([st] + out, dim=-1).flatten(start_dim=1)
+
         _dmr._gate = None
-        _dmr._prepare_global_conditioning = _prep_router
+        _dmr._prepare_global_conditioning = _prep_hard if _hard else _prep_router
+        if _hard:
+            logging.info(f"[HARDGATE] porte DURE active (tau={_tau}) : une seule caméra encodée "
+                         f"par pas, décision causale depuis t-1, l'autre vue réutilise t-1")
         _orig_closs_r = _dmr.compute_loss
 
         def _closs_router(batch, _dm=_dmr, _w=_router_w):

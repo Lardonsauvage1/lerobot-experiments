@@ -37,8 +37,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", default="cam2_H_router")
     ap.add_argument("--n", type=int, default=25)
+    ap.add_argument("--dure", action="store_true",
+                    help="porte DURE entraînée : décision causale depuis t-1, argmax, "
+                         "réutilisation des features de la vue écartée")
     a = ap.parse_args()
     CK = f"results/runs/can/{a.run}/cooldown/checkpoints/005000/pretrained_model"
+    print(f"  porte : {'DURE (argmax, causale)' if a.dure else 'douce (pondération)'}", flush=True)
 
     device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
     sd = torch.load(Path(CK) / "camrouter.pt", map_location=device)
@@ -76,8 +80,18 @@ def main():
         per = [einops.rearrange(e(i), "(b s) d -> b s d", b=B, s=S)
                for e, i in zip(dm.rgb_encoder, imgs, strict=True)]
         st = batch["observation.state"]
+        if a.dure:
+            # la décision ne lit QUE le pas précédent : c'est la contrainte de déploiement
+            g = torch.softmax(mlp(torch.cat([f[:, :-1] for f in per] + [st[:, :-1]], dim=-1)), dim=-1)
+            sel = int(g[0, -1].argmax())
+            cur["g"] = 1.0 if sel == 0 else 0.0   # choix BINAIRE : agentview retenue ou non
+            cur["p"] = float(g[0, -1, 0])         # confiance de la porte avant durcissement
+            per = [torch.cat([f[:, :1], f[:, 1:] if i == sel else f[:, :-1]], dim=1)
+                   for i, f in enumerate(per)]
+            return torch.cat([st] + per, dim=-1).flatten(start_dim=1)
         g = torch.softmax(mlp(torch.cat(per + [st], dim=-1)), dim=-1)
         cur["g"] = float(g[0, -1, 0])          # poids de l'AGENTVIEW au pas courant
+        cur["p"] = cur["g"]
         per = [f * (1.0 + gamma * (2 * g[..., i:i+1] - 1.0)) for i, f in enumerate(per)]
         return torch.cat([st] + per, dim=-1).flatten(start_dim=1)
     dm._prepare_global_conditioning = prep
