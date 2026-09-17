@@ -31,7 +31,10 @@ from safetensors.torch import load_file, save_file
 
 MONO = Path("results/runs/can/cam2_A2_fixstats/cooldown/checkpoints/005000/pretrained_model")
 BI   = Path("results/runs/can/cam2_C2_wrist_fixstats/cooldown/checkpoints/005000/pretrained_model")
-OUT  = Path("results/runs/can/cam2_I_frozen_init/pretrained_model")
+import os
+FRESH_WRIST = os.environ.get("FRESH_WRIST") == "1"
+OUT  = Path("results/runs/can/cam2_I_frozen_init_fresh/pretrained_model"
+             if FRESH_WRIST else "results/runs/can/cam2_I_frozen_init/pretrained_model")
 
 EMB, SD, FD, NOBS = 128, 9, 64, 2      # embed temps, état, features/caméra, pas d'obs
 
@@ -49,8 +52,22 @@ def main():
         if k in mono and mono[k].shape == v.shape:
             out[k] = mono[k].clone(); n_copied += 1
         elif k.startswith("diffusion.rgb_encoder.1."):
-            # encodeur du POIGNET : on garde l'init du moule (il sera entraîné)
-            out[k] = v.clone(); n_fresh += 1
+            # encodeur du POIGNET. Deux régimes :
+            #   FRESH_WRIST=1 -> réinitialisé (Kaiming/zéros selon le type) : le poignet part
+            #                    VRAIMENT de zéro, seul le gel de la vue globale peut expliquer
+            #                    un gain. C'est le contrôle propre.
+            #   sinon         -> repris du moule C2 (déjà entraîné en conjoint) : démarrage
+            #                    à chaud, qui confond gel et pré-entraînement.
+            if FRESH_WRIST:
+                w = v.clone()
+                if w.ndim >= 2:
+                    torch.nn.init.kaiming_uniform_(w, a=5 ** 0.5)
+                else:
+                    w.zero_()
+                out[k] = w
+            else:
+                out[k] = v.clone()
+            n_fresh += 1
         elif k.startswith("diffusion.rgb_encoder.0."):
             mk = k.replace("diffusion.rgb_encoder.0.", "diffusion.rgb_encoder.")
             out[k] = mono[mk].clone() if mk in mono and mono[mk].shape == v.shape else v.clone()

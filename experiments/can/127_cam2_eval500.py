@@ -116,6 +116,14 @@ MODELS = [
      "ckpt": "results/runs/can/cam2_I3_frozen_s44/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.images.agentview",
                     "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "J_fresh_wrist", "label": "encodeur gelé, poignet VRAIMENT NEUF",
+     "ckpt": "results/runs/can/cam2_J_fresh_wrist/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "K_frozen_router", "label": "encodeur GELÉ + ROUTEUR de caméras",
+     "ckpt": "results/runs/can/cam2_K_frozen_router/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,

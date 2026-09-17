@@ -198,3 +198,61 @@ crop aléatoire · épisodes de rattrapage · corrections seules.
 
 Aucun ne s'attaquait à la cause : tous laissaient le poignet participer à la construction de
 la représentation.
+
+---
+
+# Bilan final de la campagne (17 septembre 2026)
+
+**23 modèles entraînés, 500 rollouts chacun, états initiaux figés.**
+
+| configuration | réussite | |
+|---|---:|---|
+| **poignet sur encodeur GELÉ** | **86,2 %** | 4 bras : 86,2 · 91,2 · 83,0 · 84,2 |
+| encodeur gelé + routeur | 83,2 % | le routeur n'ajoute rien |
+| côté + dessus (2 cam. extérieures) | 81,0 % | 80,0 · 82,0 |
+| caméra de côté seule | 78,5 % | 76,6 · 80,4 |
+| + 200 démonstrations expertes | 79,4 % | le volume est neutre |
+| + corrections scriptées | 72,0 % | |
+| + rattrapages complets | 66,8 % | |
+| poignet en entraînement CONJOINT | 54,8 % | 54,2 · 61,6 · 48,6 |
+| + dropout de caméra | 64,2 % | |
+| + têtes auxiliaires | 45,8 % | |
+| + routeur appris | 42,2 % | |
+| + crop aléatoire | 34,8 % | |
+
+## Le résultat
+
+Le même capteur passe de **−24 points** (conjoint) à **+7,7 points** (gelé). Rien d'autre ne
+change : même architecture, mêmes données, même budget. Seule change la possibilité qu'a le
+poignet de s'approprier la représentation visuelle.
+
+(Welch p = 0,066 — la puissance est limitée par le groupe de CONTRÔLE, qui n'a que 2 répliques.
+Les 4 bras gelés dépassent les 2 références sans chevauchement.)
+
+## Le routeur : bonne stratégie, mauvaise représentation
+
+Le diagnostic par phase (`147_routeur_par_phase.py`) montre que la porte apprise est **sensée** :
+
+| phase | poids de la vue globale |
+|---|---:|
+| approche | 0,386 |
+| **saisie** | **0,241** — le poignet domine, c'est la précision du dernier centimètre |
+| **transport** | **0,556** — la vue globale domine, il faut trouver le bac |
+
+Elle ne papillonne pas : une bascule tous les 84 pas. Et son profil temporel décroît
+régulièrement, de 0,45 au départ à 0,07 à l'arrivée.
+
+Pourtant ce bras est le **pire** de tous (42,2 %). La politique de routage était bonne ; c'est
+la représentation qu'elle pilotait qui était détruite.
+
+Et posé sur un encodeur gelé, le routeur devient **inutile** : son `gamma` tombe de 0,45 à
+0,077 et le résultat (83,2 %) ne dépasse pas le gel seul. Une fois la représentation protégée,
+le modèle n'a plus besoin d'arbitrage explicite.
+
+## Ce qu'on retient pour le robot réel
+
+1. **Une caméra fixe bien placée + son encodeur gelé + le poignet greffé dessus.** C'est la
+   recette, et elle ne demande ni capteur ni budget supplémentaire.
+2. **Ne jamais entraîner les deux caméras ensemble depuis zéro.**
+3. **Les corrections scriptées n'aident pas** — mais des corrections *démontrées par un humain*
+   restent non testées, et c'est le principe de HG-DAgger.
