@@ -21,6 +21,7 @@ def scripted_episode(env, state, perturb=None, seed=0):
     rng = np.random.default_rng(seed)
     obs = env.reset_to(dict(states=state))
     acts, obss = [], []
+    rec_start = [0]          # index où commence la correction (0 = pas de perturbation)
     def step(a):
         nonlocal obs
         acts.append(a.copy()); obss.append(obs)
@@ -42,12 +43,16 @@ def scripted_episode(env, state, perturb=None, seed=0):
         # on redescend un peu comme si on allait saisir, puis on referme dans le vide
         for _ in range(12): step(go(eef_of(obs) + np.array([0,0,-0.02]), eef_of(obs), -1))
         for _ in range(4):  step(np.array([0,0,0,0,0,0,1], dtype=np.float32))   # ferme à vide
+        # ⭐ ICI commence la CORRECTION. Tout ce qui précède — l'écart volontaire vers le
+        # mauvais endroit — ne doit PAS être montré au modèle : ce serait lui apprendre à
+        # aller se tromper. On ne garde que « je viens de soulever à vide, je fais demi-tour ».
+        rec_start[0] = len(acts)
         # ⚠️ si cette fermeture a RÉELLEMENT attrapé la canette, rouvrir apprendrait au
         # modèle à lâcher une prise réussie. On invalide l'épisode plutôt que de le montrer.
         for _ in range(6):
             e = eef_of(obs); step(go(e + np.array([0,0,0.05]), e, 1))
         if can_of(obs)[2] > 0.90:
-            return None, acts, obss          # None = à jeter, pas un échec
+            return None, acts, obss, rec_start[0]      # None = à jeter, pas un échec
         for _ in range(4):  step(np.array([0,0,0,0,0,0,-1], dtype=np.float32))  # rouvre
         # RATTRAPAGE : remonter puis se recentrer
         can = can_of(obs)
@@ -85,7 +90,7 @@ def scripted_episode(env, state, perturb=None, seed=0):
             if abs(e[2]-t[2]) < 0.004 and np.linalg.norm(e[:2]-t[:2]) < 0.006: break
             step(go(t, e, -1, gain=0.5))
     if not lifted:
-        return False, acts, obss
+        return False, acts, obss, rec_start[0]
     # 5) transporter
     for _ in range(70):
         e = eef_of(obs)
@@ -99,8 +104,8 @@ def scripted_episode(env, state, perturb=None, seed=0):
     up = z > 0.90
     fronts = int(np.sum((~up[:-1]) & up[1:]))
     if fronts > 1:
-        return None, acts, obss              # à jeter
-    return bool(env.is_success()["task"]), acts, obss
+        return None, acts, obss, rec_start[0]      # à jeter
+    return bool(env.is_success()["task"]), acts, obss, rec_start[0]
 
 if __name__ == "__main__":
     import importlib.util

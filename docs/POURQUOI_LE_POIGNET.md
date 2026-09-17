@@ -147,3 +147,54 @@ a *choisi* d'ouvrir la porte. Elle a réduit la perte d'entraînement et dégrad
 Une caméra extérieure bien placée suffit — la deuxième n'apporte rien de démontrable
 (+2,5 pts, p = 0,40). Mais **là où le bras masque la vue fixe, le poignet vaut 26 points**,
 et c'est exactement la situation du robot. Aucune augmentation par crop, sous aucun prétexte.
+
+---
+
+# ⭐ LA SOLUTION : encodeur gelé (2026-09-17)
+
+Après **sept remèdes infructueux**, un protocole fonctionne — et il retourne complètement
+la conclusion de cette enquête.
+
+## Le protocole
+
+1. Entraîner un modèle **mono-caméra** sur la vue globale seule (78,5 %).
+2. L'insérer dans une architecture bi-caméra avec **les colonnes du poignet à zéro**
+   (`141_init_from_mono.py`). Équivalence vérifiée : sortie du U-Net identique au bit près,
+   et modèle totalement insensible à l'image du poignet.
+3. **Geler** l'encodeur de la vue globale (`FREEZE_CAM0=1`, 11,2 M params sur 27,8).
+4. N'entraîner que la branche poignet et le décodeur.
+
+Le poignet ne peut alors plus **remplacer** la représentation qui fonctionne : il ne peut que
+la **compléter**, ou rester muet.
+
+## Le résultat
+
+| configuration | moyenne | répliques |
+|---|---:|---|
+| **poignet + encodeur GELÉ** | **88,7 %** | 86,2 · 91,2 |
+| caméra de côté seule | 78,5 % | 76,6 · 80,4 |
+| poignet, entraînement conjoint | 54,8 % | 54,2 · 61,6 · 48,6 |
+
+**+10,2 points**, séparation complète — les deux répliques gelées dépassent les deux
+références, sans chevauchement. (Welch p = 0,091 à n = 2 par groupe : sous-puissance, pas
+absence d'effet. Un test de rang ne pourrait pas descendre sous 0,167 à cet effectif.
+Une 3ᵉ graine est en cours.)
+
+## Ce que ça change
+
+**Le problème n'a jamais été le capteur, c'était l'entraînement conjoint.** Laissé libre, le
+poignet accapare la représentation — il est l'entrée la plus prédictive de l'action immédiate,
+donc le raccourci que la descente de gradient préfère — et détruit ce qui marchait : −24 points.
+Forcé de se greffer sur une représentation verrouillée, il ajoute +10 points.
+
+Ça réconcilie enfin nos mesures avec la littérature : les systèmes publiés utilisent bien la
+caméra de poignet, et l'écart venait de la **façon d'entraîner**, pas de l'architecture, ni du
+budget, ni de l'augmentation.
+
+## Les sept remèdes qui ont échoué avant
+
+budget ×10 · dropout de caméra · têtes auxiliaires · routeur de caméras appris ·
+crop aléatoire · épisodes de rattrapage · corrections seules.
+
+Aucun ne s'attaquait à la cause : tous laissaient le poignet participer à la construction de
+la représentation.

@@ -37,8 +37,8 @@ spec = importlib.util.spec_from_file_location("v", "experiments/can/10_vision_50
 V = importlib.util.module_from_spec(spec); spec.loader.exec_module(V)
 
 IMG = 96
-OUT = Path("data_cache/lerobot_can_ph_proprio_rattrapage")
-REPO = "local/can_ph_proprio_rattrapage"
+OUT = Path("data_cache/lerobot_can_ph_proprio_correction")
+REPO = "local/can_ph_proprio_correction"
 N_EXPERT = 150
 
 
@@ -105,14 +105,17 @@ def main():
             return orig(act)
         env.step = rec
         try:
-            r, acts, obss = SC.scripted_episode(env, states[i], perturb=off, seed=tried)
+            r, acts, obss, cut = SC.scripted_episode(env, states[i], perturb=off, seed=tried)
         finally:
             env.step = orig
         tried += 1
         if r is None: thrown += 1; continue
         if not r:     failed += 1; continue
+        # ⭐ On NE GARDE QUE LA CORRECTION : tout ce qui précède est le trajet volontaire
+        # vers l'erreur, et l'apprendre reviendrait à enseigner au modèle à aller se tromper.
+        # C'est ce qui a fait échouer la première version (R1 : 66,8 % contre 78,5 %).
         n = min(len(frames), len(acts), len(obss))
-        for j in range(n):
+        for j in range(cut, n):
             ds.add_frame({"observation.image": frames[j],
                           "observation.state": state9(obss[j]),
                           "action": acts[j], "task": TASK})

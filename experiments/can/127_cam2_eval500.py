@@ -105,6 +105,17 @@ MODELS = [
      "ckpt": "results/runs/can/cam2_I_frozen/cooldown/checkpoints/005000/pretrained_model",
      "image_keys": {"agentview": "observation.images.agentview",
                     "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "R3_correction", "label": "150 expertes + 75 CORRECTIONS (sans le trajet vers l'erreur)",
+     "ckpt": "results/runs/can/cam2_R3_correction/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.image"}},
+    {"name": "I2_frozen_s43", "label": "encodeur GELÉ, graine 43 (réplique)",
+     "ckpt": "results/runs/can/cam2_I2_frozen_s43/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
+    {"name": "I3_frozen_s44", "label": "encodeur GELÉ, graine 44 (3e réplique)",
+     "ckpt": "results/runs/can/cam2_I3_frozen_s44/cooldown/checkpoints/005000/pretrained_model",
+     "image_keys": {"agentview": "observation.images.agentview",
+                    "robot0_eye_in_hand": "observation.images.wrist"}},
 ]
 
 # comparaisons à produire : (bras, référence). La référence est toujours « côté seule »,
@@ -133,7 +144,10 @@ PAIRS = [("B_side_top", "A_side"), ("C_side_wrist", "A_side"), ("C_side_wrist", 
          ("R2_200expert", "A2_fixstats"),          # ... ou est-ce juste PLUS DE DONNÉES ?
          ("R1_rattrapage", "R2_200expert"),        # le test qui separe les deux
          ("I_frozen", "A2_fixstats"),              # ⭐ le poignet apporte-t-il ENFIN quelque chose ?
-         ("I_frozen", "C2_wrist_fixstats")]        # ... et bat-il la concaténation naïve ?
+         ("I_frozen", "C2_wrist_fixstats"),        # ... et bat-il la concaténation naïve ?
+         ("R3_correction", "R2_200expert"),        # ⭐ la correction SEULE aide-t-elle ?
+         ("R3_correction", "R1_rattrapage"),       # ... et bat-elle la version non coupée ?
+         ("I2_frozen_s43", "A2_fixstats")]         # réplique : l'encodeur gelé tient-il ?
 #                                          # (question d'origine : le poignet aide-t-il
                                           # quand la caméra fixe EST masquée ? (cas réel)
 
