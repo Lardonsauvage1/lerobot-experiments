@@ -47,11 +47,14 @@ def main():
     ap.add_argument("--n", type=int, default=200)
     ap.add_argument("--tenir", type=int, default=1, help="pas pendant lesquels la décision tient")
     ap.add_argument("--regle", choices=["apprise", "hasard"], default="apprise")
+    ap.add_argument("--ckpt", default=CK)
+    ap.add_argument("--prefixe", default="", help="préfixe de la clé de sortie (autre modèle)")
     a = ap.parse_args()
-    tag = f"k{a.tenir}_{a.regle}"
+    CKPT = a.ckpt
+    tag = f"{a.prefixe}k{a.tenir}_{a.regle}"
 
     device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
-    sd = torch.load(Path(CK) / "camrouter.pt", map_location=device)
+    sd = torch.load(Path(CKPT) / "camrouter.pt", map_location=device)
     hid, in_dim = sd["mlp.0.weight"].shape
     mlp = torch.nn.Sequential(torch.nn.Linear(in_dim, hid), torch.nn.ReLU(),
                               torch.nn.Linear(hid, 2)).to(device)
@@ -64,14 +67,14 @@ def main():
         batch_to_transition, transition_to_batch,
         policy_action_to_transition, transition_to_policy_action)
     for f in ("policy_preprocessor.json", "policy_postprocessor.json"):
-        q = Path(CK) / f; t = q.read_text()
+        q = Path(CKPT) / f; t = q.read_text()
         if '"xpu"' in t or '"cuda"' in t:
             q.write_text(t.replace('"xpu"', f'"{device.type}"').replace('"cuda"', f'"{device.type}"'))
-    pol = DiffusionPolicy.from_pretrained(CK).to(device).eval()
+    pol = DiffusionPolicy.from_pretrained(CKPT).to(device).eval()
     pol.diffusion.num_inference_steps = V.STEPS
-    pre = PolicyProcessorPipeline.from_pretrained(CK, config_filename="policy_preprocessor.json",
+    pre = PolicyProcessorPipeline.from_pretrained(CKPT, config_filename="policy_preprocessor.json",
         to_transition=batch_to_transition, to_output=transition_to_batch)
-    post = PolicyProcessorPipeline.from_pretrained(CK, config_filename="policy_postprocessor.json",
+    post = PolicyProcessorPipeline.from_pretrained(CKPT, config_filename="policy_postprocessor.json",
         to_transition=policy_action_to_transition, to_output=transition_to_policy_action)
 
     dm = pol.diffusion

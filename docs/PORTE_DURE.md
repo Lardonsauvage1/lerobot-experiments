@@ -229,3 +229,43 @@ les six cases, pendant que la réussite va de 24 % à 74 %.
 comptabilité doublée, absence de témoin) surestimaient **tous** le bénéfice — économie annoncée
 successivement à 25 %, 75 %, 87 % pour une réalité de 25 % (sans cache) et 48 % (avec). Le témoin
 interne `k=0` aurait dû être écrit **avant** la première grille (cf. [[feedback_budget_vs_config]]).
+
+---
+
+# Addendum 3 — entraîner sur la péremption : ÉCHEC
+
+*18/09/2026. `HARDGATE_STALE=6` : pendant l'entraînement, la caméra écartée reçoit une paire
+d'images vieille de 48 frames (2,4 s à 20 Hz), exactement la situation du déploiement à k=6.
+Chargement vérifié au log : `delta_indices = [-49, -48, -1, 0]`.*
+
+**Motif.** La porte L atteint 74,5 % à k=6 alors qu'elle n'a **jamais** vu de vue périmée à
+l'entraînement (la vue écartée n'y avait qu'un pas de retard). Hypothèse : combler cet écart
+entraînement/déploiement récupérerait tout ou partie des 8 pts manquants face au témoin (82,5 %).
+
+| modèle | k=0 *(tout frais)* | k=6 *(déploiement)* |
+|---|---|---|
+| **L** — entraînée SANS péremption | **82,5 %** | **74,5 %** |
+| **M** — entraînée AVEC péremption | 73,0 % | 33,0 % |
+
+**Hypothèse réfutée, et de loin** : −9,5 pts même toutes images fraîches, −41,5 pts à k=6.
+
+**Le contrôle k=0 élimine l'explication évidente.** À k=0 la porte n'est pas sollicitée (compteur de
+décisions à zéro, les deux caméras rafraîchies). La perte de 9,5 pts ne vient donc **pas** d'un
+désaccord entre l'alimentation de la porte à l'entraînement et à l'exécution : **c'est la policy
+elle-même qui s'est dégradée**, indépendamment du routage.
+
+**Lecture.** En montrant *systématiquement* une image vieille de 2,4 s à la caméra écartée, on ne lui
+apprend pas à gérer la péremption — on lui apprend que cette caméra est du **bruit**. Le modèle réduit
+sa dépendance aux deux vues et devient moins bon partout. Dégradation apprise, pas bug : le log
+confirme que les bonnes images étaient chargées, et le patch refuse de démarrer si les indices ne sont
+pas ceux attendus.
+
+**Conclusion.** Les 8 pts qui séparent la porte dure du témoin ne viennent pas d'un décalage
+entraînement/déploiement qu'il suffirait de corriger. Une vue vieille de deux secondes est trop vieille
+pour cette tâche, et l'apprendre ne la rend pas utilisable.
+
+**→ Le réglage retenu reste le mécanisme SANS cache : 25 % de passes d'encodeur en moins, aucun coût
+mesurable (82,8 % sur 3 graines contre 86,2 %, Welch p = 0,17).**
+
+Variante non testée qui aurait du sens : péremption **tirée au hasard entre 0 et 6 inférences** plutôt
+que fixée à 6, pour enseigner une plage au lieu d'un cas extrême. Peu prometteur vu l'ampleur de la chute.
