@@ -164,8 +164,13 @@ def main():
     print(f"  passes d'encodeur : {C['passes']} pour {n_inf:.0f} inférences "
           f"({C['passes']/max(n_inf,1):.1f} par inférence, contre 4 en naïf) "
           f"→ {(1-C['passes']/max(naif,1))*100:.0f} % du calcul d'encodage supprimé")
-    print(f"  âge médian de la vue la plus périmée : {np.median(ages):.1f} pas "
-          f"({np.median(ages)*66.7:.0f} ms)  ·  max {max(ages)}")
+    # 1 inférence = n_action_steps = 8 pas d'env ; contrôle Robomimic à 20 Hz -> 50 ms/pas.
+    # (mesuré : 7,80 pas d'env par inférence). L'ancienne conversion 66,7 ms/inférence
+    # supposait 1 inférence = 1 pas à 15 Hz : elle sous-estimait les durées d'un facteur 6.
+    MS_PAR_INF = 8 * 50
+    print(f"  âge médian de la vue la plus périmée : {np.median(ages):.1f} inférences "
+          f"({np.median(ages)*MS_PAR_INF/1000:.1f} s)  ·  max {max(ages)} "
+          f"({max(ages)*MS_PAR_INF/1000:.1f} s)")
     c = C["choix"]; s = max(sum(c), 1)
     print(f"  décisions : vue globale {c[0]/s*100:.0f} % · poignet {c[1]/s*100:.0f} %")
     res = json.loads(OUT.read_text()) if OUT.exists() else {}
