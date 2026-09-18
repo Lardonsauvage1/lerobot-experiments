@@ -75,7 +75,7 @@ def main():
         to_transition=policy_action_to_transition, to_output=transition_to_policy_action)
 
     dm = pol.diffusion
-    C = {"prev": None, "cur": None, "tenu": 0, "pick": 0, "neuf": True,
+    C = {"paire": None, "tenu": 0, "pick": 0, "neuf": True, "n_inf": 0,
          "passes": 0, "evitees": 0, "choix": [0, 0], "age": []}
     rng = np.random.default_rng(0)
 
@@ -84,32 +84,45 @@ def main():
         import einops
         imgs = einops.rearrange(batch["observation.images"], "b s n ... -> n (b s) ...")
         st = batch["observation.state"]
-        if C["neuf"]:                       # 1er pas de l'épisode : rien en cache
-            f = [dm.rgb_encoder[i](imgs[i][1::S]) for i in range(2)]
-            C["passes"] += 2
-            C["prev"], C["cur"] = [x.clone() for x in f], f
+        # ⚠️ La policy attend DEUX pas d'observation CONSÉCUTIFS par caméra. Une caméra
+        # rafraîchie doit donc fournir une PAIRE fraîche (ses 2 images du pas courant), et
+        # une caméra écartée une PAIRE ANCIENNE mais COHÉRENTE — surtout pas deux fois la
+        # même image, ce qui lui présenterait une vue figée qu'elle n'a jamais vue à
+        # l'entraînement. (Première version : prev=cur pour la vue écartée -> 18,5 % au lieu
+        # de 82 %, artefact de structure temporelle et non coût du cache.)
+        C["n_inf"] += 1
+
+        def encode(i):
+            f = dm.rgb_encoder[i](imgs[i])            # les 2 pas d'un coup
+            return einops.rearrange(f, "(b s) d -> b s d", b=1, s=S)
+        if C["neuf"]:
+            C["paire"] = [encode(i) for i in range(2)]
+            C["passes"] += 2 * S
             C["neuf"] = False
             C["age"] = [0, 0]
         else:
-            if C["tenu"] <= 0:              # on redécide
+            if C["tenu"] <= 0 and a.tenir > 0:
                 if a.regle == "hasard":
                     C["pick"] = int(rng.integers(0, 2))
                 else:
-                    g = torch.softmax(mlp(torch.cat(C["cur"] + [st[:, 0]], dim=-1)), dim=-1)
+                    cur = [p[:, -1] for p in C["paire"]]
+                    g = torch.softmax(mlp(torch.cat(cur + [st[:, 0]], dim=-1)), dim=-1)
                     C["pick"] = int(g[0].argmax())
                 C["tenu"] = a.tenir
                 C["choix"][C["pick"]] += 1
-            C["tenu"] -= 1
-            i = C["pick"]
-            C["prev"] = list(C["cur"])
-            new = list(C["cur"])
-            new[i] = dm.rgb_encoder[i](imgs[i][1::S])      # SEULE caméra encodée
-            C["cur"] = new
-            C["passes"] += 1; C["evitees"] += 1
-            C["age"][i] = 0
-            C["age"][1 - i] += 1
-        per = [torch.stack([C["prev"][i], C["cur"][i]], dim=1) for i in range(2)]
-        return torch.cat([st] + per, dim=-1).flatten(start_dim=1)
+            if a.tenir == 0:                          # témoin : tout rafraîchi
+                C["paire"] = [encode(i) for i in range(2)]
+                C["passes"] += 2 * S
+                C["age"] = [0, 0]
+            else:
+                C["tenu"] -= 1
+                i = C["pick"]
+                C["paire"] = [encode(i) if j == i else C["paire"][j] for j in range(2)]
+                C["passes"] += S                      # SEULE cette caméra est encodée
+                C["evitees"] += S
+                C["age"][i] = 0
+                C["age"][1 - i] += 1
+        return torch.cat([st] + C["paire"], dim=-1).flatten(start_dim=1)
     dm._prepare_global_conditioning = prep
 
     states = V.make_eval_states()[:a.n]
@@ -144,12 +157,12 @@ def main():
     lo, hi = V.wilson_ci(k_, n_)
     # référence honnête = l'implémentation NAÏVE : 2 caméras × 2 pas d'historique réencodés
     # à chaque pas de contrôle, soit 4 passes. Le cache seul en supprime déjà 2.
-    n_pas = C["passes"] + C["evitees"]
-    naif = 4 * n_pas
+    n_inf = C["n_inf"]                            # compté directement
+    naif = 4 * n_inf
     print(f"\n  === k={a.tenir} · règle {a.regle} ===")
     print(f"  réussite : {k_}/{n_} = {k_/n_:.1%} [{lo:.1%}, {hi:.1%}]")
-    print(f"  passes d'encodeur : {C['passes']} pour {n_pas} pas "
-          f"({C['passes']/max(n_pas,1):.2f} par pas, contre 4 en naïf) "
+    print(f"  passes d'encodeur : {C['passes']} pour {n_inf:.0f} inférences "
+          f"({C['passes']/max(n_inf,1):.1f} par inférence, contre 4 en naïf) "
           f"→ {(1-C['passes']/max(naif,1))*100:.0f} % du calcul d'encodage supprimé")
     print(f"  âge médian de la vue la plus périmée : {np.median(ages):.1f} pas "
           f"({np.median(ages)*66.7:.0f} ms)  ·  max {max(ages)}")
@@ -159,7 +172,7 @@ def main():
     res[tag] = {"n": n_, "n_success": k_, "success_rate": k_/n_, "ci95": [lo, hi],
                 "tenir": a.tenir, "regle": a.regle, "passes": C["passes"], "evitees": C["evitees"],
                 "age_median": float(np.median(ages)), "age_max": int(max(ages)), "choix": c,
-                "passes_par_pas": C["passes"] / max(n_pas, 1),
+                "passes_par_inference": C["passes"] / max(n_inf, 1),
                 "economie_vs_naif": 1 - C["passes"] / max(naif, 1),
                 "per_episode": [{"ep": i, "success": bool(x)} for i, x in enumerate(per_ep)]}
     OUT.write_text(json.dumps(res, indent=2))
