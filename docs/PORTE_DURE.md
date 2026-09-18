@@ -245,9 +245,11 @@ entraînement/déploiement récupérerait tout ou partie des 8 pts manquants fac
 | modèle | k=0 *(tout frais)* | k=6 *(déploiement)* |
 |---|---|---|
 | **L** — entraînée SANS péremption | **82,5 %** | **74,5 %** |
-| **M** — entraînée AVEC péremption | 73,0 % | 33,0 % |
+| **M** — entraînée AVEC péremption (2 graines) | 75,0 % *(73,0 · 77,0)* | 30,5 % *(33,0 · 28,0)* |
 
-**Hypothèse réfutée, et de loin** : −9,5 pts même toutes images fraîches, −41,5 pts à k=6.
+**Hypothèse réfutée, et de loin** : −7,5 pts même toutes images fraîches, **−44,0 pts à k=6**.
+Les deux graines de M sont séparées de 4 et 5 pts (bruit inter-run habituel) quand les écarts à
+mesurer valent 7,5 et 44 — l'échec n'est pas un hasard de graine.
 
 **Le contrôle k=0 élimine l'explication évidente.** À k=0 la porte n'est pas sollicitée (compteur de
 décisions à zéro, les deux caméras rafraîchies). La perte de 9,5 pts ne vient donc **pas** d'un
