@@ -177,3 +177,55 @@ pas fausse, elle est **sans conséquence opérationnelle** dans ce régime.
 correctement la tâche, mais le mécanisme ne lui donne aucun levier tant qu'il se contente de
 retarder. **Le test qui compte reste : couper une vue sur k pas d'affilée**, jusqu'à ce que
 retarder devienne priver.
+
+---
+
+# Addendum 2 — le choix compte, à condition de lui en donner le pouvoir
+
+*18/09/2026. Grille `154_pas_coupes.py`, 200 rollouts/case, cache inter-pas (2 passes
+d'encodeur par inférence au lieu de 4 = **48 % du calcul d'encodage supprimé**).
+`k` = nombre d'inférences pendant lesquelles la décision de la porte est maintenue.*
+
+| k | porte apprise | hasard | écart | McNemar | choix apprise |
+|---|---|---|---|---|---|
+| **0** *(témoin, aucune économie)* | **82,5 %** | — | — | — | — |
+| 1 | 36,0 % | 32,0 % | +4,0 | 0,46 | 29/71 |
+| 3 | 48,5 % | 24,0 % | **+24,5** | **<10⁻⁵** | 29/71 |
+| **6** | **74,0 %** | 35,0 % | **+39,0** | **<10⁻⁵** | 52/48 |
+
+## ⭐ Ce que ça corrige
+
+L'addendum 1 concluait que la politique apprise était « exacte mais sans conséquence
+opérationnelle », sur la foi d'un contrôle où elle égalait le hasard (411/500 des deux côtés,
+p=1,000). **Cette conclusion ne valait que pour ce régime-là** : la vue écartée n'y avait qu'un
+pas de retard, donc se tromper de caméra ne coûtait rien. Il n'y avait pas de décision à prendre.
+
+Dès que la décision engage plusieurs inférences, **l'avantage de la porte apprise sur le hasard
+atteint 39 points**. Le hasard, lui, reste plat (32 · 24 · 35 %) quel que soit k.
+
+**Pourquoi** : la politique apprise s'exerce sur des **phases** (approche / saisie / transport), qui
+durent des dizaines de pas. Redécider à chaque inférence hache cette structure ; s'engager 6
+inférences épouse la durée réelle des phases. Le hasard n'a aucune phase à épouser, d'où sa platitude.
+Corollaire observé : à k=6 la porte cesse de se replier sur le poignet (52/48 contre 29/71).
+
+## Bilan pratique
+
+**74,0 % contre 82,5 %, soit 8,5 points pour 48 % du calcul d'encodage supprimé.** Arbitrage
+défendable pour le robot réel — là où k=1 (36 %) ne l'était pas.
+
+## ⚠️ Trois hypothèses fausses en chemin (toutes démenties par un contrôle)
+
+1. **« La porte affame la vue extérieure »** — démentie par le bras hasard, qui alterne
+   parfaitement (âge médian 1) et s'effondre quand même.
+2. **« La paire figée casse tout »** (prev=cur pour la vue écartée) — démentie : le mécanisme à
+   82,2 % fait exactement cela. La correction a rapporté ~15 pts mais ne visait pas la cause.
+3. **« C'est le rythme des rafraîchissements »** — démentie par le hasard à k=6, même rythme,
+   35 % contre 74 %.
+
+Et **le vieillissement n'explique rien** : l'âge médian de la vue périmée vaut 5 à 7 inférences dans
+les six cases, pendant que la réussite va de 24 % à 74 %.
+
+**Leçon de méthode.** Les trois défauts d'implémentation trouvés cette nuit (structure temporelle,
+comptabilité doublée, absence de témoin) surestimaient **tous** le bénéfice — économie annoncée
+successivement à 25 %, 75 %, 87 % pour une réalité de 25 % (sans cache) et 48 % (avec). Le témoin
+interne `k=0` aurait dû être écrit **avant** la première grille (cf. [[feedback_budget_vs_config]]).
