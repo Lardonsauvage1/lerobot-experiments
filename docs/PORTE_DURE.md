@@ -110,3 +110,70 @@ python experiments/can/149_analyse_porte_dure.py          # McNemar apparié dur
 # diagnostic par phase
 python experiments/can/147_routeur_par_phase.py --run cam2_L_hardgate_s42 --n 40 --dure
 ```
+
+---
+
+# Addendum — pourquoi le routage n'a pas d'effet : priver ≠ retarder
+
+*18/09/2026, sur I2 (91,2 %), le meilleur modèle à 2 caméras dont une embarquée.*
+
+## Le contrôle qui a tout déclenché
+
+Le hasard fait **exactement** aussi bien que la porte apprise : **411/500 des deux côtés**,
+McNemar **p = 1,000** (46 épisodes gagnés de chaque côté, 92 bascules sur 500). Ce n'est pas
+« proche », c'est le même nombre. À un pas de retard, **choisir la bonne caméra n'apporte rien
+par rapport à en tirer une au sort**.
+
+## La policy est-elle en boucle fermée ?
+
+Hypothèse formulée en regardant les vidéos d'échec : « le bras n'essaie pas de rectifier sa
+position ; il va à une position et il attrape, qu'il y ait la canette ou pas. »
+
+**Réfutée.** On téléporte la canette de 4 cm quand la pince passe sous 15 cm d'elle
+(`152_test_boucle_fermee.py`) :
+
+| | réussite | fermeture / nouvelle pos. | / ancienne | corrige |
+|---|---|---|---|---|
+| témoin (pas de perturbation) | 92,0 % | *0,8 cm* | — | — |
+| perturbé 4 cm | 72,0 % | **1,1 cm** | 3,7 cm | **88 %** |
+
+La vision est rafraîchie jusqu'au contact. Ce que les vidéos montrent n'est pas l'absence de
+boucle fermée, mais l'absence de **seconde tentative** après un échec — les démonstrations
+expertes ne contiennent aucun rattrapage.
+
+Vidéos annotées (bandeau au moment de la téléportation, distances affichées) :
+`153_video_correction.py` → `results/runs/can/cam2_I2_frozen_s43/videos_correction/`.
+
+## ⭐ Ce que fait chaque caméra
+
+Même perturbation, une caméra masquée (0 après normalisation) :
+
+| | réussite | ferme à … de la canette | corrige |
+|---|---|---|---|
+| deux caméras | 72,0 % | 1,1 cm | 88 % |
+| **sans poignet** | 18,0 % | **4,0 cm** | 58 % |
+| **sans vue extérieure** | **0,0 %** | **21,6 cm** | 12 % |
+
+- **vue extérieure = localisation grossière.** Sans elle, la pince ferme à 21,6 cm : le bras ne
+  trouve même pas la canette.
+- **poignet = alignement fin.** Sans lui, le bras approche correctement (4,0 cm) mais ne franchit
+  plus les derniers centimètres (0,8 cm avec les deux).
+
+L'objection « c'est juste du hors-distribution » ne tient pas : les deux ablations sont
+**également** hors distribution, or l'une échoue à 4 cm et l'autre à 21,6 cm — une différence de
+nature, pas de degré.
+
+## La synthèse
+
+**La porte dure ne prive jamais le modèle d'une caméra : elle en retarde une de 67 ms.**
+Priver coûte tout (18 % ou 0 %). Retarder ne coûte rien, quelle que soit la vue retardée — d'où
+le hasard qui égale l'argmax.
+
+Et la politique par phase apprise par la porte (vue globale 75 % en APPROCHE, poignet 81 % en
+SAISIE) est **exacte** : l'ablation la confirme par un chemin totalement indépendant. Elle n'est
+pas fausse, elle est **sans conséquence opérationnelle** dans ce régime.
+
+→ Corrige l'interprétation « épiphénomène » de la section précédente : le routage appris décrit
+correctement la tâche, mais le mécanisme ne lui donne aucun levier tant qu'il se contente de
+retarder. **Le test qui compte reste : couper une vue sur k pas d'affilée**, jusqu'à ce que
+retarder devienne priver.

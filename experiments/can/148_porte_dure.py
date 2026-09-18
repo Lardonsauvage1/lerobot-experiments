@@ -38,7 +38,13 @@ OUT = Path("results/runs/can/porte_dure.json")
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=500)
-    ap.add_argument("--mode", choices=["dure", "douce", "entrainee"], default="dure")
+    ap.add_argument("--mode", default="dure", choices=[
+        "dure", "douce", "entrainee",
+        # --- CONTRÔLES : même modèle, même coût, SEULE la règle de choix change ---
+        "hasard",         # tirage au sort à chaque pas
+        "fixe_globale",   # toujours la vue globale fraîche, poignet toujours périmé
+        "fixe_poignet",   # l'inverse
+    ])
     ap.add_argument("--ckpt", default=CK)
     ap.add_argument("--tag", default=None, help="clé de sortie dans le JSON")
     a = ap.parse_args()
@@ -73,8 +79,11 @@ def main():
     import einops
     dm = pol.diffusion
     stats = {"passes": 0, "evitees": 0, "choix": [0, 0]}
-    HARD = a.mode in ("dure", "entrainee")
-    TRAINED = a.mode == "entrainee"
+    RULE = a.mode
+    # les contrôles tournent sur le modèle À PORTE DURE ENTRAÎNÉE : on ne change QUE la
+    # règle de sélection. Si le hasard égale l'argmax appris, la porte ne sert à rien.
+    HARD = a.mode in ("dure", "entrainee", "hasard", "fixe_globale", "fixe_poignet")
+    TRAINED = a.mode != "douce"
 
     def prep(batch):
         B, S = batch["observation.state"].shape[:2]
@@ -85,7 +94,14 @@ def main():
         stats["passes"] += 2
         g_prev = torch.softmax(mlp(torch.cat(prev + [st[:, 0]], dim=-1)), dim=-1)
         if HARD:
-            pick = int(torch.argmax(g_prev[0]))
+            if RULE == "hasard":
+                pick = int(torch.randint(0, 2, (1,)).item())
+            elif RULE == "fixe_globale":
+                pick = 0
+            elif RULE == "fixe_poignet":
+                pick = 1
+            else:
+                pick = int(torch.argmax(g_prev[0]))
             stats["choix"][pick] += 1
             cur = []
             for i in range(2):

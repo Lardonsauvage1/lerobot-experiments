@@ -1,0 +1,1634 @@
+{
+  "temoin": {
+    "n": 50,
+    "n_success": 46,
+    "success_rate": 0.92,
+    "delta": 0.0,
+    "per_episode": [
+      {
+        "ep": 0,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.009548155772495747,
+        "d_ancienne": 0.009548155772495747,
+        "z_fin": 0.8602209510226797
+      },
+      {
+        "ep": 1,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0048072954377463084,
+        "d_ancienne": 0.0048072954377463084,
+        "z_fin": 0.8610900657807109
+      },
+      {
+        "ep": 2,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.00834975368045001,
+        "d_ancienne": 0.00834975368045001,
+        "z_fin": 0.8834445683791796
+      },
+      {
+        "ep": 3,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.020733833300551584,
+        "d_ancienne": 0.020733833300551584,
+        "z_fin": 0.8580681583857899
+      },
+      {
+        "ep": 4,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.011012387414838506,
+        "d_ancienne": 0.011012387414838506,
+        "z_fin": 0.8806274417266097
+      },
+      {
+        "ep": 5,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0027210398783087853,
+        "d_ancienne": 0.0027210398783087853,
+        "z_fin": 0.860847482968892
+      },
+      {
+        "ep": 6,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.009543849783545211,
+        "d_ancienne": 0.009543849783545211,
+        "z_fin": 0.8890783528088578
+      },
+      {
+        "ep": 7,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.006196262809058459,
+        "d_ancienne": 0.006196262809058459,
+        "z_fin": 0.8610144769501961
+      },
+      {
+        "ep": 8,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.008142695897379497,
+        "d_ancienne": 0.008142695897379497,
+        "z_fin": 0.8606091252962715
+      },
+      {
+        "ep": 9,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.009132959407855547,
+        "d_ancienne": 0.009132959407855547,
+        "z_fin": 0.8579997011647125
+      },
+      {
+        "ep": 10,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.007786504164494108,
+        "d_ancienne": 0.007786504164494108,
+        "z_fin": 0.8634514816872502
+      },
+      {
+        "ep": 11,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.00779967829341796,
+        "d_ancienne": 0.00779967829341796,
+        "z_fin": 0.9271801452691364
+      },
+      {
+        "ep": 12,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.009847244561839472,
+        "d_ancienne": 0.009847244561839472,
+        "z_fin": 0.9038636865725247
+      },
+      {
+        "ep": 13,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0014637472011895581,
+        "d_ancienne": 0.0014637472011895581,
+        "z_fin": 0.9318654180038433
+      },
+      {
+        "ep": 14,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.00382087018822588,
+        "d_ancienne": 0.00382087018822588,
+        "z_fin": 0.8840963830493348
+      },
+      {
+        "ep": 15,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.004682908480384738,
+        "d_ancienne": 0.004682908480384738,
+        "z_fin": 0.9249953315523767
+      },
+      {
+        "ep": 16,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.013378883427267329,
+        "d_ancienne": 0.013378883427267329,
+        "z_fin": 0.8775232198235894
+      },
+      {
+        "ep": 17,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0040532011026959,
+        "d_ancienne": 0.0040532011026959,
+        "z_fin": 0.8904887567192218
+      },
+      {
+        "ep": 18,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.011345549154867287,
+        "d_ancienne": 0.011345549154867287,
+        "z_fin": 0.933864085671359
+      },
+      {
+        "ep": 19,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.01830252141752968,
+        "d_ancienne": 0.01830252141752968,
+        "z_fin": 0.9209432961259607
+      },
+      {
+        "ep": 20,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.003597466987824168,
+        "d_ancienne": 0.003597466987824168,
+        "z_fin": 0.9037547580057981
+      },
+      {
+        "ep": 21,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.018611128345083817,
+        "d_ancienne": 0.018611128345083817,
+        "z_fin": 0.9223048306425795
+      },
+      {
+        "ep": 22,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.012656777196417727,
+        "d_ancienne": 0.012656777196417727,
+        "z_fin": 0.957413953181365
+      },
+      {
+        "ep": 23,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.01119555756915827,
+        "d_ancienne": 0.01119555756915827,
+        "z_fin": 0.9186134608623772
+      },
+      {
+        "ep": 24,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.04696840720133491,
+        "d_ancienne": 0.04696840720133491,
+        "z_fin": 0.8600508985877385
+      },
+      {
+        "ep": 25,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.01642086373100826,
+        "d_ancienne": 0.01642086373100826,
+        "z_fin": 0.8980215252601608
+      },
+      {
+        "ep": 26,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.014479153247454758,
+        "d_ancienne": 0.014479153247454758,
+        "z_fin": 0.8615795190186954
+      },
+      {
+        "ep": 27,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.01214302258855108,
+        "d_ancienne": 0.01214302258855108,
+        "z_fin": 0.8673296898644677
+      },
+      {
+        "ep": 28,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0004837722321666772,
+        "d_ancienne": 0.0004837722321666772,
+        "z_fin": 0.8596171907423988
+      },
+      {
+        "ep": 29,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.005233363361169831,
+        "d_ancienne": 0.005233363361169831,
+        "z_fin": 0.8591732652751918
+      },
+      {
+        "ep": 30,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.014353644465410036,
+        "d_ancienne": 0.014353644465410036,
+        "z_fin": 0.8774337784379523
+      },
+      {
+        "ep": 31,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.015909068683418334,
+        "d_ancienne": 0.015909068683418334,
+        "z_fin": 0.9048337173000662
+      },
+      {
+        "ep": 32,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0022269275833508633,
+        "d_ancienne": 0.0022269275833508633,
+        "z_fin": 0.9075695111940181
+      },
+      {
+        "ep": 33,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.018633918178726713,
+        "d_ancienne": 0.018633918178726713,
+        "z_fin": 0.8600484836994567
+      },
+      {
+        "ep": 34,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0029934552601864626,
+        "d_ancienne": 0.0029934552601864626,
+        "z_fin": 0.9136100545572488
+      },
+      {
+        "ep": 35,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0034319531301585738,
+        "d_ancienne": 0.0034319531301585738,
+        "z_fin": 0.8805384033057126
+      },
+      {
+        "ep": 36,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.0167826354651129,
+        "d_ancienne": 0.0167826354651129,
+        "z_fin": 0.9300062673928204
+      },
+      {
+        "ep": 37,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.007745848707329475,
+        "d_ancienne": 0.007745848707329475,
+        "z_fin": 0.9310075370480984
+      },
+      {
+        "ep": 38,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.007584503331830898,
+        "d_ancienne": 0.007584503331830898,
+        "z_fin": 0.8839744172970228
+      },
+      {
+        "ep": 39,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.003413515438576612,
+        "d_ancienne": 0.003413515438576612,
+        "z_fin": 0.9051754471623067
+      },
+      {
+        "ep": 40,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.008173082965861833,
+        "d_ancienne": 0.008173082965861833,
+        "z_fin": 0.8994045104873338
+      },
+      {
+        "ep": 41,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.0033326990960582457,
+        "d_ancienne": 0.0033326990960582457,
+        "z_fin": 0.8600587011870298
+      },
+      {
+        "ep": 42,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.026619589868195345,
+        "d_ancienne": 0.026619589868195345,
+        "z_fin": 0.8436767515373198
+      },
+      {
+        "ep": 43,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.003090956693190846,
+        "d_ancienne": 0.003090956693190846,
+        "z_fin": 0.9004756574815754
+      },
+      {
+        "ep": 44,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.015503767825998452,
+        "d_ancienne": 0.015503767825998452,
+        "z_fin": 0.9132635578994642
+      },
+      {
+        "ep": 45,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.00815110699455789,
+        "d_ancienne": 0.00815110699455789,
+        "z_fin": 0.9303062566293782
+      },
+      {
+        "ep": 46,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.012611003306159737,
+        "d_ancienne": 0.012611003306159737,
+        "z_fin": 0.9255232008076585
+      },
+      {
+        "ep": 47,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.006006151151018773,
+        "d_ancienne": 0.006006151151018773,
+        "z_fin": 0.9705584568217407
+      },
+      {
+        "ep": 48,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.010051968529080598,
+        "d_ancienne": 0.010051968529080598,
+        "z_fin": 0.942581743298452
+      },
+      {
+        "ep": 49,
+        "success": true,
+        "teleporte": false,
+        "d_nouvelle": 0.006694241275724372,
+        "d_ancienne": 0.006694241275724372,
+        "z_fin": 0.9382841976739777
+      }
+    ]
+  },
+  "perturbe_4cm": {
+    "n": 50,
+    "n_success": 36,
+    "success_rate": 0.72,
+    "delta": 0.04,
+    "per_episode": [
+      {
+        "ep": 0,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.013613166437339409,
+        "d_ancienne": 0.03950247188279194,
+        "z_fin": 0.8997705561239923
+      },
+      {
+        "ep": 1,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.017804598059651084,
+        "d_ancienne": 0.05237692446934401,
+        "z_fin": 0.8965169675101816
+      },
+      {
+        "ep": 2,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": null,
+        "d_ancienne": null,
+        "z_fin": 0.8588350447086301
+      },
+      {
+        "ep": 3,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03702771916185172,
+        "d_ancienne": 0.016522335352770885,
+        "z_fin": 0.8438156428302944
+      },
+      {
+        "ep": 4,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03394713104464996,
+        "d_ancienne": 0.03656077892327965,
+        "z_fin": 0.8600502409477361
+      },
+      {
+        "ep": 5,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.01491995899145745,
+        "d_ancienne": 0.02806053938579414,
+        "z_fin": 0.8615964307742406
+      },
+      {
+        "ep": 6,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.012454163596995652,
+        "d_ancienne": 0.02804084550283131,
+        "z_fin": 0.875472289692915
+      },
+      {
+        "ep": 7,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.009604498446320362,
+        "d_ancienne": 0.030400659689986436,
+        "z_fin": 0.8604282042903642
+      },
+      {
+        "ep": 8,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.014890373449667982,
+        "d_ancienne": 0.04769826241656853,
+        "z_fin": 0.860045475612182
+      },
+      {
+        "ep": 9,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.0050743428278972515,
+        "d_ancienne": 0.043138781837493624,
+        "z_fin": 0.8723386203384034
+      },
+      {
+        "ep": 10,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.007869028365546604,
+        "d_ancienne": 0.032884579226163675,
+        "z_fin": 0.907633127597011
+      },
+      {
+        "ep": 11,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.002092404814928732,
+        "d_ancienne": 0.03970708144056991,
+        "z_fin": 0.8600467151600846
+      },
+      {
+        "ep": 12,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.010510498608317426,
+        "d_ancienne": 0.050529137890525225,
+        "z_fin": 0.8756410615094846
+      },
+      {
+        "ep": 13,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.018536814834855187,
+        "d_ancienne": 0.022373137731383302,
+        "z_fin": 0.9040272775237842
+      },
+      {
+        "ep": 14,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.01914691253496284,
+        "d_ancienne": 0.0542622669417223,
+        "z_fin": 0.8600521689086099
+      },
+      {
+        "ep": 15,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.01191082841762764,
+        "d_ancienne": 0.02838196498492362,
+        "z_fin": 0.9293805140589704
+      },
+      {
+        "ep": 16,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.005687244550324338,
+        "d_ancienne": 0.03438481690015469,
+        "z_fin": 0.9293213378458108
+      },
+      {
+        "ep": 17,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.014641092059681062,
+        "d_ancienne": 0.026337373257556106,
+        "z_fin": 0.9145676752383725
+      },
+      {
+        "ep": 18,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.008503231733514244,
+        "d_ancienne": 0.0471815697271837,
+        "z_fin": 0.9473222139208195
+      },
+      {
+        "ep": 19,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.0066779176543188025,
+        "d_ancienne": 0.045995325617066464,
+        "z_fin": 0.8828697561616194
+      },
+      {
+        "ep": 20,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.008353492149918856,
+        "d_ancienne": 0.03364724434847966,
+        "z_fin": 0.9284279418924657
+      },
+      {
+        "ep": 21,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.012317787559607569,
+        "d_ancienne": 0.03844316410045815,
+        "z_fin": 0.8600588527663487
+      },
+      {
+        "ep": 22,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.01097177587663441,
+        "d_ancienne": 0.03155602445060063,
+        "z_fin": 0.9579354654590876
+      },
+      {
+        "ep": 23,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.01851781095667777,
+        "d_ancienne": 0.04971956793482098,
+        "z_fin": 0.9290110136301095
+      },
+      {
+        "ep": 24,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.0401569308241255,
+        "d_ancienne": 0.0788322043640979,
+        "z_fin": 0.8655986447070954
+      },
+      {
+        "ep": 25,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.0288288038342104,
+        "d_ancienne": 0.024665652081729418,
+        "z_fin": 0.8600573484389596
+      },
+      {
+        "ep": 26,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.020333616346549562,
+        "d_ancienne": 0.03460998829512126,
+        "z_fin": 0.8601014672382983
+      },
+      {
+        "ep": 27,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.0022556335730488596,
+        "d_ancienne": 0.0402033338291867,
+        "z_fin": 0.8594330370541475
+      },
+      {
+        "ep": 28,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.016663781900003113,
+        "d_ancienne": 0.044411102496111736,
+        "z_fin": 0.9034115562897548
+      },
+      {
+        "ep": 29,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.001192261337833822,
+        "d_ancienne": 0.0411747421091389,
+        "z_fin": 0.861124161034876
+      },
+      {
+        "ep": 30,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.004209634183601775,
+        "d_ancienne": 0.039796006231921824,
+        "z_fin": 0.8595003767923407
+      },
+      {
+        "ep": 31,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03497720167525265,
+        "d_ancienne": 0.026511136744394374,
+        "z_fin": 0.8600577129324807
+      },
+      {
+        "ep": 32,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.0038011080285670963,
+        "d_ancienne": 0.042504466513557264,
+        "z_fin": 0.8605477377008132
+      },
+      {
+        "ep": 33,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.011167368771341946,
+        "d_ancienne": 0.03146312691716639,
+        "z_fin": 0.9090187610445928
+      },
+      {
+        "ep": 34,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.004517125692011609,
+        "d_ancienne": 0.03614943709445776,
+        "z_fin": 0.8735650205221875
+      },
+      {
+        "ep": 35,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.00198356442027369,
+        "d_ancienne": 0.03830430500802527,
+        "z_fin": 0.9004502989694587
+      },
+      {
+        "ep": 36,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.012322479989649115,
+        "d_ancienne": 0.032832808507524375,
+        "z_fin": 0.9066232243630524
+      },
+      {
+        "ep": 37,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.0035994697522191313,
+        "d_ancienne": 0.04093750579069914,
+        "z_fin": 0.8970968850563915
+      },
+      {
+        "ep": 38,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.0001763121098099069,
+        "d_ancienne": 0.03994402166146544,
+        "z_fin": 0.8955827310123566
+      },
+      {
+        "ep": 39,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.005484232152268014,
+        "d_ancienne": 0.042395240083119234,
+        "z_fin": 0.907984016165961
+      },
+      {
+        "ep": 40,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.06085125955016184,
+        "d_ancienne": 0.032189547177657506,
+        "z_fin": 0.8436595671631948
+      },
+      {
+        "ep": 41,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.021339999794303524,
+        "d_ancienne": 0.01996198688884144,
+        "z_fin": 0.8600455024814546
+      },
+      {
+        "ep": 42,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.06816291367318512,
+        "d_ancienne": 0.03554596424242606,
+        "z_fin": 0.8600545139511946
+      },
+      {
+        "ep": 43,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.02162388389763312,
+        "d_ancienne": 0.026701357494019626,
+        "z_fin": 0.9296471443215311
+      },
+      {
+        "ep": 44,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.0015691879094771755,
+        "d_ancienne": 0.040490651765848755,
+        "z_fin": 0.8887240012995405
+      },
+      {
+        "ep": 45,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.003555221309432166,
+        "d_ancienne": 0.04136219146024084,
+        "z_fin": 0.8918254431582509
+      },
+      {
+        "ep": 46,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.001859777622975131,
+        "d_ancienne": 0.03814024645001156,
+        "z_fin": 0.9471614531350743
+      },
+      {
+        "ep": 47,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.015055001103079895,
+        "d_ancienne": 0.03242725011113624,
+        "z_fin": 0.8932172139561827
+      },
+      {
+        "ep": 48,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.005197575559868256,
+        "d_ancienne": 0.035283300477738935,
+        "z_fin": 0.9016921636035995
+      },
+      {
+        "ep": 49,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.007927726011642423,
+        "d_ancienne": 0.03277653676002349,
+        "z_fin": 0.9248044429756567
+      }
+    ]
+  },
+  "perturbe_4cm_sans_poignet": {
+    "n": 50,
+    "n_success": 9,
+    "success_rate": 0.18,
+    "delta": 0.04,
+    "per_episode": [
+      {
+        "ep": 0,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.027043810376800072,
+        "d_ancienne": 0.013641093394437528,
+        "z_fin": 0.8600394313696738
+      },
+      {
+        "ep": 1,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03283754046946556,
+        "d_ancienne": 0.033158418665049996,
+        "z_fin": 0.8600502343519745
+      },
+      {
+        "ep": 2,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03991902733495733,
+        "d_ancienne": 0.07687713554065578,
+        "z_fin": 0.8600571952352088
+      },
+      {
+        "ep": 3,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.025989539870854537,
+        "d_ancienne": 0.03941218360741693,
+        "z_fin": 0.8437222423923485
+      },
+      {
+        "ep": 4,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.06177394480790555,
+        "d_ancienne": 0.054925518564242055,
+        "z_fin": 0.860044488921711
+      },
+      {
+        "ep": 5,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.04289800766495843,
+        "d_ancienne": 0.0029672391558039062,
+        "z_fin": 0.8600543390321337
+      },
+      {
+        "ep": 6,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.04527885566015358,
+        "d_ancienne": 0.01956719058493087,
+        "z_fin": 0.8600516286457001
+      },
+      {
+        "ep": 7,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.05546046117577867,
+        "d_ancienne": 0.015551149585623125,
+        "z_fin": 0.8600480760636294
+      },
+      {
+        "ep": 8,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": null,
+        "d_ancienne": null,
+        "z_fin": 0.8658901585849006
+      },
+      {
+        "ep": 9,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.01863053402135302,
+        "d_ancienne": 0.041638994084714935,
+        "z_fin": 0.9040448591773393
+      },
+      {
+        "ep": 10,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.06129138895619784,
+        "d_ancienne": 0.05786288610259599,
+        "z_fin": 0.8638576125768814
+      },
+      {
+        "ep": 11,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.05316456442065503,
+        "d_ancienne": 0.0921070325054747,
+        "z_fin": 0.8600502028366971
+      },
+      {
+        "ep": 12,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03650271211239033,
+        "d_ancienne": 0.0702691386170115,
+        "z_fin": 0.8600515470328417
+      },
+      {
+        "ep": 13,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.025331654082256672,
+        "d_ancienne": 0.026902704515195122,
+        "z_fin": 0.8438023277137131
+      },
+      {
+        "ep": 14,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.060030275474939866,
+        "d_ancienne": 0.03415472953996856,
+        "z_fin": 0.8600506565302218
+      },
+      {
+        "ep": 15,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.04116480392007082,
+        "d_ancienne": 0.002757059496632542,
+        "z_fin": 0.8600487932878453
+      },
+      {
+        "ep": 16,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03632165592524839,
+        "d_ancienne": 0.026308269288369598,
+        "z_fin": 0.8600524688759844
+      },
+      {
+        "ep": 17,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.0600035883963958,
+        "d_ancienne": 0.033489785162638334,
+        "z_fin": 0.8600470815518884
+      },
+      {
+        "ep": 18,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.016322673939400643,
+        "d_ancienne": 0.04914986435469977,
+        "z_fin": 0.9132906112642796
+      },
+      {
+        "ep": 19,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.0515899090794787,
+        "d_ancienne": 0.05743358691293048,
+        "z_fin": 0.8600481064319725
+      },
+      {
+        "ep": 20,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.02391595199247435,
+        "d_ancienne": 0.06106314138356861,
+        "z_fin": 0.8600522630838976
+      },
+      {
+        "ep": 21,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.05511547800755826,
+        "d_ancienne": 0.016668612735443858,
+        "z_fin": 0.8600564658261939
+      },
+      {
+        "ep": 22,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.04067613890797492,
+        "d_ancienne": 0.05397552981060808,
+        "z_fin": 0.8600501473342858
+      },
+      {
+        "ep": 23,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.029686659479776414,
+        "d_ancienne": 0.012704180376256095,
+        "z_fin": 0.9157210231079156
+      },
+      {
+        "ep": 24,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.047090792795918865,
+        "d_ancienne": 0.08583915242109699,
+        "z_fin": 0.8584615124106194
+      },
+      {
+        "ep": 25,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03134754135343346,
+        "d_ancienne": 0.07131564168525402,
+        "z_fin": 0.8600518502826134
+      },
+      {
+        "ep": 26,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.04856023498904201,
+        "d_ancienne": 0.06976368938163212,
+        "z_fin": 0.8600548961594282
+      },
+      {
+        "ep": 27,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.030618996318101045,
+        "d_ancienne": 0.018282642682833167,
+        "z_fin": 0.8600503587028868
+      },
+      {
+        "ep": 28,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.04502859166679845,
+        "d_ancienne": 0.06343023113595894,
+        "z_fin": 0.8600684824428831
+      },
+      {
+        "ep": 29,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.026805397928767974,
+        "d_ancienne": 0.06420049179145389,
+        "z_fin": 0.8597918309630875
+      },
+      {
+        "ep": 30,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.018362870274053186,
+        "d_ancienne": 0.05834684217549305,
+        "z_fin": 0.9152796355383186
+      },
+      {
+        "ep": 31,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.019966498636178942,
+        "d_ancienne": 0.048709437691346884,
+        "z_fin": 0.8600511533958964
+      },
+      {
+        "ep": 32,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.043887022422903536,
+        "d_ancienne": 0.08385542884429195,
+        "z_fin": 0.8600575344280003
+      },
+      {
+        "ep": 33,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.05799211283629805,
+        "d_ancienne": 0.0589395585585586,
+        "z_fin": 0.8600573016938757
+      },
+      {
+        "ep": 34,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.021608817052622957,
+        "d_ancienne": 0.05570347768081183,
+        "z_fin": 0.8824450258846808
+      },
+      {
+        "ep": 35,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.05345121732583903,
+        "d_ancienne": 0.07614662402828375,
+        "z_fin": 0.8600484736620686
+      },
+      {
+        "ep": 36,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.014983162794036345,
+        "d_ancienne": 0.053789193510754944,
+        "z_fin": 0.9216068552699884
+      },
+      {
+        "ep": 37,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03436247498418714,
+        "d_ancienne": 0.010126808785687,
+        "z_fin": 0.8600458990000769
+      },
+      {
+        "ep": 38,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.022398727437338117,
+        "d_ancienne": 0.034574740087290896,
+        "z_fin": 0.8973386518917702
+      },
+      {
+        "ep": 39,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.036879318939549266,
+        "d_ancienne": 0.02296938228160356,
+        "z_fin": 0.8600579957603084
+      },
+      {
+        "ep": 40,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.0681703270722063,
+        "d_ancienne": 0.03188208529904474,
+        "z_fin": 0.8600528233013603
+      },
+      {
+        "ep": 41,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.06932064626174268,
+        "d_ancienne": 0.05743794634686275,
+        "z_fin": 0.8600475236056807
+      },
+      {
+        "ep": 42,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.09955311388190245,
+        "d_ancienne": 0.05994894349265307,
+        "z_fin": 0.8600542639983996
+      },
+      {
+        "ep": 43,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.05419312845960485,
+        "d_ancienne": 0.014252128621292886,
+        "z_fin": 0.8600476339976506
+      },
+      {
+        "ep": 44,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.02998109210352445,
+        "d_ancienne": 0.0490332356478911,
+        "z_fin": 0.8600488655284684
+      },
+      {
+        "ep": 45,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.04393723350371552,
+        "d_ancienne": 0.02141880684743119,
+        "z_fin": 0.8600516730554769
+      },
+      {
+        "ep": 46,
+        "success": true,
+        "teleporte": true,
+        "d_nouvelle": 0.018139658948002464,
+        "d_ancienne": 0.04076671800158176,
+        "z_fin": 0.9472964008117447
+      },
+      {
+        "ep": 47,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": null,
+        "d_ancienne": null,
+        "z_fin": 0.8600555311283781
+      },
+      {
+        "ep": 48,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.03532237286213992,
+        "d_ancienne": 0.05077947068539509,
+        "z_fin": 0.8600566675394038
+      },
+      {
+        "ep": 49,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.07568396412392167,
+        "d_ancienne": 0.08960412980250308,
+        "z_fin": 0.8603517369453555
+      }
+    ]
+  },
+  "perturbe_4cm_sans_exterieure": {
+    "n": 50,
+    "n_success": 0,
+    "success_rate": 0.0,
+    "delta": 0.04,
+    "per_episode": [
+      {
+        "ep": 0,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": null,
+        "d_ancienne": null,
+        "z_fin": 0.8600533363405553
+      },
+      {
+        "ep": 1,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.3001268265034577,
+        "d_ancienne": 0.3001268265034577,
+        "z_fin": 0.8438114009734775
+      },
+      {
+        "ep": 2,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.21574830963752917,
+        "d_ancienne": 0.21574830963752917,
+        "z_fin": 0.8600571952352088
+      },
+      {
+        "ep": 3,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": null,
+        "d_ancienne": null,
+        "z_fin": 0.8600537763497138
+      },
+      {
+        "ep": 4,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.3582370382614583,
+        "d_ancienne": 0.3582370382614583,
+        "z_fin": 0.8600507720275975
+      },
+      {
+        "ep": 5,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.360653969095146,
+        "d_ancienne": 0.360653969095146,
+        "z_fin": 0.8639364307574889
+      },
+      {
+        "ep": 6,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.23993105930731945,
+        "d_ancienne": 0.23993105930731945,
+        "z_fin": 0.8437853043804802
+      },
+      {
+        "ep": 7,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.15175495992234805,
+        "d_ancienne": 0.15175495992234805,
+        "z_fin": 0.8600480760636295
+      },
+      {
+        "ep": 8,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.029985514313229666,
+        "d_ancienne": 0.04325118106716647,
+        "z_fin": 0.8600496107347915
+      },
+      {
+        "ep": 9,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.1634617189386312,
+        "d_ancienne": 0.12374051771826583,
+        "z_fin": 0.8600489256382943
+      },
+      {
+        "ep": 10,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.08654653219793859,
+        "d_ancienne": 0.04846370895637519,
+        "z_fin": 0.860057434099645
+      },
+      {
+        "ep": 11,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.07324363796799248,
+        "d_ancienne": 0.037539978520423796,
+        "z_fin": 0.8600480067769875
+      },
+      {
+        "ep": 12,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.33597277474359405,
+        "d_ancienne": 0.33597277474359405,
+        "z_fin": 0.860048023882478
+      },
+      {
+        "ep": 13,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.07461912855143141,
+        "d_ancienne": 0.043146233906891096,
+        "z_fin": 0.8600454463677243
+      },
+      {
+        "ep": 14,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.3461810634779386,
+        "d_ancienne": 0.3461810634779386,
+        "z_fin": 0.8600531561679078
+      },
+      {
+        "ep": 15,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.33428539397079854,
+        "d_ancienne": 0.33428539397079854,
+        "z_fin": 0.8502305586385036
+      },
+      {
+        "ep": 16,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.2306157886636524,
+        "d_ancienne": 0.2306157886636524,
+        "z_fin": 0.8600504416572744
+      },
+      {
+        "ep": 17,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.3058353909264891,
+        "d_ancienne": 0.3058353909264891,
+        "z_fin": 0.863156060210074
+      },
+      {
+        "ep": 18,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.21220693578119024,
+        "d_ancienne": 0.21220693578119024,
+        "z_fin": 0.8600566229318369
+      },
+      {
+        "ep": 19,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.2669462345522331,
+        "d_ancienne": 0.2669462345522331,
+        "z_fin": 0.8625065617098643
+      },
+      {
+        "ep": 20,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": null,
+        "d_ancienne": null,
+        "z_fin": 0.8600498384912049
+      },
+      {
+        "ep": 21,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.3218865274167921,
+        "d_ancienne": 0.3218865274167921,
+        "z_fin": 0.8535954658656196
+      },
+      {
+        "ep": 22,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.15802663041290974,
+        "d_ancienne": 0.15802663041290974,
+        "z_fin": 0.8600565791924835
+      },
+      {
+        "ep": 23,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.2783925465896678,
+        "d_ancienne": 0.2783925465896678,
+        "z_fin": 0.8603017056629181
+      },
+      {
+        "ep": 24,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.4005090386861571,
+        "d_ancienne": 0.4005090386861571,
+        "z_fin": 0.8415577314454191
+      },
+      {
+        "ep": 25,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.24162742657328382,
+        "d_ancienne": 0.24162742657328382,
+        "z_fin": 0.8600478611997432
+      },
+      {
+        "ep": 26,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.3615143587037121,
+        "d_ancienne": 0.3615143587037121,
+        "z_fin": 0.8600496245155462
+      },
+      {
+        "ep": 27,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.1263577238599596,
+        "d_ancienne": 0.13677073584793695,
+        "z_fin": 0.8438048365614191
+      },
+      {
+        "ep": 28,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.17329513604136848,
+        "d_ancienne": 0.17329513604136848,
+        "z_fin": 0.860048552643629
+      },
+      {
+        "ep": 29,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.15168062928149537,
+        "d_ancienne": 0.12260563193326587,
+        "z_fin": 0.8600485220430641
+      },
+      {
+        "ep": 30,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.31351951912628934,
+        "d_ancienne": 0.31351951912628934,
+        "z_fin": 0.8600485211080751
+      },
+      {
+        "ep": 31,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.2622705913862134,
+        "d_ancienne": 0.2622705913862134,
+        "z_fin": 0.8600520110315025
+      },
+      {
+        "ep": 32,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.17435970634109754,
+        "d_ancienne": 0.17435970634109754,
+        "z_fin": 0.8600564882928337
+      },
+      {
+        "ep": 33,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.0009244179027988598,
+        "d_ancienne": 0.04078432306422573,
+        "z_fin": 0.8600546710467735
+      },
+      {
+        "ep": 34,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.17587170774850536,
+        "d_ancienne": 0.17587170774850536,
+        "z_fin": 0.8600541828845116
+      },
+      {
+        "ep": 35,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.10487383685603298,
+        "d_ancienne": 0.14230248398687187,
+        "z_fin": 0.8600484736620686
+      },
+      {
+        "ep": 36,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.21897062075391355,
+        "d_ancienne": 0.21897062075391355,
+        "z_fin": 0.8600480067769876
+      },
+      {
+        "ep": 37,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.3062719459648323,
+        "d_ancienne": 0.3062719459648323,
+        "z_fin": 0.8600579331306193
+      },
+      {
+        "ep": 38,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.3754069084546775,
+        "d_ancienne": 0.3754069084546775,
+        "z_fin": 0.8544820451474056
+      },
+      {
+        "ep": 39,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.1634736668695468,
+        "d_ancienne": 0.1634736668695468,
+        "z_fin": 0.8436944329022866
+      },
+      {
+        "ep": 40,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.31230880985679926,
+        "d_ancienne": 0.31230880985679926,
+        "z_fin": 0.8608145043258896
+      },
+      {
+        "ep": 41,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": 0.40282187352067667,
+        "d_ancienne": 0.40282187352067667,
+        "z_fin": 0.860045748539896
+      },
+      {
+        "ep": 42,
+        "success": false,
+        "teleporte": false,
+        "d_nouvelle": null,
+        "d_ancienne": null,
+        "z_fin": 0.8600478323795885
+      },
+      {
+        "ep": 43,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.28473360467209063,
+        "d_ancienne": 0.28473360467209063,
+        "z_fin": 0.8557090881835225
+      },
+      {
+        "ep": 44,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.16200061203304636,
+        "d_ancienne": 0.16200061203304636,
+        "z_fin": 0.8600472327142903
+      },
+      {
+        "ep": 45,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.23126256396126865,
+        "d_ancienne": 0.23126256396126865,
+        "z_fin": 0.8436971867774213
+      },
+      {
+        "ep": 46,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.15558884458939712,
+        "d_ancienne": 0.11973092170851259,
+        "z_fin": 0.8600479376152966
+      },
+      {
+        "ep": 47,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.19504314195774503,
+        "d_ancienne": 0.19504314195774503,
+        "z_fin": 0.8600520346187125
+      },
+      {
+        "ep": 48,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.3359553075994141,
+        "d_ancienne": 0.3359553075994141,
+        "z_fin": 0.8426647287245702
+      },
+      {
+        "ep": 49,
+        "success": false,
+        "teleporte": true,
+        "d_nouvelle": 0.06529094598564034,
+        "d_ancienne": 0.09332770958984878,
+        "z_fin": 0.8600477406839212
+      }
+    ]
+  }
+}
