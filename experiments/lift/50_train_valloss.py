@@ -228,6 +228,44 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
     if not is_main_process:
         dataset = make_dataset(cfg)
 
+    # --- PATCH HARDGATE_STALE : entraîner la porte dure DANS SON RÉGIME DE DÉPLOIEMENT ---
+    # La porte dure est déployée avec un cache : la caméra non choisie garde ses features
+    # pendant k inférences, soit k × n_action_steps pas (k=6 -> 48 pas -> 2,4 s à 20 Hz).
+    # Or elle a été ENTRAÎNÉE sans péremption : à l'entraînement la vue écartée n'avait qu'un
+    # pas de retard. On charge donc, pour chaque caméra, une paire d'images ANCIENNES en plus
+    # de la paire courante, et la vue écartée s'en servira (cf. _prep_hard).
+    # Ordre des 4 pas d'observation par caméra : [ancien-1, ancien, courant-1, courant].
+    import os as _os0
+    _stale_k = int(_os0.environ.get("HARDGATE_STALE", "0") or 0)
+    if _stale_k > 0:
+        # On agit directement sur `delta_indices` (offsets ENTIERS en frames) plutôt que sur
+        # `delta_timestamps` : c'est ce que le dataloader consomme, et c'est le seul état
+        # conservé dans toutes les versions de LeRobot du projet (0.5.0 le porte sur le
+        # dataset, 0.5.1 sur son `reader`, et n'y garde pas les timestamps).
+        _hold = dataset
+        _rd = getattr(dataset, "reader", None)
+        if _rd is not None and getattr(_rd, "delta_indices", None) is not None:
+            _hold = _rd
+        _di = getattr(_hold, "delta_indices", None)
+        if not _di:
+            raise RuntimeError(f"HARDGATE_STALE : delta_indices introuvable "
+                               f"(porteur={type(_hold).__name__}) — n_obs_steps>1 requis")
+        _nact = int(getattr(cfg.policy, "n_action_steps", 8))
+        _off = _stale_k * _nact                      # péremption en PAS d'environnement
+        _fps = dataset.meta.fps
+        _imk = [k for k in _di if k.startswith("observation.images")]
+        if not _imk:
+            raise RuntimeError(f"HARDGATE_STALE : aucune clé image dans delta_indices ({list(_di)})")
+        for _k in _imk:
+            _avant = list(_di[_k])
+            if _avant != [-1, 0]:
+                raise RuntimeError(f"HARDGATE_STALE attend [-1, 0] pour {_k}, trouvé {_avant}")
+            _di[_k] = [-(_off + 1), -_off, -1, 0]
+        _hold.delta_indices = _di
+        logging.info(f"[HARDGATE_STALE] k={_stale_k} -> paire ancienne à -{_off} frames "
+                     f"({_off/_fps:.1f} s) pour {len(_imk)} caméras : "
+                     f"{_di[_imk[0]]} (porteur {type(_hold).__name__})")
+
     # --- PATCH RELJOINT : actions articulaires RELATIVES chunk-wise (ancre = obs courante) ---
     # Override les stats de normalisation des dims joints (0..DIMS-1) par les stats RELATIVES
     # (delta chunk-wise), gripper reste absolu. Le batch est rendu relatif avant le preprocessor.
@@ -591,13 +629,32 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
         _hard = _os.environ.get("HARDGATE") == "1"
         _tau = float(_os.environ.get("HARDGATE_TAU", "1.0"))
 
-        def _prep_hard(batch, _dm=_dmr, _ein=_ein_r, _R=_router, _t=_tau):
+        _stale = int(_os.environ.get("HARDGATE_STALE", "0") or 0)
+
+        def _prep_hard(batch, _dm=_dmr, _ein=_ein_r, _R=_router, _t=_tau, _sk=_stale):
             B, S = batch[_RK_ST].shape[:2]
-            imgs = _ein.rearrange(batch[_RK_IMG], "b s n ... -> n (b s) ...")
-            per = [_ein.rearrange(enc(im), "(b s) d -> b s d", b=B, s=S)
-                   for enc, im in zip(_dm.rgb_encoder, imgs, strict=True)]
+            im_all = batch[_RK_IMG]
+            SI = im_all.shape[1]                       # 2 normalement, 4 si HARDGATE_STALE
+            imgs = _ein.rearrange(im_all, "b s n ... -> n (b s) ...")
+            feats = [_ein.rearrange(enc(im), "(b s) d -> b s d", b=B, s=SI)
+                     for enc, im in zip(_dm.rgb_encoder, imgs, strict=True)]
             st = batch[_RK_ST]
-            logits = _R["mlp"](torch.cat([f[:, :-1] for f in per] + [st[:, :-1]], dim=-1))
+            if _sk > 0 and SI == 4:
+                vieux = [f[:, 0:2] for f in feats]     # paire ANCIENNE (péremption k)
+                per = [f[:, 2:4] for f in feats]       # paire COURANTE
+                # début d'épisode : pas de passé -> pas de cache non plus au déploiement
+                pad = batch.get("observation.images.agentview_is_pad")
+                if pad is not None:
+                    m = pad[:, 0].view(B, 1, 1).to(per[0].dtype)
+                    vieux = [v * (1 - m) + c * m for v, c in zip(vieux, per)]
+            else:
+                vieux = None
+                per = feats
+            # décision causale : les features DÉJÀ en cache des deux caméras
+            base = vieux if vieux is not None else [f[:, :-1] for f in per]
+            gin = ([f[:, -1] for f in base] if vieux is not None
+                   else [f[:, 0] for f in base])
+            logits = _R["mlp"](torch.cat(gin + [st[:, 0]], dim=-1)).unsqueeze(1)
             g = torch.softmax(logits, dim=-1)
             _dm._gate = g                                      # perte d'équilibrage inchangée
             if _dm.training:
@@ -608,7 +665,12 @@ def train(cfg: TrainPipelineConfig, accelerator: Accelerator | None = None):
             out = []
             for i, f in enumerate(per):
                 keep = sel[..., i:i + 1]
-                out.append(torch.cat([f[:, :1], keep * f[:, 1:] + (1 - keep) * f[:, :-1]], dim=1))
+                if vieux is not None:
+                    # choisie -> paire COURANTE ; écartée -> paire ANCIENNE (k inférences)
+                    out.append(keep * f + (1 - keep) * vieux[i])
+                else:
+                    out.append(torch.cat([f[:, :1],
+                                          keep * f[:, 1:] + (1 - keep) * f[:, :-1]], dim=1))
             return torch.cat([st] + out, dim=-1).flatten(start_dim=1)
 
         _dmr._gate = None
