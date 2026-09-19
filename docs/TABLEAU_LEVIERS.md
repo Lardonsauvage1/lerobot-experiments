@@ -1,0 +1,38 @@
+# Le tableau des leviers — ce qui marche, en échecs supprimés
+
+*Généré par `experiments/can/160_tableau_leviers.py`. Ne pas éditer à la main.*
+
+Une ligne n'entre ici que si les deux bras diffèrent par **une seule chose**, sur les
+**mêmes 500 états**, et si possible à graine égale. Les gains sont donnés en **réduction
+du nombre d'échecs** et pas seulement en points : passer de 60 à 61 % est bien plus facile
+que de 90 à 91 % (cf. `METHODOLOGIE.md` §6).
+
+⚠️ McNemar compare deux **modèles**, pas deux **configurations** : il ne voit pas le hasard
+d'entraînement. Une ligne à p < 0,05 sur une seule graine reste à confirmer.
+
+## Ce qui améliore
+
+| levier | réussite | échecs /500 | échecs en moins | McNemar | appariement |
+|---|---|---|---|---|---|
+| Décodeur ×2 (mono) | 80.4 → 91.2 % | 98 → 44 | **+55.1 %** | <1e-4 | graine 42 |
+| Décodeur ×2 (bi-caméra gelé) | 86.2 → 93.8 % | 69 → 31 | **+55.1 %** | 0.0001 | graine 42 |
+| Encodeur GELÉ pour intégrer le poignet | 80.4 → 86.2 % | 98 → 69 | **+29.6 %** | 0.0134 | graine 42 |
+| Alterner plutôt que figer (porte) | 78.0 → 82.2 % | 110 → 89 | **+19.1 %** | 0.0504 | MÊME modèle |
+| Rattrapages COUPÉS vs complets | 66.8 → 72.0 % | 166 → 140 | **+15.7 %** | 0.0563 | graine 42 |
+| Encodeur poignet NEUF vs repris | 84.2 → 86.2 % | 79 → 69 | **+12.7 %** | 0.3729 | graine 42 |
+| Porte DURE vs porte souple | 81.6 → 83.6 % | 92 → 82 | **+10.9 %** | 0.3481 | MÊME modèle K |
+| 2e caméra EXTÉRIEURE (dessus) | 80.4 → 82.0 % | 98 → 90 | **+8.2 %** | 0.5159 | graine 42 |
+| Dropout de caméra (poignet naïf) | 61.6 → 64.2 % | 192 → 179 | **+6.8 %** | 0.2181 | graine 42 |
+
+## Ce qui dégrade
+
+| levier | réussite | échecs /500 | échecs en moins | McNemar | appariement |
+|---|---|---|---|---|---|
+| Porte apprise vs TIRAGE AU SORT | 82.2 → 82.2 % | 89 → 89 | **+0.0 %** | 1.0000 | MÊME modèle L42 |
+| +200 épisodes experts | 80.4 → 79.4 % | 98 → 103 | **-5.1 %** | 0.7228 | graine 42 |
+| Routeur souple sur modèle gelé | 86.2 → 83.2 % | 69 → 84 | **-21.7 %** | 0.1837 | graine 42 |
+| Routeur souple sur poignet naïf | 61.6 → 42.2 % | 192 → 289 | **-50.5 %** | <1e-4 | graine 42 |
+| Rattrapages COMPLETS | 79.4 → 66.8 % | 103 → 166 | **-61.2 %** | <1e-4 | graine 42, données égales |
+| Recadrage aléatoire (poignet naïf) | 61.6 → 34.8 % | 192 → 326 | **-69.8 %** | <1e-4 | graine 42 |
+| Poignet en concaténation NAÏVE | 80.4 → 61.6 % | 98 → 192 | **-95.9 %** | <1e-4 | graine 42 |
+| Recadrage aléatoire (mono, 96 px) | 80.4 → 21.6 % | 98 → 392 | **-300.0 %** | <1e-4 | graine 42 |
