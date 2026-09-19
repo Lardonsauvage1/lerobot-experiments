@@ -24,7 +24,11 @@ RES = ["cam2_eval500.json", "porte_dure.json", "pas_coupes.json", "balayage_unet
        "boucle_fermee.json", "vision_500.json"]
 
 PAIRES = [
-    ("Décodeur ×2 (mono)",                  "A2_fixstats",        "unet_128256512_MONO_s42", "graine 42"),
+    ("Décodeur ×2 (mono, graine 42)",       "A2_fixstats",        "unet_128256512_MONO_s42", "graine 42"),
+    ("Décodeur ×2 (mono, graine 43)",       "A_side",             "unet_128256512_MONO_s43", "2e réplique de chaque côté"),
+    ("Décodeur ×4 vs ×2 (mono)",            "unet_128256512_MONO_s42", "unet_2565121024_mono_s42", "graine 42 — le 2e doublement"),
+    ("Décodeur ×4 vs ×2 (bi-caméra)",       "unet_128256512_gele_s42", "unet_2565121024_gele_s42", "graine 42 — le 2e doublement"),
+    ("Décodeur ×2 (bi-caméra, graine 43)",  "I2_frozen_s43",      "unet_128256512_gele_s43", "graine 43"),
     ("Décodeur ×2 (bi-caméra gelé)",        "I_frozen",           "unet_128256512_gele_s42", "graine 42"),
     ("Encodeur GELÉ pour intégrer le poignet","A2_fixstats",      "I_frozen",                "graine 42"),
     ("Alterner plutôt que figer (porte)",   "L42_fixe_globale",   "L42_entrainee",           "MÊME modèle"),
