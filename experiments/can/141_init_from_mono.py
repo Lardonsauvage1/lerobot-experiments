@@ -29,14 +29,26 @@ sys.path.insert(0, ".")
 import torch
 from safetensors.torch import load_file, save_file
 
-MONO = Path("results/runs/can/cam2_A2_fixstats/cooldown/checkpoints/005000/pretrained_model")
-BI   = Path("results/runs/can/cam2_C2_wrist_fixstats/cooldown/checkpoints/005000/pretrained_model")
 import os
+# Paramétrable par variables d'environnement : le balayage de taille de U-Net doit refaire
+# cette conversion à CHAQUE taille (le moule doit avoir les mêmes formes que la cible).
+MONO = Path(os.environ.get("INIT_MONO",
+            "results/runs/can/cam2_A2_fixstats/cooldown/checkpoints/005000/pretrained_model"))
+BI   = Path(os.environ.get("INIT_MOULE",
+            "results/runs/can/cam2_C2_wrist_fixstats/cooldown/checkpoints/005000/pretrained_model"))
 FRESH_WRIST = os.environ.get("FRESH_WRIST") == "1"
-OUT  = Path("results/runs/can/cam2_I_frozen_init_fresh/pretrained_model"
-             if FRESH_WRIST else "results/runs/can/cam2_I_frozen_init/pretrained_model")
+OUT  = Path(os.environ.get("INIT_OUT",
+            "results/runs/can/cam2_I_frozen_init_fresh/pretrained_model"
+            if FRESH_WRIST else "results/runs/can/cam2_I_frozen_init/pretrained_model"))
 
-EMB, SD, FD, NOBS = 128, 9, 64, 2      # embed temps, état, features/caméra, pas d'obs
+import json as _json
+_cfg = _json.loads((BI / "config.json").read_text()) if (BI / "config.json").exists() else {}
+EMB = 128
+SD = 9
+FD = int(_cfg.get("spatial_softmax_num_keypoints", 32)) * 2   # x,y par keypoint
+NOBS = int(_cfg.get("n_obs_steps", 2))
+print(f"  géométrie du conditionnement : embed {EMB} · état {SD} · features/caméra {FD} · "
+      f"{NOBS} pas d'obs")
 
 
 def main():
