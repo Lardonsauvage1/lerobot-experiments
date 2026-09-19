@@ -123,6 +123,49 @@ Recherche dédiée et vérifiée (détail complet : [`recherche/eval_offline.md`
 
 ---
 
+## 6. Le point de pourcentage n'est pas la bonne échelle
+
+Passer de 60 à 61 % de réussite est bien plus facile que de 90 à 91 % : le succès est borné, et
+plus on approche du plafond, plus chaque point coûte cher. **Un gain doit donc toujours être donné
+aussi en réduction du nombre d'échecs.**
+
+Le cas qui l'a révélé — balayage de taille de U-Net sur Can, 500 rollouts, protocole à encodeur
+gelé (vue extérieure + poignet) :
+
+| levier | échecs /500 | en points | **en échecs** |
+|---|---|---|---|
+| décodeur ×2, mono | 98 → 44 | +10,8 | **−55,1 %** |
+| décodeur ×2, bi-caméra | 69 → 31 | +7,6 | **−55,1 %** |
+| poignet, petit décodeur | 98 → 69 | +5,8 | **−29,6 %** |
+| poignet, gros décodeur | 44 → 31 | +2,6 | **−29,5 %** |
+
+Lu en points, l'apport du poignet semble **fondre** quand le décodeur grossit (5,8 → 2,6), et on en
+conclut que les deux leviers se recouvrent. **C'est faux.** En échecs, il est identique — et les deux
+effets se composent **multiplicativement, à l'échec près** :
+
+    98 échecs × 0,449 (décodeur) × 0,704 (poignet) = 31,0 prédits    ·    31 observés
+
+Chaque levier supprime une **fraction constante de ce qui reste**. Le poignet est donc aussi utile
+sur un gros décodeur que sur un petit, et les deux gains s'empilent sans se marcher dessus.
+
+## 7. Le seuil de significativité dépend du niveau
+
+La variance binomiale vaut `p(1−p)/n` : maximale à 50 %, elle s'effondre près des extrêmes. Il faut
+donc **moins** de points de pourcentage pour être significatif quand on est déjà haut.
+
+À n = 500, écart détectable entre deux groupes (~2σ) :
+
+| p | 50 % | 70 % | 80 % | 86 % | 90 % | 94 % | 97 % |
+|---|---|---|---|---|---|---|---|
+| écart détectable | 6,3 | 5,8 | 5,1 | 4,4 | 3,8 | **3,0** | 2,2 pts |
+
+⚠️ **Ce tableau ne couvre que le bruit d'échantillonnage.** Le bruit dominant de ce projet est celui
+de l'**entraînement** (§ « plancher de bruit » : deux runs strictement identiques à 54,2 et 61,6 %).
+Sur l'échelle des échecs, les 4 bras de référence du protocole gelé s'étalent de **44 à 85 échecs**,
+un facteur 1,9. Le « plancher de 8 points » souvent cité dans ce dépôt a été calibré vers 86 % et sur
+la variance de graine : **il ne se transpose pas tel quel à 94 %**, et doit être recalculé au niveau
+concerné, en distinguant les deux sources de bruit.
+
 ## Leçons clés
 
 1. **500 rollouts**, pas 50 — l'IC95 de Wilson (±4 pts) encadre alors la vraie valeur.

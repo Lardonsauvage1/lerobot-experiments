@@ -148,7 +148,8 @@ erreur du test : **McNemar compare deux modèles, pas deux configurations.** Ave
 par condition, il ne peut pas distinguer l'effet d'un réglage du hasard d'un entraînement.
 
 Conséquence que je tire pour ce dépôt : **tout écart inférieur à ~8 points sur 500 rollouts
-demande plusieurs graines avant d'être annoncé.** Les résultats ci-dessus qui survivent à ce
+demande plusieurs graines avant d'être annoncé.** (Ce seuil vaut autour de 85 % de réussite ;
+plus haut, il se resserre — voir la section suivante.) Les résultats ci-dessus qui survivent à ce
 critère sont le coût de la caméra de poignet (−18,8 à −22,4) et l'absence d'effet démontrable
 de la deuxième caméra extérieure. Les autres sont des pistes, pas des conclusions.
 
@@ -159,9 +160,6 @@ n'était donc jamais lu.</sub>
 
 Le même verdict sur le poignet ressort de trois autres configurations, à des capacités et des
 résolutions différentes :
-
-| configuration | A · agentview seule | B · + caméra poignet | écart |
-|---|---:|---:|---:|
 
 | configuration | A · agentview seule | B · + caméra poignet | écart |
 |---|---:|---:|---:|
@@ -194,6 +192,38 @@ un cooldown a rapporté ~6 points sans un gramme de matériel.
 <sub>Même état initial, même graine. À gauche A (agentview seule) saisit la canette. À droite B,
 qui reçoit <b>en plus</b> la caméra de poignet — son flux est en médaillon — n'y arrive pas.
 Épisode choisi parmi les discordants : ce sont eux qui portent l'effet mesuré.</sub>
+
+### Mesurer un gain : les points de pourcentage mentent
+
+Passer de 60 à 61 % de réussite est bien plus facile que de 90 à 91 %. Le succès est borné, donc
+un même effort rapporte de moins en moins de points à mesure qu'on approche du plafond. Un écart
+en points n'est donc pas comparable d'un niveau à l'autre — et je m'y suis laissé prendre.
+
+En faisant varier la taille du décodeur sur la tâche Can, avec deux caméras et le protocole à
+encodeur gelé, j'ai d'abord lu ceci :
+
+| levier | en points | **en échecs supprimés** |
+|---|---:|---:|
+| décodeur ×2, une caméra | +10,8 | **−55,1 %** *(98 → 44 échecs)* |
+| décodeur ×2, deux caméras | +7,6 | **−55,1 %** *(69 → 31)* |
+| caméra poignet, petit décodeur | +5,8 | **−29,6 %** *(98 → 69)* |
+| caméra poignet, gros décodeur | +2,6 | **−29,5 %** *(44 → 31)* |
+
+Lu en points, l'apport du poignet **fond** quand le décodeur grossit — 5,8 puis 2,6 — et j'en avais
+conclu que les deux leviers se recouvraient. C'était faux. Rapporté au nombre d'**échecs**, il est
+identique, et les deux effets se composent multiplicativement, à l'échec près :
+
+    98 échecs × 0,449 (décodeur) × 0,704 (poignet) = 31,0 prédits    ·    31 observés
+
+Chaque levier supprime une **fraction constante de ce qui reste**, et les deux s'empilent sans se
+gêner. La conclusion pratique s'inverse : le poignet reste aussi rentable sur un gros modèle que
+sur un petit.
+
+Corollaire sur la significativité : la variance binomiale vaut `p(1−p)/n`, maximale à 50 % et
+minimale aux extrêmes. À 500 rollouts, l'écart détectable entre deux groupes passe de **6,3 points
+à 50 % de réussite à 3,0 points à 94 %** — il faut donc *moins* de points pour conclure quand on est
+déjà haut. Avec une réserve que je garde en tête : ce calcul ne couvre que le bruit
+d'échantillonnage, alors que le bruit dominant ici est celui de l'entraînement.
 
 ### La caméra de poignet : la même mesure dit oui et non
 
