@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 """LE TABLEAU DES LEVIERS — ce qui marche, mesuré en ÉCHECS SUPPRIMÉS.
 
+⚠️ `--md` RÉÉCRIT docs/TABLEAU_LEVIERS.md de zéro : ne jamais y ajouter de texte à la main,
+il serait effacé. L'analyse narrative vit dans docs/BALAYAGE_UNET.md. — ce qui marche, mesuré en ÉCHECS SUPPRIMÉS.
+
 Règle d'or : une ligne n'entre ici que si les deux bras diffèrent par UNE SEULE chose,
 sur les MÊMES 500 états, et si possible à graine égale. Pas de comparaison bancale.
 
