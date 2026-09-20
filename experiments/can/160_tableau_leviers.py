@@ -24,6 +24,10 @@ RES = ["cam2_eval500.json", "porte_dure.json", "pas_coupes.json", "balayage_unet
        "boucle_fermee.json", "vision_500.json"]
 
 PAIRES = [
+    ("⭐ Décodeur ×2 · graine 42 APPARIÉE",  "J_fresh_wrist",      "unet_128256512_gele_s42", "graine 42, poignet NEUF des 2 côtés"),
+    ("⭐ Décodeur ×2 · graine 43 APPARIÉE",  "ref_fresh_s43",      "unet_128256512_gele_s43", "graine 43, poignet NEUF des 2 côtés"),
+    ("Poignet REPRIS vs NEUF (graine 42)",   "J_fresh_wrist",      "I_frozen",                "graine 42, décodeur identique"),
+    ("Poignet REPRIS vs NEUF (graine 43)",   "ref_fresh_s43",      "I2_frozen_s43",           "graine 43, décodeur identique"),
     ("Décodeur ×2 (mono, graine 42)",       "A2_fixstats",        "unet_128256512_MONO_s42", "graine 42"),
     ("Décodeur ×2 (mono, graine 43)",       "A_side",             "unet_128256512_MONO_s43", "2e réplique de chaque côté"),
     ("Décodeur ×4 vs ×2 (mono)",            "unet_128256512_MONO_s42", "unet_2565121024_mono_s42", "graine 42 — le 2e doublement"),
