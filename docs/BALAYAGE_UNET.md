@@ -16,12 +16,25 @@ Même graine, même batch, même budget, **poignet NEUF des deux côtés** :
 |---|---|---|---|
 | 42 | 79 | 31 | **−60,8 %** |
 | 43 | 73 | 43 | **−41,1 %** |
-| **moyenne** | **76,0** | **37,0** | **−51,3 %** |
+| 44 | 76 | **27** | **−64,5 %** |
+| **moyenne** | **76,0** | **33,7** | **−55,7 %** |
 
-Groupe : référence homogène 79·73·76 contre 31·43 — **séparation complète**.
-Welch t = 6,24 mais **p = 0,072** (df = 1,2) ; permutation exacte **p = 0,10**, dont le plancher
-arithmétique à 3 contre 2 vaut 0,20. **Le motif est massif et cohérent, il n'est pas démontrable à
-ce nombre de répliques.** Une 3e graine de `[128,256,512]` ferait tomber le plancher à 0,05.
+Groupe : `[73, 76, 79]` contre `[27, 31, 43]` — **séparation complète**, trois graines de chaque côté.
+
+⚠️ **Et pourtant p = 0,10, non démontré.** Le plancher du test de permutation bilatéral vaut
+`2 / C(2n, n)` : une séparation parfaite ne produit que deux arrangements extrêmes sur le total.
+
+| répliques par groupe | arrangements | plancher |
+|---|---|---|
+| 2 contre 2 | 6 | 0,333 |
+| 3 contre 3 | 20 | **0,100** |
+| **4 contre 4** | **70** | **0,029** |
+| 5 contre 5 | 252 | 0,008 |
+
+**Il faut donc QUATRE répliques par groupe**, pas trois. Une affirmation antérieure de ce document
+— « une 3e graine ferait tomber le plancher à 0,05 » — était **fausse** : le calcul avait été fait
+de tête. La 3e graine renforce néanmoins le résultat au lieu de le diluer (l'estimation passe de
+51,3 % à 55,7 %, et le nouveau bras à 27 échecs est le meilleur des six).
 
 ⚠️ **Le verdict intermédiaire (p = 0,042) était biaisé** : le groupe de référence mélangeait deux
 initialisations du poignet (I/I2/I3 = **repris**, J = **neuf**) alors que le balayage est tout en
