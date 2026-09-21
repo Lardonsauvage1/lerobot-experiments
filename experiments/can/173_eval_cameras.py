@@ -70,6 +70,15 @@ def main():
     from lerobot.processor.converters import (batch_to_transition, transition_to_batch,
                                               policy_action_to_transition, transition_to_policy_action)
     dev = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
+    # Les checkpoints viennent d'atomman et portent `device: "xpu"` (Arc). Sans cette
+    # réécriture, le chargement du pipeline lève AssertionError sur torch.xpu.is_available().
+    # ⚠️ Le md5 du checkpoint change donc ICI : il doit être vérifié À LA RÉCEPTION, jamais après.
+    for f in ("policy_preprocessor.json", "policy_postprocessor.json"):
+        q = Path(a.ckpt) / f
+        s = q.read_text()
+        if '"xpu"' in s or '"cuda"' in s:
+            q.write_text(s.replace('"xpu"', f'"{dev.type}"').replace('"cuda"', f'"{dev.type}"'))
+            print(f"  {f} : device -> {dev.type}", flush=True)
     image_keys, cfg = cameras_du_modele(a.ckpt)
     print(f"  {a.tag} : caméras déduites = {image_keys}", flush=True)
 
