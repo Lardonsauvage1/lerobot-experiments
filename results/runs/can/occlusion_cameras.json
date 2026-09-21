@@ -1,0 +1,28 @@
+{
+  "n_episodes": 20,
+  "n_reussis": 20,
+  "px": 96,
+  "par_camera": {
+    "agentview": {
+      "pas": 2202,
+      "part_invisible": 0.0,
+      "part_2px": 0.0,
+      "mediane_px": 32.0,
+      "max_px": 49
+    },
+    "birdview": {
+      "pas": 2202,
+      "part_invisible": 0.6316984559491371,
+      "part_2px": 0.7756584922797457,
+      "mediane_px": 0.0,
+      "max_px": 11
+    },
+    "robot0_eye_in_hand": {
+      "pas": 2202,
+      "part_invisible": 0.0,
+      "part_2px": 0.0,
+      "mediane_px": 581.0,
+      "max_px": 1308
+    }
+  }
+}
