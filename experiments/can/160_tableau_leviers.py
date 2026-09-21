@@ -23,10 +23,15 @@ import argparse, json, math
 from pathlib import Path
 
 N = 500
-RES = ["cam2_eval500.json", "porte_dure.json", "pas_coupes.json", "balayage_unet.json",
+RES = ["cam2_eval500.json", "porte_dure.json", "pas_coupes.json", "balayage_unet.json", "pas_debruitage.json",
        "boucle_fermee.json", "vision_500.json"]
 
 PAIRES = [
+    ("⭐ 5 pas de débruitage au lieu de 10 (gros décodeur)", "unet_128256512_gele_s42", "pas_5", "MÊME modèle, seul le réglage d'exécution change"),
+    ("⭐ 5 pas de débruitage au lieu de 10 (petit décodeur)", "gel_A_sans_gel_s42", "pas_5_petit", "MÊME modèle"),
+    ("20 pas de débruitage au lieu de 10",   "unet_128256512_gele_s42", "pas_20",  "MÊME modèle — au-delà du point de rendement"),
+    ("2 pas de débruitage au lieu de 10",    "unet_128256512_gele_s42", "pas_2",   "MÊME modèle — la falaise"),
+    ("3 pas de débruitage au lieu de 10 (petit décodeur)", "gel_A_sans_gel_s42", "pas_3_petit", "MÊME modèle"),
     ("⭐ Décodeur ×2 · graine 42 APPARIÉE",  "J_fresh_wrist",      "unet_128256512_gele_s42", "graine 42, poignet NEUF des 2 côtés"),
     ("⭐ Décodeur ×2 · graine 43 APPARIÉE",  "ref_fresh_s43",      "unet_128256512_gele_s43", "graine 43, poignet NEUF des 2 côtés"),
     ("Poignet REPRIS vs NEUF (graine 42)",   "J_fresh_wrist",      "I_frozen",                "graine 42, décodeur identique"),
