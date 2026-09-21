@@ -10068,5 +10068,2019 @@
         "success": true
       }
     ]
+  },
+  "pas_20_petit": {
+    "n": 500,
+    "n_success": 415,
+    "success_rate": 0.83,
+    "ci95": [
+      0.7945876062593026,
+      0.8603801455103012
+    ],
+    "pas_debruitage": 20,
+    "minutes_eval": 76.52879728476206,
+    "ckpt": "results/runs/can/gel_A_sans_gel_s42/cooldown/checkpoints/005000/pretrained_model",
+    "per_episode": [
+      {
+        "ep": 0,
+        "success": true
+      },
+      {
+        "ep": 1,
+        "success": true
+      },
+      {
+        "ep": 2,
+        "success": true
+      },
+      {
+        "ep": 3,
+        "success": true
+      },
+      {
+        "ep": 4,
+        "success": true
+      },
+      {
+        "ep": 5,
+        "success": true
+      },
+      {
+        "ep": 6,
+        "success": true
+      },
+      {
+        "ep": 7,
+        "success": true
+      },
+      {
+        "ep": 8,
+        "success": false
+      },
+      {
+        "ep": 9,
+        "success": false
+      },
+      {
+        "ep": 10,
+        "success": false
+      },
+      {
+        "ep": 11,
+        "success": false
+      },
+      {
+        "ep": 12,
+        "success": true
+      },
+      {
+        "ep": 13,
+        "success": true
+      },
+      {
+        "ep": 14,
+        "success": true
+      },
+      {
+        "ep": 15,
+        "success": true
+      },
+      {
+        "ep": 16,
+        "success": true
+      },
+      {
+        "ep": 17,
+        "success": true
+      },
+      {
+        "ep": 18,
+        "success": true
+      },
+      {
+        "ep": 19,
+        "success": true
+      },
+      {
+        "ep": 20,
+        "success": true
+      },
+      {
+        "ep": 21,
+        "success": false
+      },
+      {
+        "ep": 22,
+        "success": true
+      },
+      {
+        "ep": 23,
+        "success": true
+      },
+      {
+        "ep": 24,
+        "success": false
+      },
+      {
+        "ep": 25,
+        "success": true
+      },
+      {
+        "ep": 26,
+        "success": true
+      },
+      {
+        "ep": 27,
+        "success": true
+      },
+      {
+        "ep": 28,
+        "success": true
+      },
+      {
+        "ep": 29,
+        "success": true
+      },
+      {
+        "ep": 30,
+        "success": true
+      },
+      {
+        "ep": 31,
+        "success": true
+      },
+      {
+        "ep": 32,
+        "success": true
+      },
+      {
+        "ep": 33,
+        "success": true
+      },
+      {
+        "ep": 34,
+        "success": true
+      },
+      {
+        "ep": 35,
+        "success": true
+      },
+      {
+        "ep": 36,
+        "success": true
+      },
+      {
+        "ep": 37,
+        "success": true
+      },
+      {
+        "ep": 38,
+        "success": true
+      },
+      {
+        "ep": 39,
+        "success": true
+      },
+      {
+        "ep": 40,
+        "success": true
+      },
+      {
+        "ep": 41,
+        "success": false
+      },
+      {
+        "ep": 42,
+        "success": true
+      },
+      {
+        "ep": 43,
+        "success": true
+      },
+      {
+        "ep": 44,
+        "success": true
+      },
+      {
+        "ep": 45,
+        "success": true
+      },
+      {
+        "ep": 46,
+        "success": false
+      },
+      {
+        "ep": 47,
+        "success": true
+      },
+      {
+        "ep": 48,
+        "success": true
+      },
+      {
+        "ep": 49,
+        "success": true
+      },
+      {
+        "ep": 50,
+        "success": true
+      },
+      {
+        "ep": 51,
+        "success": true
+      },
+      {
+        "ep": 52,
+        "success": false
+      },
+      {
+        "ep": 53,
+        "success": true
+      },
+      {
+        "ep": 54,
+        "success": true
+      },
+      {
+        "ep": 55,
+        "success": true
+      },
+      {
+        "ep": 56,
+        "success": true
+      },
+      {
+        "ep": 57,
+        "success": true
+      },
+      {
+        "ep": 58,
+        "success": true
+      },
+      {
+        "ep": 59,
+        "success": true
+      },
+      {
+        "ep": 60,
+        "success": false
+      },
+      {
+        "ep": 61,
+        "success": true
+      },
+      {
+        "ep": 62,
+        "success": true
+      },
+      {
+        "ep": 63,
+        "success": true
+      },
+      {
+        "ep": 64,
+        "success": true
+      },
+      {
+        "ep": 65,
+        "success": true
+      },
+      {
+        "ep": 66,
+        "success": true
+      },
+      {
+        "ep": 67,
+        "success": true
+      },
+      {
+        "ep": 68,
+        "success": true
+      },
+      {
+        "ep": 69,
+        "success": true
+      },
+      {
+        "ep": 70,
+        "success": false
+      },
+      {
+        "ep": 71,
+        "success": false
+      },
+      {
+        "ep": 72,
+        "success": true
+      },
+      {
+        "ep": 73,
+        "success": true
+      },
+      {
+        "ep": 74,
+        "success": true
+      },
+      {
+        "ep": 75,
+        "success": true
+      },
+      {
+        "ep": 76,
+        "success": true
+      },
+      {
+        "ep": 77,
+        "success": true
+      },
+      {
+        "ep": 78,
+        "success": true
+      },
+      {
+        "ep": 79,
+        "success": true
+      },
+      {
+        "ep": 80,
+        "success": true
+      },
+      {
+        "ep": 81,
+        "success": true
+      },
+      {
+        "ep": 82,
+        "success": true
+      },
+      {
+        "ep": 83,
+        "success": true
+      },
+      {
+        "ep": 84,
+        "success": true
+      },
+      {
+        "ep": 85,
+        "success": true
+      },
+      {
+        "ep": 86,
+        "success": true
+      },
+      {
+        "ep": 87,
+        "success": true
+      },
+      {
+        "ep": 88,
+        "success": true
+      },
+      {
+        "ep": 89,
+        "success": true
+      },
+      {
+        "ep": 90,
+        "success": true
+      },
+      {
+        "ep": 91,
+        "success": true
+      },
+      {
+        "ep": 92,
+        "success": false
+      },
+      {
+        "ep": 93,
+        "success": true
+      },
+      {
+        "ep": 94,
+        "success": true
+      },
+      {
+        "ep": 95,
+        "success": true
+      },
+      {
+        "ep": 96,
+        "success": true
+      },
+      {
+        "ep": 97,
+        "success": true
+      },
+      {
+        "ep": 98,
+        "success": true
+      },
+      {
+        "ep": 99,
+        "success": true
+      },
+      {
+        "ep": 100,
+        "success": true
+      },
+      {
+        "ep": 101,
+        "success": false
+      },
+      {
+        "ep": 102,
+        "success": false
+      },
+      {
+        "ep": 103,
+        "success": true
+      },
+      {
+        "ep": 104,
+        "success": true
+      },
+      {
+        "ep": 105,
+        "success": true
+      },
+      {
+        "ep": 106,
+        "success": true
+      },
+      {
+        "ep": 107,
+        "success": true
+      },
+      {
+        "ep": 108,
+        "success": true
+      },
+      {
+        "ep": 109,
+        "success": true
+      },
+      {
+        "ep": 110,
+        "success": false
+      },
+      {
+        "ep": 111,
+        "success": true
+      },
+      {
+        "ep": 112,
+        "success": true
+      },
+      {
+        "ep": 113,
+        "success": true
+      },
+      {
+        "ep": 114,
+        "success": false
+      },
+      {
+        "ep": 115,
+        "success": true
+      },
+      {
+        "ep": 116,
+        "success": false
+      },
+      {
+        "ep": 117,
+        "success": false
+      },
+      {
+        "ep": 118,
+        "success": true
+      },
+      {
+        "ep": 119,
+        "success": true
+      },
+      {
+        "ep": 120,
+        "success": true
+      },
+      {
+        "ep": 121,
+        "success": true
+      },
+      {
+        "ep": 122,
+        "success": true
+      },
+      {
+        "ep": 123,
+        "success": true
+      },
+      {
+        "ep": 124,
+        "success": true
+      },
+      {
+        "ep": 125,
+        "success": true
+      },
+      {
+        "ep": 126,
+        "success": true
+      },
+      {
+        "ep": 127,
+        "success": false
+      },
+      {
+        "ep": 128,
+        "success": true
+      },
+      {
+        "ep": 129,
+        "success": true
+      },
+      {
+        "ep": 130,
+        "success": true
+      },
+      {
+        "ep": 131,
+        "success": true
+      },
+      {
+        "ep": 132,
+        "success": true
+      },
+      {
+        "ep": 133,
+        "success": true
+      },
+      {
+        "ep": 134,
+        "success": true
+      },
+      {
+        "ep": 135,
+        "success": true
+      },
+      {
+        "ep": 136,
+        "success": true
+      },
+      {
+        "ep": 137,
+        "success": true
+      },
+      {
+        "ep": 138,
+        "success": true
+      },
+      {
+        "ep": 139,
+        "success": true
+      },
+      {
+        "ep": 140,
+        "success": true
+      },
+      {
+        "ep": 141,
+        "success": true
+      },
+      {
+        "ep": 142,
+        "success": true
+      },
+      {
+        "ep": 143,
+        "success": false
+      },
+      {
+        "ep": 144,
+        "success": true
+      },
+      {
+        "ep": 145,
+        "success": true
+      },
+      {
+        "ep": 146,
+        "success": true
+      },
+      {
+        "ep": 147,
+        "success": true
+      },
+      {
+        "ep": 148,
+        "success": true
+      },
+      {
+        "ep": 149,
+        "success": false
+      },
+      {
+        "ep": 150,
+        "success": true
+      },
+      {
+        "ep": 151,
+        "success": true
+      },
+      {
+        "ep": 152,
+        "success": true
+      },
+      {
+        "ep": 153,
+        "success": true
+      },
+      {
+        "ep": 154,
+        "success": true
+      },
+      {
+        "ep": 155,
+        "success": true
+      },
+      {
+        "ep": 156,
+        "success": false
+      },
+      {
+        "ep": 157,
+        "success": true
+      },
+      {
+        "ep": 158,
+        "success": false
+      },
+      {
+        "ep": 159,
+        "success": true
+      },
+      {
+        "ep": 160,
+        "success": true
+      },
+      {
+        "ep": 161,
+        "success": true
+      },
+      {
+        "ep": 162,
+        "success": false
+      },
+      {
+        "ep": 163,
+        "success": true
+      },
+      {
+        "ep": 164,
+        "success": true
+      },
+      {
+        "ep": 165,
+        "success": true
+      },
+      {
+        "ep": 166,
+        "success": false
+      },
+      {
+        "ep": 167,
+        "success": true
+      },
+      {
+        "ep": 168,
+        "success": true
+      },
+      {
+        "ep": 169,
+        "success": true
+      },
+      {
+        "ep": 170,
+        "success": true
+      },
+      {
+        "ep": 171,
+        "success": true
+      },
+      {
+        "ep": 172,
+        "success": true
+      },
+      {
+        "ep": 173,
+        "success": false
+      },
+      {
+        "ep": 174,
+        "success": true
+      },
+      {
+        "ep": 175,
+        "success": true
+      },
+      {
+        "ep": 176,
+        "success": true
+      },
+      {
+        "ep": 177,
+        "success": true
+      },
+      {
+        "ep": 178,
+        "success": true
+      },
+      {
+        "ep": 179,
+        "success": true
+      },
+      {
+        "ep": 180,
+        "success": true
+      },
+      {
+        "ep": 181,
+        "success": true
+      },
+      {
+        "ep": 182,
+        "success": true
+      },
+      {
+        "ep": 183,
+        "success": true
+      },
+      {
+        "ep": 184,
+        "success": true
+      },
+      {
+        "ep": 185,
+        "success": true
+      },
+      {
+        "ep": 186,
+        "success": true
+      },
+      {
+        "ep": 187,
+        "success": true
+      },
+      {
+        "ep": 188,
+        "success": true
+      },
+      {
+        "ep": 189,
+        "success": true
+      },
+      {
+        "ep": 190,
+        "success": true
+      },
+      {
+        "ep": 191,
+        "success": true
+      },
+      {
+        "ep": 192,
+        "success": true
+      },
+      {
+        "ep": 193,
+        "success": true
+      },
+      {
+        "ep": 194,
+        "success": true
+      },
+      {
+        "ep": 195,
+        "success": false
+      },
+      {
+        "ep": 196,
+        "success": false
+      },
+      {
+        "ep": 197,
+        "success": true
+      },
+      {
+        "ep": 198,
+        "success": true
+      },
+      {
+        "ep": 199,
+        "success": false
+      },
+      {
+        "ep": 200,
+        "success": true
+      },
+      {
+        "ep": 201,
+        "success": false
+      },
+      {
+        "ep": 202,
+        "success": true
+      },
+      {
+        "ep": 203,
+        "success": true
+      },
+      {
+        "ep": 204,
+        "success": true
+      },
+      {
+        "ep": 205,
+        "success": true
+      },
+      {
+        "ep": 206,
+        "success": true
+      },
+      {
+        "ep": 207,
+        "success": true
+      },
+      {
+        "ep": 208,
+        "success": true
+      },
+      {
+        "ep": 209,
+        "success": true
+      },
+      {
+        "ep": 210,
+        "success": true
+      },
+      {
+        "ep": 211,
+        "success": true
+      },
+      {
+        "ep": 212,
+        "success": true
+      },
+      {
+        "ep": 213,
+        "success": true
+      },
+      {
+        "ep": 214,
+        "success": false
+      },
+      {
+        "ep": 215,
+        "success": true
+      },
+      {
+        "ep": 216,
+        "success": true
+      },
+      {
+        "ep": 217,
+        "success": true
+      },
+      {
+        "ep": 218,
+        "success": true
+      },
+      {
+        "ep": 219,
+        "success": true
+      },
+      {
+        "ep": 220,
+        "success": true
+      },
+      {
+        "ep": 221,
+        "success": true
+      },
+      {
+        "ep": 222,
+        "success": true
+      },
+      {
+        "ep": 223,
+        "success": false
+      },
+      {
+        "ep": 224,
+        "success": false
+      },
+      {
+        "ep": 225,
+        "success": true
+      },
+      {
+        "ep": 226,
+        "success": true
+      },
+      {
+        "ep": 227,
+        "success": true
+      },
+      {
+        "ep": 228,
+        "success": true
+      },
+      {
+        "ep": 229,
+        "success": false
+      },
+      {
+        "ep": 230,
+        "success": true
+      },
+      {
+        "ep": 231,
+        "success": false
+      },
+      {
+        "ep": 232,
+        "success": true
+      },
+      {
+        "ep": 233,
+        "success": false
+      },
+      {
+        "ep": 234,
+        "success": true
+      },
+      {
+        "ep": 235,
+        "success": true
+      },
+      {
+        "ep": 236,
+        "success": false
+      },
+      {
+        "ep": 237,
+        "success": true
+      },
+      {
+        "ep": 238,
+        "success": false
+      },
+      {
+        "ep": 239,
+        "success": true
+      },
+      {
+        "ep": 240,
+        "success": true
+      },
+      {
+        "ep": 241,
+        "success": true
+      },
+      {
+        "ep": 242,
+        "success": false
+      },
+      {
+        "ep": 243,
+        "success": false
+      },
+      {
+        "ep": 244,
+        "success": true
+      },
+      {
+        "ep": 245,
+        "success": true
+      },
+      {
+        "ep": 246,
+        "success": true
+      },
+      {
+        "ep": 247,
+        "success": true
+      },
+      {
+        "ep": 248,
+        "success": false
+      },
+      {
+        "ep": 249,
+        "success": true
+      },
+      {
+        "ep": 250,
+        "success": false
+      },
+      {
+        "ep": 251,
+        "success": true
+      },
+      {
+        "ep": 252,
+        "success": true
+      },
+      {
+        "ep": 253,
+        "success": false
+      },
+      {
+        "ep": 254,
+        "success": false
+      },
+      {
+        "ep": 255,
+        "success": true
+      },
+      {
+        "ep": 256,
+        "success": true
+      },
+      {
+        "ep": 257,
+        "success": true
+      },
+      {
+        "ep": 258,
+        "success": true
+      },
+      {
+        "ep": 259,
+        "success": true
+      },
+      {
+        "ep": 260,
+        "success": true
+      },
+      {
+        "ep": 261,
+        "success": true
+      },
+      {
+        "ep": 262,
+        "success": true
+      },
+      {
+        "ep": 263,
+        "success": true
+      },
+      {
+        "ep": 264,
+        "success": true
+      },
+      {
+        "ep": 265,
+        "success": false
+      },
+      {
+        "ep": 266,
+        "success": true
+      },
+      {
+        "ep": 267,
+        "success": true
+      },
+      {
+        "ep": 268,
+        "success": false
+      },
+      {
+        "ep": 269,
+        "success": false
+      },
+      {
+        "ep": 270,
+        "success": true
+      },
+      {
+        "ep": 271,
+        "success": true
+      },
+      {
+        "ep": 272,
+        "success": true
+      },
+      {
+        "ep": 273,
+        "success": true
+      },
+      {
+        "ep": 274,
+        "success": true
+      },
+      {
+        "ep": 275,
+        "success": true
+      },
+      {
+        "ep": 276,
+        "success": false
+      },
+      {
+        "ep": 277,
+        "success": true
+      },
+      {
+        "ep": 278,
+        "success": true
+      },
+      {
+        "ep": 279,
+        "success": false
+      },
+      {
+        "ep": 280,
+        "success": true
+      },
+      {
+        "ep": 281,
+        "success": false
+      },
+      {
+        "ep": 282,
+        "success": false
+      },
+      {
+        "ep": 283,
+        "success": true
+      },
+      {
+        "ep": 284,
+        "success": true
+      },
+      {
+        "ep": 285,
+        "success": false
+      },
+      {
+        "ep": 286,
+        "success": false
+      },
+      {
+        "ep": 287,
+        "success": true
+      },
+      {
+        "ep": 288,
+        "success": true
+      },
+      {
+        "ep": 289,
+        "success": true
+      },
+      {
+        "ep": 290,
+        "success": false
+      },
+      {
+        "ep": 291,
+        "success": false
+      },
+      {
+        "ep": 292,
+        "success": true
+      },
+      {
+        "ep": 293,
+        "success": true
+      },
+      {
+        "ep": 294,
+        "success": true
+      },
+      {
+        "ep": 295,
+        "success": true
+      },
+      {
+        "ep": 296,
+        "success": false
+      },
+      {
+        "ep": 297,
+        "success": false
+      },
+      {
+        "ep": 298,
+        "success": true
+      },
+      {
+        "ep": 299,
+        "success": true
+      },
+      {
+        "ep": 300,
+        "success": true
+      },
+      {
+        "ep": 301,
+        "success": false
+      },
+      {
+        "ep": 302,
+        "success": true
+      },
+      {
+        "ep": 303,
+        "success": true
+      },
+      {
+        "ep": 304,
+        "success": true
+      },
+      {
+        "ep": 305,
+        "success": true
+      },
+      {
+        "ep": 306,
+        "success": true
+      },
+      {
+        "ep": 307,
+        "success": true
+      },
+      {
+        "ep": 308,
+        "success": true
+      },
+      {
+        "ep": 309,
+        "success": false
+      },
+      {
+        "ep": 310,
+        "success": true
+      },
+      {
+        "ep": 311,
+        "success": true
+      },
+      {
+        "ep": 312,
+        "success": false
+      },
+      {
+        "ep": 313,
+        "success": true
+      },
+      {
+        "ep": 314,
+        "success": true
+      },
+      {
+        "ep": 315,
+        "success": true
+      },
+      {
+        "ep": 316,
+        "success": true
+      },
+      {
+        "ep": 317,
+        "success": true
+      },
+      {
+        "ep": 318,
+        "success": true
+      },
+      {
+        "ep": 319,
+        "success": true
+      },
+      {
+        "ep": 320,
+        "success": true
+      },
+      {
+        "ep": 321,
+        "success": true
+      },
+      {
+        "ep": 322,
+        "success": true
+      },
+      {
+        "ep": 323,
+        "success": true
+      },
+      {
+        "ep": 324,
+        "success": true
+      },
+      {
+        "ep": 325,
+        "success": false
+      },
+      {
+        "ep": 326,
+        "success": true
+      },
+      {
+        "ep": 327,
+        "success": true
+      },
+      {
+        "ep": 328,
+        "success": true
+      },
+      {
+        "ep": 329,
+        "success": true
+      },
+      {
+        "ep": 330,
+        "success": true
+      },
+      {
+        "ep": 331,
+        "success": true
+      },
+      {
+        "ep": 332,
+        "success": true
+      },
+      {
+        "ep": 333,
+        "success": true
+      },
+      {
+        "ep": 334,
+        "success": true
+      },
+      {
+        "ep": 335,
+        "success": true
+      },
+      {
+        "ep": 336,
+        "success": true
+      },
+      {
+        "ep": 337,
+        "success": true
+      },
+      {
+        "ep": 338,
+        "success": true
+      },
+      {
+        "ep": 339,
+        "success": true
+      },
+      {
+        "ep": 340,
+        "success": false
+      },
+      {
+        "ep": 341,
+        "success": true
+      },
+      {
+        "ep": 342,
+        "success": true
+      },
+      {
+        "ep": 343,
+        "success": true
+      },
+      {
+        "ep": 344,
+        "success": true
+      },
+      {
+        "ep": 345,
+        "success": true
+      },
+      {
+        "ep": 346,
+        "success": true
+      },
+      {
+        "ep": 347,
+        "success": true
+      },
+      {
+        "ep": 348,
+        "success": true
+      },
+      {
+        "ep": 349,
+        "success": true
+      },
+      {
+        "ep": 350,
+        "success": true
+      },
+      {
+        "ep": 351,
+        "success": false
+      },
+      {
+        "ep": 352,
+        "success": true
+      },
+      {
+        "ep": 353,
+        "success": true
+      },
+      {
+        "ep": 354,
+        "success": true
+      },
+      {
+        "ep": 355,
+        "success": true
+      },
+      {
+        "ep": 356,
+        "success": false
+      },
+      {
+        "ep": 357,
+        "success": true
+      },
+      {
+        "ep": 358,
+        "success": true
+      },
+      {
+        "ep": 359,
+        "success": true
+      },
+      {
+        "ep": 360,
+        "success": false
+      },
+      {
+        "ep": 361,
+        "success": true
+      },
+      {
+        "ep": 362,
+        "success": true
+      },
+      {
+        "ep": 363,
+        "success": true
+      },
+      {
+        "ep": 364,
+        "success": true
+      },
+      {
+        "ep": 365,
+        "success": false
+      },
+      {
+        "ep": 366,
+        "success": true
+      },
+      {
+        "ep": 367,
+        "success": true
+      },
+      {
+        "ep": 368,
+        "success": true
+      },
+      {
+        "ep": 369,
+        "success": true
+      },
+      {
+        "ep": 370,
+        "success": false
+      },
+      {
+        "ep": 371,
+        "success": true
+      },
+      {
+        "ep": 372,
+        "success": true
+      },
+      {
+        "ep": 373,
+        "success": false
+      },
+      {
+        "ep": 374,
+        "success": true
+      },
+      {
+        "ep": 375,
+        "success": true
+      },
+      {
+        "ep": 376,
+        "success": true
+      },
+      {
+        "ep": 377,
+        "success": true
+      },
+      {
+        "ep": 378,
+        "success": false
+      },
+      {
+        "ep": 379,
+        "success": true
+      },
+      {
+        "ep": 380,
+        "success": true
+      },
+      {
+        "ep": 381,
+        "success": true
+      },
+      {
+        "ep": 382,
+        "success": true
+      },
+      {
+        "ep": 383,
+        "success": true
+      },
+      {
+        "ep": 384,
+        "success": true
+      },
+      {
+        "ep": 385,
+        "success": true
+      },
+      {
+        "ep": 386,
+        "success": false
+      },
+      {
+        "ep": 387,
+        "success": true
+      },
+      {
+        "ep": 388,
+        "success": true
+      },
+      {
+        "ep": 389,
+        "success": true
+      },
+      {
+        "ep": 390,
+        "success": true
+      },
+      {
+        "ep": 391,
+        "success": true
+      },
+      {
+        "ep": 392,
+        "success": true
+      },
+      {
+        "ep": 393,
+        "success": true
+      },
+      {
+        "ep": 394,
+        "success": true
+      },
+      {
+        "ep": 395,
+        "success": true
+      },
+      {
+        "ep": 396,
+        "success": true
+      },
+      {
+        "ep": 397,
+        "success": true
+      },
+      {
+        "ep": 398,
+        "success": true
+      },
+      {
+        "ep": 399,
+        "success": true
+      },
+      {
+        "ep": 400,
+        "success": true
+      },
+      {
+        "ep": 401,
+        "success": true
+      },
+      {
+        "ep": 402,
+        "success": true
+      },
+      {
+        "ep": 403,
+        "success": true
+      },
+      {
+        "ep": 404,
+        "success": true
+      },
+      {
+        "ep": 405,
+        "success": true
+      },
+      {
+        "ep": 406,
+        "success": true
+      },
+      {
+        "ep": 407,
+        "success": true
+      },
+      {
+        "ep": 408,
+        "success": true
+      },
+      {
+        "ep": 409,
+        "success": true
+      },
+      {
+        "ep": 410,
+        "success": true
+      },
+      {
+        "ep": 411,
+        "success": true
+      },
+      {
+        "ep": 412,
+        "success": true
+      },
+      {
+        "ep": 413,
+        "success": false
+      },
+      {
+        "ep": 414,
+        "success": false
+      },
+      {
+        "ep": 415,
+        "success": true
+      },
+      {
+        "ep": 416,
+        "success": true
+      },
+      {
+        "ep": 417,
+        "success": true
+      },
+      {
+        "ep": 418,
+        "success": true
+      },
+      {
+        "ep": 419,
+        "success": false
+      },
+      {
+        "ep": 420,
+        "success": true
+      },
+      {
+        "ep": 421,
+        "success": true
+      },
+      {
+        "ep": 422,
+        "success": true
+      },
+      {
+        "ep": 423,
+        "success": false
+      },
+      {
+        "ep": 424,
+        "success": true
+      },
+      {
+        "ep": 425,
+        "success": true
+      },
+      {
+        "ep": 426,
+        "success": true
+      },
+      {
+        "ep": 427,
+        "success": true
+      },
+      {
+        "ep": 428,
+        "success": true
+      },
+      {
+        "ep": 429,
+        "success": true
+      },
+      {
+        "ep": 430,
+        "success": true
+      },
+      {
+        "ep": 431,
+        "success": true
+      },
+      {
+        "ep": 432,
+        "success": true
+      },
+      {
+        "ep": 433,
+        "success": true
+      },
+      {
+        "ep": 434,
+        "success": true
+      },
+      {
+        "ep": 435,
+        "success": true
+      },
+      {
+        "ep": 436,
+        "success": true
+      },
+      {
+        "ep": 437,
+        "success": true
+      },
+      {
+        "ep": 438,
+        "success": true
+      },
+      {
+        "ep": 439,
+        "success": true
+      },
+      {
+        "ep": 440,
+        "success": true
+      },
+      {
+        "ep": 441,
+        "success": false
+      },
+      {
+        "ep": 442,
+        "success": true
+      },
+      {
+        "ep": 443,
+        "success": true
+      },
+      {
+        "ep": 444,
+        "success": true
+      },
+      {
+        "ep": 445,
+        "success": true
+      },
+      {
+        "ep": 446,
+        "success": false
+      },
+      {
+        "ep": 447,
+        "success": false
+      },
+      {
+        "ep": 448,
+        "success": true
+      },
+      {
+        "ep": 449,
+        "success": true
+      },
+      {
+        "ep": 450,
+        "success": true
+      },
+      {
+        "ep": 451,
+        "success": true
+      },
+      {
+        "ep": 452,
+        "success": false
+      },
+      {
+        "ep": 453,
+        "success": true
+      },
+      {
+        "ep": 454,
+        "success": true
+      },
+      {
+        "ep": 455,
+        "success": true
+      },
+      {
+        "ep": 456,
+        "success": true
+      },
+      {
+        "ep": 457,
+        "success": true
+      },
+      {
+        "ep": 458,
+        "success": true
+      },
+      {
+        "ep": 459,
+        "success": true
+      },
+      {
+        "ep": 460,
+        "success": true
+      },
+      {
+        "ep": 461,
+        "success": true
+      },
+      {
+        "ep": 462,
+        "success": true
+      },
+      {
+        "ep": 463,
+        "success": true
+      },
+      {
+        "ep": 464,
+        "success": true
+      },
+      {
+        "ep": 465,
+        "success": true
+      },
+      {
+        "ep": 466,
+        "success": true
+      },
+      {
+        "ep": 467,
+        "success": true
+      },
+      {
+        "ep": 468,
+        "success": true
+      },
+      {
+        "ep": 469,
+        "success": true
+      },
+      {
+        "ep": 470,
+        "success": false
+      },
+      {
+        "ep": 471,
+        "success": true
+      },
+      {
+        "ep": 472,
+        "success": false
+      },
+      {
+        "ep": 473,
+        "success": true
+      },
+      {
+        "ep": 474,
+        "success": true
+      },
+      {
+        "ep": 475,
+        "success": false
+      },
+      {
+        "ep": 476,
+        "success": true
+      },
+      {
+        "ep": 477,
+        "success": true
+      },
+      {
+        "ep": 478,
+        "success": true
+      },
+      {
+        "ep": 479,
+        "success": true
+      },
+      {
+        "ep": 480,
+        "success": true
+      },
+      {
+        "ep": 481,
+        "success": true
+      },
+      {
+        "ep": 482,
+        "success": true
+      },
+      {
+        "ep": 483,
+        "success": true
+      },
+      {
+        "ep": 484,
+        "success": true
+      },
+      {
+        "ep": 485,
+        "success": false
+      },
+      {
+        "ep": 486,
+        "success": true
+      },
+      {
+        "ep": 487,
+        "success": true
+      },
+      {
+        "ep": 488,
+        "success": true
+      },
+      {
+        "ep": 489,
+        "success": false
+      },
+      {
+        "ep": 490,
+        "success": false
+      },
+      {
+        "ep": 491,
+        "success": true
+      },
+      {
+        "ep": 492,
+        "success": true
+      },
+      {
+        "ep": 493,
+        "success": true
+      },
+      {
+        "ep": 494,
+        "success": true
+      },
+      {
+        "ep": 495,
+        "success": true
+      },
+      {
+        "ep": 496,
+        "success": true
+      },
+      {
+        "ep": 497,
+        "success": true
+      },
+      {
+        "ep": 498,
+        "success": true
+      },
+      {
+        "ep": 499,
+        "success": true
+      }
+    ]
   }
 }

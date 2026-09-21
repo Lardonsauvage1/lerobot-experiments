@@ -41,6 +41,7 @@ d'entraînement. Une ligne à p < 0,05 sur une seule graine reste à confirmer.
 | +200 épisodes experts | 80.4 → 79.4 % | 98 → 103 | **-5.1 %** | 0.7228 | graine 42 |
 | Routeur souple sur modèle gelé | 86.2 → 83.2 % | 69 → 84 | **-21.7 %** | 0.1837 | graine 42 |
 | 20 pas de débruitage au lieu de 10 | 93.8 → 92.4 % | 31 → 38 | **-22.6 %** | 0.3713 | MÊME modèle — au-delà du point de rendement |
+| 20 pas de débruitage au lieu de 10 (petit décodeur) | 87.6 → 83.0 % | 62 → 85 | **-37.1 %** | 0.0128 | MÊME modèle — l'excès de pas COÛTE |
 | Décodeur ×4 vs ×2 (bi-caméra) | 93.8 → 91.0 % | 31 → 45 | **-45.2 %** | 0.0980 | graine 42 — le 2e doublement |
 | Routeur souple sur poignet naïf | 61.6 → 42.2 % | 192 → 289 | **-50.5 %** | <1e-4 | graine 42 |
 | Décodeur ×4 vs ×2 (mono) | 91.2 → 86.0 % | 44 → 70 | **-59.1 %** | 0.0054 | graine 42 — le 2e doublement |

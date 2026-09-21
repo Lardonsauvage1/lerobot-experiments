@@ -30,6 +30,7 @@ PAIRES = [
     ("⭐ 5 pas de débruitage au lieu de 10 (gros décodeur)", "unet_128256512_gele_s42", "pas_5", "MÊME modèle, seul le réglage d'exécution change"),
     ("⭐ 5 pas de débruitage au lieu de 10 (petit décodeur)", "gel_A_sans_gel_s42", "pas_5_petit", "MÊME modèle"),
     ("20 pas de débruitage au lieu de 10",   "unet_128256512_gele_s42", "pas_20",  "MÊME modèle — au-delà du point de rendement"),
+    ("20 pas de débruitage au lieu de 10 (petit décodeur)", "gel_A_sans_gel_s42", "pas_20_petit", "MÊME modèle — l'excès de pas COÛTE"),
     ("2 pas de débruitage au lieu de 10",    "unet_128256512_gele_s42", "pas_2",   "MÊME modèle — la falaise"),
     ("3 pas de débruitage au lieu de 10 (petit décodeur)", "gel_A_sans_gel_s42", "pas_3_petit", "MÊME modèle"),
     ("⭐ Décodeur ×2 · graine 42 APPARIÉE",  "J_fresh_wrist",      "unet_128256512_gele_s42", "graine 42, poignet NEUF des 2 côtés"),
