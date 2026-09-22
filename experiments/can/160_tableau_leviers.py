@@ -24,9 +24,14 @@ from pathlib import Path
 
 N = 500
 RES = ["cam2_eval500.json", "porte_dure.json", "pas_coupes.json", "balayage_unet.json", "pas_debruitage.json",
+       "refs_birdview.json",
        "boucle_fermee.json", "vision_500.json"]
 
 PAIRES = [
+    # --- banc BIRDVIEW (la vue réellement occultée, 57,7 % des pas) ---
+    ("⭐ Poignet seul PLUTÔT que vue de dessus seule", "ref_birdview_seul", "ref_poignet_seul", "même recette, seule la caméra change"),
+    ("Ajouter le poignet à la vue de dessus", "ref_birdview_seul", "bi_birdview_poignet", "meilleure méthode : départ du mono, aucun gel"),
+    ("Ajouter la vue de dessus au poignet", "ref_poignet_seul", "bi_birdview_poignet", "même modèle bi-caméra, autre référence"),
     ("⭐ 5 pas de débruitage au lieu de 10 (gros décodeur)", "unet_128256512_gele_s42", "pas_5", "MÊME modèle, seul le réglage d'exécution change"),
     ("⭐ 5 pas de débruitage au lieu de 10 (petit décodeur)", "gel_A_sans_gel_s42", "pas_5_petit", "MÊME modèle"),
     ("20 pas de débruitage au lieu de 10",   "unet_128256512_gele_s42", "pas_20",  "MÊME modèle — au-delà du point de rendement"),
