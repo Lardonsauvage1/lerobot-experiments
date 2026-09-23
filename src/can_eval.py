@@ -19,12 +19,27 @@ import numpy as np
 
 from src import lift_eval
 
-HDF5_PATH = "data_cache/robomimic_can_ph/low_dim_v141.hdf5"
-SPLIT_PATH = "results/runs/can/can_split.json"
+# ⚙️ TACHE : même code d'évaluation pour plusieurs tâches robomimic (cf. src/can_to_lerobot.py).
+# MAX_STEPS garde la MÊME générosité relative d'une tâche à l'autre — 2,6 × la longueur médiane
+# des démos — sinon les taux de réussite ne seraient pas comparables :
+#   can    démos médiane 115 (max 151) -> 300 pas
+#   square démos médiane 150 (max 236) -> 400 pas
+TACHES_EVAL = {
+    "can":    dict(hdf5="data_cache/robomimic_can_ph/low_dim_v141.hdf5",
+                   split="results/runs/can/can_split.json", max_steps=300,
+                   etats="results/runs/can/can_eval500.npy"),
+    "square": dict(hdf5="data_cache/robomimic_square_ph/low_dim_v141.hdf5",
+                   split="results/runs/can/square_split.json", max_steps=400,
+                   etats="results/runs/can/square_eval500.npy"),
+}
+_TE = TACHES_EVAL[os.environ.get("TACHE", "can")]
+HDF5_PATH = _TE["hdf5"]
+SPLIT_PATH = _TE["split"]
+ETATS_PATH = _TE["etats"]
+MAX_STEPS = _TE["max_steps"]
 N_TOTAL_DEMOS = 200
 N_VAL = 50
 STATE_DIM = 12
-MAX_STEPS = 300  # Can plus long que Lift (démos ~118, horizon env 400)
 
 
 def build_state_vector_can(obs):

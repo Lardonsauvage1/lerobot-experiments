@@ -24,7 +24,7 @@ import torch
 
 from src import can_eval
 
-STATES_PATH = Path("results/runs/can/can_eval500.npy")
+STATES_PATH = Path(can_eval.ETATS_PATH)   # dépend de TACHE (can | square)
 OUT = Path("results/runs/can/vision_500.json")
 N_EVAL = 500
 STEPS = 10
@@ -72,9 +72,9 @@ def make_eval_states(n=N_EVAL, seed=0):
     Env JETABLE pour générer (pas d'impact sur l'env de rollout — bug renderer phase 4)."""
     if STATES_PATH.exists():
         arr = np.load(STATES_PATH)
-        print(f"États Can chargés : {arr.shape} ({STATES_PATH})", flush=True)
+        print(f"États chargés : {arr.shape} ({STATES_PATH})", flush=True)
         return arr
-    print(f"Génération de {n} états Can (env jetable, seed={seed})...", flush=True)
+    print(f"Génération de {n} états (env jetable, seed={seed})...", flush=True)
     genenv = can_eval.make_env()
     np.random.seed(seed)
     states = []

@@ -17,18 +17,34 @@ silence_robosuite()
 import argparse
 from pathlib import Path
 
+import os
 import h5py
 import numpy as np
 
 from src import can_occlusion
 
-HDF5_PATH = "data_cache/robomimic_can_ph/low_dim_v141.hdf5"
-OUTPUT_ROOT = Path("data_cache/lerobot_can_ph")
-REPO_ID = "local/can_ph"
+# ⚙️ TACHE : le même convertisseur sert plusieurs tâches robomimic. Elles partagent le format
+# (états mujoco rejoués + actions OSC 7D + proprio 9D), seuls le fichier, l'env et les noms changent.
+# Volontairement paramétré PLUTÔT QUE dupliqué : un second convertisseur oublierait un
+# contournement invisible de celui-ci (cf. piège vécu avec 161 -> 173).
+TACHES = {
+    "can":    dict(hdf5="data_cache/robomimic_can_ph/low_dim_v141.hdf5",
+                   env="PickPlaceCan", racine="data_cache/lerobot_can_ph", repo="local/can_ph",
+                   desc="Pick up the can and place it in the bin."),
+    "square": dict(hdf5="data_cache/robomimic_square_ph/low_dim_v141.hdf5",
+                   env="NutAssemblySquare", racine="data_cache/lerobot_square_ph",
+                   repo="local/square_ph",
+                   desc="Pick up the square nut and place it on the square peg."),
+}
+_T = TACHES[os.environ.get("TACHE", "can")]
+ENV_NAME = _T["env"]
+HDF5_PATH = _T["hdf5"]
+OUTPUT_ROOT = Path(_T["racine"])
+REPO_ID = _T["repo"]
 DEFAULT_IMAGE_SIZE = 96
 CAMERA_NAME = "agentview"
 FPS = 20
-TASK_DESCRIPTION = "Pick up the can and place it in the bin."
+TASK_DESCRIPTION = _T["desc"]
 # State Can = proprio + position canette = 12D (voir src/can_eval.py pour le pourquoi).
 # ⚠️ Côté DATASET (1.4), la can_pos est dans object[0:3] (côté env live 1.5 : object[7:10]).
 STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
@@ -125,7 +141,7 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
             "ramp_ratio": 0.2, "gripper": {"type": "GRIP"}, "kp": 150, "damping_ratio": 1,
             "impedance_mode": "fixed", "kp_limits": [0, 300], "damping_ratio_limits": [0, 10],
             "position_limits": None, "orientation_limits": None, "uncouple_pos_ori": True, "control_delta": True}
-    env = rs.make(env_name="PickPlaceCan", robots="Panda",
+    env = rs.make(env_name=ENV_NAME, robots="Panda",
                   has_renderer=False, has_offscreen_renderer=True,
                   use_camera_obs=False, camera_names=CAMERA_NAME,
                   camera_heights=IMAGE_SIZE, camera_widths=IMAGE_SIZE,
@@ -227,7 +243,7 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
         import imageio
         f = h5py.File(HDF5_PATH, "r")
         d0 = f["data"]["demo_0"]
-        env2 = rs.make(env_name="PickPlaceCan", robots="Panda", has_renderer=False,
+        env2 = rs.make(env_name=ENV_NAME, robots="Panda", has_renderer=False,
                        has_offscreen_renderer=True, use_camera_obs=False, camera_names=CAMERA_NAME,
                        camera_heights=256, camera_widths=256, control_freq=FPS)
         env2.reset(); env2.sim.set_state_from_flattened(d0["states"][len(d0["states"])//2]); env2.sim.forward()
