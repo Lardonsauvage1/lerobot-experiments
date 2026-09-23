@@ -1,0 +1,187 @@
+{
+  "tag": "ref_birdview_seul",
+  "n_episodes": 40,
+  "n_reussis": 8,
+  "tous": [
+    0.19749245852187028,
+    10608
+  ],
+  "reussis": [
+    0.45535714285714285,
+    1008
+  ],
+  "rates": [
+    0.17041666666666666,
+    9600
+  ],
+  "reussis_approche": [
+    0.48125,
+    480
+  ],
+  "rates_approche": [
+    0.5010416666666667,
+    1920
+  ],
+  "episodes": [
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": true,
+      "n_pas": 124
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": true,
+      "n_pas": 117
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": true,
+      "n_pas": 130
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": true,
+      "n_pas": 131
+    },
+    {
+      "succes": true,
+      "n_pas": 99
+    },
+    {
+      "succes": true,
+      "n_pas": 132
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": true,
+      "n_pas": 134
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    },
+    {
+      "succes": true,
+      "n_pas": 141
+    },
+    {
+      "succes": false,
+      "n_pas": 300
+    }
+  ]
+}

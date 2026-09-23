@@ -14,6 +14,7 @@ MINIMAL mais FIABLE (vérifié identique dataset↔live sur tous les frames) :
 → aucun fix_obs_sign nécessaire (contrairement à Lift).
 """
 
+import os
 import numpy as np
 
 from src import lift_eval
@@ -43,7 +44,27 @@ def build_state_vector_can_dataset(obs_object, eef_pos, eef_quat, grip):
 
 
 def make_env():
-    return lift_eval.make_env(HDF5_PATH)
+    """Env d'évaluation Can.
+
+    ⚠️ PAR DÉFAUT, les MARQUEURS DE VISUALISATION sont DÉSACTIVÉS (CAN_VIZ=1 les rétablit) (sites de préhension, repères
+    robot). Le wrapper robomimic les active par défaut, alors que la conversion du dataset
+    appelle robosuite.make() directement et ne les dessine PAS. Les images d'évaluation
+    portent donc un artefact absent de l'entraînement : 68 pixels verts sur 9216, soit une
+    diagonale PLUS GROSSE que la canette vue de dessus (9 à 56 px). Mesuré le 2026-09-22.
+    Coût mesuré sur comparaison appariée (mêmes poids, mêmes 500 états) : le mono POIGNET
+    passe de 274 à 27 échecs sans les repères (p = 4e-70), birdview de 360 à 298 (p = 1,5e-6).
+    Le repère est un objet rouge à pointe verte planté AU POINT DE SAISIE, donc au centre du
+    champ de la caméra embarquée, en permanence. L'encodeur sortant 32 KEYPOINTS (positions),
+    un objet neuf et contrasté ne bruite pas un peu le vecteur : il capture des keypoints.
+    → Le rendu SANS repères est le seul correct : les données d'entraînement n'en ont pas.
+    """
+    env = lift_eval.make_env(HDF5_PATH)
+    if os.environ.get("CAN_VIZ") != "1":       # SANS repères par DÉFAUT
+        e = getattr(env, "env", env)
+        vis = getattr(e, "_visualizations", None)
+        assert vis, "pas de _visualizations : impossible de désactiver les marqueurs"
+        e.visualize(vis_settings={k: False for k in vis})
+    return env
 
 
 def load_or_make_split():

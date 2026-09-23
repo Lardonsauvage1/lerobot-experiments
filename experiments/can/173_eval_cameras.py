@@ -62,6 +62,10 @@ def main():
     ap.add_argument("--tag", required=True)
     ap.add_argument("--n", type=int, default=500)
     ap.add_argument("--pas", type=int, default=5, help="pas de débruitage (5 = optimum mesuré)")
+    ap.add_argument("--masque", default=None,
+                    help="ABLATION : nom (partiel) de la caméra mise à ZÉRO APRÈS normalisation, "
+                         "au moment de décider. Dit si une caméra AIDE ou PARASITE un modèle déjà "
+                         "entraîné, sans rien réentraîner.")
     a = ap.parse_args()
 
     import torch
@@ -89,6 +93,11 @@ def main():
     post = PolicyProcessorPipeline.from_pretrained(a.ckpt, config_filename="policy_postprocessor.json",
             to_transition=policy_action_to_transition, to_output=transition_to_policy_action)
 
+    if a.masque:
+        assert any(a.masque in k for k in image_keys.values()), \
+            f"aucune camera ne correspond a << {a.masque} >> parmi {list(image_keys.values())}"
+        V.MASK_CAM = a.masque      # lu par rollout_can : mise a ZERO APRES normalisation
+        print(f"  ABLATION : {a.masque} mise a zero a l'inference", flush=True)
     per, el = V.rollout_can(pol, pre, post, V.make_eval_states()[:a.n], dev, image_keys)
     k, n = sum(e["success"] for e in per), len(per)
     lo, hi = V.wilson_ci(k, n)
@@ -96,7 +105,7 @@ def main():
     print(f"  {n - k} échecs / {n} = {k/n:.1%} [{lo:.1%}, {hi:.1%}]   ({el/60:.0f} min)")
 
     res = json.loads(OUT.read_text()) if OUT.exists() else {}
-    res[a.tag] = {"n": n, "n_success": k, "success_rate": k/n, "ci95": [lo, hi],
+    res[a.tag] = {"masque": a.masque, "n": n, "n_success": k, "success_rate": k/n, "ci95": [lo, hi],
                   "cameras": sorted(image_keys), "down_dims": cfg.get("down_dims"),
                   "pas_debruitage": a.pas, "ckpt": a.ckpt,
                   "per_episode": [{"ep": i, "success": bool(e["success"])} for i, e in enumerate(per)]}
