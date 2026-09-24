@@ -84,6 +84,12 @@ def main():
             q.write_text(s.replace('"xpu"', f'"{dev.type}"').replace('"cuda"', f'"{dev.type}"'))
             print(f"  {f} : device -> {dev.type}", flush=True)
     image_keys, cfg = cameras_du_modele(a.ckpt)
+    # ⚠️ La RÉSOLUTION DE RENDU doit suivre celle du modèle : le softmax spatial est dimensionné
+    # à la construction (96 px -> grille 3×3, 160 px -> 5×5). Rendre à 96 px un modèle 160 px
+    # lève « shape [-1,25] is invalid for input of size 576 ». RENDER_SIZE était codé en dur.
+    _k0 = sorted(k for k in cfg["input_features"] if "image" in k)[0]
+    V.RENDER_SIZE = int(cfg["input_features"][_k0]["shape"][-1])
+    print(f"  rendu à {V.RENDER_SIZE} px (résolution du modèle)", flush=True)
     print(f"  {a.tag} : caméras déduites = {image_keys}", flush=True)
 
     pol = DiffusionPolicy.from_pretrained(a.ckpt).to(dev).eval()
