@@ -51,7 +51,7 @@ STATE_DIM = 3 + 4 + 2 + 3  # eef_pos + eef_quat + gripper_qpos + can_pos(3) = 12
 
 
 def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
-            birdview_only=False, birdview_wrist=False,
+            birdview_only=False, birdview_wrist=False, tri=False,
             image_size=DEFAULT_IMAGE_SIZE, smoke=False, joint=False, delta=False, coherent=False,
             occlude=0.0):
     """proprio=True : state 9D = proprio SEULE (sans can_pos), test transférabilité réel.
@@ -83,6 +83,7 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
     suffix = ("_joint" if joint else "") + ("_delta" if delta else "") + ("_coh" if coherent else "") + ("_proprio" if proprio else "") + ("_wrist" if wrist else "") + \
              ("_wristonly" if wrist_only else "") + ("_birdview" if birdview else "") + \
              ("_birdviewonly" if birdview_only else "") + ("_birdviewwrist" if birdview_wrist else "") + \
+             ("_tri" if tri else "") + \
              (f"_{image_size}" if image_size != DEFAULT_IMAGE_SIZE else "") + occ_tag
     out_root = OUTPUT_ROOT.with_name(OUTPUT_ROOT.name + suffix)
     repo_id = REPO_ID + suffix
@@ -113,6 +114,11 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
                           "observation.images.birdview": img_feat}
     elif birdview_wrist:
         image_features = {"observation.images.birdview": img_feat,
+                          "observation.images.wrist": img_feat}
+    elif tri:
+        # TROIS vues : la standard robomimic (agentview) + la vue de dessus + le poignet
+        image_features = {"observation.images.agentview": img_feat,
+                          "observation.images.birdview": img_feat,
                           "observation.images.wrist": img_feat}
     else:
         image_features = {"observation.image": img_feat}
@@ -180,7 +186,7 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
                     return env.sim.render(height=IMAGE_SIZE, width=IMAGE_SIZE, camera_name=cam)[::-1]
 
                 fr = {}
-                if wrist or birdview or birdview_wrist:
+                if wrist or birdview or birdview_wrist or tri:
                     if wrist:
                         cam_pairs = [("observation.images.agentview", "agentview"),
                                      ("observation.images.wrist", "robot0_eye_in_hand")]
@@ -189,6 +195,10 @@ def convert(proprio=False, wrist=False, wrist_only=False, birdview=False,
                                      ("observation.images.birdview", "birdview")]
                     else:   # birdview_wrist
                         cam_pairs = [("observation.images.birdview", "birdview"),
+                                     ("observation.images.wrist", "robot0_eye_in_hand")]
+                    if tri:
+                        cam_pairs = [("observation.images.agentview", "agentview"),
+                                     ("observation.images.birdview", "birdview"),
                                      ("observation.images.wrist", "robot0_eye_in_hand")]
                     for key, cam in cam_pairs:
                         img = _shot(cam)
@@ -262,6 +272,8 @@ if __name__ == "__main__":
                     help="agentview + birdview (2 cams scene-fixées, parallaxe)")
     ap.add_argument("--birdview-only", dest="birdview_only", action="store_true",
                     help="birdview SEULE sous observation.image (mono-cam vue de dessus)")
+    ap.add_argument("--tri", action="store_true",
+                    help="TROIS vues : agentview + birdview + poignet")
     ap.add_argument("--birdview-wrist", dest="birdview_wrist", action="store_true",
                     help="birdview + poignet : le cas RÉEL (pas de vue extérieure complète)")
     ap.add_argument("--image-size", dest="image_size", type=int, default=DEFAULT_IMAGE_SIZE,
@@ -278,6 +290,6 @@ if __name__ == "__main__":
     ap.add_argument("--smoke", action="store_true")
     a = ap.parse_args()
     convert(proprio=a.proprio, wrist=a.wrist, wrist_only=a.wrist_only, birdview=a.birdview,
-            birdview_only=a.birdview_only, birdview_wrist=a.birdview_wrist,
+            birdview_only=a.birdview_only, birdview_wrist=a.birdview_wrist, tri=a.tri,
             image_size=a.image_size, smoke=a.smoke, joint=a.joint, delta=a.delta,
             coherent=a.coherent, occlude=a.occlude)
