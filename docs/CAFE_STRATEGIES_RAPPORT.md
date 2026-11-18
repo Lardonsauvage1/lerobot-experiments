@@ -61,7 +61,7 @@ Ajouter les démos d'une stratégie mal apprise fait baisser le taux, comme le p
 
 **Le taux global est à peu près prévisible.** C'est la moyenne des taux de réussite de chaque méthode, pondérée par sa part dans le jeu de démos. La prédiction tient à ±4 points sur 6 jeux sur 7.
 
-**Mécanisme, observé par Sam sur les vidéos** : le modèle ne fait pas la moyenne des comportements. Il en choisit un, apparemment au hasard mais en proportion de ce qu'il a vu dans le jeu, puis l'applique jusqu'au bout. C'est ce qui rend le résultat prévisible : une stratégie présente à x % est jouée environ x % du temps, avec son propre taux de réussite.
+**Mécanisme, observé par Niels sur les vidéos** : le modèle ne fait pas la moyenne des comportements. Il en choisit un, apparemment au hasard mais en proportion de ce qu'il a vu dans le jeu, puis l'applique jusqu'au bout. C'est ce qui rend le résultat prévisible : une stratégie présente à x % est jouée environ x % du temps, avec son propre taux de réussite.
 
 Conséquence pratique : ce n'est pas la variété des démos qui compte, mais la part des stratégies difficiles à apprendre. Au réel, il faut repérer et limiter les façons de faire que le modèle n'apprend pas bien. Dans cet essai, 10 % de la mauvaise stratégie ne coûte rien de mesurable.
 
@@ -83,5 +83,5 @@ Le correctif libère chaque contexte dans son propre contexte, puis rend le cont
 - Expert et stratégies : `src/cafe/expert.py` (`CAFE_TIROIR_STRAT=1..4` ou `mix:a,b,…`).
 - Évaluation : `experiments/cafe/22_eval_ordo_pret_cafe.py`.
 - Sous-jeu de démos : `experiments/cafe/49_sous_jeu_strat.py`, chaîné par `experiments/cafe/50_fs50v_gb10.sh`.
-- Vidéos (sur la machine de Sam) : `results/videos/cafe_strat/` (mosaïque des 8 modèles ; réussites, relances et échecs du jeu à 50 %).
+- Vidéos (sur la machine de Niels) : `results/videos/cafe_strat/` (mosaïque des 8 modèles ; réussites, relances et échecs du jeu à 50 %).
 - Journal détaillé : `docs/CAFE_CADRE.md`.
